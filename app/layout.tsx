@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "../app/styles/globals.scss";
+import Providers from "./component/Providers";
 
 export const metadata: Metadata = {
   title: "Square Box",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
