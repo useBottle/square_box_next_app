@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "../styles/reset.scss";
 import "../styles/globals.scss";
 import Providers from "./component/Providers";
 import { Noto_Sans_KR, Prompt } from "next/font/google";
