@@ -3,6 +3,7 @@
 import { Prompt } from "next/font/google";
 import styles from "../../styles/header.module.scss";
 import { BsBox } from "react-icons/bs";
+import Link from "next/link";
 
 const prompt = Prompt({
   subsets: ["latin"],
@@ -13,10 +14,10 @@ const prompt = Prompt({
 export default function Header(): JSX.Element {
   return (
     <header>
-      <div id={styles.logo}>
+      <Link id={styles.logo} href="/">
         <BsBox />
         <h1 className={prompt.className}>Square Box</h1>
-      </div>
+      </Link>
     </header>
   );
 }

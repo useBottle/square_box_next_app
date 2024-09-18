@@ -1,0 +1,11 @@
+html {
+  font-size: 10px;
+}
+
+:root {
+  --basic-font: #000;
+}
+
+[data-theme="dark"] {
+  --basic-font: #fff;
+}
