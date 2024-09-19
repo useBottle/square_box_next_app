@@ -1,11 +1,19 @@
-html {
-  font-size: 10px;
-}
-
 :root {
   --basic-font: #000;
+  --background: #fff;
+  --main-color: #7f23ff;
 }
 
 [data-theme="dark"] {
   --basic-font: #fff;
+  --background: #151515;
+  --main-color: #a6ff58;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  background: var(--background);
 }

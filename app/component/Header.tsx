@@ -3,6 +3,7 @@
 import { Prompt } from "next/font/google";
 import styles from "../../styles/header.module.scss";
 import { BsBox } from "react-icons/bs";
+import { IoMenuOutline } from "react-icons/io5";
 import Link from "next/link";
 
 const prompt = Prompt({
@@ -13,11 +14,12 @@ const prompt = Prompt({
 
 export default function Header(): JSX.Element {
   return (
-    <header>
+    <header id={styles.header}>
       <Link id={styles.logo} href="/">
         <BsBox />
         <h1 className={prompt.className}>Square Box</h1>
       </Link>
+      <IoMenuOutline id={styles.menu} />
     </header>
   );
 }
