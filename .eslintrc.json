@@ -23,6 +23,7 @@
     "plugin:prettier/recommended"
   ],
   "rules": {
+    "react/no-unknown-property": "off",
     "jsx-a11y/mouse-events-have-key-events": "off",
 		"jsx-a11y/click-events-have-key-events": "off",
 		"jsx-a11y/interactive-supports-focus": "off",

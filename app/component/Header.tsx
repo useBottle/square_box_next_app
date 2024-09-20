@@ -1,10 +1,12 @@
+/** @jsxImportSource @emotion/react */
+
 "use client";
 
 import { Prompt } from "next/font/google";
-import styles from "../../styles/header.module.scss";
 import { BsBox } from "react-icons/bs";
 import { IoMenuOutline } from "react-icons/io5";
 import Link from "next/link";
+import { css } from "@emotion/react";
 
 const prompt = Prompt({
   subsets: ["latin"],
@@ -14,12 +16,34 @@ const prompt = Prompt({
 
 export default function Header(): JSX.Element {
   return (
-    <header id={styles.header}>
-      <Link id={styles.logo} href="/">
+    <header
+      css={css({
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        height: "5rem",
+      })}
+    >
+      <Link
+        href="/"
+        css={css({
+          display: "flex",
+          color: "var(--basic-font)",
+          fontSize: "2rem",
+          margin: "1rem 1.5rem",
+        })}
+      >
         <BsBox />
-        <h1 className={prompt.className}>Square Box</h1>
+        <h1 className={prompt.className} css={css({ marginLeft: "1rem" })}>
+          Square Box
+        </h1>
       </Link>
-      <IoMenuOutline id={styles.menu} />
+      <IoMenuOutline
+        css={css({
+          fontSize: "2rem",
+          margin: "0 1.5rem",
+        })}
+      />
     </header>
   );
 }
