@@ -1,11 +1,13 @@
 :root {
   --basic-font: #000;
+  --reverse-font: #fff;
   --background: #fff;
   --main-color: #7f23ff;
 }
 
 [data-theme="dark"] {
   --basic-font: #fff;
+  --reverse-font: #000;
   --background: #151515;
   --main-color: #fff047;
 }

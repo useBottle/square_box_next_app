@@ -8,6 +8,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { IoCloseOutline } from "react-icons/io5";
 import { setNavMenu } from "@/store/switches";
 import { FaHome, FaNewspaper, FaYoutube, FaBookmark } from "react-icons/fa";
+import Link from "next/link";
+import { BsBox } from "react-icons/bs";
+import { Prompt } from "next/font/google";
+
+const prompt = Prompt({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 
 export default function MobileNav(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
@@ -24,6 +33,8 @@ export default function MobileNav(): JSX.Element {
     justifyContent: "center",
     alignItems: "center",
     fontSize: "1.4rem",
+    color: "var(--basic-font)",
+    transform: "translateY(-5rem)",
   });
 
   const menuIcon = css({
@@ -32,22 +43,37 @@ export default function MobileNav(): JSX.Element {
   });
 
   const menuItems = [
-    { icon: <FaHome css={menuIcon} />, text: "Home" },
-    { icon: <FaNewspaper css={menuIcon} />, text: "News" },
-    { icon: <FaYoutube css={menuIcon} />, text: "Youtube" },
-    { icon: <FaBookmark css={menuIcon} />, text: "BookMark" },
+    { icon: <FaHome css={menuIcon} />, text: "Home", path: "/" },
+    { icon: <FaNewspaper css={menuIcon} />, text: "News", path: "/news" },
+    { icon: <FaYoutube css={menuIcon} />, text: "Youtube", path: "/youtube" },
+    { icon: <FaBookmark css={menuIcon} />, text: "BookMark", path: "bookmark" },
   ];
 
   return (
     <nav
       css={css({
         display: `${navMenu ? "block" : "none"}`,
+        position: "fixed",
         width: "100vw",
         height: "100vh",
         background: "var(--background)",
         zIndex: "999",
       })}
     >
+      <Link
+        href="/"
+        css={css({
+          display: "flex",
+          color: "var(--basic-font)",
+          fontSize: "2rem",
+          margin: "1.5rem 1.5rem",
+        })}
+      >
+        <BsBox />
+        <h1 className={prompt.className} css={css({ marginLeft: "1rem" })}>
+          Square Box
+        </h1>
+      </Link>
       <IoCloseOutline
         css={css({
           position: "absolute",
@@ -69,13 +95,33 @@ export default function MobileNav(): JSX.Element {
         {menuItems.map((item, index) => {
           return (
             <li key={index}>
-              <button css={menuList}>
+              <Link href={item.path} onClick={() => dispatch(setNavMenu(navMenu ? false : true))} css={menuList}>
                 {item.icon}
                 {item.text}
-              </button>
+              </Link>
             </li>
           );
         })}
+        <Link
+          href="/login"
+          onClick={() => dispatch(setNavMenu(navMenu ? false : true))}
+          css={css({
+            marginTop: "10rem",
+            border: "none",
+            borderRadius: "5px",
+            background: "var(--main-color)",
+            color: "var(--reverse-font)",
+            width: "20rem",
+            height: "5rem",
+            fontSize: "1.4rem",
+            transform: "translateY(-5rem)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          })}
+        >
+          로그인
+        </Link>
       </ul>
     </nav>
   );
