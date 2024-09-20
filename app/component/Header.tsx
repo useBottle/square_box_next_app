@@ -7,6 +7,9 @@ import { BsBox } from "react-icons/bs";
 import { IoMenuOutline } from "react-icons/io5";
 import Link from "next/link";
 import { css } from "@emotion/react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import { setNavMenu } from "@/store/switches";
 
 const prompt = Prompt({
   subsets: ["latin"],
@@ -15,6 +18,9 @@ const prompt = Prompt({
 });
 
 export default function Header(): JSX.Element {
+  const dispatch = useDispatch<AppDispatch>();
+  const { navMenu } = useSelector((state: RootState) => state.switches);
+
   return (
     <header
       css={css({
@@ -43,6 +49,7 @@ export default function Header(): JSX.Element {
           fontSize: "2rem",
           margin: "0 1.5rem",
         })}
+        onClick={() => dispatch(setNavMenu(navMenu ? false : true))}
       />
     </header>
   );
