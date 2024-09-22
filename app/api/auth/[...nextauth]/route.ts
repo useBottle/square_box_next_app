@@ -1,3 +1,5 @@
+import Users from "@/models/users";
+import dbConnect from "@/util/database";
 import NextAuth, { Session, User } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import GoogleProvider from "next-auth/providers/google";
@@ -19,6 +21,16 @@ const authOptions = {
   callbacks: {
     async jwt({ token, user }: { token: JWT; user?: User }) {
       if (user) {
+        await dbConnect();
+        const existingUser = await Users.findOne({ email: user.email });
+
+        if (!existingUser) {
+          await Users.create({
+            name: user.name,
+            email: user.email,
+            image: user.image,
+          });
+        }
         token.id = user.id;
       }
       return token;
