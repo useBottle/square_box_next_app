@@ -46,7 +46,7 @@ export default function MobileNav(): JSX.Element {
     { icon: <FaHome css={menuIcon} />, text: "Home", path: "/" },
     { icon: <FaNewspaper css={menuIcon} />, text: "News", path: "/news" },
     { icon: <FaYoutube css={menuIcon} />, text: "Youtube", path: "/youtube" },
-    { icon: <FaBookmark css={menuIcon} />, text: "BookMark", path: "bookmark" },
+    { icon: <FaBookmark css={menuIcon} />, text: "BookMark", path: "/bookmark" },
   ];
 
   return (
@@ -103,7 +103,7 @@ export default function MobileNav(): JSX.Element {
           );
         })}
         <Link
-          href="/login"
+          href="/auth/signin"
           onClick={() => dispatch(setNavMenu(navMenu ? false : true))}
           css={css({
             marginTop: "10rem",
