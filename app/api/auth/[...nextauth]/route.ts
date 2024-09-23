@@ -31,6 +31,7 @@ const authOptions = {
             image: user.image,
           });
         }
+        console.log(user);
         token.id = user.id;
       }
       return token;
