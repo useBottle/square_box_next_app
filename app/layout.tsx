@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import "../styles/reset.scss";
 import "../styles/globals.css";
-import Providers from "./component/Providers";
 import { Noto_Sans_KR } from "next/font/google";
 import Header from "./component/Header";
 import MobileNav from "./component/MobileNav";
+import Providers from "./component/Providers";
 
 const notoSansKR = Noto_Sans_KR({
   subsets: ["latin"],

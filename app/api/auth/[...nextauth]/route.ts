@@ -5,7 +5,7 @@ import { JWT } from "next-auth/jwt";
 import GoogleProvider from "next-auth/providers/google";
 import Kakao from "next-auth/providers/kakao";
 
-const authOptions = {
+export const authOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -42,9 +42,13 @@ const authOptions = {
     },
     async session({ session, token }: { session: Session; token: JWT }) {
       if (session.user) {
-        session.user.name = token.sub ?? "";
+        session.user.name = token.name ?? "";
       }
       return session;
+    },
+    async redirect({ url, baseUrl }: { url: string; baseUrl: string }) {
+      const callbackUrl = new URL(url).searchParams.get("callbackUrl");
+      return callbackUrl ? callbackUrl : baseUrl;
     },
   },
 };
