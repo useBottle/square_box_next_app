@@ -3,12 +3,17 @@ import dbConnect from "@/util/database";
 import NextAuth, { Session, User } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import GoogleProvider from "next-auth/providers/google";
+import Kakao from "next-auth/providers/kakao";
 
 const authOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
+    Kakao({
+      clientId: process.env.KAKAO_CLIENT_ID!,
+      clientSecret: process.env.KAKAO_CLIENT_SECRET!,
     }),
   ],
   session: {
@@ -17,7 +22,7 @@ const authOptions = {
   pages: {
     signIn: "/auth/signin",
   },
-  secret: process.env.GOOGLE_JWT_PW,
+  secret: process.env.JWT_PW,
   callbacks: {
     async jwt({ token, user }: { token: JWT; user?: User }) {
       if (user) {
