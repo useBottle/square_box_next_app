@@ -122,6 +122,26 @@ export default function MobileNav(): JSX.Element {
         >
           로그인
         </Link>
+        <Link
+          href="/auth/signout"
+          onClick={() => dispatch(setNavMenu(navMenu ? false : true))}
+          css={css({
+            marginTop: "1rem",
+            border: "none",
+            borderRadius: "5px",
+            background: "var(--main-color)",
+            color: "var(--reverse-font)",
+            width: "20rem",
+            height: "5rem",
+            fontSize: "1.4rem",
+            transform: "translateY(-5rem)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          })}
+        >
+          로그아웃
+        </Link>
       </ul>
     </nav>
   );

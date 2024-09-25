@@ -18,9 +18,7 @@ export const authOptions = {
   ],
   session: {
     strategy: "jwt" as const,
-  },
-  pages: {
-    signIn: "/auth/signin",
+    maxAge: 24 * 60 * 60,
   },
   secret: process.env.JWT_PW,
   callbacks: {
@@ -46,9 +44,8 @@ export const authOptions = {
       }
       return session;
     },
-    async redirect({ url, baseUrl }: { url: string; baseUrl: string }) {
-      const callbackUrl = new URL(url).searchParams.get("callbackUrl");
-      return callbackUrl ? callbackUrl : baseUrl;
+    async redirect({ baseUrl }: { baseUrl: string }) {
+      return baseUrl;
     },
   },
 };
