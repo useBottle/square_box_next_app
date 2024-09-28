@@ -18,6 +18,7 @@ export default function Signin(): JSX.Element {
 
     if (result?.error) {
       setError(result.error);
+      console.log(error);
     }
   };
 
@@ -33,12 +34,10 @@ export default function Signin(): JSX.Element {
         />
         <input
           name="password"
-          type="text"
+          type="password"
           placeholder="Password"
           value={password}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            e.target.value;
-          }}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
         />
         <button type="submit">Sign in with Credentials</button>
       </form>

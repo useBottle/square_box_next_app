@@ -79,6 +79,10 @@ export const authOptions = {
             console.log("No such email");
             return null;
           }
+          if (!user.password) {
+            console.log("Password of account is not exist. (social account)");
+            throw new Error("Already exist with social account.");
+          }
           const pwcheck = await bcrypt.compare(credentials.password, user.password);
           if (!pwcheck) {
             console.log("Wrong password");
