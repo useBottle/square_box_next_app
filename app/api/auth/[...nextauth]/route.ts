@@ -6,6 +6,7 @@ import Credentials from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import Kakao from "next-auth/providers/kakao";
 import bcrypt from "bcrypt";
+import axios from "axios";
 
 async function refreshAccessToken(token: JWT) {
   try {
@@ -34,16 +35,15 @@ async function refreshAccessToken(token: JWT) {
       throw new Error("Unknown provider");
     }
 
-    const response = await fetch(url, {
+    const response = await axios.post(url, {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      method: "POST",
       body: token.provider === "google" ? googleParams : kakaoParams,
     });
 
-    const refreshedTokens = await response.json();
+    const refreshedTokens = await response.data;
 
-    if (!response.ok) {
-      throw refreshedTokens;
+    if (response.status < 200 || response.status >= 300) {
+      throw new Error(refreshedTokens);
     }
 
     return {
