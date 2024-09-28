@@ -35,9 +35,8 @@ async function refreshAccessToken(token: JWT) {
       throw new Error("Unknown provider");
     }
 
-    const response = await axios.post(url, {
+    const response = await axios.post(url, token.provider === "google" ? googleParams : kakaoParams, {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: token.provider === "google" ? googleParams : kakaoParams,
     });
 
     const refreshedTokens = await response.data;
