@@ -1,12 +1,14 @@
 "use client";
 
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 
 export default function Signin(): JSX.Element {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,7 +20,10 @@ export default function Signin(): JSX.Element {
 
     if (result?.error) {
       setError(result.error);
-      console.log(error);
+
+      if (result.error.includes("social account")) {
+        router.push("/auth/social-redirect");
+      }
     }
   };
 
