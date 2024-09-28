@@ -2,8 +2,10 @@ import Users from "@/models/users";
 import dbConnect from "@/util/database";
 import NextAuth, { Account, Session, User } from "next-auth";
 import { JWT } from "next-auth/jwt";
+import Credentials from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import Kakao from "next-auth/providers/kakao";
+import bcrypt from "bcrypt";
 
 async function refreshAccessToken(token: JWT) {
   try {
@@ -60,6 +62,32 @@ async function refreshAccessToken(token: JWT) {
 
 export const authOptions = {
   providers: [
+    Credentials({
+      name: "credentials",
+      credentials: {
+        email: { label: "email", type: "text" },
+        password: { label: "password", type: "password" },
+      },
+
+      async authorize(credentials) {
+        if (!credentials) {
+          console.log("Credentials were not provided.");
+        } else {
+          await dbConnect();
+          const user = await Users.findOne({ email: credentials.email });
+          if (!user) {
+            console.log("No such email");
+            return null;
+          }
+          const pwcheck = await bcrypt.compare(credentials.password, user.password);
+          if (!pwcheck) {
+            console.log("Wrong password");
+            return null;
+          }
+          return user;
+        }
+      },
+    }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
