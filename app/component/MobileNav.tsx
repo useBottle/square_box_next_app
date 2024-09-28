@@ -117,7 +117,7 @@ export default function MobileNav(): JSX.Element {
             height: "5rem",
             fontSize: "1.4rem",
             transform: "translateY(-5rem)",
-            display: `${session ? "none" : "flex"}`,
+            display: `${session.data === null ? "flex" : "none"}`,
             justifyContent: "center",
             alignItems: "center",
           })}
@@ -137,7 +137,7 @@ export default function MobileNav(): JSX.Element {
             height: "5rem",
             fontSize: "1.4rem",
             transform: "translateY(-5rem)",
-            display: `${session ? "flex" : "none"}`,
+            display: `${session.data === null ? "none" : "flex"}`,
             justifyContent: "center",
             alignItems: "center",
           })}
