@@ -1,7 +1,7 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 export default function Signin(): JSX.Element {
   const [email, setEmail] = useState<string>("");
@@ -24,13 +24,19 @@ export default function Signin(): JSX.Element {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <input name="email" type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input
+          name="email"
+          type="text"
+          placeholder="Email"
+          value={email}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+        />
         <input
           name="password"
           type="text"
           placeholder="Password"
           value={password}
-          onChange={(e) => {
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
             e.target.value;
           }}
         />
