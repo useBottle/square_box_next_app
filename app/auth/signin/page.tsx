@@ -7,7 +7,6 @@ import { ChangeEvent, useState } from "react";
 export default function Signin(): JSX.Element {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [error, setError] = useState<string>("");
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -19,7 +18,7 @@ export default function Signin(): JSX.Element {
     });
 
     if (result?.error) {
-      setError(result.error);
+      console.log(result.error);
 
       if (result.error.includes("social account")) {
         router.push("/auth/social-redirect");
