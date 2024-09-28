@@ -11,6 +11,7 @@ import { FaHome, FaNewspaper, FaYoutube, FaBookmark } from "react-icons/fa";
 import Link from "next/link";
 import { BsBox } from "react-icons/bs";
 import { Prompt } from "next/font/google";
+import { useSession } from "next-auth/react";
 
 const prompt = Prompt({
   subsets: ["latin"],
@@ -21,6 +22,7 @@ const prompt = Prompt({
 export default function MobileNav(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const { navMenu } = useSelector((state: RootState) => state.switches);
+  const session = useSession();
 
   const menuList = css({
     width: "20rem",
@@ -115,7 +117,7 @@ export default function MobileNav(): JSX.Element {
             height: "5rem",
             fontSize: "1.4rem",
             transform: "translateY(-5rem)",
-            display: "flex",
+            display: `${session ? "none" : "flex"}`,
             justifyContent: "center",
             alignItems: "center",
           })}
@@ -135,7 +137,7 @@ export default function MobileNav(): JSX.Element {
             height: "5rem",
             fontSize: "1.4rem",
             transform: "translateY(-5rem)",
-            display: "flex",
+            display: `${session ? "flex" : "none"}`,
             justifyContent: "center",
             alignItems: "center",
           })}
