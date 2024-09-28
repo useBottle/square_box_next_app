@@ -1,6 +1,7 @@
 "use client";
 
 import { signIn } from "next-auth/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 
@@ -47,6 +48,7 @@ export default function Signin(): JSX.Element {
       </form>
       <button onClick={() => signIn("google")}>Sign in with Google</button>
       <button onClick={() => signIn("kakao")}>Sign in with Kakao</button>
+      <Link href="/auth/signup">회원 가입</Link>
     </div>
   );
 }
