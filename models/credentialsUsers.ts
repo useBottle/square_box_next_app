@@ -18,5 +18,6 @@ const credentialsUserSchema = new Schema<CredentialsUser>({
 });
 
 const CredentialsUsers =
-  mongoose.models.CredentialsUsers || mongoose.model<CredentialsUser>("CredentialsUsers", credentialsUserSchema);
+  mongoose.models.CredentialsUsers ||
+  mongoose.model<CredentialsUser>("CredentialsUsers", credentialsUserSchema, "Credentials_Users");
 export default CredentialsUsers;

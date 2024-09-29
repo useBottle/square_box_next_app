@@ -16,5 +16,6 @@ const socialUserSchema = new Schema<SocialUser>({
   },
 });
 
-const SocialUsers = mongoose.models.SocialUsers || mongoose.model<SocialUser>("SocialUsers", socialUserSchema);
+const SocialUsers =
+  mongoose.models.SocialUsers || mongoose.model<SocialUser>("SocialUsers", socialUserSchema, "Social_Users");
 export default SocialUsers;

@@ -1,3 +1,4 @@
+import CredentialsUsers from "@/models/credentialsUsers";
 import dbConnect from "@/util/database";
 import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
@@ -10,6 +11,13 @@ export async function POST(req: Request) {
 
   try {
     await dbConnect();
+    const newUser = new CredentialsUsers({
+      ...result,
+      password: hashedPassword,
+      provider: "credentials",
+    });
+
+    await newUser.save();
   } catch (error) {
     console.error(error);
   }
