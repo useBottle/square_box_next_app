@@ -1,4 +1,3 @@
-import Users from "@/models/users";
 import dbConnect from "@/util/database";
 import NextAuth, { Account, Session, User } from "next-auth";
 import { JWT } from "next-auth/jwt";
@@ -7,6 +6,7 @@ import GoogleProvider from "next-auth/providers/google";
 import Kakao from "next-auth/providers/kakao";
 import bcrypt from "bcrypt";
 import axios from "axios";
+import SocialUsers from "@/models/socialUsers";
 
 async function refreshAccessToken(token: JWT) {
   try {
@@ -73,7 +73,7 @@ export const authOptions = {
           console.log("Credentials were not provided.");
         } else {
           await dbConnect();
-          const user = await Users.findOne({ email: credentials.email });
+          const user = await SocialUsers.findOne({ email: credentials.email });
           if (!user) {
             console.log("No such email");
             return null;
@@ -119,10 +119,10 @@ export const authOptions = {
         token.provider = account.provider;
 
         await dbConnect();
-        const existingUser = await Users.findOne({ email: user.email });
+        const existingUser = await SocialUsers.findOne({ email: user.email });
 
         if (!existingUser) {
-          await Users.create({
+          await SocialUsers.create({
             name: user.name,
             email: user.email,
             image: user.image,
