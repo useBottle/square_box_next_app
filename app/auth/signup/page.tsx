@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import { ChangeEvent, useState } from "react";
 
 export default function Signup(): JSX.Element {
@@ -7,8 +8,13 @@ export default function Signup(): JSX.Element {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await axios.post("/api/signup", { email: email, name: name, password: password });
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <input
         name="email"
         type="text"
