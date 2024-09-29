@@ -1,9 +1,10 @@
-import { SocialUser } from "./../types/types";
+import { CredentialsUser } from "./../types/types";
 import mongoose, { Schema } from "mongoose";
 
-const socialUserSchema = new Schema<SocialUser>({
+const credentialsUserSchema = new Schema<CredentialsUser>({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
   image: { type: String },
   provider: { type: String, required: true },
   createdAt: {
@@ -16,5 +17,6 @@ const socialUserSchema = new Schema<SocialUser>({
   },
 });
 
-const SocialUsers = mongoose.models.SocialUsers || mongoose.model<SocialUser>("SocialUsers", socialUserSchema);
-export default SocialUsers;
+const CredentialsUsers =
+  mongoose.models.CredentialsUsers || mongoose.model<CredentialsUser>("CredentialsUsers", credentialsUserSchema);
+export default CredentialsUsers;
