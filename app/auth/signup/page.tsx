@@ -5,15 +5,15 @@ import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 
 export default function Signup(): JSX.Element {
-  const [email, setEmail] = useState<string | undefined>(undefined);
-  const [name, setName] = useState<string | undefined>(undefined);
-  const [password, setPassword] = useState<string | undefined>(undefined);
+  const [email, setEmail] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (email === undefined || name === undefined || password === undefined) {
+    if (email === "" || name === "" || password === "") {
       console.log(email, name, password);
       return;
     }
