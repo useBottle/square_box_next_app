@@ -4,7 +4,7 @@ import mongoose, { Schema } from "mongoose";
 const userSchema = new Schema<AuthedUser>({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  password: { type: String },
   image: { type: String },
   provider: { type: String, required: true },
   createdAt: {
@@ -17,5 +17,5 @@ const userSchema = new Schema<AuthedUser>({
   },
 });
 
-const Users = mongoose.models.Users || mongoose.model<AuthedUser>("Users", userSchema);
+const Users = mongoose.models?.Users || mongoose.model<AuthedUser>("Users", userSchema);
 export default Users;

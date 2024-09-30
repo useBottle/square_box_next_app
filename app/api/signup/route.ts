@@ -16,7 +16,7 @@ export async function POST(req: Request) {
       password: hashedPassword,
       provider: "credentials",
     });
-
+    console.log(newUser);
     await newUser.save();
   } catch (error) {
     console.error(error);

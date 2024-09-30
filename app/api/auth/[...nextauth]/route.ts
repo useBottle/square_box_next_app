@@ -126,7 +126,7 @@ export const authOptions = {
           await Users.create({
             name: user.name,
             email: user.email,
-            password: user.password && user.password,
+            password: user.password,
             image: user.image,
             provider: token.provider,
           });
