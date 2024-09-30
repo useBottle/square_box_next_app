@@ -1,16 +1,29 @@
 "use client";
 
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 
 export default function Signup(): JSX.Element {
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState<string | undefined>(undefined);
+  const [name, setName] = useState<string | undefined>(undefined);
+  const [password, setPassword] = useState<string | undefined>(undefined);
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await axios.post("/api/signup", { email: email, name: name, password: password });
+
+    if (email === undefined || name === undefined || password === undefined) {
+      console.log(email, name, password);
+      return;
+    }
+
+    try {
+      await axios.post("/api/signup", { email: email, name: name, password: password });
+      router.push("/");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

@@ -14,3 +14,12 @@ export interface CredentialsUser {
   provider?: string;
   createdAt: Date;
 }
+
+export interface AuthedUser {
+  name: string;
+  email: string;
+  password?: string;
+  image?: string;
+  provider: string;
+  createdAt: Date;
+}

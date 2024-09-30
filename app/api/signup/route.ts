@@ -1,4 +1,4 @@
-import CredentialsUsers from "@/models/credentialsUsers";
+import Users from "@/models/users";
 import dbConnect from "@/util/database";
 import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
@@ -11,7 +11,7 @@ export async function POST(req: Request) {
 
   try {
     await dbConnect();
-    const newUser = new CredentialsUsers({
+    const newUser = new Users({
       ...result,
       password: hashedPassword,
       provider: "credentials",
