@@ -13,7 +13,6 @@ export default function Signin(): JSX.Element {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = await signIn("credentials", {
-      redirect: false,
       email,
       password,
     });

@@ -7,6 +7,7 @@ import Kakao from "next-auth/providers/kakao";
 import bcrypt from "bcrypt";
 import axios from "axios";
 import SocialUsers from "@/models/socialUsers";
+import CredentialsUsers from "@/models/credentialsUsers";
 
 async function refreshAccessToken(token: JWT) {
   try {
@@ -73,7 +74,7 @@ export const authOptions = {
           console.log("Credentials were not provided.");
         } else {
           await dbConnect();
-          const user = await SocialUsers.findOne({ email: credentials.email });
+          const user = await CredentialsUsers.findOne({ email: credentials.email });
           if (!user) {
             console.log("No such email");
             return null;
