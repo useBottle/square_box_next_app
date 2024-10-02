@@ -6,7 +6,7 @@ import GoogleProvider from "next-auth/providers/google";
 import Kakao from "next-auth/providers/kakao";
 import bcrypt from "bcrypt";
 import Users from "@/models/users";
-import refreshAccessToken from "@/util/refreshAccessToken";
+import refreshAccessToken from "@/util/socialReissuance";
 
 export const authOptions = {
   providers: [
