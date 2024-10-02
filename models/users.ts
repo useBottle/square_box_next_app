@@ -7,6 +7,7 @@ const userSchema = new Schema<AuthedUser>({
   password: { type: String },
   image: { type: String },
   provider: { type: String, required: true },
+  refreshToken: { type: String },
   createdAt: {
     type: Date,
     default: () => {
