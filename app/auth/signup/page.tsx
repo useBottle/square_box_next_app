@@ -14,7 +14,6 @@ export default function Signup(): JSX.Element {
     e.preventDefault();
 
     if (email === "" || name === "" || password === "") {
-      console.log(email, name, password);
       return;
     }
 

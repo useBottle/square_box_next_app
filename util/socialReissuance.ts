@@ -7,16 +7,16 @@ export default async function refreshAccessToken(token: JWT): Promise<JWT> {
 
     const googleParams = new URLSearchParams({
       grant_type: "refresh_token",
-      client_id: process.env.GOOGLE_CLIENT_ID!,
+      client_id: process.env.GOOGLE_CLIENT_ID || "",
       refresh_token: token.refreshToken! as string,
-      client_secret: process.env.GOOGLE_CLIENT_SECRET!,
+      client_secret: process.env.GOOGLE_CLIENT_SECRET || "",
     });
 
     const kakaoParams = new URLSearchParams({
       grant_type: "refresh_token",
-      client_id: process.env.KAKAO_CLIENT_ID!,
+      client_id: process.env.KAKAO_CLIENT_ID || "",
       refresh_token: token.refreshToken! as string,
-      client_secret: process.env.KAKAO_CLIENT_SECRET!,
+      client_secret: process.env.KAKAO_CLIENT_SECRET || "",
     });
 
     // 제공자에 따라 다른 토큰 엔드포인트로 요청
@@ -32,11 +32,11 @@ export default async function refreshAccessToken(token: JWT): Promise<JWT> {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
     });
 
-    const refreshedTokens = await response.data;
-
     if (response.status < 200 || response.status >= 300) {
-      throw new Error(refreshedTokens);
+      throw new Error(`Failed to refresh token: ${response.status}`);
     }
+
+    const refreshedTokens = response.data;
 
     return {
       ...token,

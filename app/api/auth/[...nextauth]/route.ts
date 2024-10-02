@@ -58,7 +58,6 @@ export const authOptions = {
   callbacks: {
     async jwt({ token, account, user }: { token: JWT; account?: Account | null; user?: User }): Promise<JWT> {
       if (account && user) {
-        console.log(account);
         token.accessToken = account.access_token;
         token.refreshToken = account.refresh_token;
         if (account.expires_in) {
@@ -88,7 +87,9 @@ export const authOptions = {
         }
 
         // 액세스 토큰이 만료된 경우, 제공자별로 리프레시 토큰으로 갱신 처리
-        else return refreshAccessToken(token);
+        else {
+          return refreshAccessToken(token);
+        }
       }
       return token;
     },
