@@ -1,7 +1,7 @@
 import axios from "axios";
 import { JWT } from "next-auth/jwt";
 
-export default async function refreshAccessToken(token: JWT) {
+export default async function refreshAccessToken(token: JWT): Promise<JWT> {
   try {
     let url;
 

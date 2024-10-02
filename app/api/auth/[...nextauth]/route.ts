@@ -52,12 +52,13 @@ export const authOptions = {
   ],
   session: {
     strategy: "jwt" as const,
-    maxAge: 1 * 24 * 60 * 60,
+    maxAge: 1 * 60 * 60,
   },
   secret: process.env.JWT_PW,
   callbacks: {
-    async jwt({ token, account, user }: { token: JWT; account?: Account | null; user?: User }) {
+    async jwt({ token, account, user }: { token: JWT; account?: Account | null; user?: User }): Promise<JWT> {
       if (account && user) {
+        console.log(account);
         token.accessToken = account.access_token;
         token.refreshToken = account.refresh_token;
         if (account.expires_in) {
@@ -80,15 +81,16 @@ export const authOptions = {
           });
         }
         token.id = user.id;
-      }
 
-      // 액세스 토큰이 만료되지 않았다면 기존 토큰 반환
-      if (Date.now() < (token.accessTokenExpires as number)) {
-        return token;
-      }
+        // 액세스 토큰이 만료되지 않았다면 기존 토큰 반환
+        if (Date.now() < (token.accessTokenExpires as number)) {
+          return token;
+        }
 
-      // 액세스 토큰이 만료된 경우, 제공자별로 리프레시 토큰으로 갱신 처리
-      return refreshAccessToken(token);
+        // 액세스 토큰이 만료된 경우, 제공자별로 리프레시 토큰으로 갱신 처리
+        else return refreshAccessToken(token);
+      }
+      return token;
     },
     async session({ session, token }: { session: Session; token: JWT }) {
       if (session.user) {
