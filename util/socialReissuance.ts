@@ -37,6 +37,7 @@ export default async function refreshAccessToken(token: JWT): Promise<JWT> {
     }
 
     const refreshedTokens = response.data;
+    console.log("refreshing complete");
 
     return {
       ...token,

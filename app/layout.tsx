@@ -5,6 +5,7 @@ import { Noto_Sans_KR } from "next/font/google";
 import Header from "./component/Header";
 import MobileNav from "./component/MobileNav";
 import Providers from "./component/Providers";
+import CheckToken from "./component/CheckToken";
 
 const notoSansKR = Noto_Sans_KR({
   subsets: ["latin"],
@@ -32,6 +33,7 @@ export default function RootLayout({
     <html lang="kr">
       <body className={notoSansKR.className}>
         <Providers>
+          <CheckToken />
           <MobileNav />
           <Header />
           {children}
