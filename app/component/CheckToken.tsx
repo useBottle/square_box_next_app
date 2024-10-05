@@ -19,10 +19,11 @@ export default function CheckToken() {
     const refreshTime = tokenExpires - 5000;
     console.log("tokenExpires: ", tokenExpires);
     console.log("refreshTime: ", refreshTime);
-    console.log(Date.now());
+    console.log("Date.now time: ", Date.now());
+    console.log("UTC time: ", new Date().getTime());
 
     const checkTokenExpires = async () => {
-      if (Date.now() >= refreshTime) {
+      if (new Date().getTime() >= refreshTime) {
         console.log("Refreshing access token");
         // await signIn(provider);
         update();
