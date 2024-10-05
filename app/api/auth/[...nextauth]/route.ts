@@ -57,7 +57,7 @@ export const authOptions = {
   secret: process.env.JWT_PW,
   callbacks: {
     async jwt({ token, account, user }: { token: JWT; account?: Account | null; user?: User }): Promise<JWT> {
-      // 최초 소셜 로그인 직후에만 동작
+      // 최초 로그인이 소셜 로그인일 경우.
       if (account && user) {
         token.accessToken = account.access_token;
         token.refreshToken = account.refresh_token;
@@ -92,15 +92,11 @@ export const authOptions = {
         }
       }
 
-      // // 최초 로그인시 credentials 일 경우, account 는 제공되지 않음. user 는 authorize 함수가 반환하여 존재.
-      // if (!account && user) {
-      //   /*
-      //     1. credentials 로그인 -> Auth.js 가 최초 JWT 발급
-      //     2. 토큰 유효기간 만료 후 재발급되지 않음.
-      //     3. 여기서 토큰
-      //   */
-      //   console.log("credentials"); // TODO: 여기서부터 작업해야함. 액세스 토큰 유효기간 확인 및 리프레시 토큰 사용 로직.
-      // }
+      // 최초 로그인이 credentials 인 경우.
+      if (!account && user) {
+        token.id = user.id;
+      }
+
       return token;
     },
     async session({ session, token }: { session: Session; token: JWT }) {
