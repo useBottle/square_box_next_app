@@ -5,15 +5,17 @@
 import { AppDispatch, RootState } from "@/store/store";
 import { css } from "@emotion/react";
 import { useDispatch, useSelector } from "react-redux";
-import { setNavMenu } from "@/store/switches";
+import { setNavMenu, setSignoutModal } from "@/store/switches";
 import { FaHome, FaNewspaper, FaYoutube, FaBookmark } from "react-icons/fa";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { menuIcon, menuList, menuUl, nav, signinBtn, signoutBtn } from "@/styles/MobileNav.styles";
+import SignoutModal from "./SignoutModal";
 
 export default function MobileNav(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const { navMenu } = useSelector((state: RootState) => state.switches);
+  const { signoutModal } = useSelector((state: RootState) => state.switches);
   const session = useSession();
 
   const menuItems = [
@@ -30,6 +32,7 @@ export default function MobileNav(): JSX.Element {
         display: navMenu ? "block" : "none",
       })}
     >
+      {!signoutModal && <SignoutModal />}
       <ul css={css(menuUl)}>
         {menuItems.map((item, index) => {
           return (
@@ -51,16 +54,17 @@ export default function MobileNav(): JSX.Element {
         >
           로그인
         </Link>
-        <Link
-          href="/auth/signout"
-          onClick={() => dispatch(setNavMenu(navMenu ? false : true))}
+        <button
+          onClick={() => {
+            dispatch(setSignoutModal(signoutModal ? false : true));
+          }}
           css={css({
             ...signoutBtn,
             display: session.data === null ? "none" : "flex",
           })}
         >
           로그아웃
-        </Link>
+        </button>
       </ul>
     </nav>
   );

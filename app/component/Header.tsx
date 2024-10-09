@@ -9,7 +9,7 @@ import Link from "next/link";
 import { css } from "@emotion/react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
-import { setNavMenu } from "@/store/switches";
+import { setNavMenu, setSignoutModal } from "@/store/switches";
 import { header, logo, menuBtn } from "@/styles/Header.styles";
 
 const prompt = Prompt({
@@ -20,7 +20,7 @@ const prompt = Prompt({
 
 export default function Header(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
-  const { navMenu } = useSelector((state: RootState) => state.switches);
+  const { navMenu, signoutModal } = useSelector((state: RootState) => state.switches);
 
   return (
     <header css={css(header)}>
@@ -33,7 +33,13 @@ export default function Header(): JSX.Element {
       {navMenu === false ? (
         <IoMenuOutline css={css(menuBtn)} onClick={() => dispatch(setNavMenu(navMenu ? false : true))} />
       ) : (
-        <IoCloseOutline css={css(menuBtn)} onClick={() => dispatch(setNavMenu(navMenu ? false : true))} />
+        <IoCloseOutline
+          css={css(menuBtn)}
+          onClick={() => {
+            dispatch(setNavMenu(navMenu ? false : true));
+            dispatch(setSignoutModal(signoutModal ? false : true));
+          }}
+        />
       )}
     </header>
   );

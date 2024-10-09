@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
   navMenu: false,
+  signoutModal: false,
 };
 
 export const switches = createSlice({
@@ -11,8 +12,11 @@ export const switches = createSlice({
     setNavMenu(state, action: PayloadAction<boolean>) {
       state.navMenu = action.payload;
     },
+    setSignoutModal(state, action: PayloadAction<boolean>) {
+      state.signoutModal = action.payload;
+    },
   },
 });
 
-export const { setNavMenu } = switches.actions;
+export const { setNavMenu, setSignoutModal } = switches.actions;
 export default switches.reducer;
