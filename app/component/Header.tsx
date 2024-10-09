@@ -10,7 +10,7 @@ import { css } from "@emotion/react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { setNavMenu, setSignoutModal } from "@/store/switches";
-import { header, logo, menuBtn } from "@/styles/Header.styles";
+import { header } from "@/styles/Header.styles";
 
 const prompt = Prompt({
   subsets: ["latin"],
@@ -24,17 +24,17 @@ export default function Header(): JSX.Element {
 
   return (
     <header css={css(header)}>
-      <Link href="/" css={css(logo)}>
+      <Link href="/" className="logo">
         <BsBox />
         <h1 className={prompt.className} css={css({ marginLeft: "1rem" })}>
           Square Box
         </h1>
       </Link>
       {navMenu === false ? (
-        <IoMenuOutline css={css(menuBtn)} onClick={() => dispatch(setNavMenu(navMenu ? false : true))} />
+        <IoMenuOutline className="menuBtn" onClick={() => dispatch(setNavMenu(navMenu ? false : true))} />
       ) : (
         <IoCloseOutline
-          css={css(menuBtn)}
+          className="menuBtn"
           onClick={() => {
             dispatch(setNavMenu(navMenu ? false : true));
             dispatch(setSignoutModal(signoutModal ? false : true));
