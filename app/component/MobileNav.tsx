@@ -40,7 +40,7 @@ export default function MobileNav(): JSX.Element {
         {menuItems.map((item, index) => {
           return (
             <li key={index}>
-              <Link href={item.path} onClick={() => dispatch(setNavMenu(navMenu ? false : true))}>
+              <Link href={item.path} className="list" onClick={() => dispatch(setNavMenu(navMenu ? false : true))}>
                 {item.icon}
                 {item.text}
               </Link>

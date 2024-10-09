@@ -16,7 +16,7 @@ export const nav: CSSObject = {
     flexDirection: "column",
     height: "100vh",
 
-    "& li": {
+    "& .list": {
       width: "20rem",
       height: "5rem",
       border: "1px solid #eee",
