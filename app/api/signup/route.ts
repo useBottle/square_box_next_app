@@ -5,9 +5,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   const result = await req.json();
-  console.log(result);
   const hashedPassword = await bcrypt.hash(result.password, 10);
-  console.log(hashedPassword);
 
   try {
     await dbConnect();
@@ -18,9 +16,9 @@ export async function POST(req: Request) {
     });
     console.log(newUser);
     await newUser.save();
+    return NextResponse.json({ message: "Signup success" });
   } catch (error) {
     console.error(error);
+    return NextResponse.json({ message: "Signup failed" });
   }
-
-  return NextResponse.json({ message: "Signup success" });
 }
