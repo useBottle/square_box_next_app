@@ -4,12 +4,13 @@
 
 import { Prompt } from "next/font/google";
 import { BsBox } from "react-icons/bs";
-import { IoMenuOutline } from "react-icons/io5";
+import { IoMenuOutline, IoCloseOutline } from "react-icons/io5";
 import Link from "next/link";
 import { css } from "@emotion/react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { setNavMenu } from "@/store/switches";
+import { header, logo, menuBtn } from "@/styles/Header.styles";
 
 const prompt = Prompt({
   subsets: ["latin"],
@@ -22,35 +23,18 @@ export default function Header(): JSX.Element {
   const { navMenu } = useSelector((state: RootState) => state.switches);
 
   return (
-    <header
-      css={css({
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        height: "5rem",
-      })}
-    >
-      <Link
-        href="/"
-        css={css({
-          display: "flex",
-          color: "var(--basic-font)",
-          fontSize: "2rem",
-          margin: "1rem 1.5rem",
-        })}
-      >
+    <header css={css(header)}>
+      <Link href="/" css={css(logo)}>
         <BsBox />
         <h1 className={prompt.className} css={css({ marginLeft: "1rem" })}>
           Square Box
         </h1>
       </Link>
-      <IoMenuOutline
-        css={css({
-          fontSize: "2rem",
-          margin: "0 1.5rem",
-        })}
-        onClick={() => dispatch(setNavMenu(navMenu ? false : true))}
-      />
+      {navMenu === false ? (
+        <IoMenuOutline css={css(menuBtn)} onClick={() => dispatch(setNavMenu(navMenu ? false : true))} />
+      ) : (
+        <IoCloseOutline css={css(menuBtn)} onClick={() => dispatch(setNavMenu(navMenu ? false : true))} />
+      )}
     </header>
   );
 }
