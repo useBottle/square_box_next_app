@@ -3,13 +3,13 @@
 "use client";
 
 import { AppDispatch, RootState } from "@/store/store";
-import { css } from "@emotion/react";
+import { css, CSSObject } from "@emotion/react";
 import { useDispatch, useSelector } from "react-redux";
 import { setNavMenu, setSignoutModal } from "@/store/switches";
 import { FaHome, FaNewspaper, FaYoutube, FaBookmark } from "react-icons/fa";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { menuIcon, menuList, menuUl, nav, signinBtn, signoutBtn } from "@/styles/MobileNav.styles";
+import { nav } from "@/styles/MobileNav.styles";
 import SignoutModal from "./SignoutModal";
 
 export default function MobileNav(): JSX.Element {
@@ -17,12 +17,15 @@ export default function MobileNav(): JSX.Element {
   const { navMenu } = useSelector((state: RootState) => state.switches);
   const { signoutModal } = useSelector((state: RootState) => state.switches);
   const session = useSession();
+  const ulStyles = nav["& ul"] as CSSObject;
+  const liStyles = ulStyles && (ulStyles["& li"] as CSSObject);
+  const btnStyles = liStyles && (liStyles["& btn"] as CSSObject);
 
   const menuItems = [
-    { icon: <FaHome css={menuIcon} />, text: "Home", path: "/" },
-    { icon: <FaNewspaper css={menuIcon} />, text: "News", path: "/news" },
-    { icon: <FaYoutube css={menuIcon} />, text: "Youtube", path: "/youtube" },
-    { icon: <FaBookmark css={menuIcon} />, text: "BookMark", path: "/bookmark" },
+    { icon: <FaHome className="menuIcon" />, text: "Home", path: "/" },
+    { icon: <FaNewspaper className="menuIcon" />, text: "News", path: "/news" },
+    { icon: <FaYoutube className="menuIcon" />, text: "Youtube", path: "/youtube" },
+    { icon: <FaBookmark className="menuIcon" />, text: "BookMark", path: "/bookmark" },
   ];
 
   return (
@@ -32,12 +35,12 @@ export default function MobileNav(): JSX.Element {
         display: navMenu ? "block" : "none",
       })}
     >
-      {!signoutModal && <SignoutModal />}
-      <ul css={css(menuUl)}>
+      {signoutModal && <SignoutModal />}
+      <ul>
         {menuItems.map((item, index) => {
           return (
             <li key={index}>
-              <Link href={item.path} onClick={() => dispatch(setNavMenu(navMenu ? false : true))} css={menuList}>
+              <Link href={item.path} onClick={() => dispatch(setNavMenu(navMenu ? false : true))}>
                 {item.icon}
                 {item.text}
               </Link>
@@ -47,21 +50,17 @@ export default function MobileNav(): JSX.Element {
         <Link
           href="/auth/signin"
           onClick={() => dispatch(setNavMenu(navMenu ? false : true))}
-          css={css({
-            ...signinBtn,
-            display: session.data === null ? "flex" : "none",
-          })}
+          className="btn"
+          css={css([btnStyles, { display: session.data === null ? "flex" : "none" }])}
         >
           로그인
         </Link>
         <button
+          className="btn"
           onClick={() => {
             dispatch(setSignoutModal(signoutModal ? false : true));
           }}
-          css={css({
-            ...signoutBtn,
-            display: session.data === null ? "none" : "flex",
-          })}
+          css={css([btnStyles, { display: session.data === null ? "none" : "flex" }])}
         >
           로그아웃
         </button>

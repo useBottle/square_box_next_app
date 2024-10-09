@@ -37,7 +37,7 @@ export default function Header(): JSX.Element {
           className="menuBtn"
           onClick={() => {
             dispatch(setNavMenu(navMenu ? false : true));
-            dispatch(setSignoutModal(signoutModal ? false : true));
+            dispatch(setSignoutModal(signoutModal ? false : false));
           }}
         />
       )}
