@@ -50,6 +50,20 @@ export const signin: CSSObject = {
     },
   },
 
+  "& .guideSignup": {
+    marginTop: "3rem",
+    fontSize: "1.2rem",
+    color: "var(--shadow-color)",
+
+    "& .signupBtn": {
+      margin: "2rem 0.5rem",
+      fontSize: "1.2rem",
+      color: "var(--basic-font)",
+      borderBottom: "1px solid var(--basic-font)",
+      textAlign: "center",
+    },
+  },
+
   "& .middleLine": {
     margin: "2.5rem 0",
     width: "90vw",
@@ -95,19 +109,5 @@ export const signin: CSSObject = {
   "& .kakaoBtn": {
     background: "#fee20b",
     margin: "1rem 0",
-  },
-
-  "& .guideSignup": {
-    marginTop: "2rem",
-    fontSize: "1.2rem",
-    color: "var(--shadow-color)",
-
-    "& .signupBtn": {
-      margin: "2rem 0.5rem",
-      fontSize: "1.2rem",
-      color: "var(--basic-font)",
-      borderBottom: "1px solid var(--basic-font)",
-      textAlign: "center",
-    },
   },
 };

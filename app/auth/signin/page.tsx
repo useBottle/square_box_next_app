@@ -57,6 +57,12 @@ export default function Signin(): JSX.Element {
         </div>
         <button type="submit">로그인</button>
       </form>
+      <p className="guideSignup">
+        아직 회원이 아니신가요?
+        <Link href="/auth/signup" className="signupBtn">
+          회원 가입
+        </Link>
+      </p>
       <div className="middleLine">
         <span>or</span>
       </div>
@@ -90,12 +96,6 @@ export default function Signin(): JSX.Element {
         </svg>
         <span>카카오 로그인</span>
       </button>
-      <p className="guideSignup">
-        아직 회원이 아니신가요?
-        <Link href="/auth/signup" className="signupBtn">
-          회원 가입
-        </Link>
-      </p>
     </div>
   );
 }

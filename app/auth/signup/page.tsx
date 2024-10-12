@@ -1,5 +1,9 @@
+/** @jsxImportSource @emotion/react */
+
 "use client";
 
+import { form } from "@/styles/Signup.styles";
+import { css } from "@emotion/react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
@@ -26,7 +30,7 @@ export default function Signup(): JSX.Element {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} css={css(form)}>
       <input
         name="email"
         type="text"
