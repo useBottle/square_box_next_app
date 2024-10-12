@@ -1,15 +1,21 @@
 :root {
-  --basic-font: #000;
+  --basic-font: #1a2027;
+  --basic-sub: #3e5060;
   --reverse-font: #fff;
   --background: #fff;
   --main-color: #7f23ff;
+  --form-color: #e7ebf0;
+  --shadow-color: #929292;
 }
 
 [data-theme="dark"] {
   --basic-font: #fff;
+  --basic-sub: #3e5060;
   --reverse-font: #000;
   --background: #151515;
   --main-color: #fff047;
+  --form-color: #e7ebf0;
+  --shadow-color: #929292;
 }
 
 html {
