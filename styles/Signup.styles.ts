@@ -1,5 +1,5 @@
 import { CSSObject } from "@emotion/react";
-import { input } from "./default.styles";
+import { globalBtn, input } from "./default.styles";
 
 export const form: CSSObject = {
   display: "flex",
@@ -9,5 +9,11 @@ export const form: CSSObject = {
 
   "& input": {
     ...input,
+  },
+
+  "& button": {
+    ...globalBtn,
+    background: "var(--main-color)",
+    color: "#fff",
   },
 };
