@@ -2,9 +2,10 @@
 
 "use client";
 
-import { form } from "@/styles/Signup.styles";
+import { container } from "@/styles/Signup.styles";
 import { css } from "@emotion/react";
 import axios from "axios";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
 
@@ -30,29 +31,40 @@ export default function Signup(): JSX.Element {
   };
 
   return (
-    <form onSubmit={handleSubmit} css={css(form)}>
-      <input
-        name="email"
-        type="text"
-        placeholder="이메일"
-        value={email}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-      />
-      <input
-        name="name"
-        type="text"
-        placeholder="이름"
-        value={name}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
-      />
-      <input
-        name="password"
-        type="password"
-        placeholder="패스워드"
-        value={password}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-      />
-      <button type="submit">회원 가입</button>
-    </form>
+    <div css={css(container)}>
+      <div className="logo"></div>
+      <h1>회원가입</h1>
+      <p>양식을 작성해주세요</p>
+      <form onSubmit={handleSubmit}>
+        <input
+          name="email"
+          type="text"
+          placeholder="이메일"
+          value={email}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+        />
+        <input
+          name="name"
+          type="text"
+          placeholder="이름"
+          value={name}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
+        />
+        <input
+          name="password"
+          type="password"
+          placeholder="패스워드"
+          value={password}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+        />
+        <button type="submit">회원 가입</button>
+      </form>
+      <p className="guideSignin">
+        계정이 이미 있으신가요?
+        <Link href="/auth/signin" className="signinBtn">
+          로그인
+        </Link>
+      </p>
+    </div>
   );
 }
