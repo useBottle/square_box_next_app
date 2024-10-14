@@ -8,6 +8,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
+import { IoPersonOutline } from "react-icons/io5";
 
 export default function Signup(): JSX.Element {
   const [email, setEmail] = useState<string>("");
@@ -32,7 +33,9 @@ export default function Signup(): JSX.Element {
 
   return (
     <div css={css(container)}>
-      <div className="logo"></div>
+      <div className="logo">
+        <IoPersonOutline />
+      </div>
       <h1>회원가입</h1>
       <p>양식을 작성해주세요</p>
       <form onSubmit={handleSubmit}>
