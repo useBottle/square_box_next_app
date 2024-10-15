@@ -46,6 +46,7 @@ export default function Signup(): JSX.Element {
           value={email}
           onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
         />
+        <p>이메일 형식이 아닙니다</p>
         <input
           name="name"
           type="text"
@@ -53,6 +54,7 @@ export default function Signup(): JSX.Element {
           value={name}
           onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
         />
+        <p>영문 또는 한글로만 입력해야 합니다</p>
         <input
           name="password"
           type="password"
@@ -60,6 +62,7 @@ export default function Signup(): JSX.Element {
           value={password}
           onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
         />
+        <p>비밀번호는 8자 이상이어야 합니다</p>
         <button type="submit">회원 가입</button>
       </form>
       <p className="guideSignin">
