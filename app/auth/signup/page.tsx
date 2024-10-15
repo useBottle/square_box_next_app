@@ -2,7 +2,7 @@
 
 "use client";
 
-import { container } from "@/styles/Signup.styles";
+import { signup } from "@/styles/Signup.styles";
 import { css } from "@emotion/react";
 import axios from "axios";
 import Link from "next/link";
@@ -32,7 +32,7 @@ export default function Signup(): JSX.Element {
   };
 
   return (
-    <div css={css(container)}>
+    <div css={css(signup)}>
       <div className="logo">
         <IoPersonOutline />
       </div>
@@ -46,7 +46,7 @@ export default function Signup(): JSX.Element {
           value={email}
           onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
         />
-        <p>이메일 형식이 아닙니다</p>
+        <p>이메일 형식으로 입력해야 합니다</p>
         <input
           name="name"
           type="text"
