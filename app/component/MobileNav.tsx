@@ -22,10 +22,10 @@ export default function MobileNav(): JSX.Element {
   const btnStyles = liStyles && (liStyles["& btn"] as CSSObject);
 
   const menuItems = [
-    { icon: <FaHome className="menuIcon" />, text: "Home", path: "/" },
-    { icon: <FaNewspaper className="menuIcon" />, text: "News", path: "/news" },
-    { icon: <FaYoutube className="menuIcon" />, text: "Youtube", path: "/youtube" },
-    { icon: <FaBookmark className="menuIcon" />, text: "BookMark", path: "/bookmark" },
+    { text: "Home", path: "/" },
+    { text: "News", path: "/news" },
+    { text: "Youtube", path: "/youtube" },
+    { text: "Bookmark", path: "/bookmark" },
   ];
 
   return (
@@ -41,7 +41,6 @@ export default function MobileNav(): JSX.Element {
           return (
             <li key={index}>
               <Link href={item.path} className="list" onClick={() => dispatch(setNavMenu(navMenu ? false : true))}>
-                {item.icon}
                 {item.text}
               </Link>
             </li>
