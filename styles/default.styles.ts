@@ -18,8 +18,13 @@ export const input: CSSObject = {
   },
 };
 
+export const modalTitle: CSSObject = {
+  fontSize: "2rem",
+  color: "var(--basic-font)",
+};
+
 export const infoTitle: CSSObject = {
-  fontSize: "2.5rem",
+  fontSize: "2.2rem",
   color: "var(--basic-font)",
 };
 

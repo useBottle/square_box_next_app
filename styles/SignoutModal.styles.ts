@@ -1,5 +1,5 @@
 import { CSSObject } from "@emotion/react";
-import { infoText, infoTitle } from "./default.styles";
+import { modalTitle } from "./default.styles";
 
 export const modal: CSSObject = {
   width: "100vw",
@@ -24,7 +24,7 @@ export const modal: CSSObject = {
     backdropFilter: "blur(10px)",
 
     "& h1": {
-      ...infoTitle,
+      ...modalTitle,
       transform: "translateY(-50%)",
     },
 

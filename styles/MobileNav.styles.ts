@@ -33,17 +33,9 @@ export const nav: CSSObject = {
     },
 
     "& .btn": {
-      marginTop: "5rem",
-      border: "none",
-      borderRadius: "5px",
+      ...globalBtn,
       background: "var(--main-color)",
-      color: "var(--reverse-font)",
-      width: "90vw",
-      height: "5rem",
-      fontSize: "1.4rem",
-      transform: "translateY(-5rem)",
-      justifyContent: "center",
-      alignItems: "center",
+      color: "#fff",
     },
   },
 };

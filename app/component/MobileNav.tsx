@@ -3,10 +3,9 @@
 "use client";
 
 import { AppDispatch, RootState } from "@/store/store";
-import { css, CSSObject } from "@emotion/react";
+import { css } from "@emotion/react";
 import { useDispatch, useSelector } from "react-redux";
 import { setNavMenu, setSignoutModal } from "@/store/switches";
-import { FaHome, FaNewspaper, FaYoutube, FaBookmark } from "react-icons/fa";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { nav } from "@/styles/MobileNav.styles";
@@ -17,9 +16,6 @@ export default function MobileNav(): JSX.Element {
   const { navMenu } = useSelector((state: RootState) => state.switches);
   const { signoutModal } = useSelector((state: RootState) => state.switches);
   const session = useSession();
-  const ulStyles = nav["& ul"] as CSSObject;
-  const liStyles = ulStyles && (ulStyles["& li"] as CSSObject);
-  const btnStyles = liStyles && (liStyles["& btn"] as CSSObject);
 
   const menuItems = [
     { text: "Home", path: "/" },
@@ -46,23 +42,20 @@ export default function MobileNav(): JSX.Element {
             </li>
           );
         })}
-        <Link
-          href="/auth/signin"
-          onClick={() => dispatch(setNavMenu(navMenu ? false : true))}
-          className="btn"
-          css={css([btnStyles, { display: session.data === null ? "flex" : "none" }])}
-        >
-          로그인
-        </Link>
-        <button
-          className="btn"
-          onClick={() => {
-            dispatch(setSignoutModal(signoutModal ? false : true));
-          }}
-          css={css([btnStyles, { display: session.data === null ? "none" : "flex" }])}
-        >
-          로그아웃
-        </button>
+        {session.data === null ? (
+          <Link href="/auth/signin" onClick={() => dispatch(setNavMenu(navMenu ? false : true))} className="btn">
+            로그인
+          </Link>
+        ) : (
+          <button
+            className="btn"
+            onClick={() => {
+              dispatch(setSignoutModal(signoutModal ? false : true));
+            }}
+          >
+            로그아웃
+          </button>
+        )}
       </ul>
     </nav>
   );
