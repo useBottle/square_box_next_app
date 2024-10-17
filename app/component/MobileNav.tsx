@@ -56,6 +56,9 @@ export default function MobileNav(): JSX.Element {
             로그아웃
           </button>
         )}
+        <p>
+          아직 회원이 아니신가요?<Link href="/auth/signup">회원가입</Link>
+        </p>
       </ul>
     </nav>
   );

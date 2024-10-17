@@ -31,11 +31,10 @@ export const nav: CSSObject = {
       color: "var(--basic-font)",
       transform: "translateY(-5rem)",
     },
-
-    "& .btn": {
-      ...globalBtn,
-      background: "var(--main-color)",
-      color: "#fff",
-    },
+  },
+  "& .btn": {
+    ...globalBtn,
+    background: "var(--main-color)",
+    color: "#fff",
   },
 };
