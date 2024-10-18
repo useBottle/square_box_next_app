@@ -1,5 +1,5 @@
 import dbConnect from "@/util/database";
-import NextAuth, { Account, Session, User } from "next-auth";
+import { Account, Session, User } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import Credentials from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
