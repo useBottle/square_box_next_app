@@ -2,12 +2,14 @@ import { CSSObject } from "@emotion/react";
 import { modalTitle } from "./default.styles";
 
 export const modal: CSSObject = {
+  position: "absolute",
   width: "100vw",
   height: "100vh",
   top: 0,
   left: 0,
   background: "rgba(0, 0, 0, 0.5)",
   backdropFilter: "blur(10px)",
+  zIndex: 9999,
 
   "& .signoutModalBox": {
     background: "var(--background)",
@@ -21,7 +23,6 @@ export const modal: CSSObject = {
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    backdropFilter: "blur(10px)",
 
     "& h1": {
       ...modalTitle,

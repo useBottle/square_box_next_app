@@ -4,8 +4,8 @@ import { CSSObject } from "@emotion/react";
 
 export const nav: CSSObject = {
   position: "fixed",
-  width: "100vw",
-  height: "100vh",
+  width: "100%",
+  height: "100%",
   background: "var(--background)",
   zIndex: 999,
   display: "flex",
@@ -18,18 +18,15 @@ export const nav: CSSObject = {
     top: "1.5rem",
     right: "5%",
     fontSize: "2rem",
-    color: "var(--basic-font)",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
   },
 
   "& .logoPlate": {
-    position: "absolute",
-    top: "5rem",
     width: "90%",
     height: "4rem",
-    marginBottom: "2rem",
+    margin: "2rem 0",
     borderRadius: "3px",
     overflow: "hidden",
     display: "flex",
@@ -59,6 +56,28 @@ export const nav: CSSObject = {
       height: "100%",
       width: "100%",
       objectFit: "cover",
+    },
+  },
+
+  "& .userPlate": {
+    width: "90%",
+    height: "4rem",
+    display: "flex",
+    alignItems: "center",
+    padding: "2rem 0",
+    margin: "2rem 0",
+
+    "& img": {
+      borderRadius: "50%",
+    },
+
+    "& .replacedImg": {
+      fontSize: "4rem",
+    },
+
+    "& .userName": {
+      margin: "0 1rem",
+      fontSize: "1.6rem",
     },
   },
 
@@ -96,20 +115,6 @@ export const nav: CSSObject = {
       fontSize: "1.6rem",
       margin: "1rem 0",
       padding: "0 0",
-    },
-  },
-
-  "& .guideSignup": {
-    marginTop: "3rem",
-    fontSize: "1.2rem",
-    color: "var(--shadow-color)",
-
-    "& .signupBtn": {
-      margin: "2rem 0.5rem",
-      fontSize: "1.2rem",
-      color: "var(--basic-font)",
-      borderBottom: "1px solid var(--basic-font)",
-      textAlign: "center",
     },
   },
 };

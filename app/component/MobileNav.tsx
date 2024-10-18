@@ -10,7 +10,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { nav } from "@/styles/MobileNav.styles";
 import SignoutModal from "./SignoutModal";
-import { IoHomeOutline, IoNewspaperOutline, IoBookmarkOutline } from "react-icons/io5";
+import { IoHomeOutline, IoNewspaperOutline, IoBookmarkOutline, IoPersonCircleOutline } from "react-icons/io5";
 import { SlSocialYoutube } from "react-icons/sl";
 import { PiSignIn, PiSignOut } from "react-icons/pi";
 import { IoArrowBack } from "react-icons/io5";
@@ -37,7 +37,6 @@ export default function MobileNav(): JSX.Element {
     { text: "YOUTUBE", icon: <SlSocialYoutube />, path: "/youtube" },
     { text: "BOOKMARK", icon: <IoBookmarkOutline />, path: "/bookmark" },
   ];
-  console.log(session.data);
 
   return (
     <div>
@@ -56,6 +55,16 @@ export default function MobileNav(): JSX.Element {
             </div>
             <div className="overlay" />
             <Image src={plateBack} alt="plateback" loading="eager" />
+          </div>
+          <div className="userPlate">
+            {session.data?.user.image ? (
+              <Image src={session.data.user.image} alt="userImg" width={40} height={40} />
+            ) : (
+              <div className="replacedImg">
+                <IoPersonCircleOutline />
+              </div>
+            )}
+            <div className="userName">{session.data?.user.name ? session.data.user.name : "로그인이 필요합니다"}</div>
           </div>
           <ul>
             {menuItems.map((item, index) => {
@@ -85,16 +94,6 @@ export default function MobileNav(): JSX.Element {
               </button>
             )}
           </ul>
-          <p className="guideSignup">
-            아직 회원이 아니신가요?
-            <Link
-              href="/auth/signup"
-              onClick={() => dispatch(setNavMenu(navMenu ? false : true))}
-              className="signupBtn"
-            >
-              회원가입
-            </Link>
-          </p>
         </nav>
       )}
     </div>
