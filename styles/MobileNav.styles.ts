@@ -63,9 +63,10 @@ export const nav: CSSObject = {
     width: "90%",
     height: "4rem",
     display: "flex",
+    flexDirection: "column",
     alignItems: "center",
     padding: "2rem 0",
-    margin: "2rem 0",
+    margin: "4rem 0",
 
     "& img": {
       borderRadius: "50%",
@@ -76,7 +77,7 @@ export const nav: CSSObject = {
     },
 
     "& .userName": {
-      margin: "0 1rem",
+      marginTop: "2rem",
       fontSize: "1.6rem",
     },
   },
@@ -86,22 +87,27 @@ export const nav: CSSObject = {
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
+    width: "90%",
 
-    "& .list": {
-      width: "90vw",
-      height: "5rem",
-      background: "transparent",
-      borderBottom: "1px solid #eee",
-      margin: "1rem 0",
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      fontSize: "1.6rem",
-      color: "var(--basic-font)",
+    "& li": {
+      width: "100%",
+
+      "& .list": {
+        width: "100%",
+        height: "5rem",
+        background: "transparent",
+        borderBottom: "1px solid #eee",
+        margin: "1rem 0",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        fontSize: "1.6rem",
+        color: "var(--basic-font)",
+      },
     },
 
     "& .auth": {
-      width: "90vw",
+      width: "100%",
       height: "5rem",
       borderTop: "none",
       borderLeft: "none",
