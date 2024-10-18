@@ -32,6 +32,11 @@ export const signup: CSSObject = {
 
   "& form": {
     marginTop: "2rem",
+    width: "90%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
 
     "& input": {
       ...input,
@@ -41,6 +46,7 @@ export const signup: CSSObject = {
       fontSize: "1.2rem",
       color: "red",
       marginBottom: "2.5rem",
+      alignSelf: "flex-start",
     },
 
     "& button": {

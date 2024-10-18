@@ -1,7 +1,7 @@
 import { CSSObject } from "@emotion/react";
 
 export const input: CSSObject = {
-  width: "90vw",
+  width: "100%",
   padding: "0.8rem 1.2rem",
   fontSize: "1.4rem",
   border: "1.5px solid transparent",
@@ -34,7 +34,7 @@ export const infoText: CSSObject = {
 };
 
 export const globalBtn: CSSObject = {
-  width: "90vw",
+  width: "100%",
   height: "4rem",
   display: "flex",
   justifyContent: "center",

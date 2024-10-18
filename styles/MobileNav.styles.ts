@@ -15,16 +15,51 @@ export const nav: CSSObject = {
 
   "& .back": {
     position: "absolute",
-    top: "4rem",
-    width: "4rem",
-    height: "4rem",
+    top: "1.5rem",
+    right: "5%",
     fontSize: "2rem",
-    color: "#fff",
-    borderRadius: "50%",
-    background: "var(--main-color)",
+    color: "var(--basic-font)",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+
+  "& .logoPlate": {
+    position: "absolute",
+    top: "5rem",
+    width: "90%",
+    height: "4rem",
+    marginBottom: "2rem",
+    borderRadius: "3px",
+    overflow: "hidden",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+
+    "& .logo": {
+      position: "absolute",
+      display: "flex",
+      alignItems: "center",
+      fontSize: "2rem",
+      color: "#fff",
+      zIndex: 100,
+    },
+
+    "& .overlay": {
+      position: "absolute",
+      width: "100%",
+      height: "4rem",
+      borderRadius: "3px",
+      background: "rgba(0, 0, 0, 0)",
+      backdropFilter: "blur(5px)",
+      zIndex: 99,
+    },
+
+    "& img": {
+      height: "100%",
+      width: "100%",
+      objectFit: "cover",
+    },
   },
 
   "& ul": {

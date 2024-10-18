@@ -14,6 +14,16 @@ import { IoHomeOutline, IoNewspaperOutline, IoBookmarkOutline } from "react-icon
 import { SlSocialYoutube } from "react-icons/sl";
 import { PiSignIn, PiSignOut } from "react-icons/pi";
 import { IoArrowBack } from "react-icons/io5";
+import plateBack from "../../public/images/snow_forest.jpg";
+import Image from "next/image";
+import { BsBox } from "react-icons/bs";
+import { Prompt } from "next/font/google";
+
+const prompt = Prompt({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 
 export default function MobileNav(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
@@ -27,6 +37,7 @@ export default function MobileNav(): JSX.Element {
     { text: "YOUTUBE", icon: <SlSocialYoutube />, path: "/youtube" },
     { text: "BOOKMARK", icon: <IoBookmarkOutline />, path: "/bookmark" },
   ];
+  console.log(session.data);
 
   return (
     <div>
@@ -35,6 +46,16 @@ export default function MobileNav(): JSX.Element {
           {signoutModal && <SignoutModal />}
           <div className="back" onClick={() => dispatch(setNavMenu(navMenu ? false : true))}>
             <IoArrowBack />
+          </div>
+          <div className="logoPlate">
+            <div className="logo">
+              <BsBox />
+              <h1 className={prompt.className} css={css({ marginLeft: "1rem" })}>
+                Square Box
+              </h1>
+            </div>
+            <div className="overlay" />
+            <Image src={plateBack} alt="plateback" loading="eager" />
           </div>
           <ul>
             {menuItems.map((item, index) => {

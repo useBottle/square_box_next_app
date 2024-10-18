@@ -6,7 +6,7 @@ export const header: CSSObject = {
   justifyContent: "space-between",
   height: "5rem",
   zIndex: 999,
-  padding: "0 5vw",
+  padding: "0 5%",
 
   "& .logo": {
     display: "flex",

@@ -32,10 +32,16 @@ export const signin: CSSObject = {
 
   "& form": {
     marginTop: "2rem",
+    width: "90%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
 
     "& .credentialsFields": {
       display: "flex",
       flexDirection: "column",
+      width: "100%",
 
       "& input": {
         ...input,
@@ -95,6 +101,7 @@ export const signin: CSSObject = {
 
   "& button": {
     ...globalBtn,
+    width: "90%",
 
     "& span": {
       margin: "0 1rem",
