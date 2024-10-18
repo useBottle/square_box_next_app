@@ -10,6 +10,9 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { nav } from "@/styles/MobileNav.styles";
 import SignoutModal from "./SignoutModal";
+import { IoHomeOutline, IoNewspaperOutline, IoBookmarkOutline } from "react-icons/io5";
+import { SlSocialYoutube } from "react-icons/sl";
+import { PiSignIn, PiSignOut } from "react-icons/pi";
 
 export default function MobileNav(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
@@ -18,10 +21,10 @@ export default function MobileNav(): JSX.Element {
   const session = useSession();
 
   const menuItems = [
-    { text: "Home", path: "/" },
-    { text: "News", path: "/news" },
-    { text: "Youtube", path: "/youtube" },
-    { text: "Bookmark", path: "/bookmark" },
+    { text: "HOME", icon: <IoHomeOutline />, path: "/" },
+    { text: "NEWS", icon: <IoNewspaperOutline />, path: "/news" },
+    { text: "YOUTUBE", icon: <SlSocialYoutube />, path: "/youtube" },
+    { text: "BOOKMARK", icon: <IoBookmarkOutline />, path: "/bookmark" },
   ];
 
   return (
@@ -35,25 +38,28 @@ export default function MobileNav(): JSX.Element {
                 <li key={index}>
                   <Link href={item.path} className="list" onClick={() => dispatch(setNavMenu(navMenu ? false : true))}>
                     {item.text}
+                    {item.icon}
                   </Link>
                 </li>
               );
             })}
+            {session.data === null ? (
+              <Link href="/auth/signin" onClick={() => dispatch(setNavMenu(navMenu ? false : true))} className="auth">
+                LOG IN
+                <PiSignIn />
+              </Link>
+            ) : (
+              <button
+                className="auth"
+                onClick={() => {
+                  dispatch(setSignoutModal(signoutModal ? false : true));
+                }}
+              >
+                LOG OUT
+                <PiSignOut />
+              </button>
+            )}
           </ul>
-          {session.data === null ? (
-            <Link href="/auth/signin" onClick={() => dispatch(setNavMenu(navMenu ? false : true))} className="btn">
-              로그인
-            </Link>
-          ) : (
-            <button
-              className="btn"
-              onClick={() => {
-                dispatch(setSignoutModal(signoutModal ? false : true));
-              }}
-            >
-              로그아웃
-            </button>
-          )}
           <p className="guideSignup">
             아직 회원이 아니신가요?
             <Link

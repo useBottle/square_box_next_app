@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
 import { CSSObject } from "@emotion/react";
-import { globalBtn } from "./default.styles";
 
 export const nav: CSSObject = {
   position: "fixed",
@@ -19,26 +18,37 @@ export const nav: CSSObject = {
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    transform: "translateY(-10rem)",
+    transform: "translateY(-5rem)",
 
     "& .list": {
-      width: "20rem",
+      width: "90vw",
       height: "5rem",
-      borderRadius: "5px",
       background: "transparent",
+      borderBottom: "1px solid #eee",
       margin: "1rem 0",
       display: "flex",
-      justifyContent: "center",
+      justifyContent: "space-between",
       alignItems: "center",
       fontSize: "1.6rem",
       color: "var(--basic-font)",
     },
-  },
 
-  "& .btn": {
-    ...globalBtn,
-    background: "var(--main-color)",
-    color: "#fff",
+    "& .auth": {
+      width: "90vw",
+      height: "5rem",
+      borderTop: "none",
+      borderLeft: "none",
+      borderRight: "none",
+      borderBottom: "1px solid #eee",
+      background: "transparent",
+      color: "var(--basic-font)",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      fontSize: "1.6rem",
+      margin: "1rem 0",
+      padding: "0 0",
+    },
   },
 
   "& .guideSignup": {
