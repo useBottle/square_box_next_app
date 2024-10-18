@@ -25,41 +25,47 @@ export default function MobileNav(): JSX.Element {
   ];
 
   return (
-    <nav
-      css={css({
-        ...nav,
-        display: navMenu ? "block" : "none",
-      })}
-    >
-      {signoutModal && <SignoutModal />}
-      <ul>
-        {menuItems.map((item, index) => {
-          return (
-            <li key={index}>
-              <Link href={item.path} className="list" onClick={() => dispatch(setNavMenu(navMenu ? false : true))}>
-                {item.text}
-              </Link>
-            </li>
-          );
-        })}
-        {session.data === null ? (
-          <Link href="/auth/signin" onClick={() => dispatch(setNavMenu(navMenu ? false : true))} className="btn">
-            로그인
-          </Link>
-        ) : (
-          <button
-            className="btn"
-            onClick={() => {
-              dispatch(setSignoutModal(signoutModal ? false : true));
-            }}
-          >
-            로그아웃
-          </button>
-        )}
-        <p>
-          아직 회원이 아니신가요?<Link href="/auth/signup">회원가입</Link>
-        </p>
-      </ul>
-    </nav>
+    <div>
+      {navMenu && (
+        <nav css={css(nav)}>
+          {signoutModal && <SignoutModal />}
+          <ul>
+            {menuItems.map((item, index) => {
+              return (
+                <li key={index}>
+                  <Link href={item.path} className="list" onClick={() => dispatch(setNavMenu(navMenu ? false : true))}>
+                    {item.text}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+          {session.data === null ? (
+            <Link href="/auth/signin" onClick={() => dispatch(setNavMenu(navMenu ? false : true))} className="btn">
+              로그인
+            </Link>
+          ) : (
+            <button
+              className="btn"
+              onClick={() => {
+                dispatch(setSignoutModal(signoutModal ? false : true));
+              }}
+            >
+              로그아웃
+            </button>
+          )}
+          <p className="guideSignup">
+            아직 회원이 아니신가요?
+            <Link
+              href="/auth/signup"
+              onClick={() => dispatch(setNavMenu(navMenu ? false : true))}
+              className="signupBtn"
+            >
+              회원가입
+            </Link>
+          </p>
+        </nav>
+      )}
+    </div>
   );
 }
