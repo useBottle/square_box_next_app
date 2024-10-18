@@ -16,5 +16,6 @@ export const header: CSSObject = {
 
   "& .menuBtn": {
     fontSize: "2rem",
+    color: "var(--basic-font)",
   },
 };

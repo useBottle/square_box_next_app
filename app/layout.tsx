@@ -34,8 +34,8 @@ export default function RootLayout({
       <body className={notoSansKR.className}>
         <Providers>
           <CheckToken />
-          <Header />
           <MobileNav />
+          <Header />
           {children}
         </Providers>
       </body>

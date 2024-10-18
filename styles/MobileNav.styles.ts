@@ -13,12 +13,25 @@ export const nav: CSSObject = {
   alignItems: "center",
   flexDirection: "column",
 
+  "& .back": {
+    position: "absolute",
+    top: "4rem",
+    width: "4rem",
+    height: "4rem",
+    fontSize: "2rem",
+    color: "#fff",
+    borderRadius: "50%",
+    background: "var(--main-color)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
   "& ul": {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    transform: "translateY(-5rem)",
 
     "& .list": {
       width: "90vw",

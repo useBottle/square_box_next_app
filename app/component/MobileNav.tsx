@@ -13,6 +13,7 @@ import SignoutModal from "./SignoutModal";
 import { IoHomeOutline, IoNewspaperOutline, IoBookmarkOutline } from "react-icons/io5";
 import { SlSocialYoutube } from "react-icons/sl";
 import { PiSignIn, PiSignOut } from "react-icons/pi";
+import { IoArrowBack } from "react-icons/io5";
 
 export default function MobileNav(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
@@ -32,6 +33,9 @@ export default function MobileNav(): JSX.Element {
       {navMenu && (
         <nav css={css(nav)}>
           {signoutModal && <SignoutModal />}
+          <div className="back" onClick={() => dispatch(setNavMenu(navMenu ? false : true))}>
+            <IoArrowBack />
+          </div>
           <ul>
             {menuItems.map((item, index) => {
               return (
