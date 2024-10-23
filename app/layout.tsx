@@ -6,7 +6,6 @@ import Header from "./component/Header";
 import MobileNav from "./component/MobileNav";
 import Providers from "./component/Providers";
 import CheckToken from "./component/CheckToken";
-import Head from "next/head";
 
 const notoSansKR = Noto_Sans_KR({
   subsets: ["latin"],
@@ -32,9 +31,6 @@ export default function RootLayout({
 }>): JSX.Element {
   return (
     <html lang="kr">
-      <Head>
-        <meta name="google-site-verification" content="JyXwqZnN_f4YCgLs-eACBWoSCrXT0W8F7xy7PODT8jE" />
-      </Head>
       <body className={notoSansKR.className}>
         <Providers>
           <CheckToken />
