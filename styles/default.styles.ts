@@ -45,3 +45,40 @@ export const globalBtn: CSSObject = {
   boxSizing: "border-box",
   color: "#000",
 };
+
+export const searchBarForm: CSSObject = {
+  display: "flex",
+  alignItems: "center",
+  width: "90%",
+
+  "& .searchIcon": {
+    position: "absolute",
+    fontSize: "1.8rem",
+    transform: "translateX(0.5rem)",
+  },
+
+  "& input": {
+    width: "100%",
+    padding: "1rem 3rem",
+    border: "none",
+    borderRadius: "3px",
+    background: "#eee",
+    outline: "none",
+    color: "var(--basic-font)",
+
+    "&::-ms-clear": {
+      display: "none", // IE, Edge
+    },
+
+    "&::-webkit-search-cancel-button": {
+      display: "none", // Chrome, Safari
+    },
+  },
+
+  "& .cancelIcon": {
+    position: "absolute",
+    right: 0,
+    fontSize: "1.6rem",
+    transform: "translateX(-3rem)",
+  },
+};
