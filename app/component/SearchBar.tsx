@@ -4,6 +4,7 @@
 
 import { searchBarForm } from "@/styles/default.styles";
 import { css, CSSObject } from "@emotion/react";
+import { ChangeEvent, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
 
@@ -15,12 +16,18 @@ const form: CSSObject = {
 };
 
 export default function SearchBar(): JSX.Element {
+  const [inputValue, setInputValue] = useState<string>("");
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
+
   return (
     <div css={css(form)}>
       <form css={css(searchBarForm)}>
         <IoIosSearch className="searchIcon" />
-        <input type="search" placeholder="Search" />
-        <MdCancel className="cancelIcon" />
+        <input type="search" placeholder="Search" value={inputValue} onChange={onChange} />
+        {inputValue && <MdCancel className="cancelIcon" onClick={() => setInputValue("")} />}
       </form>
     </div>
   );

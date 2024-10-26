@@ -54,7 +54,7 @@ export const searchBarForm: CSSObject = {
   "& .searchIcon": {
     position: "absolute",
     fontSize: "1.8rem",
-    transform: "translateX(0.5rem)",
+    transform: "translateX(0.8rem)",
   },
 
   "& input": {
@@ -65,6 +65,11 @@ export const searchBarForm: CSSObject = {
     background: "#eee",
     outline: "none",
     color: "var(--basic-font)",
+
+    "&::placeholder": {
+      color: "var(--basic-font)",
+      opacity: 0.5,
+    },
 
     "&::-ms-clear": {
       display: "none", // IE, Edge
