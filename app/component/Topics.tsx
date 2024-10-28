@@ -2,9 +2,12 @@
 
 "use client";
 
+import { topics } from "@/styles/Topics.styles";
+import { css } from "@emotion/react";
+
 export default function Topics(): JSX.Element {
   return (
-    <form>
+    <form css={css(topics)}>
       <ul>
         <li></li>
       </ul>
