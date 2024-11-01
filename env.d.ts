@@ -8,5 +8,6 @@ declare namespace NodeJS {
     GOOGLE_CLIENT_SECRET: string;
     KAKAO_CLIENT_ID: string;
     KAKAO_CLIENT_SECRET: string;
+    TOPICS_API_URL: string;
   }
 }
