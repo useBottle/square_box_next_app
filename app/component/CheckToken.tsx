@@ -22,7 +22,7 @@ export default function CheckToken() {
 
     const intervalCheck = setInterval(checkTokenExpires, 5 * 60 * 1000);
     return () => clearInterval(intervalCheck);
-  }, [session]);
+  }, [session, update]);
 
   return null;
 }
