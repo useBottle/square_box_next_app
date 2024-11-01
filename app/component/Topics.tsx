@@ -19,7 +19,11 @@ export default function Topics(): JSX.Element {
   };
 
   useEffect(() => {
-    fetchKeyword();
+    const intervalFetch = setInterval(() => {
+      fetchKeyword();
+    }, 10000);
+
+    return () => clearInterval(intervalFetch);
   }, []);
 
   return (
