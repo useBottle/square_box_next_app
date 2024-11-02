@@ -7,6 +7,7 @@ import { TopicsType } from "@/types/types";
 import { css } from "@emotion/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { FaPlus, FaMinus, FaCaretUp, FaCaretDown } from "react-icons/fa6";
 
 export default function Topics(): JSX.Element {
   const [topics, setTopics] = useState<TopicsType[] | undefined>(undefined);
@@ -21,13 +22,13 @@ export default function Topics(): JSX.Element {
   };
 
   useEffect(() => {
+    fetchKeyword();
     const intervalFetch = setInterval(() => {
       fetchKeyword();
     }, 10000);
-    console.log(topics);
 
     return () => clearInterval(intervalFetch);
-  }, [topics]);
+  }, []);
 
   return (
     <form css={css(topicsForm)}>
@@ -37,7 +38,19 @@ export default function Topics(): JSX.Element {
             <li key={topic.rank}>
               <span>{topic.rank}</span>
               <span>{topic.keyword}</span>
-              <span>{topic.state}</span>
+              <span>
+                {(() => {
+                  if (topic.state === "n") {
+                    return <FaPlus className="new" />;
+                  } else if (topic.state === "s") {
+                    return <FaMinus className="stay" />;
+                  } else if (topic.state === "+") {
+                    return <FaCaretUp className="up" />;
+                  } else if (topic.state === "-") {
+                    return <FaCaretDown className="down" />;
+                  }
+                })()}
+              </span>
             </li>
           ))
         ) : (
