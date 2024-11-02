@@ -16,6 +16,7 @@ export const topicsForm: CSSObject = {
       gridTemplateColumns: "15% 75% 10%",
       padding: "1.2rem 0",
       fontSize: "1.4rem",
+      cursor: "pointer",
 
       "& .rank": {
         marginLeft: "1rem",

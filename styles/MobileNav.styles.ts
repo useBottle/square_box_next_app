@@ -21,6 +21,7 @@ export const nav: CSSObject = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    cursor: "pointer",
   },
 
   "& .logoPlate": {
