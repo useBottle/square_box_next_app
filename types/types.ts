@@ -7,3 +7,10 @@ export interface AuthedUser {
   refreshToken: string;
   createdAt: Date;
 }
+
+export interface TopicsType {
+  rank: number;
+  keyword: string;
+  state: string;
+  summary: string;
+}
