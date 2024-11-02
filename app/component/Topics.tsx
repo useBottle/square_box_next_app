@@ -36,9 +36,9 @@ export default function Topics(): JSX.Element {
         {topics ? (
           topics.map((topic) => (
             <li key={topic.rank}>
-              <span>{topic.rank}</span>
-              <span>{topic.keyword}</span>
-              <span>
+              <span className="rank">{topic.rank}</span>
+              <span className="keyword">{topic.keyword}</span>
+              <span className="state">
                 {(() => {
                   if (topic.state === "n") {
                     return <FaPlus className="new" />;

@@ -6,6 +6,9 @@
   --main-color: #5d91e5;
   --form-color: #e7ebf0;
   --shadow-color: #929292;
+  --state-new: #62e5b7;
+  --state-up: #ff625d;
+  --state-down: #3d8bff;
 }
 
 [data-theme="dark"] {
