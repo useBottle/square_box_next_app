@@ -14,3 +14,11 @@ export interface TopicsType {
   state: string;
   summary: string;
 }
+
+export interface PopularNews {
+  desc: string;
+  image: string;
+  link: string;
+  name: string;
+  title: string;
+}

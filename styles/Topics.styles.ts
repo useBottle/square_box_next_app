@@ -60,7 +60,7 @@ export const skeleton: CSSObject = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  width: "100%",
+  width: "90%",
 
   "& .list": {
     width: "100%",

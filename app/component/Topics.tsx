@@ -3,7 +3,7 @@
 "use client";
 
 import { topicsForm } from "@/styles/Topics.styles";
-import { TopicsType } from "@/types/types";
+import { PopularNews, TopicsType } from "@/types/types";
 import { css } from "@emotion/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -12,11 +12,14 @@ import TopicsSkeleton from "./TopicsSkeleton";
 
 export default function Topics(): JSX.Element {
   const [topics, setTopics] = useState<TopicsType[] | undefined>(undefined);
+  const [popularNews, setPopularNews] = useState<PopularNews[] | undefined>(undefined);
 
   const fetchKeyword = async (): Promise<void> => {
     try {
       const response = await axios.get("/api/topics");
       setTopics(response.data.top10);
+      setPopularNews(response.data.articles);
+      console.log(response.data);
     } catch (error) {
       console.error("Failed fetching keyword data.", error);
     }
@@ -33,9 +36,9 @@ export default function Topics(): JSX.Element {
 
   return (
     <form css={css(topicsForm)}>
-      <ul className="originalUl">
-        {topics ? (
-          topics.map((topic) => (
+      {topics ? (
+        <ul>
+          {topics.map((topic) => (
             <li key={topic.rank}>
               <span className="rank">{topic.rank}</span>
               <span className="keyword">{topic.keyword}</span>
@@ -53,11 +56,11 @@ export default function Topics(): JSX.Element {
                 })()}
               </span>
             </li>
-          ))
-        ) : (
-          <TopicsSkeleton />
-        )}
-      </ul>
+          ))}
+        </ul>
+      ) : (
+        <TopicsSkeleton />
+      )}
     </form>
   );
 }
