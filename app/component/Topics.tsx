@@ -33,7 +33,7 @@ export default function Topics(): JSX.Element {
 
   return (
     <form css={css(topicsForm)}>
-      <ul>
+      <ul className="originalUl">
         {topics ? (
           topics.map((topic) => (
             <li key={topic.rank}>
@@ -57,7 +57,6 @@ export default function Topics(): JSX.Element {
         ) : (
           <TopicsSkeleton />
         )}
-        {/* <TopicsSkeleton /> */}
       </ul>
     </form>
   );
