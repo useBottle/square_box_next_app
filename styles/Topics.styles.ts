@@ -9,6 +9,7 @@ export const topicsForm: CSSObject = {
     flexDirection: "column",
     alignItems: "center",
     width: "90%",
+    margin: "2rem 0",
 
     "& li": {
       width: "100%",
@@ -43,6 +44,13 @@ export const topicsForm: CSSObject = {
       },
     },
   },
+
+  "&::before": {
+    content: "''",
+    position: "absolute",
+    width: "90%",
+    borderTop: "0.5px solid var(--form-color)",
+  },
 };
 
 // Topics 의 Skeleton UI 애니메이션
@@ -61,6 +69,7 @@ export const skeleton: CSSObject = {
   flexDirection: "column",
   alignItems: "center",
   width: "90%",
+  margin: "2rem 0",
 
   "& .list": {
     width: "100%",
@@ -95,5 +104,62 @@ export const skeleton: CSSObject = {
       marginLeft: "2rem",
       marginRight: "2rem",
     },
+  },
+};
+
+export const popularStyles: CSSObject = {
+  display: "flex",
+  alignItems: "center",
+  flexDirection: "column",
+
+  "& a": {
+    display: "flex",
+    justifyContent: "center",
+
+    "& li": {
+      width: "90%",
+      color: "var(--basic-font)",
+      display: "grid",
+      gridTemplateColumns: "30% 70%",
+      margin: "2rem",
+
+      "& img": {
+        width: "10rem",
+        borderRadius: "3px",
+      },
+
+      "& .textGroup": {
+        height: "10rem",
+        marginLeft: "1rem",
+
+        "& h4": {
+          fontSize: "1.4rem",
+          marginBottom: "1rem",
+          lineHeight: 1.2,
+        },
+
+        "& p": {
+          fontSize: "1.2rem",
+          color: "var(--basic-sub)",
+          lineHeight: 1.2,
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          display: "-webkit-box",
+          WebkitLineClamp: 4,
+          WebkitBoxOrient: "vertical",
+        },
+      },
+    },
+
+    "&:last-child": {
+      marginBottom: "4rem",
+    },
+  },
+
+  "&::before": {
+    content: "''",
+    width: "90%",
+    borderTop: "0.5px solid var(--form-color)",
+    marginBottom: "2rem",
   },
 };
