@@ -37,8 +37,9 @@ export default function Topics(): JSX.Element {
   }, []);
 
   return (
-    <>
+    <div>
       <form css={css(topicsForm)}>
+        <h4>실시간 검색어 Top 10</h4>
         {topics ? (
           <ul>
             {topics.map((item, index) => {
@@ -67,25 +68,28 @@ export default function Topics(): JSX.Element {
           <TopicsSkeleton />
         )}
       </form>
-      {popularNews ? (
-        <ul css={css(popularStyles)}>
-          {popularNews.map((item, index) => {
-            return (
-              <Link href={item.link}>
-                <li key={index}>
-                  <Image src={item.image} width={100} height={100} alt="newsImg" />
-                  <div className="textGroup">
-                    <h4>{item.title}</h4>
-                    <p>{item.desc}</p>
-                  </div>
-                </li>
-              </Link>
-            );
-          })}
-        </ul>
-      ) : (
-        <PopularNewsSkeleton />
-      )}
-    </>
+      <div css={css(popularStyles)}>
+        <h4>인기 뉴스 Top 10</h4>
+        {popularNews ? (
+          <ul>
+            {popularNews.map((item, index) => {
+              return (
+                <Link href={item.link}>
+                  <li key={index}>
+                    <Image src={item.image} width={100} height={100} alt="newsImg" />
+                    <div className="textGroup">
+                      <h4>{item.title}</h4>
+                      <p>{item.desc}</p>
+                    </div>
+                  </li>
+                </Link>
+              );
+            })}
+          </ul>
+        ) : (
+          <PopularNewsSkeleton />
+        )}
+      </div>
+    </div>
   );
 }

@@ -2,14 +2,22 @@ import { CSSObject, keyframes } from "@emotion/react";
 
 export const topicsForm: CSSObject = {
   display: "flex",
-  justifyContent: "center",
+  alignItems: "center",
+  flexDirection: "column",
+
+  "& h4": {
+    width: "90%",
+    fontSize: "1.2rem",
+    color: "var(--basic-dark)",
+    marginTop: "2rem",
+  },
 
   "& ul": {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     width: "90%",
-    margin: "2rem 0",
+    margin: "1rem 0",
 
     "& li": {
       width: "100%",
@@ -22,8 +30,6 @@ export const topicsForm: CSSObject = {
       "& .rank": {
         marginLeft: "1rem",
       },
-
-      "& .keyword": {},
 
       "& .state": {
         display: "flex",
@@ -43,13 +49,13 @@ export const topicsForm: CSSObject = {
         },
       },
     },
-  },
 
-  "&::before": {
-    content: "''",
-    position: "absolute",
-    width: "90%",
-    borderTop: "0.5px solid var(--form-color)",
+    "&::before": {
+      content: "''",
+      width: "100%",
+      borderTop: "0.5px solid var(--form-color)",
+      marginBottom: "2rem",
+    },
   },
 };
 
@@ -69,7 +75,7 @@ export const skeleton: CSSObject = {
   flexDirection: "column",
   alignItems: "center",
   width: "90%",
-  margin: "2rem 0",
+  margin: "4rem 0",
 
   "& .list": {
     width: "100%",
@@ -108,58 +114,72 @@ export const skeleton: CSSObject = {
 };
 
 export const popularStyles: CSSObject = {
+  marginTop: "6rem",
   display: "flex",
-  alignItems: "center",
   flexDirection: "column",
+  alignItems: "center",
 
-  "& a": {
-    display: "flex",
-    justifyContent: "center",
-
-    "& li": {
-      width: "90%",
-      color: "var(--basic-font)",
-      display: "grid",
-      gridTemplateColumns: "30% 70%",
-      margin: "2rem",
-
-      "& img": {
-        width: "10rem",
-        borderRadius: "3px",
-      },
-
-      "& .textGroup": {
-        height: "10rem",
-        marginLeft: "1rem",
-
-        "& h4": {
-          fontSize: "1.4rem",
-          marginBottom: "1rem",
-          lineHeight: 1.2,
-        },
-
-        "& p": {
-          fontSize: "1.2rem",
-          color: "var(--basic-sub)",
-          lineHeight: 1.2,
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          display: "-webkit-box",
-          WebkitLineClamp: 4,
-          WebkitBoxOrient: "vertical",
-        },
-      },
-    },
-
-    "&:last-child": {
-      marginBottom: "4rem",
-    },
+  "& h4": {
+    width: "90%",
+    fontSize: "1.2rem",
+    color: "var(--basic-dark)",
+    marginBottom: "1rem",
   },
 
-  "&::before": {
-    content: "''",
-    width: "90%",
-    borderTop: "0.5px solid var(--form-color)",
-    marginBottom: "2rem",
+  "& ul": {
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+
+    "& a": {
+      display: "flex",
+      justifyContent: "center",
+
+      "& li": {
+        width: "90%",
+        color: "var(--basic-font)",
+        display: "grid",
+        gridTemplateColumns: "30% 70%",
+        margin: "2rem",
+
+        "& img": {
+          width: "10rem",
+          borderRadius: "3px",
+        },
+
+        "& .textGroup": {
+          height: "10rem",
+          marginLeft: "1rem",
+
+          "& h4": {
+            fontSize: "1.4rem",
+            marginBottom: "1rem",
+            lineHeight: 1.2,
+            color: "var(--main-color)",
+          },
+
+          "& p": {
+            fontSize: "1.2rem",
+            lineHeight: 1.2,
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            display: "-webkit-box",
+            WebkitLineClamp: 4,
+            WebkitBoxOrient: "vertical",
+          },
+        },
+      },
+
+      "&:last-child": {
+        marginBottom: "4rem",
+      },
+    },
+
+    "&::before": {
+      content: "''",
+      width: "90%",
+      borderTop: "0.5px solid var(--form-color)",
+      marginBottom: "2rem",
+    },
   },
 };
