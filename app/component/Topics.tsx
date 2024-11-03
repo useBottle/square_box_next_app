@@ -8,6 +8,7 @@ import { css } from "@emotion/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaPlus, FaMinus, FaCaretUp, FaCaretDown } from "react-icons/fa6";
+import TopicsSkeleton from "./TopicsSkeleton";
 
 export default function Topics(): JSX.Element {
   const [topics, setTopics] = useState<TopicsType[] | undefined>(undefined);
@@ -54,8 +55,9 @@ export default function Topics(): JSX.Element {
             </li>
           ))
         ) : (
-          <div>Loading...</div>
+          <TopicsSkeleton />
         )}
+        {/* <TopicsSkeleton /> */}
       </ul>
     </form>
   );
