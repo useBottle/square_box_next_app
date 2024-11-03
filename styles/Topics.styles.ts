@@ -159,12 +159,12 @@ export const popularStyles: CSSObject = {
           },
 
           "& p": {
-            fontSize: "1.2rem",
+            fontSize: "1.1rem",
             lineHeight: 1.2,
             overflow: "hidden",
             textOverflow: "ellipsis",
             display: "-webkit-box",
-            WebkitLineClamp: 4,
+            WebkitLineClamp: 3,
             WebkitBoxOrient: "vertical",
           },
         },
