@@ -45,6 +45,7 @@ export const topicsForm: CSSObject = {
   },
 };
 
+// Topics 의 Skeleton UI 애니메이션
 const shine = keyframes({
   from: {
     transform: "skew(45deg) translateX(0%)",
@@ -54,6 +55,7 @@ const shine = keyframes({
   },
 });
 
+// Topics 의 Skeleton UI
 export const skeleton: CSSObject = {
   display: "flex",
   flexDirection: "column",
