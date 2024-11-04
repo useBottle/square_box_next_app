@@ -74,8 +74,8 @@ export default function Topics(): JSX.Element {
           <ul>
             {popularNews.map((item, index) => {
               return (
-                <Link href={item.link}>
-                  <li key={index}>
+                <Link href={item.link} key={index}>
+                  <li>
                     <Image src={item.image} width={100} height={100} alt="newsImg" />
                     <div className="textGroup">
                       <h4>{item.title}</h4>
