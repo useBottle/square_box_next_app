@@ -1,5 +1,6 @@
 import { CSSObject, keyframes } from "@emotion/react";
 
+// 실시간 검색어 Top 10 UI
 export const topicsForm: CSSObject = {
   display: "flex",
   alignItems: "center",
@@ -9,7 +10,9 @@ export const topicsForm: CSSObject = {
     width: "90%",
     fontSize: "1.2rem",
     color: "var(--basic-dark)",
-    marginTop: "2rem",
+    marginBottom: "1rem",
+    borderBottom: "0.5px solid var(--form-color)",
+    padding: "1rem 0",
   },
 
   "& ul": {
@@ -49,17 +52,10 @@ export const topicsForm: CSSObject = {
         },
       },
     },
-
-    "&::before": {
-      content: "''",
-      width: "100%",
-      borderTop: "0.5px solid var(--form-color)",
-      marginBottom: "2rem",
-    },
   },
 };
 
-// Topics 의 Skeleton UI 애니메이션
+// Skeleton UI 애니메이션
 const shine = keyframes({
   from: {
     transform: "skew(45deg) translateX(0%)",
@@ -69,8 +65,8 @@ const shine = keyframes({
   },
 });
 
-// Topics 의 Skeleton UI
-export const skeleton: CSSObject = {
+// 실시간 검색어 Top 10 의 Skeleton UI
+export const topicsSkeleton: CSSObject = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -113,6 +109,7 @@ export const skeleton: CSSObject = {
   },
 };
 
+// 인기 뉴스 Top 10 UI
 export const popularStyles: CSSObject = {
   marginTop: "6rem",
   display: "flex",
@@ -124,6 +121,8 @@ export const popularStyles: CSSObject = {
     fontSize: "1.2rem",
     color: "var(--basic-dark)",
     marginBottom: "1rem",
+    borderBottom: "0.5px solid var(--form-color)",
+    padding: "1rem 0",
   },
 
   "& ul": {
@@ -174,12 +173,66 @@ export const popularStyles: CSSObject = {
         marginBottom: "4rem",
       },
     },
+  },
+};
 
-    "&::before": {
-      content: "''",
-      width: "90%",
-      borderTop: "0.5px solid var(--form-color)",
-      marginBottom: "2rem",
+// 인기 뉴스 Top 10 의 Skeleton UI
+export const popularSkeleton: CSSObject = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  width: "100%",
+
+  "& .contentBox": {
+    width: "90%",
+    display: "grid",
+    gridTemplateColumns: "30% 70%",
+    margin: "2rem 0",
+
+    "& .default": {
+      position: "relative",
+      overflow: "hidden",
+      background: "lightgray",
+      borderRadius: "3px",
+      height: "2rem",
+
+      "&::before": {
+        content: '""',
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        background: "#ffffff33",
+        animation: `${shine} infinite 1.5s ease-in-out`,
+      },
+    },
+
+    "& .img": {
+      width: "10rem",
+      height: "10rem",
+    },
+
+    "& .textGroup": {
+      marginLeft: "1rem",
+
+      "& .title": {
+        height: "2.5rem",
+        marginBottom: "1.5rem",
+      },
+
+      "& .text1": {
+        width: "80%",
+        marginBottom: "0.5rem",
+      },
+
+      "& .text2": {
+        width: "85%",
+      },
+    },
+
+    "&:last-child": {
+      marginBottom: "4rem",
     },
   },
 };

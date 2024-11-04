@@ -2,14 +2,14 @@
 
 "use client";
 
-import { skeleton } from "@/styles/Topics.styles";
+import { topicsSkeleton } from "@/styles/Topics.styles";
 import { css } from "@emotion/react";
 
 export default function TopicsSkeleton(): JSX.Element {
   const arry = new Array(10).fill(null);
 
   return (
-    <div css={css(skeleton)}>
+    <div css={css(topicsSkeleton)}>
       {arry.map((_, index) => {
         return (
           <div key={index} className="list">
