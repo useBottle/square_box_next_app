@@ -71,7 +71,7 @@ export const topicsSkeleton: CSSObject = {
   flexDirection: "column",
   alignItems: "center",
   width: "90%",
-  margin: "4rem 0",
+  margin: "1rem 0",
 
   "& .list": {
     width: "100%",
