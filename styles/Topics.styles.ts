@@ -139,7 +139,7 @@ export const popularStyles: CSSObject = {
         color: "var(--basic-font)",
         display: "grid",
         gridTemplateColumns: "30% 70%",
-        margin: "2rem",
+        margin: "1rem",
 
         "& img": {
           width: "10rem",
@@ -150,7 +150,7 @@ export const popularStyles: CSSObject = {
           height: "10rem",
           marginLeft: "1rem",
 
-          "& h4": {
+          "& h6": {
             fontSize: "1.4rem",
             marginBottom: "1rem",
             lineHeight: 1.2,
@@ -187,7 +187,7 @@ export const popularSkeleton: CSSObject = {
     width: "90%",
     display: "grid",
     gridTemplateColumns: "30% 70%",
-    margin: "2rem 0",
+    margin: "1rem 0",
 
     "& .default": {
       position: "relative",
