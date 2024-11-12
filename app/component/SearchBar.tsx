@@ -5,8 +5,7 @@
 import { searchBarForm } from "@/styles/default.styles";
 import { css, CSSObject } from "@emotion/react";
 import axios from "axios";
-import { request } from "http";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
 
@@ -35,7 +34,6 @@ export default function SearchBar(): JSX.Element {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     if (inputValue === "") return;
 
     try {
@@ -44,6 +42,10 @@ export default function SearchBar(): JSX.Element {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    requestData();
+  }, [sort]);
 
   return (
     <div css={css(form)}>
@@ -55,18 +57,18 @@ export default function SearchBar(): JSX.Element {
         </div>
         <div className="sortGroup">
           <button
+            type="button"
             onClick={() => {
               setSort("relation");
-              requestData();
             }}
             style={{ borderBottom: sort === "relation" ? "1px solid var(--basic-font)" : "none" }}
           >
             정확도순
           </button>
           <button
+            type="button"
             onClick={() => {
               setSort("recent");
-              requestData();
             }}
             style={{ borderBottom: sort === "recent" ? "1px solid var(--basic-font)" : "none" }}
           >
