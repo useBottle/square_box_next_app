@@ -31,6 +31,7 @@ export async function POST(req: Request) {
       newsData.push(news);
     });
     console.log(newsData);
+    return NextResponse.json({ newsData: newsData });
   } catch (error) {
     console.error(error);
   }

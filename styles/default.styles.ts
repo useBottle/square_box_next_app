@@ -96,6 +96,8 @@ export const searchBarForm: CSSObject = {
 
   "& .sortGroup": {
     width: "90%",
+    borderBottom: "1px solid #eee",
+    margin: "2rem 0",
 
     "& button": {
       width: "50%",
