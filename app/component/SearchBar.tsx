@@ -3,12 +3,14 @@
 "use client";
 
 import { setNews } from "@/store/news";
+import { AppDispatch } from "@/store/store";
 import { searchBarForm } from "@/styles/default.styles";
 import { css, CSSObject } from "@emotion/react";
 import axios from "axios";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
+import { useDispatch } from "react-redux";
 
 const form: CSSObject = {
   display: "flex",
@@ -20,6 +22,7 @@ const form: CSSObject = {
 export default function SearchBar(): JSX.Element {
   const [inputValue, setInputValue] = useState<string>("");
   const [sort, setSort] = useState<string>("relation");
+  const dispatch = useDispatch<AppDispatch>();
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -30,7 +33,7 @@ export default function SearchBar(): JSX.Element {
 
     const response = await axios.post("/api/news", { inputValue: inputValue, sort: sort });
     const result = response.data.newsData;
-    setNews(result);
+    dispatch(setNews(result));
     console.log(result);
   };
 
