@@ -59,6 +59,7 @@ export default function SearchBar(): JSX.Element {
               setSort("relation");
               requestData();
             }}
+            style={{ borderBottom: sort === "relation" ? "1px solid var(--basic-font)" : "none" }}
           >
             정확도순
           </button>
@@ -67,6 +68,7 @@ export default function SearchBar(): JSX.Element {
               setSort("recent");
               requestData();
             }}
+            style={{ borderBottom: sort === "recent" ? "1px solid var(--basic-font)" : "none" }}
           >
             최신순
           </button>
