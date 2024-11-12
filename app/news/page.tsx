@@ -1,3 +1,9 @@
+import SearchBar from "../component/SearchBar";
+
 export default function News(): JSX.Element {
-  return <div>news</div>;
+  return (
+    <div>
+      <SearchBar />
+    </div>
+  );
 }

@@ -22,3 +22,10 @@ export interface PopularNews {
   name: string;
   title: string;
 }
+
+export interface newsData {
+  title: string;
+  image: string;
+  date: string;
+  text: string;
+}

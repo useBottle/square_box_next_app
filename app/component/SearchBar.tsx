@@ -18,6 +18,7 @@ const form: CSSObject = {
 
 export default function SearchBar(): JSX.Element {
   const [inputValue, setInputValue] = useState<string>("");
+  const [sort, setSort] = useState<string>("relation");
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -29,7 +30,7 @@ export default function SearchBar(): JSX.Element {
     if (inputValue === "") return;
 
     try {
-      const response = await axios.post("/api/news", { inputValue: inputValue });
+      const response = await axios.post("/api/news", { inputValue: inputValue, sort: sort });
       const result = response.status;
       console.log(result);
     } catch (error) {
@@ -40,9 +41,15 @@ export default function SearchBar(): JSX.Element {
   return (
     <div css={css(form)}>
       <form css={css(searchBarForm)} onSubmit={onSubmit}>
-        <IoIosSearch className="searchIcon" />
-        <input type="search" placeholder="Search" value={inputValue} onChange={onChange} />
-        {inputValue && <MdCancel className="cancelIcon" onClick={() => setInputValue("")} />}
+        <div className="inputSet">
+          <IoIosSearch className="searchIcon" />
+          <input type="search" placeholder="Search" value={inputValue} onChange={onChange} />
+          {inputValue && <MdCancel className="cancelIcon" onClick={() => setInputValue("")} />}
+        </div>
+        <div className="sortGroup">
+          <button onClick={() => setSort("relation")}>정확도순</button>
+          <button onClick={() => setSort("recent")}>최신순</button>
+        </div>
       </form>
     </div>
   );

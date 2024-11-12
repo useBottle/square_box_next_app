@@ -49,41 +49,60 @@ export const globalBtn: CSSObject = {
 export const searchBarForm: CSSObject = {
   display: "flex",
   alignItems: "center",
-  width: "90%",
+  flexDirection: "column",
+  width: "100%",
 
-  "& .searchIcon": {
-    position: "absolute",
-    fontSize: "1.8rem",
-    transform: "translateX(0.8rem)",
-  },
+  "& .inputSet": {
+    display: "flex",
+    alignItems: "center",
+    width: "90%",
 
-  "& input": {
-    width: "100%",
-    padding: "1rem 3rem",
-    border: "none",
-    borderRadius: "3px",
-    background: "#eee",
-    outline: "none",
-    color: "var(--basic-font)",
+    "& .searchIcon": {
+      position: "absolute",
+      fontSize: "1.8rem",
+      transform: "translateX(0.8rem)",
+    },
 
-    "&::placeholder": {
+    "& input": {
+      width: "100%",
+      padding: "1rem 3rem",
+      border: "none",
+      borderRadius: "3px",
+      background: "#eee",
+      outline: "none",
       color: "var(--basic-font)",
-      opacity: 0.5,
+
+      "&::placeholder": {
+        color: "var(--basic-font)",
+        opacity: 0.5,
+      },
+
+      "&::-ms-clear": {
+        display: "none", // IE, Edge
+      },
+
+      "&::-webkit-search-cancel-button": {
+        display: "none", // Chrome, Safari
+      },
     },
 
-    "&::-ms-clear": {
-      display: "none", // IE, Edge
-    },
-
-    "&::-webkit-search-cancel-button": {
-      display: "none", // Chrome, Safari
+    "& .cancelIcon": {
+      position: "absolute",
+      right: 0,
+      fontSize: "1.6rem",
+      transform: "translateX(-3rem)",
     },
   },
 
-  "& .cancelIcon": {
-    position: "absolute",
-    right: 0,
-    fontSize: "1.6rem",
-    transform: "translateX(-3rem)",
+  "& .sortGroup": {
+    width: "90%",
+
+    "& button": {
+      width: "50%",
+      padding: "1rem 0",
+      border: "none",
+      background: "none",
+      color: "var(--basic-font)",
+    },
   },
 };
