@@ -2,10 +2,11 @@
 
 "use client";
 
+import { setNews } from "@/store/news";
 import { searchBarForm } from "@/styles/default.styles";
 import { css, CSSObject } from "@emotion/react";
 import axios from "axios";
-import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
 
@@ -29,6 +30,7 @@ export default function SearchBar(): JSX.Element {
 
     const response = await axios.post("/api/news", { inputValue: inputValue, sort: sort });
     const result = response.data.newsData;
+    setNews(result);
     console.log(result);
   };
 
