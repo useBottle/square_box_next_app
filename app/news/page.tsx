@@ -19,16 +19,16 @@ export default function News(): JSX.Element {
       <ul css={css(newsListStyles)}>
         {news.map((item, index) => {
           return (
-            <li key={index}>
-              <Link href={`/news/${index}`}>
+            <Link href={`/news/${index}`} key={index}>
+              <li>
                 <Image src={item.image} alt="newsImg" width={100} height={100} />
-                <div className="textBox">
-                  <h1>{item.title}</h1>
-                  <div>{item.date}</div>
+                <div className="textGroup">
+                  <h6>{item.title}</h6>
+                  <div className="date">{item.date}</div>
                   <p>{item.text}</p>
                 </div>
-              </Link>
-            </li>
+              </li>
+            </Link>
           );
         })}
       </ul>
