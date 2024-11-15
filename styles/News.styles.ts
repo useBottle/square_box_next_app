@@ -33,7 +33,9 @@ export const newsListStyles: CSSObject = {
           color: "var(--main-color)",
         },
 
-        "& .date": {},
+        "& .date": {
+          margin: "1rem 0",
+        },
 
         "& p": {
           fontSize: "1.1rem",
@@ -41,7 +43,7 @@ export const newsListStyles: CSSObject = {
           overflow: "hidden",
           textOverflow: "ellipsis",
           display: "-webkit-box",
-          WebkitLineClamp: 3,
+          WebkitLineClamp: 2,
           WebkitBoxOrient: "vertical",
         },
       },
