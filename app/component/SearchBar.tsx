@@ -21,17 +21,16 @@ const form: CSSObject = {
 
 export default function SearchBar(): JSX.Element {
   const [inputValue, setInputValue] = useState<string>("");
-  const [sort, setSort] = useState<string>("relation");
   const dispatch = useDispatch<AppDispatch>();
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
-  const requestData = async () => {
+  const requestNews = async () => {
     if (inputValue === "") return;
 
-    const response = await axios.post("/api/news", { inputValue: inputValue, sort: sort });
+    const response = await axios.post("/api/news", { inputValue: inputValue, sort: "relation" });
     const result = response.data.newsData;
     dispatch(setNews(result));
     console.log(result);
@@ -42,15 +41,15 @@ export default function SearchBar(): JSX.Element {
     if (inputValue === "") return;
 
     try {
-      requestData();
+      requestNews();
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    requestData();
-  }, [sort]);
+    requestNews();
+  }, []);
 
   return (
     <div css={css(form)}>
@@ -59,26 +58,6 @@ export default function SearchBar(): JSX.Element {
           <IoIosSearch className="searchIcon" />
           <input type="search" placeholder="Search" value={inputValue} onChange={onChange} />
           {inputValue && <MdCancel className="cancelIcon" onClick={() => setInputValue("")} />}
-        </div>
-        <div className="sortGroup">
-          <button
-            type="button"
-            onClick={() => {
-              setSort("relation");
-            }}
-            style={{ borderBottom: sort === "relation" ? "1px solid var(--basic-font)" : "none" }}
-          >
-            정확도순
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setSort("recent");
-            }}
-            style={{ borderBottom: sort === "recent" ? "1px solid var(--basic-font)" : "none" }}
-          >
-            최신순
-          </button>
         </div>
       </form>
     </div>

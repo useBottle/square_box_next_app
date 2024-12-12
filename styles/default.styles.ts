@@ -93,18 +93,4 @@ export const searchBarForm: CSSObject = {
       transform: "translateX(-3rem)",
     },
   },
-
-  "& .sortGroup": {
-    width: "90%",
-    borderBottom: "1px solid #eee",
-    margin: "2rem 0",
-
-    "& button": {
-      width: "50%",
-      padding: "1rem 0",
-      border: "none",
-      background: "none",
-      color: "var(--basic-font)",
-    },
-  },
 };
