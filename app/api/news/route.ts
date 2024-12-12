@@ -1,7 +1,6 @@
 import axios from "axios";
 import { NextResponse } from "next/server";
 import * as cheerio from "cheerio";
-import { newsData } from "@/types/types";
 
 export async function POST(req: Request) {
   const result = await req.json();
@@ -15,25 +14,42 @@ export async function POST(req: Request) {
   try {
     const response = await axios.get(url);
     const $ = cheerio.load(response.data);
-    const newsData: newsData[] = [];
     const newsList = $(".board-list li");
+    const newsData = await Promise.all(
+      newsList.map(async (_, item) => {
+        const h3 = $(item).find(".board-list.h3.pc_only").text().trim();
+        const href = $(item).find(".board-list.h3.pc_only a").attr("href");
+        const date = $(item).find(".date.pc_only em").text();
+        const text = $(item).find(".text.pc_only a").text().replace(/\n/g, "").trim();
 
-    newsList.each((_, item) => {
-      const h3 = $(item).find(".board-list.h3.pc_only").text().trim();
-      const img = $(item).find(".img-box a img").attr("src");
-      const alt = $(item).find(".img-box a img").attr("alt");
-      const date = $(item).find(".date.pc_only em").text();
-      const text = $(item).find(".text.pc_only a").text().replace(/\n/g, "").trim();
+        if (href) {
+          try {
+            const response = await axios.get(href);
+            const subPage = cheerio.load(response.data);
+            const img = subPage(".img-box img").attr("src");
+            const alt = subPage(".img-box img").attr("alt");
 
-      const news = {
-        title: h3,
-        image: img ? img : "",
-        alt: alt ? alt : "",
-        date: date,
-        text: text,
-      };
-      newsData.push(news);
-    });
+            return {
+              title: h3,
+              image: img ? img : "",
+              alt: alt ? alt : "",
+              date: date,
+              text: text,
+            };
+          } catch (error) {
+            console.error("Error fetching subpage:", error);
+          }
+        }
+
+        return {
+          title: h3,
+          image: "",
+          alt: "",
+          date: date,
+          text: text,
+        };
+      }),
+    );
     console.log(newsData);
     return NextResponse.json({ newsData: newsData });
   } catch (error) {

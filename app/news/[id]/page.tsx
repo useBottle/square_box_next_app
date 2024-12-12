@@ -22,7 +22,8 @@ export default function NewsDynamic(): JSX.Element {
 
   return (
     <div css={css(dynamicNewsStyles)}>
-      <Image src={news[newsId].image} alt="newsImg" width={200} height={200} quality={100} />
+      <Image src={news[newsId].image} alt="newsImg" width={200} height={200} />
+      <div>{news[newsId].alt}</div>
       <h1>{news[newsId].title}</h1>
       <div>{news[newsId].date}</div>
       <p>{news[newsId].text}</p>
