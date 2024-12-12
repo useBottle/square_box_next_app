@@ -26,6 +26,7 @@ export interface PopularNews {
 export interface newsData {
   title: string;
   image: string;
+  alt: string;
   date: string;
   text: string;
 }

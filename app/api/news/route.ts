@@ -21,12 +21,14 @@ export async function POST(req: Request) {
     newsList.each((_, item) => {
       const h3 = $(item).find(".board-list.h3.pc_only").text().trim();
       const img = $(item).find(".img-box a img").attr("src");
+      const alt = $(item).find(".img-box a img").attr("alt");
       const date = $(item).find(".date.pc_only em").text();
       const text = $(item).find(".text.pc_only a").text().replace(/\n/g, "").trim();
 
       const news = {
         title: h3,
         image: img ? img : "",
+        alt: alt ? alt : "",
         date: date,
         text: text,
       };

@@ -60,4 +60,9 @@ export const dynamicNewsStyles: CSSObject = {
   flexDirection: "column",
   alignItems: "center",
   justifyContent: "center",
+
+  "& img": {
+    width: "100%",
+    height: "auto",
+  },
 };
