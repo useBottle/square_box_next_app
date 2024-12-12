@@ -10,6 +10,7 @@ export const header: CSSObject = {
 
   "& .logo": {
     display: "flex",
+    alignItems: "center",
     color: "var(--basic-font)",
     fontSize: "2rem",
   },
