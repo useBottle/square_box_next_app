@@ -78,13 +78,18 @@ export const dynamicNewsStyles: CSSObject = {
 
   "& .textGroup": {
     padding: "0 1rem",
+
     "& h1": {
-      margin: "2rem 0",
+      marginTop: "4rem",
       fontSize: "2rem",
+      color: "var(--main-color)",
     },
 
     "& .date": {
       fontSize: "1.2rem",
+      marginTop: "2rem",
+      marginBottom: "4rem",
+      color: "var(--state-up)",
     },
 
     "& p": {

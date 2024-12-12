@@ -55,7 +55,6 @@ export async function POST(req: Request) {
         };
       }),
     );
-    // console.log(newsData);
     return NextResponse.json({ newsData: newsData });
   } catch (error) {
     console.error(error);

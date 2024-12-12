@@ -13,7 +13,6 @@ export default function NewsDynamic(): JSX.Element {
   const news = useSelector((state: RootState) => state.news);
   const params = useParams();
   const newsId = Number(params.id);
-  console.log(news[newsId].text);
 
   if (typeof newsId !== "number" || newsId < 0 || newsId >= news.length) {
     // 나중에 잘못된 페이지 접근 UI 추가하기.
