@@ -13,7 +13,7 @@ export default function NewsDynamic(): JSX.Element {
   const news = useSelector((state: RootState) => state.news);
   const params = useParams();
   const newsId = Number(params.id);
-  console.log("News ID:", newsId);
+  console.log(news[newsId].text);
 
   if (typeof newsId !== "number" || newsId < 0 || newsId >= news.length) {
     // 나중에 잘못된 페이지 접근 UI 추가하기.
@@ -29,7 +29,9 @@ export default function NewsDynamic(): JSX.Element {
       <div className="textGroup">
         <h1>{news[newsId].title}</h1>
         <div className="date">{news[newsId].date}</div>
-        {news[newsId].text}
+        {news[newsId].text.map((item, index) => {
+          return <p key={index}>{item}</p>;
+        })}
       </div>
     </div>
   );

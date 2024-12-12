@@ -29,5 +29,5 @@ export interface newsData {
   alt: string;
   date: string;
   summary: string;
-  text: string;
+  text: string[];
 }
