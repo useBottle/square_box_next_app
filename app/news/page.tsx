@@ -25,7 +25,7 @@ export default function News(): JSX.Element {
                 <div className="textGroup">
                   <h6>{item.title}</h6>
                   <div className="date">{item.date}</div>
-                  <p>{item.text}</p>
+                  <p>{item.summary}</p>
                 </div>
               </li>
             </Link>

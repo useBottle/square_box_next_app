@@ -28,5 +28,6 @@ export interface newsData {
   image: string;
   alt: string;
   date: string;
+  summary: string;
   text: string;
 }

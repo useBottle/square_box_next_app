@@ -61,16 +61,35 @@ export const dynamicNewsStyles: CSSObject = {
   alignItems: "center",
   justifyContent: "center",
 
-  "& img": {
-    width: "100%",
-    height: "auto",
+  "& .imgGroup": {
+    "& img": {
+      width: "100%",
+      height: "auto",
+    },
+
+    "& .alt": {
+      fontSize: "1.2rem",
+      color: "var(--basic-dark)",
+      marginTop: "1rem",
+      marginBottom: "1rem",
+      padding: "0 1rem",
+    },
   },
 
-  "& .alt": {
-    fontSize: "1.2rem",
-    color: "var(--basic-dark)",
-    marginTop: "1rem",
-    marginBottom: "1rem",
+  "& .textGroup": {
     padding: "0 1rem",
+    "& h1": {
+      margin: "2rem 0",
+      fontSize: "2rem",
+    },
+
+    "& .date": {
+      fontSize: "1.2rem",
+    },
+
+    "& p": {
+      margin: "2rem 0",
+      fontSize: "1.4rem",
+    },
   },
 };

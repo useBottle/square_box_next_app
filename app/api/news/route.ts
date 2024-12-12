@@ -20,7 +20,7 @@ export async function POST(req: Request) {
         const h3 = $(item).find(".board-list.h3.pc_only").text().trim();
         const href = $(item).find(".board-list.h3.pc_only a").attr("href");
         const date = $(item).find(".date.pc_only em").text();
-        const text = $(item).find(".text.pc_only a").text().replace(/\n/g, "").trim();
+        const summary = $(item).find(".text.pc_only a").text().replace(/\n/g, "").trim();
 
         if (href) {
           try {
@@ -28,12 +28,16 @@ export async function POST(req: Request) {
             const subPage = cheerio.load(response.data);
             const img = subPage(".img-box img").attr("src");
             const alt = subPage(".img-box img").attr("alt");
+            const text = subPage(".editor-p")
+              .map((_, item) => subPage(item).text().trim())
+              .get();
 
             return {
               title: h3,
               image: img ? img : "",
               alt: alt ? alt : "",
               date: date,
+              summary: summary,
               text: text,
             };
           } catch (error) {
@@ -46,11 +50,12 @@ export async function POST(req: Request) {
           image: "",
           alt: "",
           date: date,
-          text: text,
+          summary: summary,
+          text: "",
         };
       }),
     );
-    console.log(newsData);
+    // console.log(newsData);
     return NextResponse.json({ newsData: newsData });
   } catch (error) {
     console.error(error);
