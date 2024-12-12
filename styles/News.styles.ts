@@ -78,6 +78,7 @@ export const dynamicNewsStyles: CSSObject = {
 
   "& .textGroup": {
     padding: "0 1rem",
+    marginBottom: "10rem",
 
     "& h1": {
       marginTop: "4rem",
@@ -89,7 +90,7 @@ export const dynamicNewsStyles: CSSObject = {
       fontSize: "1.2rem",
       marginTop: "2rem",
       marginBottom: "4rem",
-      color: "var(--state-up)",
+      color: "var(--basic-dark)",
     },
 
     "& p": {
