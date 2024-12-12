@@ -54,3 +54,10 @@ export const newsListStyles: CSSObject = {
     },
   },
 };
+
+export const dynamicNewsStyles: CSSObject = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+};
