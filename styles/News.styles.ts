@@ -16,6 +16,10 @@ export const newsListStyles: CSSObject = {
       display: "grid",
       gridTemplateColumns: "30% 70%",
       margin: "1rem",
+      border: "1px solid #eee",
+      padding: "1rem 1rem",
+      borderRadius: "3px",
+      boxSizing: "border-box",
 
       "& img": {
         width: "10rem",
@@ -24,17 +28,17 @@ export const newsListStyles: CSSObject = {
 
       "& .textGroup": {
         height: "10rem",
-        marginLeft: "1rem",
+        marginLeft: "1.4rem",
 
         "& h6": {
           fontSize: "1.4rem",
-          marginBottom: "1rem",
+          marginBottom: "0.5rem",
           lineHeight: 1.2,
           color: "var(--main-color)",
         },
 
         "& .date": {
-          margin: "1rem 0",
+          margin: "0.5rem 0",
         },
 
         "& p": {
