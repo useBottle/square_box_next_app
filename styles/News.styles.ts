@@ -65,4 +65,12 @@ export const dynamicNewsStyles: CSSObject = {
     width: "100%",
     height: "auto",
   },
+
+  "& .alt": {
+    fontSize: "1.2rem",
+    color: "var(--basic-dark)",
+    marginTop: "1rem",
+    marginBottom: "1rem",
+    padding: "0 1rem",
+  },
 };
