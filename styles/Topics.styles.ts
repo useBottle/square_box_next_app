@@ -10,6 +10,7 @@ export const topicsForm: CSSObject = {
     width: "90%",
     fontSize: "1.2rem",
     color: "var(--basic-dark)",
+    marginTop: "5rem",
     marginBottom: "1rem",
     borderBottom: "0.5px solid var(--form-color)",
     padding: "1rem 0",
