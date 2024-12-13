@@ -3,14 +3,14 @@
 "use client";
 
 import { setNews } from "@/store/news";
-import { AppDispatch } from "@/store/store";
+import { AppDispatch, RootState } from "@/store/store";
 import { searchBarForm } from "@/styles/default.styles";
 import { css, CSSObject } from "@emotion/react";
 import axios from "axios";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const form: CSSObject = {
   display: "flex",
@@ -21,13 +21,14 @@ const form: CSSObject = {
 
 export default function SearchBar(): JSX.Element {
   const [inputValue, setInputValue] = useState<string>("");
+  const news = useSelector((state: RootState) => state.news);
   const dispatch = useDispatch<AppDispatch>();
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
-  const requestNews = async () => {
+  const requestNewsList = async () => {
     if (inputValue === "") return;
 
     const response = await axios.post("/api/news", { inputValue: inputValue, sort: "relation" });
@@ -36,19 +37,23 @@ export default function SearchBar(): JSX.Element {
     console.log(result);
   };
 
+  // const requestArticleData = async () => {
+  //   const response await axios.post("/api/article", { url:  })
+  // }
+
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (inputValue === "") return;
 
     try {
-      requestNews();
+      requestNewsList();
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    requestNews();
+    requestNewsList();
   }, []);
 
   return (

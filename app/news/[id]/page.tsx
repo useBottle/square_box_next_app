@@ -10,11 +10,12 @@ import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
 
 export default function NewsDynamic(): JSX.Element {
-  const news = useSelector((state: RootState) => state.news);
+  const newsList = useSelector((state: RootState) => state.news.newsList);
+  const article = useSelector((state: RootState) => state.news.article);
   const params = useParams();
   const newsId = Number(params.id);
 
-  if (typeof newsId !== "number" || newsId < 0 || newsId >= news.length) {
+  if (typeof newsId !== "number" || newsId < 0 || newsId >= newsList.length) {
     // 나중에 잘못된 페이지 접근 UI 추가하기.
     return <div>Invalid news ID</div>;
   }
@@ -22,13 +23,13 @@ export default function NewsDynamic(): JSX.Element {
   return (
     <div css={css(dynamicNewsStyles)}>
       <div className="imgGroup">
-        <Image src={news[newsId].image} alt="newsImg" width={200} height={200} />
-        <div className="alt">{news[newsId].alt}</div>
+        <Image src={article[newsId].image} alt="newsImg" width={200} height={200} />
+        <div className="alt">{article[newsId].alt}</div>
       </div>
       <div className="textGroup">
-        <h1>{news[newsId].title}</h1>
-        <div className="date">{news[newsId].date}</div>
-        {news[newsId].text.map((item, index) => {
+        <h1>{newsList[newsId].title}</h1>
+        <div className="date">{newsList[newsId].date}</div>
+        {article[newsId].text.map((item, index) => {
           return <p key={index}>{item}</p>;
         })}
       </div>

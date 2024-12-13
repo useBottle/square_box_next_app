@@ -9,9 +9,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { newsListStyles } from "@/styles/News.styles";
 import { css } from "@emotion/react";
+import { useEffect } from "react";
 
 export default function News(): JSX.Element {
-  const news = useSelector((state: RootState) => state.news);
+  const news = useSelector((state: RootState) => state.news.newsList);
+
+  // useEffect(() => {
+  //   news.map((item, index) => {
+  //     if (item.href !== "") {
+
+  //     }
+  //   })
+  // }, [news])
 
   return (
     <div>
