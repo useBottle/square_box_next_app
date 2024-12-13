@@ -1,13 +1,13 @@
-import { newsData } from "@/types/types";
+import { newsList } from "@/types/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState: newsData[] = [];
+const initialState: newsList[] = [];
 
 export const news = createSlice({
   name: "news",
   initialState,
   reducers: {
-    setNews(state, action: PayloadAction<newsData[]>) {
+    setNews(state, action: PayloadAction<newsList[]>) {
       return action.payload;
     },
   },
