@@ -13,11 +13,11 @@ export const news = createSlice({
     setNews(state, action: PayloadAction<newsList[]>) {
       state.newsList = action.payload;
     },
-    setArticle(state, action: PayloadAction<articleData[]>) {
+    setArticles(state, action: PayloadAction<articleData[]>) {
       state.article = action.payload;
     },
   },
 });
 
-export const { setNews, setArticle } = news.actions;
+export const { setNews, setArticles } = news.actions;
 export default news.reducer;

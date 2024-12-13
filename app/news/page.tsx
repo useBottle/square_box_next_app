@@ -2,31 +2,42 @@
 
 "use client";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../component/SearchBar";
-import { RootState } from "@/store/store";
+import { AppDispatch, RootState } from "@/store/store";
 import Link from "next/link";
 import Image from "next/image";
 import { newsListStyles } from "@/styles/News.styles";
 import { css } from "@emotion/react";
 import { useEffect } from "react";
+import { setArticles } from "@/store/news";
+import axios from "axios";
 
 export default function News(): JSX.Element {
-  const news = useSelector((state: RootState) => state.news.newsList);
+  const newsList = useSelector((state: RootState) => state.news.newsList);
+  const dispatch = useDispatch<AppDispatch>();
 
-  // useEffect(() => {
-  //   news.map((item, index) => {
-  //     if (item.href !== "") {
-
-  //     }
-  //   })
-  // }, [news])
+  useEffect(() => {
+    const fetchArticles = async () => {
+      const urls: string[] = [];
+      newsList.map((item) => {
+        if (item.href !== "") {
+          urls.push(item.href);
+        }
+      });
+      const response = await axios.post("/api/articles", { url: urls });
+      const result = response.data.articleData;
+      dispatch(setArticles(result));
+      console.log(result);
+    };
+    fetchArticles();
+  }, [newsList, dispatch]);
 
   return (
     <div>
       <SearchBar />
       <ul css={css(newsListStyles)}>
-        {news.map((item, index) => {
+        {newsList.map((item, index) => {
           return (
             <Link href={`/news/${index}`} key={index}>
               <li>
