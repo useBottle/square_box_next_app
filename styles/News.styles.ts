@@ -14,21 +14,22 @@ export const newsListStyles: CSSObject = {
       width: "90%",
       color: "var(--basic-font)",
       display: "grid",
-      gridTemplateColumns: "30% 70%",
-      margin: "1rem",
+      gridTemplateColumns: "35% 65%",
+      margin: "1.5rem",
       border: "1px solid #eee",
-      padding: "1rem 1rem",
-      borderRadius: "3px",
+      borderRadius: "5px",
       boxSizing: "border-box",
 
       "& img": {
-        width: "10rem",
-        borderRadius: "3px",
+        width: "100%",
+        height: "100%",
+        borderTopLeftRadius: "5px",
+        borderBottomLeftRadius: "5px",
       },
 
       "& .textGroup": {
+        padding: "1rem",
         height: "10rem",
-        marginLeft: "1.4rem",
 
         "& h6": {
           fontSize: "1.4rem",
