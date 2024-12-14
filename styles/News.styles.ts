@@ -66,6 +66,8 @@ export const dynamicNewsStyles: CSSObject = {
   justifyContent: "center",
 
   "& .imgGroup": {
+    width: "100vw",
+
     "& img": {
       width: "100%",
       height: "auto",
