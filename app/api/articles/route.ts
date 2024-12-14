@@ -7,9 +7,9 @@ export async function POST(req: Request) {
   const url = result.url as string[] | undefined;
 
   try {
-    console.log(url);
     let article;
     if (url) {
+      // console.log(url);
       article = await Promise.all(
         url.map(async (item) => {
           const response = await axios.get(item);
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
             alt: alt ? alt : "",
             text: text,
           };
-          console.log(article);
+          // console.log(article);
           return article;
         }),
       );
