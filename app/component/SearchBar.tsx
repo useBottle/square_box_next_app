@@ -3,7 +3,7 @@
 "use client";
 
 import { setArticles, setNews } from "@/store/news";
-import { AppDispatch, RootState } from "@/store/store";
+import { AppDispatch } from "@/store/store";
 import { searchBarForm } from "@/styles/default.styles";
 import { newsList } from "@/types/types";
 import { css, CSSObject } from "@emotion/react";
@@ -11,7 +11,7 @@ import axios from "axios";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const form: CSSObject = {
   display: "flex",
@@ -21,7 +21,6 @@ const form: CSSObject = {
 };
 
 export default function SearchBar(): JSX.Element {
-  const newsList = useSelector((state: RootState) => state.news.newsList);
   const [inputValue, setInputValue] = useState<string>("");
   const dispatch = useDispatch<AppDispatch>();
 
@@ -46,7 +45,7 @@ export default function SearchBar(): JSX.Element {
       const requestArticles = await axios.post("/api/articles", { url: urls });
       const articles = requestArticles.data.articleData;
       dispatch(setArticles(articles));
-      console.log(articles);
+      // console.log(articles);
     } catch (error) {
       console.error(error);
     }
