@@ -18,7 +18,8 @@ export async function POST(req: Request) {
           const alt = $(".img-box img").attr("alt");
           const text = $(".editor-p")
             .map((_, item) => $(item).text().trim())
-            .get();
+            .get()
+            .filter((item) => item !== "");
 
           const article = {
             image: img ? img : "",
