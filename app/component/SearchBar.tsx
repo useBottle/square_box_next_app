@@ -5,6 +5,7 @@
 import { setArticles, setNews } from "@/store/news";
 import { AppDispatch, RootState } from "@/store/store";
 import { searchBarForm } from "@/styles/default.styles";
+import { newsList } from "@/types/types";
 import { css, CSSObject } from "@emotion/react";
 import axios from "axios";
 import React, { ChangeEvent, useEffect, useState } from "react";
@@ -37,7 +38,7 @@ export default function SearchBar(): JSX.Element {
       dispatch(setNews(result));
 
       const urls: string[] = [];
-      newsList.map((item) => {
+      result.map((item: newsList) => {
         if (item.href !== "") {
           urls.push(item.href);
         }
