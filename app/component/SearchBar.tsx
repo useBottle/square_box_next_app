@@ -33,7 +33,6 @@ export default function SearchBar(): JSX.Element {
     const response = await axios.post("/api/news", { inputValue: inputValue, sort: "relation" });
     const result = response.data.newsData;
     dispatch(setNews(result));
-    console.log(result);
   };
 
   const onSubmit = async (e: React.FormEvent) => {

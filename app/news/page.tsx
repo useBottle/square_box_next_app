@@ -25,10 +25,14 @@ export default function News(): JSX.Element {
           urls.push(item.href);
         }
       });
-      const response = await axios.post("/api/articles", { url: urls });
-      const result = response.data.articleData;
-      dispatch(setArticles(result));
-      console.log(result);
+      try {
+        const response = await axios.post("/api/articles", { url: urls });
+        const result = response.data.articleData;
+        dispatch(setArticles(result));
+        console.log(result);
+      } catch (error) {
+        console.error(error);
+      }
     };
     fetchArticles();
   }, [newsList, dispatch]);

@@ -8,28 +8,29 @@ export async function POST(req: Request) {
 
   try {
     console.log(url);
-    // 각 url 을 순회하여 alt, image, text 크롤링하는 로직 추가.
-
+    let article;
     if (url) {
-      url.map(async (item) => {
-        const response = await axios.get(item);
-        const $ = cheerio.load(response.data);
-        const img = $(".img-box img").attr("src");
-        const alt = $(".img-box img").attr("alt");
-        const text = $(".editor-p")
-          .map((_, item) => $(item).text().trim())
-          .get();
+      article = await Promise.all(
+        url.map(async (item) => {
+          const response = await axios.get(item);
+          const $ = cheerio.load(response.data);
+          const img = $(".img-box img").attr("src");
+          const alt = $(".img-box img").attr("alt");
+          const text = $(".editor-p")
+            .map((_, item) => $(item).text().trim())
+            .get();
 
-        const article = {
-          image: img ? img : "",
-          alt: alt ? alt : "",
-          text: text,
-        };
-        console.log(article);
-        return article;
-      });
+          const article = {
+            image: img ? img : "",
+            alt: alt ? alt : "",
+            text: text,
+          };
+          console.log(article);
+          return article;
+        }),
+      );
     }
-    return NextResponse.json({ message: "url" });
+    return NextResponse.json({ articleData: article });
   } catch (error) {
     console.error(error);
   }
