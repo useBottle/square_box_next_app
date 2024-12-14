@@ -2,40 +2,16 @@
 
 "use client";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import SearchBar from "../component/SearchBar";
-import { AppDispatch, RootState } from "@/store/store";
+import { RootState } from "@/store/store";
 import Link from "next/link";
 import Image from "next/image";
 import { newsListStyles } from "@/styles/News.styles";
 import { css } from "@emotion/react";
-import { useEffect } from "react";
-import { setArticles } from "@/store/news";
-import axios from "axios";
 
 export default function News(): JSX.Element {
   const newsList = useSelector((state: RootState) => state.news.newsList);
-  const dispatch = useDispatch<AppDispatch>();
-
-  useEffect(() => {
-    const fetchArticles = async () => {
-      const urls: string[] = [];
-      newsList.map((item) => {
-        if (item.href !== "") {
-          urls.push(item.href);
-        }
-      });
-      try {
-        const response = await axios.post("/api/articles", { url: urls });
-        const result = response.data.articleData;
-        dispatch(setArticles(result));
-        console.log(result);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchArticles();
-  }, [newsList, dispatch]);
 
   return (
     <div>
