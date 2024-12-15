@@ -20,6 +20,11 @@ export default function NewsDynamic(): JSX.Element {
     return <div>Invalid news ID</div>;
   }
 
+  if (!article || !article[newsId]) {
+    // 추후 로딩 중일 때의 UI 추가하기.
+    return <div>Loading...</div>;
+  }
+
   return (
     <div css={css(dynamicNewsStyles)}>
       <div className="imgGroup">
