@@ -139,23 +139,37 @@ export const popularStyles: CSSObject = {
         width: "90%",
         color: "var(--basic-font)",
         display: "grid",
-        gridTemplateColumns: "30% 70%",
-        margin: "1rem",
+        gridTemplateColumns: "35% 65%",
+        margin: "1.5rem",
+        border: "1px solid #eee",
+        borderRadius: "5px",
+        boxSizing: "border-box",
 
         "& img": {
-          width: "10rem",
-          borderRadius: "3px",
+          width: "100%",
+          height: "100%",
+          borderTopLeftRadius: "5px",
+          borderBottomLeftRadius: "5px",
         },
 
         "& .textGroup": {
           height: "10rem",
-          marginLeft: "1rem",
+          padding: "1rem",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          alignItems: "flex-start",
+          boxSizing: "border-box",
 
           "& h6": {
             fontSize: "1.4rem",
-            marginBottom: "1rem",
             lineHeight: 1.2,
             color: "var(--main-color)",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            display: "-webkit-box",
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: "vertical",
           },
 
           "& p": {
@@ -164,7 +178,7 @@ export const popularStyles: CSSObject = {
             overflow: "hidden",
             textOverflow: "ellipsis",
             display: "-webkit-box",
-            WebkitLineClamp: 3,
+            WebkitLineClamp: 2,
             WebkitBoxOrient: "vertical",
           },
         },

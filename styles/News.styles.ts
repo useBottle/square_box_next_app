@@ -30,12 +30,21 @@ export const newsListStyles: CSSObject = {
       "& .textGroup": {
         padding: "1rem",
         height: "10rem",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
+        boxSizing: "border-box",
 
         "& h6": {
           fontSize: "1.4rem",
-          marginBottom: "0.5rem",
           lineHeight: 1.2,
           color: "var(--main-color)",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          display: "-webkit-box",
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: "vertical",
         },
 
         "& .date": {
@@ -48,7 +57,7 @@ export const newsListStyles: CSSObject = {
           overflow: "hidden",
           textOverflow: "ellipsis",
           display: "-webkit-box",
-          WebkitLineClamp: 2,
+          WebkitLineClamp: 1,
           WebkitBoxOrient: "vertical",
         },
       },
