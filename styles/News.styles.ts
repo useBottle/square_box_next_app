@@ -12,6 +12,8 @@ export const newsListStyles: CSSObject = {
 
     "& li": {
       width: "90%",
+      height: "10rem",
+      overflow: "hidden",
       color: "var(--basic-font)",
       display: "grid",
       gridTemplateColumns: "35% 65%",

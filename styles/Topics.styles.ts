@@ -137,6 +137,7 @@ export const popularStyles: CSSObject = {
 
       "& li": {
         width: "90%",
+        height: "10rem",
         color: "var(--basic-font)",
         display: "grid",
         gridTemplateColumns: "35% 65%",
@@ -144,6 +145,7 @@ export const popularStyles: CSSObject = {
         border: "1px solid #eee",
         borderRadius: "5px",
         boxSizing: "border-box",
+        overflow: "hidden",
 
         "& img": {
           width: "100%",
