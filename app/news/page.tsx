@@ -21,7 +21,7 @@ export default function News(): JSX.Element {
           return (
             <Link href={`/news/${index}`} key={index}>
               <li>
-                <Image src={item.prevImg} alt="newsImg" width={100} height={100} />
+                <Image src={item.prevImg} alt="newsImg" layout="fill" width={100} height={100} />
                 <div className="textGroup">
                   <h6>{item.title}</h6>
                   <div className="date">{item.date}</div>

@@ -76,7 +76,7 @@ export default function Topics(): JSX.Element {
               return (
                 <Link href={item.link} key={index}>
                   <li>
-                    <Image src={item.image} width={100} height={100} alt="newsImg" />
+                    <Image src={item.image} width={100} height={100} layout="filled" alt="newsImg" />
                     <div className="textGroup">
                       <h6>{item.title}</h6>
                       <p>{item.desc}</p>
