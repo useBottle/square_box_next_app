@@ -2,17 +2,27 @@
 
 "use client";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SearchBar from "../component/SearchBar";
-import { RootState } from "@/store/store";
+import { AppDispatch, RootState } from "@/store/store";
 import Link from "next/link";
 import Image from "next/image";
 import { newsListStyles } from "@/styles/News.styles";
 import { css } from "@emotion/react";
 import Loading from "../component/Loading";
+import { useEffect } from "react";
+import { setNewsAccess } from "@/store/news";
 
 export default function News(): JSX.Element {
   const newsList = useSelector((state: RootState) => state.news.newsList);
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(setNewsAccess(true));
+    return () => {
+      dispatch(setNewsAccess(false));
+    };
+  }, [dispatch]);
 
   // Loading UI 테스트용
   if (true) {
