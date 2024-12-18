@@ -17,6 +17,6 @@ export const loading: CSSObject = {
     padding: "1rem",
     border: "2px solid var(--basic-font)",
     borderRadius: "5px",
-    animation: `${blink} infinite 3s ease-in-out`,
+    animation: `${blink} infinite 2s ease-in-out`,
   },
 };
