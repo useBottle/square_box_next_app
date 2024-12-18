@@ -9,9 +9,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { newsListStyles } from "@/styles/News.styles";
 import { css } from "@emotion/react";
+import Loading from "../component/Loading";
 
 export default function News(): JSX.Element {
   const newsList = useSelector((state: RootState) => state.news.newsList);
+
+  // Loading UI 테스트용
+  if (true) {
+    return <Loading />;
+  }
 
   return (
     <div>
