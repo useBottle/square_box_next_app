@@ -2,6 +2,7 @@
 
 "use client";
 
+import Loading from "@/app/component/Loading";
 import { RootState } from "@/store/store";
 import { dynamicNewsStyles } from "@/styles/News.styles";
 import { css } from "@emotion/react";
@@ -21,8 +22,7 @@ export default function NewsDynamic(): JSX.Element {
   }
 
   if (!article || !article[newsId]) {
-    // 추후 로딩 중일 때의 UI 추가하기.
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
