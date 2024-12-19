@@ -2,8 +2,8 @@
 
 "use client";
 
-import { setArticles, setNews } from "@/store/news";
-import { AppDispatch } from "@/store/store";
+import { fetchArticles, fetchNews, setArticles, setNews } from "@/store/news";
+import { AppDispatch, RootState } from "@/store/store";
 import { searchBarForm } from "@/styles/default.styles";
 import { newsList } from "@/types/types";
 import { css, CSSObject } from "@emotion/react";
@@ -11,7 +11,7 @@ import axios from "axios";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const form: CSSObject = {
   display: "flex",
@@ -22,13 +22,13 @@ const form: CSSObject = {
 
 export default function SearchBar(): JSX.Element {
   const [inputValue, setInputValue] = useState<string>("");
-  const dispatch = useDispatch<AppDispatch>();
+  const urls = useSelector((state: RootState) => state.news.urls);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
-  const requestNewsList = async () => {
+  /*   const requestNewsList = async () => {
     try {
       if (inputValue === "") return;
 
@@ -49,22 +49,23 @@ export default function SearchBar(): JSX.Element {
     } catch (error) {
       console.error(error);
     }
-  };
+  }; */
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (inputValue === "") return;
 
     try {
-      requestNewsList();
+      fetchNews(inputValue);
+      fetchArticles(urls);
     } catch (error) {
       console.error(error);
     }
   };
 
-  useEffect(() => {
-    requestNewsList();
-  }, []);
+  // useEffect(() => {
+  //   requestNewsList();
+  // }, []);
 
   return (
     <div css={css(form)}>

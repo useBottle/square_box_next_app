@@ -1,10 +1,47 @@
 import { articleData, newsList } from "@/types/types";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import axios from "axios";
+
+export const fetchNews = createAsyncThunk<[newsList[], string[]], string>(
+  "data/fetchNews",
+  async (inputValue: string) => {
+    try {
+      if (inputValue === "") return [[], []];
+
+      const response = await axios.post("/api/news", { inputValue: inputValue, sort: "relation" });
+      const result = response.data.newsData;
+      const urls: string[] = [];
+      result.map((item: newsList) => {
+        if (item.href !== "") {
+          urls.push(item.href);
+        }
+      });
+      return [result, urls];
+    } catch (error) {
+      console.error(error);
+      return [[], []];
+    }
+  },
+);
+
+export const fetchArticles = createAsyncThunk<articleData[], string[]>("data/fetchArticles", async (urls: string[]) => {
+  try {
+    const requestArticles = await axios.post("/api/articles", { url: urls });
+    const articles = requestArticles.data.articleData;
+    return articles;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+});
 
 const initialState = {
   newsList: [] as newsList[],
   article: [] as articleData[],
+  urls: [] as string[],
   access: false,
+  newsStatus: "idle",
+  articleStatus: "idle",
 };
 
 export const news = createSlice({
@@ -20,6 +57,34 @@ export const news = createSlice({
     setNewsAccess(state, action: PayloadAction<boolean>) {
       state.access = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchNews.pending, (state) => {
+        state.newsStatus = "loading";
+      })
+      .addCase(fetchNews.fulfilled, (state, action: PayloadAction<[newsList[], string[]] | undefined>) => {
+        state.newsStatus = "succeeded";
+        if (action.payload) {
+          state.newsList = action.payload[0];
+          state.urls = action.payload[1];
+        }
+      })
+      .addCase(fetchNews.rejected, (state) => {
+        state.newsStatus = "failed";
+      })
+      .addCase(fetchArticles.pending, (state) => {
+        state.articleStatus = "loading";
+      })
+      .addCase(fetchArticles.fulfilled, (state, action: PayloadAction<articleData[] | undefined>) => {
+        state.articleStatus = "succeeded";
+        if (action.payload) {
+          state.article = action.payload;
+        }
+      })
+      .addCase(fetchArticles.rejected, (state) => {
+        state.articleStatus = "failed";
+      });
   },
 });
 
