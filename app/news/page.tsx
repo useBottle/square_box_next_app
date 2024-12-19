@@ -25,7 +25,6 @@ export default function News(): JSX.Element {
     };
   }, [dispatch]);
 
-  // Loading UI 테스트용
   if (newsStatus === "loading") {
     return <Loading />;
   }

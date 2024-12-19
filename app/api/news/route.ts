@@ -5,7 +5,7 @@ import { newsList } from "@/types/types";
 
 export async function POST(req: Request) {
   const result = await req.json();
-  console.log(result.inputValue);
+  // console.log(result.inputValue);
 
   const query = encodeURI(result.inputValue);
   const sort = encodeURI(result.sort);
