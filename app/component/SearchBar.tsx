@@ -32,9 +32,8 @@ export default function SearchBar(): JSX.Element {
     if (inputValue === "") return;
 
     try {
-      console.log(inputValue);
-      dispatch(fetchNews(inputValue));
-      dispatch(fetchArticles(urls));
+      await dispatch(fetchNews(inputValue));
+      await dispatch(fetchArticles(urls));
     } catch (error) {
       console.error(error);
     }
