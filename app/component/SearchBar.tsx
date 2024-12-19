@@ -2,13 +2,11 @@
 
 "use client";
 
-import { fetchArticles, fetchNews, setArticles, setNews } from "@/store/news";
+import { fetchArticles, fetchNews } from "@/store/news";
 import { AppDispatch, RootState } from "@/store/store";
 import { searchBarForm } from "@/styles/default.styles";
-import { newsList } from "@/types/types";
 import { css, CSSObject } from "@emotion/react";
-import axios from "axios";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,6 +19,7 @@ const form: CSSObject = {
 };
 
 export default function SearchBar(): JSX.Element {
+  const dispatch = useDispatch<AppDispatch>();
   const [inputValue, setInputValue] = useState<string>("");
   const urls = useSelector((state: RootState) => state.news.urls);
 
@@ -28,36 +27,14 @@ export default function SearchBar(): JSX.Element {
     setInputValue(e.target.value);
   };
 
-  /*   const requestNewsList = async () => {
-    try {
-      if (inputValue === "") return;
-
-      const response = await axios.post("/api/news", { inputValue: inputValue, sort: "relation" });
-      const result = response.data.newsData;
-      dispatch(setNews(result));
-
-      const urls: string[] = [];
-      result.map((item: newsList) => {
-        if (item.href !== "") {
-          urls.push(item.href);
-        }
-      });
-      const requestArticles = await axios.post("/api/articles", { url: urls });
-      const articles = requestArticles.data.articleData;
-      dispatch(setArticles(articles));
-      // console.log(articles);
-    } catch (error) {
-      console.error(error);
-    }
-  }; */
-
-  const onSubmit = async (e: React.FormEvent) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (inputValue === "") return;
 
     try {
-      fetchNews(inputValue);
-      fetchArticles(urls);
+      console.log(inputValue);
+      dispatch(fetchNews(inputValue));
+      dispatch(fetchArticles(urls));
     } catch (error) {
       console.error(error);
     }

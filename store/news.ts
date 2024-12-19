@@ -27,18 +27,26 @@ export const fetchNews = createAsyncThunk<[newsList[], string[]], string>(
 export const fetchArticles = createAsyncThunk<articleData[], string[]>("data/fetchArticles", async (urls: string[]) => {
   try {
     const requestArticles = await axios.post("/api/articles", { url: urls });
-    const articles = requestArticles.data.articleData;
-    return articles;
+    return requestArticles.data.articleData;
   } catch (error) {
     console.error(error);
     return [];
   }
 });
 
-const initialState = {
-  newsList: [] as newsList[],
-  article: [] as articleData[],
-  urls: [] as string[],
+interface newsType {
+  newsList: newsList[];
+  article: articleData[];
+  urls: string[];
+  access: boolean;
+  newsStatus: "idle" | "loading" | "succeeded" | "failed";
+  articleStatus: "idle" | "loading" | "succeeded" | "failed";
+}
+
+const initialState: newsType = {
+  newsList: [],
+  article: [],
+  urls: [],
   access: false,
   newsStatus: "idle",
   articleStatus: "idle",

@@ -15,6 +15,7 @@ import { setNewsAccess } from "@/store/news";
 
 export default function News(): JSX.Element {
   const newsList = useSelector((state: RootState) => state.news.newsList);
+  const newsStatus = useSelector((state: RootState) => state.news.newsStatus);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -25,7 +26,7 @@ export default function News(): JSX.Element {
   }, [dispatch]);
 
   // Loading UI 테스트용
-  if (true) {
+  if (newsStatus === "loading") {
     return <Loading />;
   }
 
