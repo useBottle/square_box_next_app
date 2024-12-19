@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 export default function NewsDynamic(): JSX.Element {
   const newsList = useSelector((state: RootState) => state.news.newsList);
   const article = useSelector((state: RootState) => state.news.article);
+  const articleStatus = useSelector((state: RootState) => state.news.articleStatus);
   const params = useParams();
   const newsId = Number(params.id);
 
@@ -21,7 +22,7 @@ export default function NewsDynamic(): JSX.Element {
     return <div>Invalid news ID</div>;
   }
 
-  if (!article || !article[newsId]) {
+  if (articleStatus === "loading") {
     return <Loading />;
   }
 
