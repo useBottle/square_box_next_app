@@ -181,3 +181,5 @@ export const newsSkeleton: CSSObject = {
     },
   },
 };
+
+export const articleSkeleton: CSSObject = {};
