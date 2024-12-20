@@ -32,6 +32,7 @@ export default function News(): JSX.Element {
   return (
     <div>
       <SearchBar />
+      {newsList.length === 0 && <div>News List is Empty</div>}
       <ul css={css(newsListStyles)}>
         {newsList.map((item, index) => {
           return (
