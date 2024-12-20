@@ -8,7 +8,7 @@ import { AppDispatch, RootState } from "@/store/store";
 import Link from "next/link";
 import Image from "next/image";
 import { newsListStyles } from "@/styles/News.styles";
-import { css } from "@emotion/react";
+import { css, CSSObject } from "@emotion/react";
 import Loading from "../component/Loading";
 import { useEffect } from "react";
 import { setNewsAccess } from "@/store/news";
@@ -29,10 +29,25 @@ export default function News(): JSX.Element {
     return <Loading />;
   }
 
+  const initNews: CSSObject = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "50vh",
+
+    "& h1": {
+      fontSize: "1.6rem",
+    },
+  };
+
   return (
     <div>
       <SearchBar />
-      {newsList.length === 0 && <div>News List is Empty</div>}
+      {newsList.length === 0 && (
+        <div css={css(initNews)}>
+          <h1>뉴스를 검색해주세요</h1>
+        </div>
+      )}
       <ul css={css(newsListStyles)}>
         {newsList.map((item, index) => {
           return (
