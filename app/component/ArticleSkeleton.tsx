@@ -10,8 +10,11 @@ export default function ArticleSkeleton(): JSX.Element {
     <div css={css(articleSkeleton)}>
       <div className="img default"></div>
       <div className="title default"></div>
-      <div className="text default"></div>
-      <div className="text default"></div>
+      <div className="textGroup">
+        <div className="text default"></div>
+        <div className="text default"></div>
+        <div className="text default"></div>
+      </div>
     </div>
   );
 }

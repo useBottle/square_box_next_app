@@ -182,4 +182,58 @@ export const newsSkeleton: CSSObject = {
   },
 };
 
-export const articleSkeleton: CSSObject = {};
+export const articleSkeleton: CSSObject = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  height: "100vh",
+  width: "100vw",
+
+  "& .default": {
+    position: "relative",
+    overflow: "hidden",
+    borderRadius: "3px",
+    background: "lightgray",
+
+    "&::before": {
+      content: '""',
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      background: "#ffffff33",
+      animation: `${shine} infinite 1.5s ease-in-out`,
+    },
+  },
+
+  "& .img": {
+    width: "100%",
+    height: "30rem",
+    borderRadius: 0,
+  },
+
+  "& .title": {
+    width: "95%",
+    height: "3rem",
+    margin: "5rem 0",
+  },
+
+  "& .textGroup": {
+    width: "95%",
+
+    "& .text": {
+      width: "95%",
+      height: "2rem",
+      marginBottom: "1.5rem",
+    },
+
+    "& .text:nth-child(2)": {
+      width: "80%",
+    },
+
+    "& .text:nth-child(3)": {
+      width: "90%",
+    },
+  },
+};

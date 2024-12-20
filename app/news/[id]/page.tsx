@@ -2,7 +2,7 @@
 
 "use client";
 
-import Loading from "@/app/component/Loading";
+import ArticleSkeleton from "@/app/component/ArticleSkeleton";
 import { RootState } from "@/store/store";
 import { dynamicNewsStyles } from "@/styles/News.styles";
 import { css } from "@emotion/react";
@@ -23,7 +23,7 @@ export default function NewsDynamic(): JSX.Element {
   }
 
   if (articleStatus === "loading") {
-    return <Loading />;
+    return <ArticleSkeleton />;
   }
 
   return (
