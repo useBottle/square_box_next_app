@@ -12,6 +12,7 @@ import { css, CSSObject } from "@emotion/react";
 import Loading from "../component/Loading";
 import { useEffect } from "react";
 import { setNewsAccess } from "@/store/news";
+import NewsSkeleton from "../component/NewsSkeleton";
 
 export default function News(): JSX.Element {
   const newsList = useSelector((state: RootState) => state.news.newsList);
@@ -26,7 +27,12 @@ export default function News(): JSX.Element {
   }, [dispatch]);
 
   if (newsStatus === "loading") {
-    return <Loading />;
+    return (
+      <div>
+        <SearchBar />
+        <NewsSkeleton />
+      </div>
+    );
   }
 
   const initNews: CSSObject = {
