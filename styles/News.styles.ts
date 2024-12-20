@@ -117,3 +117,5 @@ export const dynamicNewsStyles: CSSObject = {
     },
   },
 };
+
+export const newsSkeleton: CSSObject = {};
