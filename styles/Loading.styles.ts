@@ -12,13 +12,18 @@ export const loading: CSSObject = {
   alignItems: "center",
   height: "80vh",
 
-  "& h1": {
-    fontSize: "1.6rem",
-    padding: "1rem",
-    borderBottom: "1px solid var(--basic-font)",
-    animation: `${blink} infinite 2s ease-in-out`,
-    zIndex: 999,
+  "& .textBox": {
+    padding: "2rem 6rem",
     background: "#fff",
+    zIndex: 999,
+
+    "& h1": {
+      fontSize: "1.6rem",
+      border: "1px solid var(--basic-font)",
+      animation: `${blink} infinite 2s ease-in-out`,
+      background: "#fff",
+      padding: "1rem 5rem",
+    },
   },
 
   "& .square": {

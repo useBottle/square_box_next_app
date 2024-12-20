@@ -25,7 +25,11 @@ export default function News(): JSX.Element {
     };
   }, [dispatch]);
 
-  if (newsStatus === "loading") {
+  // if (newsStatus === "loading") {
+  //   return <Loading />;
+  // }
+
+  if (true) {
     return <Loading />;
   }
 

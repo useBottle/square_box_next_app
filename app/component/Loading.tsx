@@ -8,7 +8,9 @@ import { css } from "@emotion/react";
 export default function Loading() {
   return (
     <div css={css(loading)}>
-      <h1>데이터를 불러오는 중입니다</h1>
+      <div className="textBox">
+        <h1>L O A D I N G</h1>
+      </div>
       <div className="square"></div>
     </div>
   );
