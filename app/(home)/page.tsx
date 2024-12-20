@@ -1,4 +1,4 @@
-import Topics from "./component/Topics";
+import Topics from "../component/Topics";
 
 export default function Home(): JSX.Element {
   return (
