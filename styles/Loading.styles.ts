@@ -13,10 +13,18 @@ export const loading: CSSObject = {
   height: "80vh",
 
   "& h1": {
-    fontSize: "2rem",
+    fontSize: "1.6rem",
     padding: "1rem",
-    border: "2px solid var(--basic-font)",
-    borderRadius: "5px",
+    borderBottom: "1px solid var(--basic-font)",
     animation: `${blink} infinite 2s ease-in-out`,
+    zIndex: 999,
+    background: "#fff",
+  },
+
+  "& .square": {
+    position: "absolute",
+    width: "8rem",
+    height: "20rem",
+    border: "2px solid var(--square)",
   },
 };
