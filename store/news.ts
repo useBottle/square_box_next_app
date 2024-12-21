@@ -2,6 +2,17 @@ import { articleData, newsList, PopularArticle } from "@/types/types";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
+// 인기 뉴스 개별 데이터 요청 미들웨어
+export const fetchPopular = createAsyncThunk<PopularArticle, string>("data/fetchPopular", async (url: string) => {
+  try {
+    const requestArticles = await axios.post("/api/popular", { url: url });
+    return requestArticles.data.articleData;
+  } catch (error) {
+    console.error(error);
+    return {} as PopularArticle;
+  }
+});
+
 // 뉴스 전체 데이터 요청 미들웨어
 export const fetchNews = createAsyncThunk<[newsList[], string[]], string>(
   "data/fetchNews",
@@ -29,17 +40,6 @@ export const fetchNews = createAsyncThunk<[newsList[], string[]], string>(
 export const fetchArticles = createAsyncThunk<articleData[], string[]>("data/fetchArticles", async (urls: string[]) => {
   try {
     const requestArticles = await axios.post("/api/articles", { url: urls });
-    return requestArticles.data.articleData;
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
-});
-
-// 인기 뉴스 개별 데이터 요청 미들웨어
-export const fetchPopular = createAsyncThunk<PopularArticle, string[]>("data/fetchPopular", async (urls: string[]) => {
-  try {
-    const requestArticles = await axios.post("/api/popular", { url: urls });
     return requestArticles.data.articleData;
   } catch (error) {
     console.error(error);
