@@ -23,33 +23,35 @@ export const topicsForm: CSSObject = {
     width: "90%",
     margin: "1rem 0",
 
-    "& li": {
-      width: "100%",
-      display: "grid",
-      gridTemplateColumns: "15% 75% 10%",
-      padding: "1.2rem 0",
-      fontSize: "1.4rem",
-      cursor: "pointer",
+    "& a": {
+      "& li": {
+        width: "100%",
+        display: "grid",
+        gridTemplateColumns: "15% 75% 10%",
+        padding: "1.2rem 0",
+        fontSize: "1.4rem",
+        cursor: "pointer",
 
-      "& .rank": {
-        marginLeft: "1rem",
-      },
-
-      "& .state": {
-        display: "flex",
-        justifyContent: "flex-end",
-        marginRight: "1rem",
-
-        "& .new": {
-          color: "var(--state-new)",
+        "& .rank": {
+          marginLeft: "1rem",
         },
 
-        "& .up": {
-          color: "var(--state-up)",
-        },
+        "& .state": {
+          display: "flex",
+          justifyContent: "flex-end",
+          marginRight: "1rem",
 
-        "& .down": {
-          color: "var(--state-down)",
+          "& .new": {
+            color: "var(--state-new)",
+          },
+
+          "& .up": {
+            color: "var(--state-up)",
+          },
+
+          "& .down": {
+            color: "var(--state-down)",
+          },
         },
       },
     },

@@ -38,36 +38,38 @@ export default function Topics(): JSX.Element {
 
   return (
     <div>
-      <form css={css(topicsForm)}>
+      <div css={css(topicsForm)}>
         <h4>실시간 검색어 Top 10</h4>
         {topics ? (
           <ul>
             {topics.map((item, index) => {
               return (
-                <li key={index}>
-                  <span className="rank">{item.rank}</span>
-                  <span className="keyword">{item.keyword}</span>
-                  <span className="state">
-                    {(() => {
-                      if (item.state === "n") {
-                        return <FaPlus className="new" />;
-                      } else if (item.state === "s") {
-                        return <FaMinus className="stay" />;
-                      } else if (item.state === "+") {
-                        return <FaCaretUp className="up" />;
-                      } else if (item.state === "-") {
-                        return <FaCaretDown className="down" />;
-                      }
-                    })()}
-                  </span>
-                </li>
+                <Link href="/news" key={index} onClick={() => console.log("clicked")}>
+                  <li>
+                    <span className="rank">{item.rank}</span>
+                    <span className="keyword">{item.keyword}</span>
+                    <span className="state">
+                      {(() => {
+                        if (item.state === "n") {
+                          return <FaPlus className="new" />;
+                        } else if (item.state === "s") {
+                          return <FaMinus className="stay" />;
+                        } else if (item.state === "+") {
+                          return <FaCaretUp className="up" />;
+                        } else if (item.state === "-") {
+                          return <FaCaretDown className="down" />;
+                        }
+                      })()}
+                    </span>
+                  </li>
+                </Link>
               );
             })}
           </ul>
         ) : (
           <TopicsSkeleton />
         )}
-      </form>
+      </div>
       <div css={css(popularStyles)}>
         <h4>인기 뉴스 Top 10</h4>
         {popularNews ? (
