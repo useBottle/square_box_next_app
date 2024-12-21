@@ -30,13 +30,17 @@ export async function POST(req: Request) {
       const title = $("#articleView h1").text().trim();
       const date = $(".firstDate em").text().trim();
       const img = $(".imgad_area img").attr("src");
+      let image;
+      if (img && !img.startsWith("https:")) {
+        image = "https:" + img;
+      }
       const text = $("#realArtcContents p")
         .map((_, item) => $(item).text().trim())
         .get()
         .filter((item) => item !== "");
 
       article = {
-        image: img ? img : "",
+        image: image ? image : "",
         title: title ? title : "",
         date: date ? date : "",
         text: text ? text : [],
