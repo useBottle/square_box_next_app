@@ -7,10 +7,10 @@ export async function POST(req: Request) {
   const url = result.url as string[] | undefined;
 
   try {
-    let article;
+    let articles;
     if (url && url.length !== 0) {
       // console.log(url);
-      article = await Promise.all(
+      articles = await Promise.all(
         url.map(async (item) => {
           const response = await axios.get(item);
           const $ = cheerio.load(response.data);
@@ -26,12 +26,12 @@ export async function POST(req: Request) {
             alt: alt ? alt : "",
             text: text,
           };
-          console.log(article);
+          // console.log(article);
           return article;
         }),
       );
     }
-    return NextResponse.json({ articleData: article });
+    return NextResponse.json({ articleData: articles });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: "Failed to fetch news article data." }, { status: 500 });

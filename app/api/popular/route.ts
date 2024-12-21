@@ -10,7 +10,7 @@ export async function POST(req: Request) {
   try {
     let article;
     if (url) {
-      // console.log(url);
+      console.log(url);
       const response = await axios.get(url, { responseType: "arraybuffer" });
       const originalDoc = cheerio.load(response.data);
       const metaContentType = originalDoc('meta[http-equiv="Content-Type"]').attr("content");
@@ -35,14 +35,14 @@ export async function POST(req: Request) {
         .get()
         .filter((item) => item !== "");
 
-      const article = {
+      article = {
         image: img ? img : "",
         title: title ? title : "",
         date: date ? date : "",
         text: text ? text : [],
       };
-      console.log(article);
     }
+    // console.log(article);
     return NextResponse.json({ popularData: article });
   } catch (error) {
     console.error(error);

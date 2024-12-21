@@ -6,7 +6,8 @@ import axios from "axios";
 export const fetchPopular = createAsyncThunk<PopularArticle, string>("data/fetchPopular", async (url: string) => {
   try {
     const requestArticles = await axios.post("/api/popular", { url: url });
-    return requestArticles.data.articleData;
+    console.log(requestArticles.data.popularData);
+    return requestArticles.data.popularData;
   } catch (error) {
     console.error(error);
     return {

@@ -14,8 +14,11 @@ export default function PopularDynamic(): JSX.Element {
   const popularArticle = useSelector((state: RootState) => state.news.popular);
   const popluarStatus = useSelector((state: RootState) => state.news.popularStatus);
 
+  useEffect(() => {
+    // console.log(popularArticle);
+  }, []);
+
   if (!popularArticle || popularArticle.title === "") {
-    console.log(popularArticle);
     // 나중에 잘못된 페이지 접근 UI 추가하기.
     return <div>Invalid news ID</div>;
   }
@@ -23,10 +26,6 @@ export default function PopularDynamic(): JSX.Element {
   if (popluarStatus === "loading") {
     return <ArticleSkeleton />;
   }
-
-  useEffect(() => {
-    console.log(popularArticle);
-  }, []);
 
   return (
     <div css={css(dynamicNewsStyles)}>
