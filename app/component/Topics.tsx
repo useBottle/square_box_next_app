@@ -12,10 +12,14 @@ import TopicsSkeleton from "./TopicsSkeleton";
 import PopularNewsSkeleton from "./PopularNewsSkeleton";
 import Image from "next/image";
 import Link from "next/link";
+import { fetchNews } from "@/store/news";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store/store";
 
 export default function Topics(): JSX.Element {
   const [topics, setTopics] = useState<TopicsType[] | undefined>(undefined);
   const [popularNews, setPopularNews] = useState<PopularNews[] | undefined>(undefined);
+  const dispatch = useDispatch<AppDispatch>();
 
   const fetchKeyword = async (): Promise<void> => {
     try {
@@ -44,7 +48,7 @@ export default function Topics(): JSX.Element {
           <ul>
             {topics.map((item, index) => {
               return (
-                <Link href="/news" key={index} onClick={() => console.log("clicked")}>
+                <Link href="/news" key={index} onClick={() => dispatch(fetchNews(item.keyword))}>
                   <li>
                     <span className="rank">{item.rank}</span>
                     <span className="keyword">{item.keyword}</span>
