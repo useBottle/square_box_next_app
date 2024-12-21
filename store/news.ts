@@ -36,6 +36,17 @@ export const fetchArticles = createAsyncThunk<articleData[], string[]>("data/fet
   }
 });
 
+// 인기 뉴스 개별 데이터 요청 미들웨어
+export const fetchPopular = createAsyncThunk<PopularArticle, string[]>("data/fetchPopular", async (urls: string[]) => {
+  try {
+    const requestArticles = await axios.post("/api/popular", { url: urls });
+    return requestArticles.data.articleData;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+});
+
 interface newsType {
   newsList: newsList[];
   article: articleData[];
@@ -44,6 +55,7 @@ interface newsType {
   access: boolean;
   newsStatus: "idle" | "loading" | "succeeded" | "failed";
   articleStatus: "idle" | "loading" | "succeeded" | "failed";
+  popularStatus: "idle" | "loading" | "succeeded" | "failed";
 }
 
 const initialState: newsType = {
@@ -54,6 +66,7 @@ const initialState: newsType = {
   access: false,
   newsStatus: "idle",
   articleStatus: "idle",
+  popularStatus: "idle",
 };
 
 export const news = createSlice({
@@ -66,12 +79,16 @@ export const news = createSlice({
     setArticles(state, action: PayloadAction<articleData[]>) {
       state.article = action.payload;
     },
+    setPopularArticle(state, action: PayloadAction<PopularArticle>) {
+      state.popular = action.payload;
+    },
     setNewsAccess(state, action: PayloadAction<boolean>) {
       state.access = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder
+
       // 뉴스 전체 데이터 요청 수행 결과 처리
       .addCase(fetchNews.pending, (state) => {
         state.newsStatus = "loading";
@@ -86,6 +103,7 @@ export const news = createSlice({
       .addCase(fetchNews.rejected, (state) => {
         state.newsStatus = "failed";
       })
+
       // 뉴스 개별 데이터 요청 수행 결과 처리
       .addCase(fetchArticles.pending, (state) => {
         state.articleStatus = "loading";
@@ -98,9 +116,23 @@ export const news = createSlice({
       })
       .addCase(fetchArticles.rejected, (state) => {
         state.articleStatus = "failed";
+      })
+
+      // 인기 뉴스 개별 데이터 요청 수행 결과 처리
+      .addCase(fetchPopular.pending, (state) => {
+        state.popularStatus = "loading";
+      })
+      .addCase(fetchPopular.fulfilled, (state, action: PayloadAction<PopularArticle | undefined>) => {
+        state.popularStatus = "succeeded";
+        if (action.payload) {
+          state.popular = action.payload;
+        }
+      })
+      .addCase(fetchPopular.rejected, (state) => {
+        state.popularStatus = "failed";
       });
   },
 });
 
-export const { setNews, setArticles, setNewsAccess } = news.actions;
+export const { setNews, setArticles, setPopularArticle, setNewsAccess } = news.actions;
 export default news.reducer;
