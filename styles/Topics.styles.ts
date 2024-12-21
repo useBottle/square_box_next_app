@@ -133,6 +133,7 @@ export const popularStyles: CSSObject = {
   },
 
   "& ul": {
+    width: "90%",
     display: "flex",
     alignItems: "center",
     flexDirection: "column",
@@ -142,12 +143,12 @@ export const popularStyles: CSSObject = {
       justifyContent: "center",
 
       "& li": {
-        width: "90%",
+        width: "100%",
         height: "10rem",
         color: "var(--basic-font)",
         display: "grid",
         gridTemplateColumns: "35% 65%",
-        margin: "1.5rem",
+        margin: "1.5rem 0",
         border: "1px solid #eee",
         borderRadius: "5px",
         boxSizing: "border-box",
