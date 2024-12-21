@@ -21,7 +21,7 @@ export default function Topics(): JSX.Element {
   const [popularNews, setPopularNews] = useState<PopularNews[] | undefined>(undefined);
   const dispatch = useDispatch<AppDispatch>();
 
-  const fetchInputValue = async (): Promise<void> => {
+  const fetchKeyword = async (): Promise<void> => {
     try {
       const response = await axios.get("/api/topics");
       setTopics(response.data.top10);
@@ -56,9 +56,9 @@ export default function Topics(): JSX.Element {
   };
 
   useEffect(() => {
-    fetchInputValue();
+    fetchKeyword();
     const intervalFetch = setInterval(() => {
-      fetchInputValue();
+      fetchKeyword();
     }, 10000);
 
     return () => clearInterval(intervalFetch);
@@ -104,7 +104,7 @@ export default function Topics(): JSX.Element {
           <ul>
             {popularNews.map((item, index) => {
               return (
-                <Link href={`/popular-news/${index}`} key={index} onClick={() => clickPopular(item.link)}>
+                <Link href={`/popular-news/${index}`} key={index} onClick={() => {}}>
                   <li>
                     <Image src={item.image} width={100} height={100} alt="newsImg" />
                     <div className="textGroup">

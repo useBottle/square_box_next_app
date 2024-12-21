@@ -10,41 +10,6 @@ export async function POST(req: Request) {
   try {
     let article;
     if (url) {
-      console.log(url);
-      const response = await axios.get(url, { responseType: "arraybuffer" });
-      const originalDoc = cheerio.load(response.data);
-      const metaContentType = originalDoc('meta[http-equiv="Content-Type"]').attr("content");
-      let charset = "euc-kr";
-      if (metaContentType) {
-        const match = metaContentType.match(/charset=([^;]+)/);
-        if (match && match[1]) {
-          charset = match[1].toUpperCase();
-        }
-      }
-      // 문서에 지정된 인코딩 방식에 따라 iconv 로 디코딩.
-      const dataBuffer = Buffer.from(response.data);
-      const decodedData = iconv.decode(dataBuffer, charset as string);
-
-      // 인코딩한 값으로 각 항목들 추출.
-      const $ = cheerio.load(decodedData);
-      const title = $("#articleView h1").text().trim();
-      const date = $(".firstDate em").text().trim();
-      const img = $(".imgad_area img").attr("src");
-      let image;
-      if (img && !img.startsWith("https:")) {
-        image = "https:" + img;
-      }
-      const text = $("#realArtcContents p")
-        .map((_, item) => $(item).text().trim())
-        .get()
-        .filter((item) => item !== "");
-
-      article = {
-        image: image ? image : "",
-        title: title ? title : "",
-        date: date ? date : "",
-        text: text ? text : [],
-      };
     }
     // console.log(article);
     return NextResponse.json({ popularData: article });

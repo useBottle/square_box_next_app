@@ -7,16 +7,11 @@ import { RootState } from "@/store/store";
 import { dynamicNewsStyles } from "@/styles/News.styles";
 import { css } from "@emotion/react";
 import Image from "next/image";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 export default function PopularDynamic(): JSX.Element {
   const popularArticle = useSelector((state: RootState) => state.news.popular);
   const popluarStatus = useSelector((state: RootState) => state.news.popularStatus);
-
-  useEffect(() => {
-    // console.log(popularArticle);
-  }, []);
 
   if (!popularArticle || popularArticle.title === "") {
     // 나중에 잘못된 페이지 접근 UI 추가하기.
@@ -35,9 +30,13 @@ export default function PopularDynamic(): JSX.Element {
       <div className="textGroup">
         <h1>{popularArticle.title}</h1>
         <div className="date">{popularArticle.date}</div>
-        {popularArticle.text.map((item, index) => {
-          return <p key={index}>{item}</p>;
-        })}
+        {popularArticle.text.length === 1 ? (
+          <p>{popularArticle.text[0]}</p>
+        ) : (
+          popularArticle.text.map((item, index) => {
+            return <p key={index}>{item}</p>;
+          })
+        )}
       </div>
     </div>
   );

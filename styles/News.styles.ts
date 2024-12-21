@@ -114,6 +114,7 @@ export const dynamicNewsStyles: CSSObject = {
     "& p": {
       margin: "2rem 0",
       fontSize: "1.4rem",
+      whiteSpace: "pre-line",
     },
   },
 };
