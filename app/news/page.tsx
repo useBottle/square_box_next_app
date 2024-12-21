@@ -18,6 +18,7 @@ export default function News(): JSX.Element {
   const newsStatus = useSelector((state: RootState) => state.news.newsStatus);
   const dispatch = useDispatch<AppDispatch>();
 
+  // 이건 왜 적용했었는지 찾아보고 필요 없을 경우 삭제.
   useEffect(() => {
     dispatch(setNewsAccess(true));
     return () => {

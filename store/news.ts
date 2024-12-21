@@ -70,6 +70,7 @@ export const news = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      // 뉴스 전체 데이터 요청 수행 결과 처리
       .addCase(fetchNews.pending, (state) => {
         state.newsStatus = "loading";
       })
@@ -83,6 +84,7 @@ export const news = createSlice({
       .addCase(fetchNews.rejected, (state) => {
         state.newsStatus = "failed";
       })
+      // 뉴스 개별 데이터 요청 수행 결과 처리
       .addCase(fetchArticles.pending, (state) => {
         state.articleStatus = "loading";
       })

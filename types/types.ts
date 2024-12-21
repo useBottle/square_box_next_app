@@ -23,6 +23,13 @@ export interface PopularNews {
   title: string;
 }
 
+export interface PopularArticle {
+  title: string;
+  image: string;
+  date: string;
+  text: string[];
+}
+
 export interface newsList {
   title: string;
   prevImg: string;
