@@ -24,6 +24,10 @@ export const topicsForm: CSSObject = {
     margin: "1rem 0",
 
     "& a": {
+      width: "100%",
+      textDecoration: "none",
+      color: "var(--basic-font)",
+
       "& li": {
         width: "100%",
         display: "grid",
