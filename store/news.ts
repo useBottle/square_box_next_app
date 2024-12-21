@@ -1,4 +1,4 @@
-import { articleData, newsList } from "@/types/types";
+import { articleData, newsList, PopularArticle } from "@/types/types";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -39,6 +39,7 @@ export const fetchArticles = createAsyncThunk<articleData[], string[]>("data/fet
 interface newsType {
   newsList: newsList[];
   article: articleData[];
+  popular: PopularArticle;
   urls: string[];
   access: boolean;
   newsStatus: "idle" | "loading" | "succeeded" | "failed";
@@ -48,6 +49,7 @@ interface newsType {
 const initialState: newsType = {
   newsList: [],
   article: [],
+  popular: {} as PopularArticle,
   urls: [],
   access: false,
   newsStatus: "idle",

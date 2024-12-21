@@ -31,7 +31,7 @@ export default function Topics(): JSX.Element {
     }
   };
 
-  const onClick = async (keyword: string) => {
+  const clickKeyword = async (keyword: string) => {
     if (keyword === "") return;
 
     try {
@@ -44,6 +44,14 @@ export default function Topics(): JSX.Element {
       console.error(error);
     }
   };
+
+  // const clickPopular = async (link: string[]) => {
+  //   if (link.length === 0) return;
+
+  //   try {
+  //     await dispatch()
+  //   }
+  // }
 
   useEffect(() => {
     fetchKeyword();
@@ -62,7 +70,7 @@ export default function Topics(): JSX.Element {
           <ul>
             {topics.map((item, index) => {
               return (
-                <Link href="/news" key={index} onClick={() => onClick(item.keyword)}>
+                <Link href="/news" key={index} onClick={() => clickKeyword(item.keyword)}>
                   <li>
                     <span className="rank">{item.rank}</span>
                     <span className="keyword">{item.keyword}</span>
