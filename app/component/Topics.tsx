@@ -12,7 +12,7 @@ import TopicsSkeleton from "./TopicsSkeleton";
 import PopularNewsSkeleton from "./PopularNewsSkeleton";
 import Image from "next/image";
 import Link from "next/link";
-import { fetchNews } from "@/store/news";
+import { fetchArticles, fetchNews } from "@/store/news";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
 
@@ -28,6 +28,20 @@ export default function Topics(): JSX.Element {
       setPopularNews(response.data.articles);
     } catch (error) {
       console.error("Failed fetching keyword data.", error);
+    }
+  };
+
+  const onClick = async (keyword: string) => {
+    if (keyword === "") return;
+
+    try {
+      const result = await dispatch(fetchNews(keyword)).unwrap();
+      const urls = result[1];
+      if (urls.length !== 0) {
+        await dispatch(fetchArticles(urls));
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -48,7 +62,7 @@ export default function Topics(): JSX.Element {
           <ul>
             {topics.map((item, index) => {
               return (
-                <Link href="/news" key={index} onClick={() => dispatch(fetchNews(item.keyword))}>
+                <Link href="/news" key={index} onClick={() => onClick(item.keyword)}>
                   <li>
                     <span className="rank">{item.rank}</span>
                     <span className="keyword">{item.keyword}</span>
