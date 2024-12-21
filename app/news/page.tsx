@@ -9,7 +9,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { newsListStyles } from "@/styles/News.styles";
 import { css, CSSObject } from "@emotion/react";
-import Loading from "../component/Loading";
 import { useEffect } from "react";
 import { setNewsAccess } from "@/store/news";
 import NewsSkeleton from "../component/NewsSkeleton";
