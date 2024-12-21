@@ -9,7 +9,12 @@ export const fetchPopular = createAsyncThunk<PopularArticle, string>("data/fetch
     return requestArticles.data.articleData;
   } catch (error) {
     console.error(error);
-    return {} as PopularArticle;
+    return {
+      title: "",
+      image: "",
+      date: "",
+      text: [],
+    };
   }
 });
 
@@ -59,7 +64,12 @@ interface newsType {
 }
 
 const initialState: newsType = {
-  popular: {} as PopularArticle,
+  popular: {
+    title: "",
+    image: "",
+    date: "",
+    text: [],
+  },
   newsList: [],
   article: [],
   urls: [],

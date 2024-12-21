@@ -26,7 +26,7 @@ export async function POST(req: Request) {
             alt: alt ? alt : "",
             text: text,
           };
-          // console.log(article);
+          console.log(article);
           return article;
         }),
       );
@@ -34,5 +34,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ articleData: article });
   } catch (error) {
     console.error(error);
+    return NextResponse.json({ error: "Failed to fetch news article data." }, { status: 500 });
   }
 }

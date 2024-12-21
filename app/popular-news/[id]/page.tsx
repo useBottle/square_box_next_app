@@ -7,6 +7,7 @@ import { RootState } from "@/store/store";
 import { dynamicNewsStyles } from "@/styles/News.styles";
 import { css } from "@emotion/react";
 import Image from "next/image";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 export default function PopularDynamic(): JSX.Element {
@@ -21,6 +22,10 @@ export default function PopularDynamic(): JSX.Element {
   if (popluarStatus === "loading") {
     return <ArticleSkeleton />;
   }
+
+  useEffect(() => {
+    console.log(popularArticle);
+  }, []);
 
   return (
     <div css={css(dynamicNewsStyles)}>
