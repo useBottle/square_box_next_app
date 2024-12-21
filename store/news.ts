@@ -48,39 +48,39 @@ export const fetchPopular = createAsyncThunk<PopularArticle, string[]>("data/fet
 });
 
 interface newsType {
+  popular: PopularArticle;
   newsList: newsList[];
   article: articleData[];
-  popular: PopularArticle;
   urls: string[];
   access: boolean;
+  popularStatus: "idle" | "loading" | "succeeded" | "failed";
   newsStatus: "idle" | "loading" | "succeeded" | "failed";
   articleStatus: "idle" | "loading" | "succeeded" | "failed";
-  popularStatus: "idle" | "loading" | "succeeded" | "failed";
 }
 
 const initialState: newsType = {
+  popular: {} as PopularArticle,
   newsList: [],
   article: [],
-  popular: {} as PopularArticle,
   urls: [],
   access: false,
+  popularStatus: "idle",
   newsStatus: "idle",
   articleStatus: "idle",
-  popularStatus: "idle",
 };
 
 export const news = createSlice({
   name: "news",
   initialState,
   reducers: {
+    setPopularArticle(state, action: PayloadAction<PopularArticle>) {
+      state.popular = action.payload;
+    },
     setNews(state, action: PayloadAction<newsList[]>) {
       state.newsList = action.payload;
     },
     setArticles(state, action: PayloadAction<articleData[]>) {
       state.article = action.payload;
-    },
-    setPopularArticle(state, action: PayloadAction<PopularArticle>) {
-      state.popular = action.payload;
     },
     setNewsAccess(state, action: PayloadAction<boolean>) {
       state.access = action.payload;
@@ -88,6 +88,20 @@ export const news = createSlice({
   },
   extraReducers: (builder) => {
     builder
+
+      // 인기 뉴스 개별 데이터 요청 수행 결과 처리
+      .addCase(fetchPopular.pending, (state) => {
+        state.popularStatus = "loading";
+      })
+      .addCase(fetchPopular.fulfilled, (state, action: PayloadAction<PopularArticle | undefined>) => {
+        state.popularStatus = "succeeded";
+        if (action.payload) {
+          state.popular = action.payload;
+        }
+      })
+      .addCase(fetchPopular.rejected, (state) => {
+        state.popularStatus = "failed";
+      })
 
       // 뉴스 전체 데이터 요청 수행 결과 처리
       .addCase(fetchNews.pending, (state) => {
@@ -116,23 +130,9 @@ export const news = createSlice({
       })
       .addCase(fetchArticles.rejected, (state) => {
         state.articleStatus = "failed";
-      })
-
-      // 인기 뉴스 개별 데이터 요청 수행 결과 처리
-      .addCase(fetchPopular.pending, (state) => {
-        state.popularStatus = "loading";
-      })
-      .addCase(fetchPopular.fulfilled, (state, action: PayloadAction<PopularArticle | undefined>) => {
-        state.popularStatus = "succeeded";
-        if (action.payload) {
-          state.popular = action.payload;
-        }
-      })
-      .addCase(fetchPopular.rejected, (state) => {
-        state.popularStatus = "failed";
       });
   },
 });
 
-export const { setNews, setArticles, setPopularArticle, setNewsAccess } = news.actions;
+export const { setPopularArticle, setNews, setArticles, setNewsAccess } = news.actions;
 export default news.reducer;

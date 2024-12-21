@@ -12,13 +12,14 @@ import TopicsSkeleton from "./TopicsSkeleton";
 import PopularNewsSkeleton from "./PopularNewsSkeleton";
 import Image from "next/image";
 import Link from "next/link";
-import { fetchArticles, fetchNews } from "@/store/news";
+import { fetchArticles, fetchNews, fetchPopular } from "@/store/news";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
 
 export default function Topics(): JSX.Element {
   const [topics, setTopics] = useState<TopicsType[] | undefined>(undefined);
   const [popularNews, setPopularNews] = useState<PopularNews[] | undefined>(undefined);
+  const [popularUrls, setPopularUrls] = useState<string[]>([]);
   const dispatch = useDispatch<AppDispatch>();
 
   const fetchKeyword = async (): Promise<void> => {
@@ -26,6 +27,15 @@ export default function Topics(): JSX.Element {
       const response = await axios.get("/api/topics");
       setTopics(response.data.top10);
       setPopularNews(response.data.articles);
+
+      const urls: string[] = [];
+
+      if (response.data.articles.length !== 0) {
+        response.data.articles.forEach((item: PopularNews) => {
+          urls.push(item.link);
+        });
+      }
+      setPopularUrls(urls);
     } catch (error) {
       console.error("Failed fetching keyword data.", error);
     }
@@ -45,13 +55,15 @@ export default function Topics(): JSX.Element {
     }
   };
 
-  // const clickPopular = async (link: string[]) => {
-  //   if (link.length === 0) return;
+  const clickPopular = async (link: string[]) => {
+    if (link.length === 0) return;
 
-  //   try {
-  //     await dispatch()
-  //   }
-  // }
+    try {
+      await dispatch(fetchPopular(link));
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     fetchKeyword();
@@ -101,8 +113,11 @@ export default function Topics(): JSX.Element {
         {popularNews ? (
           <ul>
             {popularNews.map((item, index) => {
+              // 이거 매번 배열 생성되니까 다른 방법 찾아야함.
+              const link = [];
+              link.push(item.link);
               return (
-                <Link href={item.link} key={index}>
+                <Link href={`/news/${index}`} key={index} onClick={() => clickPopular(popularUrls)}>
                   <li>
                     <Image src={item.image} width={100} height={100} alt="newsImg" />
                     <div className="textGroup">
