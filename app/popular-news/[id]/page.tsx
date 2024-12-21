@@ -15,6 +15,7 @@ export default function PopularDynamic(): JSX.Element {
   const popluarStatus = useSelector((state: RootState) => state.news.popularStatus);
 
   if (!popularArticle || popularArticle.title === "") {
+    console.log(popularArticle);
     // 나중에 잘못된 페이지 접근 UI 추가하기.
     return <div>Invalid news ID</div>;
   }

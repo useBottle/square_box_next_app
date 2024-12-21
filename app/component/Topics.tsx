@@ -41,7 +41,7 @@ export default function Topics(): JSX.Element {
         await dispatch(fetchArticles(urls));
       }
     } catch (error) {
-      console.error(error);
+      console.error("Failed fetching news data of top10 keyword.", error);
     }
   };
 
@@ -51,7 +51,7 @@ export default function Topics(): JSX.Element {
     try {
       await dispatch(fetchPopular(link));
     } catch (error) {
-      console.error(error);
+      console.error("Failed fetching news data of popular news.", error);
     }
   };
 
