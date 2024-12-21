@@ -2,6 +2,7 @@ import { articleData, newsList } from "@/types/types";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
+// 뉴스 전체 데이터 요청 미들웨어
 export const fetchNews = createAsyncThunk<[newsList[], string[]], string>(
   "data/fetchNews",
   async (inputValue: string) => {
@@ -24,6 +25,7 @@ export const fetchNews = createAsyncThunk<[newsList[], string[]], string>(
   },
 );
 
+// 뉴스 개별 데이터 요청 미들웨어
 export const fetchArticles = createAsyncThunk<articleData[], string[]>("data/fetchArticles", async (urls: string[]) => {
   try {
     const requestArticles = await axios.post("/api/articles", { url: urls });
