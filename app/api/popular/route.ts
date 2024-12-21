@@ -10,6 +10,7 @@ export async function POST(req: Request) {
   try {
     let article;
     if (url) {
+      // 한국일보 데이터로 변경해서 가져오기.
     }
     // console.log(article);
     return NextResponse.json({ popularData: article });

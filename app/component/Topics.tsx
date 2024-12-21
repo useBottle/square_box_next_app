@@ -45,6 +45,7 @@ export default function Topics(): JSX.Element {
     }
   };
 
+  // 한국일보 데이터 가져오는걸로 변경해야함.
   const clickPopular = async (link: string) => {
     if (!link) return;
 
