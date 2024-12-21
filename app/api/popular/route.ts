@@ -24,6 +24,8 @@ export async function POST(req: Request) {
       // 문서에 지정된 인코딩 방식에 따라 iconv 로 디코딩.
       const dataBuffer = Buffer.from(response.data);
       const decodedData = iconv.decode(dataBuffer, charset as string);
+
+      // 인코딩한 값으로 각 항목들 추출.
       const $ = cheerio.load(decodedData);
       const title = $("#articleView h1").text().trim();
       const date = $(".firstDate em").text().trim();
