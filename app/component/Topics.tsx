@@ -31,6 +31,16 @@ export default function Topics(): JSX.Element {
     }
   };
 
+  // 한국일보 인기 뉴스 리스트 가져오는 함수
+  const fetchPopularList = async (): Promise<void> => {
+    try {
+      const response = await axios.get("/api/popular");
+      setPopularNews(response.data.articles);
+    } catch (error) {
+      console.error("Failed fetching popular data.", error);
+    }
+  };
+
   const clickKeyword = async (keyword: string) => {
     if (keyword === "") return;
 
