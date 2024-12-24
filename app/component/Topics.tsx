@@ -3,7 +3,7 @@
 "use client";
 
 import { popularStyles, topicsForm } from "@/styles/Topics.styles";
-import { PopularNews, TopicsType } from "@/types/types";
+import { newsList, PopularNews, TopicsType } from "@/types/types";
 import { css } from "@emotion/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -19,13 +19,13 @@ import { AppDispatch } from "@/store/store";
 export default function Topics(): JSX.Element {
   const [topics, setTopics] = useState<TopicsType[] | undefined>(undefined);
   const [popularNews, setPopularNews] = useState<PopularNews[] | undefined>(undefined);
+  const [totalNews, setTotalNews] = useState<newsList[][] | undefined>([]);
   const dispatch = useDispatch<AppDispatch>();
 
   const fetchKeyword = async (): Promise<void> => {
     try {
       const response = await axios.get("/api/topics");
       setTopics(response.data.top10);
-      setPopularNews(response.data.articles);
     } catch (error) {
       console.error("Failed fetching keyword data.", error);
     }
@@ -34,8 +34,8 @@ export default function Topics(): JSX.Element {
   // 한국일보 인기 뉴스 리스트 가져오는 함수
   const fetchPopularList = async (): Promise<void> => {
     try {
-      const response = await axios.get("/api/popular");
-      setPopularNews(response.data.articles);
+      const response = await axios.get("/api/latestNews");
+      setTotalNews(response.data.totalNewsData);
     } catch (error) {
       console.error("Failed fetching popular data.", error);
     }
@@ -110,8 +110,8 @@ export default function Topics(): JSX.Element {
         )}
       </div>
       <div css={css(popularStyles)}>
-        <h4>인기 뉴스 Top 10</h4>
-        {popularNews ? (
+        <h4>최신 뉴스 Top 10</h4>
+        {/* {totalNews && totalNews.length === 3 ? (
           <ul>
             {popularNews.map((item, index) => {
               return (
@@ -129,7 +129,7 @@ export default function Topics(): JSX.Element {
           </ul>
         ) : (
           <PopularNewsSkeleton />
-        )}
+        )} */}
       </div>
     </div>
   );
