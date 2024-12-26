@@ -23,11 +23,12 @@ export interface PopularNews {
   title: string;
 }
 
-export interface PopularArticle {
+export interface LatestNews {
   title: string;
-  image: string;
+  href: string;
+  prevImg: string;
   date: string;
-  text: string[];
+  summary: string;
 }
 
 export interface newsList {

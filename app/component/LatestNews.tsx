@@ -2,7 +2,7 @@ import { newsList } from "@/types/types";
 import axios from "axios";
 import * as cheerio from "cheerio";
 import Link from "next/link";
-import LatestNewsSkeleton from "./LatestNewsSkeleton";
+import styles from "../../styles/LatestNews.module.scss";
 
 export default async function LatestNews() {
   async function fetchData() {
@@ -41,27 +41,24 @@ export default async function LatestNews() {
   const result = await fetchData();
   // console.log(result);
   return (
-    <div>
+    <div className={styles.latestNews}>
       <h4>최신 뉴스 Top 10</h4>
       <ul>
-        {result ? (
+        {result &&
           result.map((item, index) => {
             return (
               <Link href={""} key={index}>
                 <li>
                   <img src={item.prevImg} width={100} height={100} alt="newsImg" />
-                  <div className="textGroup">
+                  <div className={styles.textGroup}>
                     <h6>{item.title}</h6>
-                    <div>{item.date}</div>
+                    <div className={styles.date}>{item.date}</div>
                     <p>{item.summary}</p>
                   </div>
                 </li>
               </Link>
             );
-          })
-        ) : (
-          <LatestNewsSkeleton />
-        )}
+          })}
       </ul>
     </div>
   );
