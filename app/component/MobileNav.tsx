@@ -58,7 +58,20 @@ export default function MobileNav(): JSX.Element {
           </div>
           <div className="userPlate">
             {session.data?.user.image ? (
-              <Image src={session.data.user.image} alt="userImg" width={40} height={40} />
+              <Image
+                src={session.data.user.image}
+                alt="userImg"
+                width={40}
+                height={40}
+                // 이미지 로드 실패 시 대체 아이콘 보여주기
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                  const replacedImg = document.createElement("div");
+                  replacedImg.className = "replacedImg";
+                  replacedImg.innerHTML = "<IoPersonCircleOutline />";
+                  e.currentTarget.parentElement?.appendChild(replacedImg);
+                }}
+              />
             ) : (
               <div className="replacedImg">
                 <IoPersonCircleOutline />
