@@ -35,6 +35,8 @@ export async function GET() {
         newsData.push(news);
       });
       totalNews.push(newsData);
+      // 데이터 출력해볼 것.
+      console.log(totalNews);
     });
     return NextResponse.json({ totalNewsData: totalNews });
   } catch (error) {
