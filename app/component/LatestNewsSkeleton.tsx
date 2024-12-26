@@ -5,7 +5,7 @@
 import { popularSkeleton } from "@/styles/Topics.styles";
 import { css } from "@emotion/react";
 
-export default function PopularNewsSkeleton(): JSX.Element {
+export default function LatestNewsSkeleton(): JSX.Element {
   const arry = new Array(10).fill(null);
 
   return (

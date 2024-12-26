@@ -2,15 +2,13 @@
 
 "use client";
 
-import { popularStyles, topicsForm } from "@/styles/Topics.styles";
-import { newsList, PopularNews, TopicsType } from "@/types/types";
+import { topicsForm } from "@/styles/Topics.styles";
+import { newsList, TopicsType } from "@/types/types";
 import { css } from "@emotion/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaPlus, FaMinus, FaCaretUp, FaCaretDown } from "react-icons/fa6";
 import TopicsSkeleton from "./TopicsSkeleton";
-import PopularNewsSkeleton from "./PopularNewsSkeleton";
-import Image from "next/image";
 import Link from "next/link";
 import { fetchArticles, fetchNews, fetchPopular } from "@/store/news";
 import { useDispatch } from "react-redux";
@@ -18,7 +16,6 @@ import { AppDispatch } from "@/store/store";
 
 export default function Topics(): JSX.Element {
   const [topics, setTopics] = useState<TopicsType[] | undefined>(undefined);
-  const [popularNews, setPopularNews] = useState<PopularNews[] | undefined>(undefined);
   const [totalNews, setTotalNews] = useState<newsList[][] | undefined>([]);
   const dispatch = useDispatch<AppDispatch>();
 
