@@ -15,14 +15,6 @@ export interface TopicsType {
   summary: string;
 }
 
-export interface PopularNews {
-  desc: string;
-  image: string;
-  link: string;
-  name: string;
-  title: string;
-}
-
 export interface LatestNews {
   title: string;
   href: string;
