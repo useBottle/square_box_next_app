@@ -3,7 +3,7 @@
 "use client";
 
 import { topicsForm } from "@/styles/Topics.styles";
-import { newsList, TopicsType } from "@/types/types";
+import { TopicsType } from "@/types/types";
 import { css } from "@emotion/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -16,7 +16,6 @@ import { AppDispatch } from "@/store/store";
 
 export default function Topics(): JSX.Element {
   const [topics, setTopics] = useState<TopicsType[] | undefined>(undefined);
-  const [totalNews, setTotalNews] = useState<newsList[][] | undefined>([]);
   const dispatch = useDispatch<AppDispatch>();
 
   const fetchKeyword = async (): Promise<void> => {
@@ -25,16 +24,6 @@ export default function Topics(): JSX.Element {
       setTopics(response.data.top10);
     } catch (error) {
       console.error("Failed fetching keyword data.", error);
-    }
-  };
-
-  // 한국일보 인기 뉴스 리스트 가져오는 함수
-  const fetchPopularList = async (): Promise<void> => {
-    try {
-      const response = await axios.get("/api/latestNews");
-      setTotalNews(response.data.totalNewsData);
-    } catch (error) {
-      console.error("Failed fetching popular data.", error);
     }
   };
 
@@ -49,17 +38,6 @@ export default function Topics(): JSX.Element {
       }
     } catch (error) {
       console.error("Failed fetching news data of top10 keyword.", error);
-    }
-  };
-
-  // 한국일보 데이터 가져오는걸로 변경해야함.
-  const clickPopular = async (link: string) => {
-    if (!link) return;
-
-    try {
-      await dispatch(fetchPopular(link));
-    } catch (error) {
-      console.error("Failed fetching news data of popular news.", error);
     }
   };
 
