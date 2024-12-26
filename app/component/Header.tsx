@@ -36,7 +36,7 @@ export default function Header(): JSX.Element {
         <IoCloseOutline
           className="menuBtn"
           onClick={() => {
-            dispatch(setNavMenu(navMenu ? false : true));
+            dispatch(setNavMenu(!navMenu));
             dispatch(setSignoutModal(signoutModal ? false : false));
           }}
         />
