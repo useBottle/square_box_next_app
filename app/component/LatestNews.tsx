@@ -1,6 +1,7 @@
 import { newsList } from "@/types/types";
 import axios from "axios";
 import * as cheerio from "cheerio";
+import Link from "next/link";
 
 export default async function LatestNews() {
   async function fetchData() {
@@ -28,19 +29,36 @@ export default async function LatestNews() {
       });
       const finalNewsData = newsData.filter((item) => item.prevImg !== "");
       const newsTop10 = finalNewsData.slice(0, 10);
-      console.log(newsTop10);
+      // console.log(newsTop10);
 
-      return { newsTop10: newsTop10 };
+      return newsTop10;
     } catch (error) {
       console.error(error);
     }
   }
 
   const result = await fetchData();
-  console.log(result && result.newsTop10);
+  console.log(result && result);
   return (
     <div>
       <h4>최신 뉴스 Top 10</h4>
+      <ul>
+        {result &&
+          result.map((item, index) => {
+            return (
+              <Link href={""} key={index}>
+                <li>
+                  <img src={item.prevImg} width={100} height={100} alt="newsImg" />
+                  <div className="textGroup">
+                    <h6>{item.title}</h6>
+                    <div>{item.date}</div>
+                    <p>{item.summary}</p>
+                  </div>
+                </li>
+              </Link>
+            );
+          })}
+      </ul>
     </div>
   );
 }

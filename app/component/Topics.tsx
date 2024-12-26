@@ -109,28 +109,6 @@ export default function Topics(): JSX.Element {
           <TopicsSkeleton />
         )}
       </div>
-      <div css={css(popularStyles)}>
-        <h4>최신 뉴스 Top 10</h4>
-        {/* {totalNews && totalNews.length === 3 ? (
-          <ul>
-            {popularNews.map((item, index) => {
-              return (
-                <Link href={`/popular-news/${index}`} key={index} onClick={() => {}}>
-                  <li>
-                    <Image src={item.image} width={100} height={100} alt="newsImg" />
-                    <div className="textGroup">
-                      <h6>{item.title}</h6>
-                      <p>{item.desc}</p>
-                    </div>
-                  </li>
-                </Link>
-              );
-            })}
-          </ul>
-        ) : (
-          <PopularNewsSkeleton />
-        )} */}
-      </div>
     </div>
   );
 }
