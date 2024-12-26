@@ -3,7 +3,6 @@ import axios from "axios";
 import * as cheerio from "cheerio";
 
 export default async function LatestNews() {
-  "use server";
   async function fetchData() {
     const url = "https://www.yna.co.kr/news?site=navi_latest_depth01";
     try {
@@ -29,6 +28,7 @@ export default async function LatestNews() {
       });
       const finalNewsData = newsData.filter((item) => item.prevImg !== "");
       const newsTop10 = finalNewsData.slice(0, 10);
+      console.log(newsTop10);
 
       return { newsTop10: newsTop10 };
     } catch (error) {
