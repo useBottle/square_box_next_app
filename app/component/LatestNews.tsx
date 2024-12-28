@@ -34,8 +34,8 @@ export default async function LatestNews() {
       const newsTop10List = textExistNewsData.slice(0, 10);
       const urls = newsTop10List.map((item) => item.href);
 
-      const newsTop10Articles = await Promise.all(
-        urls.map(async (url) => {
+      const promises = urls.map(async (url) => {
+        try {
           const response = await axios.get(url);
           const $ = cheerio.load(response.data);
           const title = $(".title-article01 .tit").text().trim();
@@ -51,14 +51,21 @@ export default async function LatestNews() {
             alt: alt ? alt : "",
             text: text,
           };
-        }),
-      );
-      // console.log(newsTop10Articles);
+        } catch (error) {
+          console.error(`Error fetching article: ${url}`, error);
+          return null;
+        }
+      });
 
-      // Store articles in server action
-      await setNewsArticles(newsTop10Articles);
+      const newsTop10Articles = await Promise.all(promises);
 
-      return { top10List: newsTop10List, top10Articles: newsTop10Articles };
+      // 요청이 실패하여 null 을 반환한 경우 제외.
+      const filteredNewsTop10Articles = newsTop10Articles.filter((article) => article !== null);
+
+      // 예외 처리된 최종 결과를 서버 액션을 통해 캐싱.
+      await setNewsArticles(filteredNewsTop10Articles);
+
+      return { top10List: newsTop10List, top10Articles: filteredNewsTop10Articles };
     } catch (error) {
       console.error(error);
     }

@@ -30,7 +30,7 @@ export default function NewsDynamic(): JSX.Element {
     <article css={css(dynamicNewsStyles)}>
       <figure className="imgGroup">
         <Image src={article[newsId].image} alt="newsImg" width={200} height={200} />
-        <div className="alt">{article[newsId].alt}</div>
+        <figcaption className="alt">{article[newsId].alt}</figcaption>
       </figure>
       <div className="textGroup">
         <h1>{newsList[newsId].title}</h1>
