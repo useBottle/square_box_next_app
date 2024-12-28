@@ -1,8 +1,9 @@
-import { newsList } from "@/types/types";
+import { LatestNewsArticle, newsList } from "@/types/types";
 import axios from "axios";
 import * as cheerio from "cheerio";
 import Link from "next/link";
 import styles from "../../styles/LatestNews.module.scss";
+import { setNewsArticles } from "../actions/newsActions";
 
 export default async function LatestNews() {
   async function fetchData() {
@@ -28,13 +29,36 @@ export default async function LatestNews() {
         };
         newsData.push(news);
       });
-      const finalNewsData = newsData.filter((item) => item.prevImg !== "");
-      const newsTop10 = finalNewsData.slice(0, 10);
-      const urls = newsTop10.map((item) => item.href);
-      console.log(urls);
-      // console.log(newsTop10);
+      const imgExistNewsData = newsData.filter((item) => item.prevImg !== "");
+      const textExistNewsData = imgExistNewsData.filter((item) => item.summary !== "");
+      const newsTop10List = textExistNewsData.slice(0, 10);
+      const urls = newsTop10List.map((item) => item.href);
 
-      return newsTop10;
+      const newsTop10Articles = await Promise.all(
+        urls.map(async (url) => {
+          const response = await axios.get(url);
+          const $ = cheerio.load(response.data);
+          const title = $(".title-article01 .tit").text().trim();
+          const date = $(".title-article01 .update-time").attr("data-published-time");
+          const img = $(".image-zone .img-con .img img").attr("src");
+          const alt = $(".image-zone .desc-con .tit-cap").text().trim();
+          const text = $(".story-news.article p:not(.txt-copyright.adrs)").text().trim();
+
+          return {
+            title: title,
+            date: date ? date : "",
+            image: img ? img : "",
+            alt: alt ? alt : "",
+            text: text,
+          };
+        }),
+      );
+      // console.log(newsTop10Articles);
+
+      // Store articles in server action
+      await setNewsArticles(newsTop10Articles);
+
+      return { top10List: newsTop10List, top10Articles: newsTop10Articles };
     } catch (error) {
       console.error(error);
     }
@@ -47,9 +71,9 @@ export default async function LatestNews() {
       <h4>최신 뉴스 Top 10</h4>
       <ul>
         {result &&
-          result.map((item, index) => {
+          result.top10List.map((item, index) => {
             return (
-              <Link href={""} key={index}>
+              <Link href={`/latest-news/${index}`} key={index}>
                 <li>
                   <img src={item.prevImg} width={100} height={100} alt="newsImg" />
                   <div className={styles.textGroup}>

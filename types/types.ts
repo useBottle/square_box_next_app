@@ -15,12 +15,12 @@ export interface TopicsType {
   summary: string;
 }
 
-export interface LatestNews {
+export interface LatestNewsArticle {
   title: string;
-  href: string;
-  prevImg: string;
   date: string;
-  summary: string;
+  image: string;
+  alt: string;
+  text: string;
 }
 
 export interface newsList {
