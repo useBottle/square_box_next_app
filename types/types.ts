@@ -20,7 +20,7 @@ export interface LatestNewsArticle {
   date: string;
   image: string;
   alt: string;
-  text: string;
+  text: string[];
 }
 
 export interface newsList {

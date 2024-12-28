@@ -38,11 +38,14 @@ export default async function LatestNews() {
         try {
           const response = await axios.get(url);
           const $ = cheerio.load(response.data);
-          const title = $(".title-article01 .tit").text().trim();
+          const title = $(".title-article01 h1.tit").text().trim();
           const date = $(".title-article01 .update-time").attr("data-published-time");
           const img = $(".image-zone .img-con .img img").attr("src");
           const alt = $(".image-zone .desc-con .tit-cap").text().trim();
-          const text = $(".story-news.article p:not(.txt-copyright.adrs)").text().trim();
+          const text = $(".story-news.article p:not(.txt-copyright.adrs)")
+            .map((_, item) => $(item).text().trim())
+            .get()
+            .filter((item) => item !== "");
 
           return {
             title: title,

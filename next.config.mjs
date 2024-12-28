@@ -16,6 +16,16 @@ const nextConfig = {
         hostname: "*.yna.co.kr",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "*.hankookilbo.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "*.hankookilbo.com",
+        pathname: "/**",
+      }
     ],
   },
 };
