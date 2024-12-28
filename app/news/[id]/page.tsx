@@ -34,7 +34,7 @@ export default function NewsDynamic(): JSX.Element {
       </figure>
       <div className="textGroup">
         <h1>{newsList[newsId].title}</h1>
-        <time className="date">{newsList[newsId].date}</time>
+        <div className="date">{newsList[newsId].date}</div>
         {article[newsId].text.map((item, index) => {
           return <p key={index}>{item}</p>;
         })}

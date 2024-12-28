@@ -24,7 +24,7 @@ export default async function LatestNewsDetail({ params }: Props) {
       )}
       <div className={styles.textGroup}>
         <h1>{article.title}</h1>
-        <time>{article.date}</time>
+        <div className={styles.date}>{article.date}</div>
         {article.text.map((item, index) => (
           <p key={index}>{item}</p>
         ))}
