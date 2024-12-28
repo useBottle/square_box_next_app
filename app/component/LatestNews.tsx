@@ -30,6 +30,8 @@ export default async function LatestNews() {
       });
       const finalNewsData = newsData.filter((item) => item.prevImg !== "");
       const newsTop10 = finalNewsData.slice(0, 10);
+      const urls = newsTop10.map((item) => item.href);
+      console.log(urls);
       // console.log(newsTop10);
 
       return newsTop10;

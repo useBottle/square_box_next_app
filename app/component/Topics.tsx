@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { FaPlus, FaMinus, FaCaretUp, FaCaretDown } from "react-icons/fa6";
 import TopicsSkeleton from "./TopicsSkeleton";
 import Link from "next/link";
-import { fetchArticles, fetchNews, fetchPopular } from "@/store/news";
+import { fetchArticles, fetchNews } from "@/store/news";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
 
