@@ -8,12 +8,12 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**",
+        hostname: "*.yna.co.kr",
         pathname: "/**",
       },
       {
         protocol: "http",
-        hostname: "**",
+        hostname: "*.yna.co.kr",
         pathname: "/**",
       },
     ],

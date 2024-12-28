@@ -1,5 +1,6 @@
 import { getNewsArticle } from "@/app/actions/newsActions";
 import styles from "../../../styles/LastestArticle.module.scss";
+import Image from "next/image";
 
 interface Props {
   params: {
@@ -18,7 +19,14 @@ export default async function LatestNewsDetail({ params }: Props) {
     <article>
       {article.image && (
         <figure>
-          <img src={article.image} alt={article.alt} />
+          <Image
+            src={article.image}
+            alt={article.alt || "news image"}
+            width={100}
+            height={100}
+            priority
+            style={{ objectFit: "contain" }}
+          />
           {article.alt && <figcaption>{article.alt}</figcaption>}
         </figure>
       )}
