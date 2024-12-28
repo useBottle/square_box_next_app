@@ -4,7 +4,6 @@ import * as cheerio from "cheerio";
 import Link from "next/link";
 import styles from "../../styles/LatestNews.module.scss";
 import { setNewsArticles } from "../actions/newsActions";
-import Image from "next/image";
 
 export default async function LatestNews() {
   async function fetchData() {
@@ -83,13 +82,7 @@ export default async function LatestNews() {
             return (
               <Link href={`/latest-news/${index}`} key={index}>
                 <li>
-                  <Image
-                    src={item.prevImg}
-                    width={100}
-                    height={100}
-                    alt="newsImg"
-                    style={{ objectFit: "cover" }}
-                  />
+                  <img src={item.prevImg} width={100} height={100} alt="newsImg" />
                   <div className={styles.textGroup}>
                     <h6>{item.title}</h6>
                     <div className={styles.date}>{item.date}</div>
