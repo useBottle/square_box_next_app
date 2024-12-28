@@ -27,18 +27,18 @@ export default function NewsDynamic(): JSX.Element {
   }
 
   return (
-    <div css={css(dynamicNewsStyles)}>
-      <div className="imgGroup">
+    <article css={css(dynamicNewsStyles)}>
+      <figure className="imgGroup">
         <Image src={article[newsId].image} alt="newsImg" width={200} height={200} />
         <div className="alt">{article[newsId].alt}</div>
-      </div>
+      </figure>
       <div className="textGroup">
         <h1>{newsList[newsId].title}</h1>
-        <div className="date">{newsList[newsId].date}</div>
+        <time className="date">{newsList[newsId].date}</time>
         {article[newsId].text.map((item, index) => {
           return <p key={index}>{item}</p>;
         })}
       </div>
-    </div>
+    </article>
   );
 }
