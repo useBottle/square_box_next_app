@@ -6,6 +6,8 @@ import * as cheerio from "cheerio";
 import { setNewsArticles } from "../actions/newsActions";
 import { newsList } from "@/types/types";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   async function fetchData() {
     const url = "https://www.yna.co.kr/news?site=navi_latest_depth01";
