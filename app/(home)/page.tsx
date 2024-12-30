@@ -71,7 +71,7 @@ export default async function Home() {
       // 예외 처리된 최종 결과를 서버 액션을 통해 캐싱.
       await setNewsArticles(filteredNewsTop10Articles);
 
-      return { top10List: newsTop10List, top10Articles: filteredNewsTop10Articles };
+      return newsTop10List;
     } catch (error) {
       console.error("Error fetching latest news", error);
     }
@@ -79,6 +79,7 @@ export default async function Home() {
 
   const result = await fetchData();
   // console.log(result);
+
   return (
     <div>
       <Topics />
@@ -86,7 +87,7 @@ export default async function Home() {
         <h4>최신 뉴스 Top 10</h4>
         <ul>
           {result ? (
-            result.top10List.map((item, index) => {
+            result.map((item, index) => {
               return (
                 <Link href={`/latest-news/${index}`} key={index}>
                   <li>
@@ -102,7 +103,7 @@ export default async function Home() {
             })
           ) : (
             // Loading UI
-            <p>Loading...</p>
+            <p>데이터를 서버에서 불러오고 있습니다. 새로고침 해주세요.</p>
           )}
         </ul>
       </div>
