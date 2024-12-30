@@ -37,7 +37,7 @@ export async function POST(req: Request) {
     const imgExistNewsData = newsData.filter((item) => item.prevImg !== "");
     const textExistNewsData = imgExistNewsData.filter((item) => item.summary !== "");
     return NextResponse.json({ newsData: textExistNewsData });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error(error);
   }
   return NextResponse.json({ message: "received input value" });
