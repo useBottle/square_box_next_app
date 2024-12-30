@@ -19,7 +19,7 @@ export const fetchNews = createAsyncThunk<[newsList[], string[]], string>(
       });
       return [result, urls];
     } catch (error) {
-      console.error(error);
+      console.error("News fetch failed on middleware.", error);
       return [[], []];
     }
   },
@@ -31,7 +31,7 @@ export const fetchArticles = createAsyncThunk<articleData[], string[]>("data/fet
     const requestArticles = await axios.post("/api/articles", { url: urls });
     return requestArticles.data.articleData;
   } catch (error) {
-    console.error(error);
+    console.error("Articles fetch failed on middleware.", error);
     return [];
   }
 });
