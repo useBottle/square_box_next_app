@@ -102,8 +102,11 @@ export default async function Home() {
               );
             })
           ) : (
-            // Loading UI
-            <p>데이터를 서버에서 불러오고 있습니다. 새로고침 해주세요.</p>
+            // 데이터 로딩 실패 시 제공할 UI
+            <div className={styles.infoText}>
+              <p>데이터를 서버에서 불러오고 있습니다</p>
+              <p>새로고침 해주세요</p>
+            </div>
           )}
         </ul>
       </div>
