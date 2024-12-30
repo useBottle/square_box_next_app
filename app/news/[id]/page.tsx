@@ -36,7 +36,6 @@ export default function NewsDynamic(): JSX.Element {
   };
 
   if (typeof newsId !== "number" || newsId < 0 || newsId >= newsList.length) {
-    // 나중에 잘못된 페이지 접근 UI 추가하기.
     return (
       <div css={css(infoText)}>
         <p>데이터가 만료되었습니다</p>
