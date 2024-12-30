@@ -1,3 +1,4 @@
+import { youtubeList } from "@/types/types";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -14,9 +15,8 @@ export const fetchYoutube = createAsyncThunk<any, string>("data/fetchYoutube", a
   }
 });
 
-// 추후 타입 수정 필요
 interface youtubeType {
-  youtubueList: any[];
+  youtubueList: youtubeList[];
 }
 
 const initialState: youtubeType = {
@@ -27,8 +27,7 @@ export const youtube = createSlice({
   name: "youtube",
   initialState,
   reducers: {
-    // 추후 PayloadAction 타입 수정 필요
-    setYoutubeList(state, action: PayloadAction<any>) {
+    setYoutubeList(state, action: PayloadAction<youtubeList[]>) {
       state.youtubueList = action.payload;
     },
   },

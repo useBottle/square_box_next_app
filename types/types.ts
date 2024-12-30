@@ -36,3 +36,15 @@ export interface articleData {
   alt: string;
   text: string[];
 }
+
+export interface youtubeList {
+  category: string;
+  username: string;
+  videoId: string;
+  thumbnail: string;
+  title: string;
+  channelHandle: string;
+  channelThumbnail: string;
+  channelTitle: string;
+  _id: string;
+}
