@@ -5,8 +5,9 @@
 import ArticleSkeleton from "@/app/component/ArticleSkeleton";
 import { RootState } from "@/store/store";
 import { dynamicNewsStyles } from "@/styles/News.styles";
-import { css } from "@emotion/react";
+import { css, CSSObject } from "@emotion/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
 
@@ -17,9 +18,32 @@ export default function NewsDynamic(): JSX.Element {
   const params = useParams();
   const newsId = Number(params.id);
 
+  const infoText: CSSObject = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    height: "80vh",
+    fontSize: "1.6rem",
+
+    "& a": {
+      color: "var(--reverse-font)",
+      padding: "1rem 2rem",
+      background: "var(--basic-font)",
+      borderRadius: "3px",
+      marginTop: "8rem",
+    },
+  };
+
   if (typeof newsId !== "number" || newsId < 0 || newsId >= newsList.length) {
     // 나중에 잘못된 페이지 접근 UI 추가하기.
-    return <div>Invalid news ID</div>;
+    return (
+      <div css={css(infoText)}>
+        <p>데이터가 만료되었습니다</p>
+        <p>다시 시도해주세요</p>
+        <Link href="/">HOME</Link>
+      </div>
+    );
   }
 
   if (articleStatus === "loading") {
