@@ -16,11 +16,13 @@ export const fetchYoutube = createAsyncThunk<any, string>("data/fetchYoutube", a
 });
 
 interface youtubeType {
-  youtubueList: youtubeList[];
+  youtubeList: youtubeList[];
+  youtubeStatus: "idle" | "loading" | "succeeded" | "failed";
 }
 
 const initialState: youtubeType = {
-  youtubueList: [],
+  youtubeList: [],
+  youtubeStatus: "idle",
 };
 
 export const youtube = createSlice({
@@ -28,8 +30,23 @@ export const youtube = createSlice({
   initialState,
   reducers: {
     setYoutubeList(state, action: PayloadAction<youtubeList[]>) {
-      state.youtubueList = action.payload;
+      state.youtubeList = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchYoutube.fulfilled, (state, action: PayloadAction<youtubeList[]>) => {
+        state.youtubeStatus = "succeeded";
+        if (action.payload) {
+          state.youtubeList = action.payload;
+        }
+      })
+      .addCase(fetchYoutube.rejected, (state) => {
+        state.youtubeStatus = "failed";
+      })
+      .addCase(fetchYoutube.pending, (state) => {
+        state.youtubeStatus = "loading";
+      });
   },
 });
 
