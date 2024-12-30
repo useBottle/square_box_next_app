@@ -33,7 +33,9 @@ export async function POST(req: Request) {
       };
       newsData.push(news);
     });
-    return NextResponse.json({ newsData: newsData });
+    const imgExistNewsData = newsData.filter((item) => item.prevImg !== "");
+    const textExistNewsData = imgExistNewsData.filter((item) => item.summary !== "");
+    return NextResponse.json({ newsData: textExistNewsData });
   } catch (error) {
     console.error(error);
   }
