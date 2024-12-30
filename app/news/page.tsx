@@ -18,7 +18,7 @@ export default function News(): JSX.Element {
   const newsStatus = useSelector((state: RootState) => state.news.newsStatus);
   const dispatch = useDispatch<AppDispatch>();
 
-  // 이건 왜 적용했었는지 찾아보고 필요 없을 경우 삭제.
+  // 뉴스 페이지 접속 여부 체크 -> 검색 컴포넌트에서 검색 요청 토글 역할
   useEffect(() => {
     dispatch(setNewsAccess(true));
     return () => {
