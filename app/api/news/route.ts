@@ -9,8 +9,9 @@ export async function POST(req: Request) {
 
   const query = encodeURI(result.inputValue);
   const sort = encodeURI(result.sort);
+  const baseUrl = process.env.NEWS_SEARCH_API || "";
 
-  const url = `https://search.hankookilbo.com/Search?tab=NEWS&sort=${sort}&searchText=${query}&searchTypeSet=TITLE,CONTENTS&selectedPeriod=%EC%A0%84%EC%B2%B4&filter=head`;
+  const url = `${baseUrl}?tab=NEWS&sort=${sort}&searchText=${query}&searchTypeSet=TITLE,CONTENTS&selectedPeriod=%EC%A0%84%EC%B2%B4&filter=head`;
 
   try {
     const response = await axios.get(url);

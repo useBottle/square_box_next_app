@@ -9,5 +9,7 @@ declare namespace NodeJS {
     KAKAO_CLIENT_ID: string;
     KAKAO_CLIENT_SECRET: string;
     TOPICS_API_URL: string;
+    NEWS_SEARCH_API: string;
+    LATEST_NEWS_API: string;
   }
 }

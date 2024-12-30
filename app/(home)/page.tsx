@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 
 export default async function Home() {
   async function fetchData() {
-    const url = "https://www.yna.co.kr/news?site=navi_latest_depth01";
+    const url = process.env.LATEST_NEWS_API || "";
     try {
       const response = await axios.get(url);
       const $ = cheerio.load(response.data);
