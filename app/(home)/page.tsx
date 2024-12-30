@@ -25,8 +25,8 @@ export default async function Home() {
 
         const news = {
           title: title,
-          href: href ? href : "",
-          prevImg: img ? img : "",
+          href: href || "",
+          prevImg: img || "",
           date: date,
           summary: summary,
         };
@@ -52,9 +52,9 @@ export default async function Home() {
 
           return {
             title: title,
-            date: date ? date : "",
-            image: img ? img : "",
-            alt: alt ? alt : "",
+            date: date || "",
+            image: img || "",
+            alt: alt || "",
             text: text,
           };
         } catch (error) {
