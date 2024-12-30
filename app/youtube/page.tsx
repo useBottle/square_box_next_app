@@ -1,3 +1,13 @@
-export default async function Youtube() {
-  return <div></div>;
+/**@jsxImportSource @emotion/react */
+
+"use client";
+
+import SearchBar from "../component/SearchBar";
+
+export default function Youtube() {
+  return (
+    <div>
+      <SearchBar />
+    </div>
+  );
 }
