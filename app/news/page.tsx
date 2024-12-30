@@ -10,8 +10,8 @@ import Image from "next/image";
 import { newsListStyles } from "@/styles/News.styles";
 import { css, CSSObject } from "@emotion/react";
 import { useEffect } from "react";
-import { setNewsAccess } from "@/store/news";
 import NewsSkeleton from "../component/NewsSkeleton";
+import { setPageState } from "@/store/switches";
 
 export default function News(): JSX.Element {
   const newsList = useSelector((state: RootState) => state.news.newsList);
@@ -20,9 +20,9 @@ export default function News(): JSX.Element {
 
   // 뉴스 페이지 접속 여부 체크 -> 검색 컴포넌트에서 검색 요청 토글 역할
   useEffect(() => {
-    dispatch(setNewsAccess(true));
+    dispatch(setPageState("news"));
     return () => {
-      dispatch(setNewsAccess(false));
+      dispatch(setPageState("default"));
     };
   }, [dispatch]);
 

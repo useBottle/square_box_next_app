@@ -4,6 +4,7 @@
 
 import { fetchArticles, fetchNews } from "@/store/news";
 import { AppDispatch, RootState } from "@/store/store";
+import { fetchYoutube } from "@/store/youtube";
 import { searchBarForm } from "@/styles/default.styles";
 import { css, CSSObject } from "@emotion/react";
 import { ChangeEvent, FormEvent, useState } from "react";
@@ -21,39 +22,42 @@ const form: CSSObject = {
 export default function SearchBar(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const [inputValue, setInputValue] = useState<string>("");
-  const newsAccess = useSelector((state: RootState) => state.news.access);
+  const pageAccess = useSelector((state: RootState) => state.switches.pageState);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
-  const onSubmitForNews = async (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (inputValue === "") return;
 
-    try {
-      const result = await dispatch(fetchNews(inputValue)).unwrap();
-      const urls = result[1];
-      if (urls.length !== 0) {
-        await dispatch(fetchArticles(urls));
+    if (pageAccess === "news") {
+      try {
+        const result = await dispatch(fetchNews(inputValue)).unwrap();
+        const urls = result[1];
+        if (urls.length !== 0) {
+          await dispatch(fetchArticles(urls));
+        }
+        return;
+      } catch (error) {
+        console.error("Error occurred. News fetch failed.", error);
       }
-    } catch (error) {
-      console.error("Error occurred. News fetch failed.", error);
     }
-  };
 
-  const onSubmitForYoutube = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (inputValue === "") return;
-    try {
-    } catch (error) {
-      console.error("Error occurred. Youtube fetch failed.", error);
+    if (pageAccess === "youtube") {
+      try {
+        await dispatch(fetchYoutube(inputValue));
+        return;
+      } catch (error) {
+        console.error("Error occurred. Youtube fetch failed.", error);
+      }
     }
   };
 
   return (
     <div css={css(form)}>
-      <form css={css(searchBarForm)} onSubmit={newsAccess ? onSubmitForNews : onSubmitForYoutube}>
+      <form css={css(searchBarForm)} onSubmit={onSubmit}>
         <div className="inputSet">
           <IoIosSearch className="searchIcon" />
           <input type="search" placeholder="Search" value={inputValue} onChange={onChange} />

@@ -40,7 +40,6 @@ interface newsType {
   newsList: newsList[];
   article: articleData[];
   urls: string[];
-  access: boolean;
   popularStatus: "idle" | "loading" | "succeeded" | "failed";
   newsStatus: "idle" | "loading" | "succeeded" | "failed";
   articleStatus: "idle" | "loading" | "succeeded" | "failed";
@@ -50,7 +49,6 @@ const initialState: newsType = {
   newsList: [],
   article: [],
   urls: [],
-  access: false,
   popularStatus: "idle",
   newsStatus: "idle",
   articleStatus: "idle",
@@ -65,9 +63,6 @@ export const news = createSlice({
     },
     setArticles(state, action: PayloadAction<articleData[]>) {
       state.article = action.payload;
-    },
-    setNewsAccess(state, action: PayloadAction<boolean>) {
-      state.access = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -104,5 +99,5 @@ export const news = createSlice({
   },
 });
 
-export const { setNews, setArticles, setNewsAccess } = news.actions;
+export const { setNews, setArticles } = news.actions;
 export default news.reducer;
