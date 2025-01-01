@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { setPageState } from "@/store/switches";
 import Link from "next/link";
+import { css, CSSObject } from "@emotion/react";
 
 export default function Youtube() {
   const dispatch = useDispatch<AppDispatch>();
@@ -31,11 +32,22 @@ export default function Youtube() {
     );
   }
 
+  const initYoutube: CSSObject = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "50vh",
+
+    "& h1": {
+      fontSize: "1.6rem",
+    },
+  };
+
   return (
     <div>
       <SearchBar />
       {youtubeList.length === 0 && (
-        <div>
+        <div css={css(initYoutube)}>
           <h1>영상을 검색해주세요</h1>
         </div>
       )}
