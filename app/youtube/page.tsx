@@ -76,7 +76,7 @@ export default function Youtube() {
       <ul css={css(youtube)}>
         {youtubeList.items.map((item, index) => {
           return (
-            <Link href={`/youtube/${item.id.videoId}`} key={index}>
+            <Link href={`/youtube/detail?id=${item.id.videoId}&index=${index}`} key={index}>
               <li>
                 <Image src={item.snippet.thumbnails.high.url} alt={item.snippet.title} width={300} height={200} />
                 <div className="textGroup">
