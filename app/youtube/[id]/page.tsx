@@ -13,8 +13,6 @@ export default function YoutubeDynamic(): JSX.Element {
 
   const videoId = searchParams.get("id");
   const index = searchParams.get("index");
-  console.log(videoId);
-  console.log(index);
 
   return (
     <div>
