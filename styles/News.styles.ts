@@ -172,7 +172,7 @@ export const newsSkeleton: CSSObject = {
         background: "lightgray",
         marginBottom: "0.5rem",
 
-        "&:first-child": {
+        "&:first-of-type": {
           width: "100%",
           height: "2.5rem",
           background: "lightgray",

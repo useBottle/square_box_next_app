@@ -17,9 +17,11 @@ export default function YoutubeSkeleton(): JSX.Element {
               <div className="titleFrame default"></div>
               <div className="channelFrame default"></div>
               <div className="dateFrame default"></div>
-              <div className="descFrame default"></div>
-              <div className="descFrame default"></div>
-              <div className="descFrame default"></div>
+              <div className="descGroup">
+                <div className="descFrame default"></div>
+                <div className="descFrame default"></div>
+                <div className="descFrame default"></div>
+              </div>
             </div>
           </div>
         );
