@@ -28,7 +28,7 @@ export default function Youtube() {
     };
   }, [dispatch]);
 
-  if (youtubeStatus === "loading" || true) {
+  if (youtubeStatus === "loading") {
     return (
       <div>
         <SearchBar />
