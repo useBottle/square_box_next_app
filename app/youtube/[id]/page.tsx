@@ -3,6 +3,7 @@
 "use client";
 
 import { RootState } from "@/store/store";
+import { youtubeDynamic } from "@/styles/Youtube.styles";
 import { css, CSSObject } from "@emotion/react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -44,8 +45,9 @@ export default function YoutubeDynamic(): JSX.Element {
   }
 
   return (
-    <div>
+    <div css={css(youtubeDynamic)}>
       <YouTube
+        className="player"
         videoId={videoId}
         key={videoId}
         opts={{
@@ -61,7 +63,6 @@ export default function YoutubeDynamic(): JSX.Element {
           e.target.stopVideo(0);
         }}
       />
-      <h1>{youtubeList.items[index].snippet.title}</h1>
       <div className="textGroup">
         <h1 className="title">{youtubeList.items[index].snippet.title}</h1>
         <h4 className="channel">{youtubeList.items[index].snippet.channelTitle}</h4>

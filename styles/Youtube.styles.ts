@@ -59,6 +59,51 @@ export const youtube: CSSObject = {
   },
 };
 
+export const youtubeDynamic: CSSObject = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  flexDirection: "column",
+  width: "100vw",
+
+  "& .player": {
+    width: "100%",
+  },
+
+  "& .textGroup": {
+    padding: "1rem",
+
+    "& .title": {
+      fontSize: "2rem",
+      color: "var(--basic-font)",
+      margin: "1rem 0",
+    },
+
+    "& .channel": {
+      fontSize: "1.4rem",
+      padding: "0.5rem 1rem",
+      color: "var(--reverse-font)",
+      background: "var(--basic-font)",
+      border: "1px solid var(--basic-font)",
+      borderRadius: "3px",
+      width: "fit-content",
+      margin: "2rem 0",
+    },
+
+    "& .publishedAt": {
+      fontSize: "1.2rem",
+      color: "var(--basic-font)",
+      margin: "2rem 0",
+    },
+
+    "& .description": {
+      fontSize: "1.4rem",
+      color: "var(--basic-font)",
+      margin: "1rem 0",
+    },
+  },
+};
+
 // Skeleton UI 애니메이션
 const shine = keyframes({
   from: {
