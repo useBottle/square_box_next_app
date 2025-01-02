@@ -10,6 +10,7 @@ import { setPageState } from "@/store/switches";
 import Link from "next/link";
 import { css, CSSObject } from "@emotion/react";
 import Image from "next/image";
+import { youtube } from "@/styles/Youtube.styles";
 
 export default function Youtube() {
   const dispatch = useDispatch<AppDispatch>();
@@ -45,6 +46,13 @@ export default function Youtube() {
     },
   };
 
+  // HTML Entity Decode
+  function decodeHtmlEntities(text: string): string {
+    const parser = new DOMParser();
+    const decodedString = parser.parseFromString(text, "text/html").documentElement.textContent;
+    return decodedString || text;
+  }
+
   return (
     <div>
       <SearchBar />
@@ -53,16 +61,16 @@ export default function Youtube() {
           <h1>영상을 검색해주세요</h1>
         </div>
       )}
-      <ul>
+      <ul css={css(youtube)}>
         {youtubeList.items.map((item, index) => {
           return (
             <Link href={`/youtube/${item.id.videoId}`} key={index}>
               <li>
                 <Image src={item.snippet.thumbnails.high.url} alt={item.snippet.title} width={300} height={200} />
-                <h1>{item.snippet.title}</h1>
+                <h1>{decodeHtmlEntities(item.snippet.title)}</h1>
                 <h4>{item.snippet.channelTitle}</h4>
                 <h4>{item.snippet.publishedAt}</h4>
-                <p>{item.snippet.description}</p>
+                <p>{decodeHtmlEntities(item.snippet.description)}</p>
               </li>
             </Link>
           );
