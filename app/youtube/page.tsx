@@ -53,6 +53,16 @@ export default function Youtube() {
     return decodedString || text;
   }
 
+  // 날짜 변환 함수
+  function formatDate(isoString: string): string {
+    const date = new Date(isoString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+  }
+
   return (
     <div>
       <SearchBar />
@@ -67,10 +77,12 @@ export default function Youtube() {
             <Link href={`/youtube/${item.id.videoId}`} key={index}>
               <li>
                 <Image src={item.snippet.thumbnails.high.url} alt={item.snippet.title} width={300} height={200} />
-                <h1>{decodeHtmlEntities(item.snippet.title)}</h1>
-                <h4>{item.snippet.channelTitle}</h4>
-                <h4>{item.snippet.publishedAt}</h4>
-                <p>{decodeHtmlEntities(item.snippet.description)}</p>
+                <div className="textGroup">
+                  <h1 className="title">{decodeHtmlEntities(item.snippet.title)}</h1>
+                  <h4 className="channel">{item.snippet.channelTitle}</h4>
+                  <h4 className="publishedAt">{formatDate(item.snippet.publishedAt)}</h4>
+                  <p className="description">{decodeHtmlEntities(item.snippet.description)}</p>
+                </div>
               </li>
             </Link>
           );
