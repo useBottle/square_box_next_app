@@ -88,7 +88,10 @@ export interface Snippet {
 export interface YouTubeVideo {
   kind: string;
   etag: string;
-  id: string;
+  id: {
+    videoId: string;
+    kind: string;
+  };
   snippet: Snippet;
 }
 

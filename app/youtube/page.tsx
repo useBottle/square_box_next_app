@@ -9,6 +9,7 @@ import { AppDispatch, RootState } from "@/store/store";
 import { setPageState } from "@/store/switches";
 import Link from "next/link";
 import { css, CSSObject } from "@emotion/react";
+import Image from "next/image";
 
 export default function Youtube() {
   const dispatch = useDispatch<AppDispatch>();
@@ -54,7 +55,13 @@ export default function Youtube() {
       )}
       <ul>
         {youtubeList.items.map((item, index) => {
-          return <Link href={""} key={index}></Link>;
+          return (
+            <Link href={`/youtube/${item.id.videoId}`} key={index}>
+              <li>
+                <Image src={item.snippet.thumbnails.high.url} alt={item.snippet.title} width={300} height={200} />
+              </li>
+            </Link>
+          );
         })}
       </ul>
     </div>

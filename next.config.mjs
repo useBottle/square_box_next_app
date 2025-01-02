@@ -25,7 +25,27 @@ const nextConfig = {
         protocol: "http",
         hostname: "*.hankookilbo.com",
         pathname: "/**",
-      }
+      },
+      {
+        protocol: "https",
+        hostname: "i.ytimg.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "i.ytimg.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "yt3.ggpht.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "yt3.ggpht.com",
+        pathname: "/**",
+      },
     ],
   },
 };
