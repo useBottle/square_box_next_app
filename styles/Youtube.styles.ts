@@ -58,3 +58,5 @@ export const youtube: CSSObject = {
     },
   },
 };
+
+export const youtubeSkeleton: CSSObject = {};

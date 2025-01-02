@@ -11,6 +11,8 @@ import Link from "next/link";
 import { css, CSSObject } from "@emotion/react";
 import Image from "next/image";
 import { youtube } from "@/styles/Youtube.styles";
+import { trusted } from "mongoose";
+import YoutubeSkeleton from "../component/YoutubeSkeleton";
 
 export default function Youtube() {
   const dispatch = useDispatch<AppDispatch>();
@@ -26,11 +28,11 @@ export default function Youtube() {
     };
   }, [dispatch]);
 
-  if (youtubeStatus === "loading") {
+  if (youtubeStatus === "loading" || true) {
     return (
       <div>
         <SearchBar />
-        <div>Youtube Skeleton 추가하기</div>
+        <YoutubeSkeleton />
       </div>
     );
   }
