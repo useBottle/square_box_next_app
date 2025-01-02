@@ -37,24 +37,12 @@ export interface articleData {
   text: string[];
 }
 
-export interface youtubeList {
-  category: string;
-  username: string;
-  videoId: string;
-  thumbnail: string;
-  title: string;
-  channelHandle: string;
-  channelThumbnail: string;
-  channelTitle: string;
-  _id: string;
-}
-
-interface PageInfo {
+export interface PageInfo {
   totalResults: number;
   resultsPerPage: number;
 }
 
-interface Snippet {
+export interface Snippet {
   publishedAt: string;
   channelId: string;
   title: string;
@@ -97,7 +85,7 @@ interface Snippet {
   defaultAudioLanguage: string;
 }
 
-interface YouTubeVideo {
+export interface YouTubeVideo {
   kind: string;
   etag: string;
   id: string;

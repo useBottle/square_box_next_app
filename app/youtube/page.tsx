@@ -47,13 +47,13 @@ export default function Youtube() {
   return (
     <div>
       <SearchBar />
-      {youtubeList.length === 0 && (
+      {youtubeList.items.length === 0 && (
         <div css={css(initYoutube)}>
           <h1>영상을 검색해주세요</h1>
         </div>
       )}
       <ul>
-        {youtubeList.map((item, index) => {
+        {youtubeList.items.map((item, index) => {
           return <Link href={""} key={index}></Link>;
         })}
       </ul>

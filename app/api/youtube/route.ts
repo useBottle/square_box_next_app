@@ -17,7 +17,7 @@ export async function POST(req: Request) {
 
     const response = await axios.get(`https://www.googleapis.com/youtube/v3/videos?${params.toString()}`);
     const result = response.data;
-    console.log(result);
+    // console.log(result);
     return NextResponse.json({ youtubeData: result });
   } catch (error: unknown) {
     console.error("Youtube fetch failed.", error);
