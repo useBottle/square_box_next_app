@@ -59,6 +59,10 @@ export default function Youtube() {
             <Link href={`/youtube/${item.id.videoId}`} key={index}>
               <li>
                 <Image src={item.snippet.thumbnails.high.url} alt={item.snippet.title} width={300} height={200} />
+                <h1>{item.snippet.title}</h1>
+                <h4>{item.snippet.channelTitle}</h4>
+                <h4>{item.snippet.publishedAt}</h4>
+                <p>{item.snippet.description}</p>
               </li>
             </Link>
           );
