@@ -18,6 +18,7 @@ export default function Youtube() {
   // 유튜브 페이지 접속 여부 체크 -> 검색 컴포넌트에서 검색 요청 토글 역할
   useEffect(() => {
     dispatch(setPageState("youtube"));
+    console.log(youtubeList);
     return () => {
       dispatch(setPageState("default"));
     };

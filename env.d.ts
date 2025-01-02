@@ -11,6 +11,6 @@ declare namespace NodeJS {
     TOPICS_API_URL: string;
     NEWS_SEARCH_API: string;
     LATEST_NEWS_API: string;
-    YOUTUBE_SEARCH_API: string;
+    YOUTUBE_API_KEY: string;
   }
 }

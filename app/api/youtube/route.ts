@@ -7,15 +7,18 @@ export async function POST(req: Request) {
 
   try {
     const params = new URLSearchParams({
-      part: "snippet",
       q: inputValue,
-      type: "video",
-      order: "relevance",
+      part: "snippet",
+      chart: "mostPopular",
+      maxResults: "10",
+      regionCode: "kr",
+      key: process.env.YOUTUBE_API_KEY as string,
     });
 
-    const response = await axios.get(`${process.env.YOUTUBE_SEARCH_API}${params.toString()}`);
+    const response = await axios.get(`https://www.googleapis.com/youtube/v3/videos?${params.toString()}`);
     const result = response.data;
-    return NextResponse.json(result, { status: 200 });
+    console.log(result);
+    return NextResponse.json({ youtubeData: result });
   } catch (error: unknown) {
     console.error("Youtube fetch failed.", error);
   }
