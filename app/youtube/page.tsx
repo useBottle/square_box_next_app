@@ -11,7 +11,6 @@ import Link from "next/link";
 import { css, CSSObject } from "@emotion/react";
 import Image from "next/image";
 import { youtube } from "@/styles/Youtube.styles";
-import { trusted } from "mongoose";
 import YoutubeSkeleton from "../component/YoutubeSkeleton";
 
 export default function Youtube() {
@@ -21,8 +20,8 @@ export default function Youtube() {
 
   // 유튜브 페이지 접속 여부 체크 -> 검색 컴포넌트에서 검색 요청 토글 역할
   useEffect(() => {
+    // console.log(youtubeList);
     dispatch(setPageState("youtube"));
-    console.log(youtubeList);
     return () => {
       dispatch(setPageState("default"));
     };
