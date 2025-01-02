@@ -34,7 +34,7 @@ export default function YoutubeDynamic(): JSX.Element {
     },
   };
 
-  if (!youtubeList || youtubeList.items.length === 0) {
+  if (youtubeList === undefined || youtubeList.items.length === 0) {
     return (
       <div css={css(infoText)}>
         <p>데이터가 만료되었습니다</p>
