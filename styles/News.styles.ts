@@ -111,7 +111,7 @@ export const dynamicNewsStyles: CSSObject = {
       color: "var(--basic-dark)",
     },
 
-    "& .bookmark": {
+    "& button": {
       width: "100%",
       padding: "0.8rem 0",
       fontSize: "2rem",

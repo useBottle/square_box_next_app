@@ -11,8 +11,12 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import { GoBookmarkFill } from "react-icons/go";
+import axios from "axios";
+import { FormEvent } from "react";
+import { useSession } from "next-auth/react";
 
 export default function NewsDynamic(): JSX.Element {
+  const { data: session } = useSession();
   const newsList = useSelector((state: RootState) => state.news.newsList);
   const article = useSelector((state: RootState) => state.news.article);
   const articleStatus = useSelector((state: RootState) => state.news.articleStatus);
@@ -40,6 +44,19 @@ export default function NewsDynamic(): JSX.Element {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      if (!session) return;
+      await axios.post("/api/bookmark", {
+        bookmarkNews: article[newsId],
+        username: session?.user?.name,
+      });
+    } catch (error) {
+      console.error("news bookmark failed", error);
+    }
+  };
+
   if (typeof newsId !== "number" || newsId < 0 || newsId >= newsList.length) {
     return (
       <div css={css(infoText)}>
@@ -63,10 +80,20 @@ export default function NewsDynamic(): JSX.Element {
       <div className="textGroup">
         <h1>{newsList[newsId].title}</h1>
         <div className="date">{newsList[newsId].date}</div>
-        <button className="bookmark">
-          <GoBookmarkFill />
-          <span>북마크 하기</span>
-        </button>
+        {session ? (
+          <form onSubmit={onSubmit}>
+            <button type="submit">
+              <GoBookmarkFill />
+              <span>북마크 하기</span>
+            </button>
+          </form>
+        ) : (
+          <Link href="/auth/signin">
+            <button>
+              <span>북마크하려면 로그인 해야합니다</span>
+            </button>
+          </Link>
+        )}
         {article[newsId].text.map((item, index) => {
           return <p key={index}>{item}</p>;
         })}
