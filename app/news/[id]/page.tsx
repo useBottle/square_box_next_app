@@ -36,6 +36,10 @@ export default function NewsDynamic(): JSX.Element {
     },
   };
 
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   if (typeof newsId !== "number" || newsId < 0 || newsId >= newsList.length) {
     return (
       <div css={css(infoText)}>
@@ -67,6 +71,9 @@ export default function NewsDynamic(): JSX.Element {
           return <p key={index}>{item}</p>;
         })}
       </div>
+      <button className="scrollTop" onClick={scrollTop}>
+        맨 위로
+      </button>
     </article>
   );
 }

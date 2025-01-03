@@ -138,6 +138,20 @@ export const dynamicNewsStyles: CSSObject = {
       whiteSpace: "pre-line",
     },
   },
+
+  "& .scrollTop": {
+    padding: "1rem 1rem",
+    marginBottom: "15rem",
+    border: "1px solid var(--basic-font)",
+    borderRadius: "5px",
+    boxSizing: "border-box",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    color: "var(--basic-font)",
+    background: "var(--reverse-font)",
+    cursor: "pointer",
+  },
 };
 
 // Skeleton UI 애니메이션
