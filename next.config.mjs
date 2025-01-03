@@ -46,6 +46,26 @@ const nextConfig = {
         hostname: "yt3.ggpht.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "lh3.googleusercontent.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "k.kakaocdn.net",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "k.kakaocdn.net",
+        pathname: "/**",
+      },
     ],
   },
 };
