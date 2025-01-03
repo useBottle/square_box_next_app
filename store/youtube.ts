@@ -50,7 +50,6 @@ export const youtube = createSlice({
       .addCase(fetchYoutube.fulfilled, (state, action: PayloadAction<youtubeApiResult>) => {
         state.youtubeStatus = "succeeded";
         if (action.payload) {
-          console.log(action.payload);
           state.youtubeList = action.payload;
         }
       })

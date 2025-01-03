@@ -19,6 +19,7 @@ export const youtube: CSSObject = {
 
       "& img": {
         width: "100%",
+        height: "auto",
         borderTopLeftRadius: "5px",
         borderTopRightRadius: "5px",
       },
