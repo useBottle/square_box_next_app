@@ -10,6 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
+import { GoBookmarkFill } from "react-icons/go";
 
 export default function NewsDynamic(): JSX.Element {
   const newsList = useSelector((state: RootState) => state.news.newsList);
@@ -58,6 +59,9 @@ export default function NewsDynamic(): JSX.Element {
       <div className="textGroup">
         <h1>{newsList[newsId].title}</h1>
         <div className="date">{newsList[newsId].date}</div>
+        <button className="bookmark">
+          <GoBookmarkFill />
+        </button>
         {article[newsId].text.map((item, index) => {
           return <p key={index}>{item}</p>;
         })}

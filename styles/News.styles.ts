@@ -111,6 +111,22 @@ export const dynamicNewsStyles: CSSObject = {
       color: "var(--basic-dark)",
     },
 
+    "& .bookmark": {
+      width: "100%",
+      padding: "0.8rem 0",
+      fontSize: "2rem",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      background: "var(--reverse-font)",
+      border: "var(--basic-font) solid 1px",
+      color: "var(--basic-font)",
+      borderRadius: "5px",
+      boxSizing: "border-box",
+      cursor: "pointer",
+      marginBottom: "4rem",
+    },
+
     "& p": {
       margin: "2rem 0",
       fontSize: "1.4rem",
