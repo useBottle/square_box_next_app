@@ -1,0 +1,15 @@
+.bookmark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h4 {
+    width: 90%;
+    font-size: 1.2rem;
+    color: var(--basic-dark);
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+    border-bottom: 0.5px solid var(--form-color);
+    padding: 1rem 0;
+  }
+}
