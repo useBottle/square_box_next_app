@@ -125,6 +125,11 @@ export const dynamicNewsStyles: CSSObject = {
       boxSizing: "border-box",
       cursor: "pointer",
       marginBottom: "4rem",
+
+      "& span": {
+        fontSize: "1.4rem",
+        marginLeft: "0.5rem",
+      },
     },
 
     "& p": {

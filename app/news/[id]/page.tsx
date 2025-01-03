@@ -61,6 +61,7 @@ export default function NewsDynamic(): JSX.Element {
         <div className="date">{newsList[newsId].date}</div>
         <button className="bookmark">
           <GoBookmarkFill />
+          <span>북마크 하기</span>
         </button>
         {article[newsId].text.map((item, index) => {
           return <p key={index}>{item}</p>;
