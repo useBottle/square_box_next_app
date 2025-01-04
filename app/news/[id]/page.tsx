@@ -12,7 +12,7 @@ import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import { GoBookmarkFill } from "react-icons/go";
 import { FaCheck } from "react-icons/fa6";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useLayoutEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { deleteNewsBookmark, findNewsBookmark, setNewsBookmark } from "@/app/actions/bookmarkActions";
 
@@ -46,6 +46,19 @@ export default function NewsDynamic(): JSX.Element {
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  // 유저 정보 및 뉴스 데이터 DB 에서 확인 후 북마크 버튼 스타일 변경 트리거 상태 변경.
+  useEffect(() => {
+    if (!session || !session.user || session.user.name === undefined) return;
+
+    async function findMarkedNews() {
+      const findBookmark = await findNewsBookmark(newsList[newsId].title, session?.user.name as string);
+      if (findBookmark && findBookmark.exists === true) {
+        setBookmarkSuccess(true);
+      }
+    }
+    findMarkedNews();
+  }, []);
 
   // 북마크 onSubmit 요청
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
