@@ -12,7 +12,7 @@ import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import { GoBookmarkFill } from "react-icons/go";
 import { FaCheck } from "react-icons/fa6";
-import { FormEvent, useEffect, useLayoutEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { deleteNewsBookmark, findNewsBookmark, setNewsBookmark } from "@/app/actions/bookmarkActions";
 
