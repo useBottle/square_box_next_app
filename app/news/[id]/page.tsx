@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 import { GoBookmarkFill } from "react-icons/go";
 import { FormEvent, useState } from "react";
 import { useSession } from "next-auth/react";
-import { setNewsBookmark } from "@/app/actions/bookmarkActions";
+import { deleteNewsBookmark, findNewsBookmark, setNewsBookmark } from "@/app/actions/bookmarkActions";
 
 export default function NewsDynamic(): JSX.Element {
   const { data: session } = useSession();
@@ -59,17 +59,29 @@ export default function NewsDynamic(): JSX.Element {
       username: session?.user.name,
     };
 
-    try {
-      if (!session || !session.user || session.user.name === undefined) return;
-      const response = await setNewsBookmark(currentNews, session.user.name);
-      // console.log(response);
+    if (!session || !session.user || session.user.name === undefined) return;
 
-      if (response && response.exists === true) {
-        alert("이미 북마크 되었습니다");
+    try {
+      const findBookmark = await findNewsBookmark(currentNews.title, session.user.name);
+
+      // 북마크된 데이터 있을 경우 confirm 창 띄우기. 북마크 삭제할지 확인.
+      if (findBookmark && findBookmark.exists === true) {
+        if (confirm("북마크를 제거하겠습니까?")) {
+          const response = await deleteNewsBookmark(currentNews.title, currentNews.username as string);
+          if (response && response.delete === true) {
+            setBookmarkSuccess(false);
+          }
+        } else {
+          return;
+        }
       }
 
-      if (response && response.success === true) {
-        setBookmarkSuccess(true);
+      // 북마크된 데이터 없을 경우 북마크 시도
+      if (findBookmark && findBookmark.exists === false) {
+        const response = await setNewsBookmark(currentNews, session.user.name);
+        response && response.success === true && setBookmarkSuccess(true);
+        // console.log(response);
+        return;
       }
     } catch (error) {
       console.error("news bookmark failed", error);

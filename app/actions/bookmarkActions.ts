@@ -4,22 +4,36 @@ import MarkedNews from "@/models/markedNews";
 import { currentArticle } from "@/types/types";
 import dbConnect from "@/util/database";
 
-export async function setNewsBookmark(article: currentArticle, username: string) {
+export async function findNewsBookmark(title: string, username: string) {
   try {
     await dbConnect();
 
-    // 데이터베이스에서 동일한 데이터 있는지 확인 후 결과 반환
-    const existingBookmark = await MarkedNews.findOne({
-      title: article.title,
+    const findBookmark = await MarkedNews.findOne({
+      title: title,
       username: username,
     });
 
-    if (existingBookmark) {
+    if (findBookmark) {
       return {
         exists: true,
         message: "bookmark already exists",
       };
     }
+
+    if (!findBookmark) {
+      return {
+        exists: false,
+        message: "bookmark not exists",
+      };
+    }
+  } catch (error) {
+    console.error("bookmark news failed", error);
+  }
+}
+
+export async function setNewsBookmark(article: currentArticle, username: string) {
+  try {
+    await dbConnect();
 
     const markedNews = new MarkedNews({
       title: article.title,
