@@ -11,7 +11,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import { GoBookmarkFill } from "react-icons/go";
-import { FormEvent, useEffect } from "react";
+import { FormEvent } from "react";
 import { useSession } from "next-auth/react";
 import { setNewsBookmark } from "@/app/actions/bookmarkActions";
 
@@ -39,10 +39,6 @@ export default function NewsDynamic(): JSX.Element {
       marginTop: "8rem",
     },
   };
-
-  useEffect(() => {
-    console.log(article);
-  }, [article]);
 
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
