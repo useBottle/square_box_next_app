@@ -11,7 +11,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import { GoBookmarkFill } from "react-icons/go";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { setNewsBookmark } from "@/app/actions/bookmarkActions";
 
