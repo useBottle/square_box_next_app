@@ -140,7 +140,7 @@ export const dynamicNewsStyles: CSSObject = {
   },
 
   "& .scrollTop": {
-    padding: "1rem 1rem",
+    padding: "0.8rem 1rem",
     marginBottom: "15rem",
     border: "1px solid var(--basic-font)",
     borderRadius: "5px",
