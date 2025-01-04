@@ -11,7 +11,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import { GoBookmarkFill } from "react-icons/go";
-import { FormEvent, useEffect } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { setNewsBookmark } from "@/app/actions/bookmarkActions";
 
@@ -64,6 +64,10 @@ export default function NewsDynamic(): JSX.Element {
       if (!session || !session.user || session.user.name === undefined) return;
       const response = await setNewsBookmark(currentNews, session.user.name);
       console.log(response);
+
+      if (response && response.exists === true) {
+        alert("이미 북마크 되었습니다");
+      }
     } catch (error) {
       console.error("news bookmark failed", error);
     }
