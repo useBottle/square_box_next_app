@@ -4,6 +4,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
+    unoptimized: true,
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
@@ -14,6 +15,16 @@ const nextConfig = {
       {
         protocol: "http",
         hostname: "*.yna.co.kr",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "img1.yna.co.kr",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "img1.yna.co.kr",
         pathname: "/**",
       },
       {

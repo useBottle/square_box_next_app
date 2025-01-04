@@ -19,7 +19,8 @@ export async function getLatestArticle(id: number) {
     const second = cheerio.load(secondResponse.data);
     const title = second(".title-article01 h1.tit").text().trim();
     const date = second(".title-article01 .update-time").attr("data-published-time");
-    const img = second(".image-zone .img-con .img img").attr("src");
+    const imgSource = second(".image-zone .img-con .img img").attr("src");
+    const img = imgSource?.startsWith("//") ? `https:${imgSource}` : imgSource;
     const alt = second(".image-zone .desc-con .tit-cap").text().trim();
     const text = second(".story-news.article p:not(.txt-copyright.adrs)")
       .map((_, item) => second(item).text().trim())
