@@ -11,9 +11,9 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import { GoBookmarkFill } from "react-icons/go";
-import axios from "axios";
-import { FormEvent } from "react";
+import { FormEvent, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import { setNewsBookmark } from "@/app/actions/bookmarkActions";
 
 export default function NewsDynamic(): JSX.Element {
   const { data: session } = useSession();
@@ -40,18 +40,30 @@ export default function NewsDynamic(): JSX.Element {
     },
   };
 
+  useEffect(() => {
+    console.log(article);
+  }, [article]);
+
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const currentNews = {
+      title: newsList[newsId].title,
+      date: newsList[newsId].date,
+      image: article[newsId].image,
+      alt: article[newsId].alt,
+      text: article[newsId].text,
+      username: session?.user.name,
+    };
+
     try {
-      if (!session) return;
-      await axios.post("/api/bookmark", {
-        bookmarkNews: article[newsId],
-        username: session?.user?.name,
-      });
+      if (!session || !session.user || session.user.name === undefined) return;
+      const response = await setNewsBookmark(currentNews, session.user.name);
+      console.log(response);
     } catch (error) {
       console.error("news bookmark failed", error);
     }

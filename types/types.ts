@@ -17,7 +17,7 @@ export interface TopicsType {
   summary: string;
 }
 
-// 최신 뉴스 기사
+// 최신 뉴스 단일 기사
 export interface LatestNewsArticle {
   title: string;
   date: string;
@@ -35,8 +35,17 @@ export interface newsList {
   summary: string;
 }
 
-// 뉴스 단일 기사
+// 각 URL 로 요청해 받아온 뉴스 단일 기사
 export interface articleData {
+  image: string;
+  alt: string;
+  text: string[];
+}
+
+// 뉴스 단일 기사 완전한 타입
+export interface currentArticle {
+  title: string;
+  date: string;
   image: string;
   alt: string;
   text: string[];
