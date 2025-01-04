@@ -29,7 +29,7 @@ export const youtube: CSSObject = {
 
         "& .title": {
           fontSize: "2rem",
-          color: "var(--basic-font)",
+          color: "var(--main-color)",
           margin: "1rem 0",
         },
 
@@ -76,7 +76,7 @@ export const youtubeDynamic: CSSObject = {
 
     "& .title": {
       fontSize: "2rem",
-      color: "var(--basic-font)",
+      color: "var(--main-color)",
       margin: "1rem 0",
     },
 
