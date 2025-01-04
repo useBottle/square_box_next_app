@@ -8,7 +8,7 @@ export async function setNewsBookmark(article: currentArticle, username: string)
   try {
     await dbConnect();
 
-    // 데이터베이스에서 동일한 데이터 있는지 확인
+    // 데이터베이스에서 동일한 데이터 있는지 확인 후 결과 반환
     const existingBookmark = await MarkedNews.findOne({
       title: article.title,
       username: username,
@@ -30,6 +30,7 @@ export async function setNewsBookmark(article: currentArticle, username: string)
       username: username,
     });
     await markedNews.save();
+
     return {
       message: "bookmark news success",
     };
