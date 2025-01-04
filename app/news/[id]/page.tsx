@@ -116,7 +116,18 @@ export default function NewsDynamic(): JSX.Element {
         <div className="date">{newsList[newsId].date}</div>
         {session ? (
           <form onSubmit={onSubmit}>
-            <button type="submit" className={bookmarkSuccess ? "btnChange" : ""}>
+            <button
+              type="submit"
+              style={
+                bookmarkSuccess
+                  ? {
+                      background: "var(--basic-font)",
+                      border: "var(--basic-font) solid 1px",
+                      color: "var(--reverse-font)",
+                    }
+                  : {}
+              }
+            >
               {bookmarkSuccess ? <FaCheck /> : <GoBookmarkFill />}
             </button>
           </form>
