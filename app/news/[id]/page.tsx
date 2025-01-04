@@ -5,7 +5,7 @@
 import ArticleSkeleton from "@/app/component/ArticleSkeleton";
 import { RootState } from "@/store/store";
 import { dynamicNewsStyles } from "@/styles/News.styles";
-import { css, CSSObject } from "@emotion/react";
+import { css } from "@emotion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -15,6 +15,7 @@ import { FaCheck } from "react-icons/fa6";
 import { FormEvent, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { deleteNewsBookmark, findNewsBookmark, setNewsBookmark } from "@/app/actions/bookmarkActions";
+import ExpiredData from "@/app/component/ExpiredData";
 
 export default function NewsDynamic(): JSX.Element {
   const { data: session } = useSession();
@@ -25,24 +26,6 @@ export default function NewsDynamic(): JSX.Element {
   const newsId = Number(params.id);
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  // 데이터 만료 페이지 스타일 객체
-  const infoText: CSSObject = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-    height: "80vh",
-    fontSize: "1.6rem",
-
-    "& a": {
-      color: "var(--reverse-font)",
-      padding: "1rem 2rem",
-      background: "var(--basic-font)",
-      borderRadius: "3px",
-      marginTop: "8rem",
-    },
-  };
 
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -105,15 +88,15 @@ export default function NewsDynamic(): JSX.Element {
     }
   };
 
-  // 데이터 만료 페이지
-  if (typeof newsId !== "number" || newsId < 0 || newsId >= newsList.length) {
-    return (
-      <div css={css(infoText)}>
-        <p>데이터가 만료되었습니다</p>
-        <p>다시 시도해주세요</p>
-        <Link href="/">HOME</Link>
-      </div>
-    );
+  // newsId 가 안맞거나 article 에 문제가 생긴 경우 ExpiredData 렌더링
+  if (
+    typeof newsId !== "number" ||
+    newsId < 0 ||
+    newsId >= newsList.length ||
+    articleStatus === "failed" ||
+    article === undefined
+  ) {
+    return <ExpiredData />;
   }
 
   if (articleStatus === "loading") {

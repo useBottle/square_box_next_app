@@ -12,6 +12,7 @@ import { css, CSSObject } from "@emotion/react";
 import Image from "next/image";
 import { youtube } from "@/styles/Youtube.styles";
 import YoutubeSkeleton from "../component/YoutubeSkeleton";
+import ExpiredData from "../component/ExpiredData";
 
 export default function Youtube() {
   const dispatch = useDispatch<AppDispatch>();
@@ -46,6 +47,11 @@ export default function Youtube() {
       fontSize: "1.6rem",
     },
   };
+
+  // youtubeList 가 비었을 경우 ExpiredData 렌더링
+  if (youtubeList === undefined || youtubeList.items.length === 0) {
+    return <ExpiredData />;
+  }
 
   return (
     <div>

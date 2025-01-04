@@ -2,10 +2,10 @@
 
 "use client";
 
+import ExpiredData from "@/app/component/ExpiredData";
 import { RootState } from "@/store/store";
 import { youtubeDynamic } from "@/styles/Youtube.styles";
-import { css, CSSObject } from "@emotion/react";
-import Link from "next/link";
+import { css } from "@emotion/react";
 import { useSearchParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import YouTube, { YouTubeEvent } from "react-youtube";
@@ -17,31 +17,9 @@ export default function YoutubeDynamic(): JSX.Element {
   const videoId = searchParams.get("id");
   const index = Number(searchParams.get("index"));
 
-  const infoText: CSSObject = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-    height: "80vh",
-    fontSize: "1.6rem",
-
-    "& a": {
-      color: "var(--reverse-font)",
-      padding: "1rem 2rem",
-      background: "var(--basic-font)",
-      borderRadius: "3px",
-      marginTop: "8rem",
-    },
-  };
-
+  // youtubeList 가 비었을 경우 ExpiredData 렌더링
   if (youtubeList === undefined || youtubeList.items.length === 0) {
-    return (
-      <div css={css(infoText)}>
-        <p>데이터가 만료되었습니다</p>
-        <p>다시 시도해주세요</p>
-        <Link href="/">HOME</Link>
-      </div>
-    );
+    return <ExpiredData />;
   }
 
   return (

@@ -2,6 +2,9 @@ import { getNewsArticle } from "@/app/actions/newsActions";
 import styles from "../../../styles/LastestArticle.module.scss";
 import Link from "next/link";
 import { getLatestArticle } from "@/app/actions/latestNewsActions";
+import { GoBookmarkFill } from "react-icons/go";
+import { FaCheck } from "react-icons/fa6";
+import ExpiredData from "@/app/component/ExpiredData";
 
 interface Props {
   params: {
@@ -37,11 +40,7 @@ export default async function LatestNewsDetail({ params }: Props) {
         </article>
       );
     } else if (article === undefined && result === undefined) {
-      <div className={styles.infoText}>
-        <p>데이터 로드가 완료되지 않았습니다</p>
-        <p>홈에서 새로고침 후 다시 시도해주세요</p>
-        <Link href="/">HOME</Link>
-      </div>;
+      return <ExpiredData />;
     }
   }
 }
