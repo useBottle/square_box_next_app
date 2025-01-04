@@ -28,7 +28,7 @@ export async function POST(req: Request) {
           const article = {
             image: img || "",
             alt: alt || "",
-            date: date[0],
+            date: date[1],
             text: text,
           };
           // console.log(article);

@@ -128,7 +128,7 @@ export default function NewsDynamic(): JSX.Element {
       </figure>
       <div className="textGroup">
         <h1>{newsList[newsId].title}</h1>
-        <div className="date">{newsList[newsId].date}</div>
+        <div className="date">{article[newsId].date}</div>
         {session ? (
           <form onSubmit={onSubmit}>
             {!isLoading && (
