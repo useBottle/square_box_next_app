@@ -36,9 +36,13 @@ export default function NewsDynamic(): JSX.Element {
     if (!session || !session.user || session.user.name === undefined) return;
 
     async function findMarkedNews() {
-      const findBookmark = await findNewsBookmark(newsList[newsId].title, session?.user.name as string);
-      if (findBookmark && findBookmark.exists === true) {
-        setBookmarkSuccess(true);
+      try {
+        const findBookmark = await findNewsBookmark(newsList[newsId].title, session?.user.name as string);
+        if (findBookmark && findBookmark.exists === true) {
+          setBookmarkSuccess(true);
+        }
+      } catch (error) {
+        console.error("news bookmark failed", error);
       }
       setIsLoading(false);
     }
