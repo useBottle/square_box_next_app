@@ -38,37 +38,48 @@ export default function LatestNewsDetail() {
   };
 
   useEffect(() => {
-    // 서버 액션에 캐시된 최신 뉴스 단일 기사 요청 후 없으면 별도로 직접 개별 요청
     const getArticle = async () => {
-      setIsLoadingArticle(true);
       let result: currentArticle | undefined;
-      const article = await getNewsArticle(newsId);
-      console.log("cached article: ", article);
-      result = article;
 
-      if (result === undefined) {
-        result = (await getLatestArticle(newsId)) || undefined;
-        console.log("single article request result: ", result);
+      try {
+        setIsLoadingArticle(true);
+
+        // 서버 액션에 캐시된 최신 뉴스 단일 기사 요청 후 없으면 별도로 직접 개별 요청
+        const article = await getNewsArticle(newsId);
+        console.log("cached article: ", article);
+        result = article;
+
+        if (result === undefined) {
+          result = (await getLatestArticle(newsId)) || undefined;
+        }
+        setCurrentArticle(result as currentArticle);
+        setIsLoadingArticle(false);
+      } catch (error) {
+        console.error("news article failed", error);
       }
-      setCurrentArticle(result as currentArticle);
-      console.log("image url: ", result?.image);
-      setIsLoadingArticle(false);
     };
     getArticle();
-
-    if (!session || !session.user || session.user.name === undefined) return;
-
-    // 유저 정보 및 뉴스 데이터 DB 에서 확인 후 북마크 버튼 스타일 변경 트리거 상태 변경.
-    async function findMarkedNews() {
-      const findBookmark = await findNewsBookmark(currentArticle.title, session?.user.name as string);
-      if (findBookmark && findBookmark.exists === true) {
-        setBookmarkSuccess(true);
-      }
-      setIsLoadingMarked(false);
-    }
-    findMarkedNews();
-    console.log(isLoadingMarked);
   }, []);
+
+  // currentArticle 이 업데이트 되면 해당 값이 북마크 되어있는지 확인
+  useEffect(() => {
+    // 유저 정보 및 뉴스 데이터 DB 에서 확인 후 북마크 버튼 스타일 변경 트리거 상태 변경.
+    const findMarkedNews = async () => {
+      if (session && session.user && session.user.name !== undefined) {
+        console.log("session.user.name: ", session.user.name);
+
+        const findBookmark = await findNewsBookmark(currentArticle.title, session.user.name as string);
+
+        if (findBookmark && findBookmark.exists === true) {
+          setBookmarkSuccess(true);
+        }
+        setIsLoadingMarked(false);
+
+        // 유저 세션이 없으면 함수 종료.
+      } else if (!session || !session.user || session.user.name === undefined) return;
+    };
+    findMarkedNews();
+  }, [currentArticle]);
 
   // 북마크 onSubmit 요청
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
