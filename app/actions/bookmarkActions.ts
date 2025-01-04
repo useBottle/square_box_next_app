@@ -17,7 +17,6 @@ export async function findNewsBookmark(title: string, username: string) {
       return {
         exists: true,
         message: "bookmark already exists",
-        data: findBookmark,
       };
     }
 
