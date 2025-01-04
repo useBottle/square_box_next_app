@@ -24,6 +24,7 @@ export default function NewsDynamic(): JSX.Element {
   const params = useParams();
   const newsId = Number(params.id);
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // 데이터 만료 페이지 스타일 객체
   const infoText: CSSObject = {
@@ -56,6 +57,7 @@ export default function NewsDynamic(): JSX.Element {
       if (findBookmark && findBookmark.exists === true) {
         setBookmarkSuccess(true);
       }
+      setIsLoading(false);
     }
     findMarkedNews();
   }, []);
@@ -129,20 +131,22 @@ export default function NewsDynamic(): JSX.Element {
         <div className="date">{newsList[newsId].date}</div>
         {session ? (
           <form onSubmit={onSubmit}>
-            <button
-              type="submit"
-              style={
-                bookmarkSuccess
-                  ? {
-                      background: "var(--basic-font)",
-                      border: "var(--basic-font) solid 1px",
-                      color: "var(--reverse-font)",
-                    }
-                  : {}
-              }
-            >
-              {bookmarkSuccess ? <FaCheck /> : <GoBookmarkFill />}
-            </button>
+            {!isLoading && (
+              <button
+                type="submit"
+                style={
+                  bookmarkSuccess
+                    ? {
+                        background: "var(--basic-font)",
+                        border: "var(--basic-font) solid 1px",
+                        color: "var(--reverse-font)",
+                      }
+                    : {}
+                }
+              >
+                {bookmarkSuccess ? <FaCheck /> : <GoBookmarkFill />}
+              </button>
+            )}
           </form>
         ) : (
           <Link href="/auth/signin">
