@@ -11,7 +11,9 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
   async function fetchData() {
     const url = process.env.LATEST_NEWS_API || "";
+
     try {
+      // 최신 뉴스 리스트 요청
       const response = await axios.get(url);
       const $ = cheerio.load(response.data);
       const list = $("ul.list li");
@@ -37,6 +39,7 @@ export default async function Home() {
       const newsTop10List = textExistNewsData.slice(0, 10);
       const urls = newsTop10List.map((item) => item.href);
 
+      // 최신 뉴스 리스트 요소들의 url 순회하여 각 뉴스 개별 기사 데이터 요청
       const promises = urls.map(async (url) => {
         try {
           const response = await axios.get(url);
