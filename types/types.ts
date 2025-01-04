@@ -1,3 +1,4 @@
+// 인증된 유저
 export interface AuthedUser {
   name: string;
   email: string;
@@ -8,6 +9,7 @@ export interface AuthedUser {
   createdAt: Date;
 }
 
+// 실시간 검색어
 export interface TopicsType {
   rank: number;
   keyword: string;
@@ -15,6 +17,7 @@ export interface TopicsType {
   summary: string;
 }
 
+// 최신 뉴스 기사
 export interface LatestNewsArticle {
   title: string;
   date: string;
@@ -23,6 +26,7 @@ export interface LatestNewsArticle {
   text: string[];
 }
 
+// 뉴스 리스트
 export interface newsList {
   title: string;
   prevImg: string;
@@ -31,17 +35,22 @@ export interface newsList {
   summary: string;
 }
 
+// 뉴스 단일 기사
 export interface articleData {
   image: string;
   alt: string;
   text: string[];
 }
 
+// * 유튜브 관련 인터페이스
+
+// 유튜브 검색 결과 PageInfo
 export interface PageInfo {
   totalResults: number;
   resultsPerPage: number;
 }
 
+// 유튜브 단일 컨텐츠 Snippet
 export interface Snippet {
   publishedAt: string;
   channelId: string;
@@ -85,6 +94,7 @@ export interface Snippet {
   defaultAudioLanguage: string;
 }
 
+// 유튜브 단일 컨텐츠
 export interface YouTubeVideo {
   kind: string;
   etag: string;
@@ -95,10 +105,24 @@ export interface YouTubeVideo {
   snippet: Snippet;
 }
 
+// 유튜브 검색 결과 전체
 export interface youtubeApiResult {
   kind: string;
   etag: string;
   items: YouTubeVideo[];
   nextPageToken: string;
   pageInfo: PageInfo;
+}
+
+// * 북마크 관련 인터페이스
+
+// 북마크 뉴스 기사
+export interface MarkedNewsArticle {
+  title: string;
+  date: string;
+  image: string;
+  alt: string;
+  text: string[];
+  username: string;
+  createdAt: Date;
 }
