@@ -55,7 +55,7 @@ export default function LatestNewsDetail() {
         setCurrentArticle(result as currentArticle);
         setIsLoadingArticle(false);
       } catch (error) {
-        console.error("news article failed", error);
+        console.error("latest news article fetch failed", error);
       }
     };
     getArticle();
@@ -65,18 +65,22 @@ export default function LatestNewsDetail() {
   useEffect(() => {
     // 유저 정보 및 뉴스 데이터 DB 에서 확인 후 북마크 버튼 스타일 변경 트리거 상태 변경.
     const findMarkedNews = async () => {
-      if (session && session.user && session.user.name !== undefined) {
-        console.log("session.user.name: ", session.user.name);
+      try {
+        if (session && session.user && session.user.name !== undefined) {
+          console.log("session.user.name: ", session.user.name);
 
-        const findBookmark = await findNewsBookmark(currentArticle.title, session.user.name as string);
+          const findBookmark = await findNewsBookmark(currentArticle.title, session.user.name as string);
 
-        if (findBookmark && findBookmark.exists === true) {
-          setBookmarkSuccess(true);
-        }
-        setIsLoadingMarked(false);
+          if (findBookmark && findBookmark.exists === true) {
+            setBookmarkSuccess(true);
+          }
+          setIsLoadingMarked(false);
 
-        // 유저 세션이 없으면 함수 종료.
-      } else if (!session || !session.user || session.user.name === undefined) return;
+          // 유저 세션이 없으면 함수 종료.
+        } else if (!session || !session.user || session.user.name === undefined) return;
+      } catch (error) {
+        console.error("news bookmark failed", error);
+      }
     };
     findMarkedNews();
   }, [currentArticle]);
