@@ -11,6 +11,11 @@ interface Props {
 export default async function LatestNewsDetail({ params }: Props) {
   const article = await getNewsArticle(parseInt(params.id));
 
+  if (article === undefined) {
+    await getNewsArticle(parseInt(params.id));
+    console.log(article);
+  }
+
   if (!article) {
     return (
       <div className={styles.infoText}>
