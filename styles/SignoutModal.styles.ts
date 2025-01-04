@@ -39,6 +39,7 @@ export const modal: CSSObject = {
         width: "50%",
         height: "5rem",
         border: "none",
+        color: "var(--basic-font)",
       },
 
       "& .signout": {
