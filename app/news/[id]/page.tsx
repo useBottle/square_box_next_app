@@ -11,6 +11,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import { GoBookmarkFill } from "react-icons/go";
+import { FaCheck } from "react-icons/fa6";
 import { FormEvent, useState } from "react";
 import { useSession } from "next-auth/react";
 import { deleteNewsBookmark, findNewsBookmark, setNewsBookmark } from "@/app/actions/bookmarkActions";
@@ -116,7 +117,7 @@ export default function NewsDynamic(): JSX.Element {
         {session ? (
           <form onSubmit={onSubmit}>
             <button type="submit" className={bookmarkSuccess ? "btnChange" : ""}>
-              <GoBookmarkFill className="bookmarkIcon" />
+              {bookmarkSuccess ? <FaCheck /> : <GoBookmarkFill />}
             </button>
           </form>
         ) : (

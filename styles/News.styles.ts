@@ -71,15 +71,6 @@ export const newsListStyles: CSSObject = {
   },
 };
 
-const moveDown = keyframes({
-  from: {
-    transform: "translateY(0)",
-  },
-  to: {
-    transform: "translateY(100%)",
-  },
-});
-
 export const dynamicNewsStyles: CSSObject = {
   display: "flex",
   flexDirection: "column",
@@ -142,13 +133,19 @@ export const dynamicNewsStyles: CSSObject = {
     },
 
     "& .btnChange": {
-      border: "none",
+      width: "100%",
+      padding: "0.8rem 0",
+      fontSize: "2rem",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
       background: "var(--basic-font)",
+      border: "var(--basic-font) solid 1px",
       color: "var(--reverse-font)",
-
-      "& .bookmarkIcon": {
-        animation: `${moveDown} 0.5s ease-in-out`,
-      },
+      borderRadius: "5px",
+      boxSizing: "border-box",
+      cursor: "pointer",
+      marginBottom: "4rem",
     },
 
     "& p": {
