@@ -11,7 +11,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import { GoBookmarkFill } from "react-icons/go";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { useSession } from "next-auth/react";
 import { setNewsBookmark } from "@/app/actions/bookmarkActions";
 
@@ -22,7 +22,9 @@ export default function NewsDynamic(): JSX.Element {
   const articleStatus = useSelector((state: RootState) => state.news.articleStatus);
   const params = useParams();
   const newsId = Number(params.id);
+  const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
 
+  // 데이터 만료 페이지 스타일 객체
   const infoText: CSSObject = {
     display: "flex",
     justifyContent: "center",
@@ -44,6 +46,7 @@ export default function NewsDynamic(): JSX.Element {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // 북마크 onSubmit 요청
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -59,16 +62,22 @@ export default function NewsDynamic(): JSX.Element {
     try {
       if (!session || !session.user || session.user.name === undefined) return;
       const response = await setNewsBookmark(currentNews, session.user.name);
-      console.log(response);
+      // console.log(response);
 
       if (response && response.exists === true) {
         alert("이미 북마크 되었습니다");
       }
+
+      if (response && response.success === true) {
+        setBookmarkSuccess(true);
+      }
     } catch (error) {
       console.error("news bookmark failed", error);
+      alert("북마크에 실패했습니다. 재시도해주세요.");
     }
   };
 
+  // 데이터 만료 페이지
   if (typeof newsId !== "number" || newsId < 0 || newsId >= newsList.length) {
     return (
       <div css={css(infoText)}>
@@ -94,9 +103,8 @@ export default function NewsDynamic(): JSX.Element {
         <div className="date">{newsList[newsId].date}</div>
         {session ? (
           <form onSubmit={onSubmit}>
-            <button type="submit">
-              <GoBookmarkFill />
-              <span>북마크 하기</span>
+            <button type="submit" className={bookmarkSuccess ? "btnChange" : ""}>
+              <GoBookmarkFill className="bookmarkIcon" />
             </button>
           </form>
         ) : (

@@ -32,6 +32,7 @@ export async function setNewsBookmark(article: currentArticle, username: string)
     await markedNews.save();
 
     return {
+      success: true,
       message: "bookmark news success",
     };
   } catch (error) {
