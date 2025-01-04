@@ -39,7 +39,7 @@ export interface newsList {
 export interface articleData {
   image: string;
   alt: string;
-  date: string;
+  date: string[];
   text: string[];
 }
 
