@@ -39,3 +39,30 @@ export async function setNewsBookmark(article: currentArticle, username: string)
     console.error("bookmark news failed", error);
   }
 }
+
+export async function deleteNewsBookmark(title: string, username: string) {
+  try {
+    await dbConnect();
+
+    const deleteBookmark = await MarkedNews.deleteOne({
+      title: title,
+      username: username,
+    });
+
+    if (deleteBookmark.deletedCount === 1) {
+      return {
+        delete: true,
+        message: "bookmark news delete success",
+      };
+    }
+
+    if (deleteBookmark.deletedCount === 0) {
+      return {
+        delete: false,
+        message: "bookmark news delete failed",
+      };
+    }
+  } catch (error) {
+    console.error("bookmark news delete failed", error);
+  }
+}
