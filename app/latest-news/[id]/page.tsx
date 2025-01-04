@@ -67,8 +67,6 @@ export default function LatestNewsDetail() {
     const findMarkedNews = async () => {
       try {
         if (session && session.user && session.user.name !== undefined) {
-          console.log("session.user.name: ", session.user.name);
-
           const findBookmark = await findNewsBookmark(currentArticle.title, session.user.name as string);
 
           if (findBookmark && findBookmark.exists === true) {
