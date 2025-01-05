@@ -19,8 +19,14 @@ export default function YoutubeDynamic(): JSX.Element {
   const videoId = searchParams.get("id");
   const index = Number(searchParams.get("index"));
 
-  // youtubeList 가 비었을 경우 ExpiredData 렌더링
-  if (youtubeList === undefined || youtubeList.items.length === 0) {
+  // index 가 안맞거나 youtubeList 가 비었을 경우 ExpiredData 렌더링
+  if (
+    typeof index !== "number" ||
+    index < 0 ||
+    index >= youtubeList.items.length ||
+    youtubeList.items.length === 0 ||
+    youtubeList === undefined
+  ) {
     return <ExpiredData />;
   }
 
