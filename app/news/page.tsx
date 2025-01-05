@@ -12,7 +12,7 @@ import { css, CSSObject } from "@emotion/react";
 import { useEffect } from "react";
 import NewsSkeleton from "../component/NewsSkeleton";
 import { setPageState } from "@/store/switches";
-import ExpiredData from "../component/ExpiredData";
+import FetchFailedData from "../component/FetchFailedData";
 
 export default function News(): JSX.Element {
   const newsList = useSelector((state: RootState) => state.news.newsList);
@@ -36,9 +36,9 @@ export default function News(): JSX.Element {
     );
   }
 
-  // newsList 가 비었을 경우 ExpiredData 렌더링
-  if (newsStatus === "failed" || newsList.length === 0) {
-    return <ExpiredData />;
+  // newsStatus 가 failed 일 경우 FetchFailedData 렌더링
+  if (newsStatus === "failed") {
+    return <FetchFailedData />;
   }
 
   const initNews: CSSObject = {

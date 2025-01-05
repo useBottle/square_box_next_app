@@ -12,7 +12,7 @@ import { css, CSSObject } from "@emotion/react";
 import Image from "next/image";
 import { youtube } from "@/styles/Youtube.styles";
 import YoutubeSkeleton from "../component/YoutubeSkeleton";
-import ExpiredData from "../component/ExpiredData";
+import FetchFailedData from "../component/FetchFailedData";
 
 export default function Youtube() {
   const dispatch = useDispatch<AppDispatch>();
@@ -48,9 +48,9 @@ export default function Youtube() {
     },
   };
 
-  // youtubeList 가 비었을 경우 ExpiredData 렌더링
-  if (youtubeList === undefined || youtubeList.items.length === 0) {
-    return <ExpiredData />;
+  // youtubeStatus 가 failed 일 경우 FetchFailedData 렌더링
+  if (youtubeStatus === "failed") {
+    return <FetchFailedData />;
   }
 
   return (
