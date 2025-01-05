@@ -2,7 +2,7 @@
 
 import MarkedNews from "@/models/markedNews";
 import MarkedYoutube from "@/models/markedYoutube";
-import { currentArticle } from "@/types/types";
+import { currentArticle, MarkedYoutubeVideo } from "@/types/types";
 import dbConnect from "@/util/database";
 
 // * 뉴스 북마크 서버 액션 함수들
@@ -114,5 +114,24 @@ export async function findYoutubeBookmark(videoId: string, username: string) {
     }
   } catch (error) {
     console.error("find bookmarked youtube failed", error);
+  }
+}
+
+// 유튜브 북마크 추가
+export async function setYoutubeBookmark(video: MarkedYoutubeVideo) {
+  try {
+    await dbConnect();
+
+    const markedYoutube = new MarkedYoutube({
+      ...video,
+    });
+    await markedYoutube.save();
+
+    return {
+      success: true,
+      message: "bookmark youtube success",
+    };
+  } catch (error) {
+    console.error("bookmark youtube failed", error);
   }
 }
