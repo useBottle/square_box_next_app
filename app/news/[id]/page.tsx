@@ -27,10 +27,6 @@ export default function NewsDynamic(): JSX.Element {
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const scrollTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   // 유저 정보 및 뉴스 데이터 DB 에서 확인 후 북마크 버튼 스타일 변경 트리거 상태 변경.
   useEffect(() => {
     if (!session || !session.user || session.user.name === undefined) return;
@@ -147,7 +143,12 @@ export default function NewsDynamic(): JSX.Element {
           return <p key={index}>{item}</p>;
         })}
       </div>
-      <button className="scrollTop" onClick={scrollTop}>
+      <button
+        className="scrollTop"
+        onClick={() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
+      >
         맨 위로
       </button>
     </article>

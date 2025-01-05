@@ -33,10 +33,6 @@ export default function LatestNewsDetail() {
     text: [],
   });
 
-  const scrollTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   useEffect(() => {
     const getArticle = async () => {
       let result: currentArticle | undefined;
@@ -178,7 +174,12 @@ export default function LatestNewsDetail() {
           <p key={index}>{item}</p>
         ))}
       </div>
-      <button className="scrollTop" onClick={scrollTop}>
+      <button
+        className="scrollTop"
+        onClick={() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
+      >
         맨 위로
       </button>
     </article>
