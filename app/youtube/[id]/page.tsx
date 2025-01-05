@@ -8,8 +8,11 @@ import { RootState } from "@/store/store";
 import { youtubeDynamic } from "@/styles/Youtube.styles";
 import { css } from "@emotion/react";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
+import { FaCheck } from "react-icons/fa6";
+import { GoBookmarkFill } from "react-icons/go";
 import { useSelector } from "react-redux";
 import YouTube, { YouTubeEvent } from "react-youtube";
 
@@ -40,6 +43,10 @@ export default function YoutubeDynamic(): JSX.Element {
     }
     findMarkedYoutube();
   }, []);
+
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
 
   // index 가 안맞거나 youtubeList 가 비었을 경우 ExpiredData 렌더링
   if (
@@ -74,7 +81,33 @@ export default function YoutubeDynamic(): JSX.Element {
       <div className="textGroup">
         <h1 className="title">{youtubeList.items[index].snippet.title}</h1>
         <h4 className="channel">{youtubeList.items[index].snippet.channelTitle}</h4>
-        <h4 className="publishedAt">{youtubeList.items[index].snippet.publishedAt}</h4>
+        <div className="publishedAt">{youtubeList.items[index].snippet.publishedAt}</div>
+        {session ? (
+          <form onSubmit={onSubmit}>
+            {!isLoading && (
+              <button
+                type="submit"
+                style={
+                  bookmarkSuccess
+                    ? {
+                        background: "var(--basic-font)",
+                        border: "var(--basic-font) solid 1px",
+                        color: "var(--reverse-font)",
+                      }
+                    : {}
+                }
+              >
+                {bookmarkSuccess ? <FaCheck /> : <GoBookmarkFill />}
+              </button>
+            )}
+          </form>
+        ) : (
+          <Link href="/auth/signin">
+            <button>
+              <span>북마크하려면 로그인 해야합니다</span>
+            </button>
+          </Link>
+        )}
         <p className="description">{youtubeList.items[index].snippet.description}</p>
       </div>
     </div>
