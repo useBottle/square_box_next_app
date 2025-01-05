@@ -2,12 +2,14 @@
 
 "use client";
 
+import { findYoutubeBookmark } from "@/app/actions/bookmarkActions";
 import ExpiredData from "@/app/component/ExpiredData";
 import { RootState } from "@/store/store";
 import { youtubeDynamic } from "@/styles/Youtube.styles";
 import { css } from "@emotion/react";
 import { useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import YouTube, { YouTubeEvent } from "react-youtube";
 
@@ -15,9 +17,29 @@ export default function YoutubeDynamic(): JSX.Element {
   const youtubeList = useSelector((state: RootState) => state.youtube.youtubeList);
   const searchParams = useSearchParams();
   const { data: session } = useSession();
+  const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const videoId = searchParams.get("id");
   const index = Number(searchParams.get("index"));
+
+  // 유저 정보 및 유튜브 데이터 DB 에서 확인 후 북마크 버튼 스타일 변경 트리거 상태 변경.
+  useEffect(() => {
+    if (!session || !session.user || session.user.name === undefined) return;
+
+    async function findMarkedYoutube() {
+      try {
+        const findBookmark = await findYoutubeBookmark(videoId as string, session?.user.name as string);
+        if (findBookmark && findBookmark.exists === true) {
+          setBookmarkSuccess(true);
+        }
+      } catch (error) {
+        console.error("youtube bookmark failed", error);
+      }
+      setIsLoading(false);
+    }
+    findMarkedYoutube();
+  }, []);
 
   // index 가 안맞거나 youtubeList 가 비었을 경우 ExpiredData 렌더링
   if (
