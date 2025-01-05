@@ -100,7 +100,7 @@ export default function LatestNewsDetail() {
 
       // 북마크된 데이터 있을 경우 confirm 창 띄우기. 북마크 삭제할지 확인.
       if (findBookmark && findBookmark.exists === true) {
-        if (confirm("북마크를 제거하겠습니까?")) {
+        if (confirm("북마크를 제거하시겠습니까?")) {
           const response = await deleteNewsBookmark(currentNews.title, currentNews.username as string);
           if (response && response.delete === true) {
             setBookmarkSuccess(false);

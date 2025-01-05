@@ -2,10 +2,11 @@
 
 "use client";
 
-import { findYoutubeBookmark } from "@/app/actions/bookmarkActions";
+import { deleteYoutubeBookmark, findYoutubeBookmark, setYoutubeBookmark } from "@/app/actions/bookmarkActions";
 import ExpiredData from "@/app/component/ExpiredData";
 import { RootState } from "@/store/store";
 import { youtubeDynamic } from "@/styles/Youtube.styles";
+import { MarkedYoutubeVideo } from "@/types/types";
 import { css } from "@emotion/react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -44,8 +45,45 @@ export default function YoutubeDynamic(): JSX.Element {
     findMarkedYoutube();
   }, []);
 
+  // 북마크 onSubmit 요청
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const currentVideo = {
+      ...youtubeList.items[index],
+      username: session?.user.name,
+    };
+
+    // 유저 정보가 없으면 onSubmit 이벤트 종료.
+    if (!session || !session.user || session.user.name === undefined) return;
+
+    try {
+      const findBookmark = await findYoutubeBookmark(videoId as string, session.user.name);
+
+      // 북마크된 데이터 있을 경우 confirm 창 띄우기. 북마크 삭제할지 확인.
+      if (findBookmark && findBookmark.exists === true) {
+        if (confirm("북마크를 제거하시겠습니까?")) {
+          const response = await deleteYoutubeBookmark(videoId as string, session.user.name);
+
+          if (response && response.delete === true) {
+            setBookmarkSuccess(false);
+          } else {
+            return;
+          }
+        }
+      }
+
+      // 북마크된 데이터 없을 경우 북마크 시도
+      if (findBookmark && findBookmark.exists === false) {
+        const response = await setYoutubeBookmark(currentVideo as MarkedYoutubeVideo);
+        response && response.success === true && setBookmarkSuccess(true);
+        // console.log(response);
+        return;
+      }
+    } catch (error) {
+      console.error("youtube bookmark failed", error);
+      alert("북마크에 실패했습니다. 재시도해주세요.");
+    }
   };
 
   // index 가 안맞거나 youtubeList 가 비었을 경우 ExpiredData 렌더링
