@@ -34,13 +34,13 @@ export default function LatestNewsDetail() {
   });
 
   useEffect(() => {
+    // 서버 액션에 캐시된 최신 뉴스 단일 기사 요청 후 없으면 별도로 직접 개별 요청
     const getArticle = async () => {
       let result: currentArticle | undefined;
 
       try {
         setIsLoadingArticle(true);
 
-        // 서버 액션에 캐시된 최신 뉴스 단일 기사 요청 후 없으면 별도로 직접 개별 요청
         const article = await getNewsArticle(newsId);
         console.log("cached article: ", article);
         result = article;
@@ -83,6 +83,10 @@ export default function LatestNewsDetail() {
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    // 유저 정보가 없으면 onSubmit 이벤트 종료.
+    if (!session || !session.user || session.user.name === undefined) return;
+
+    // 현재 뉴스 기사 객체 생성
     const currentNews = {
       title: currentArticle.title,
       date: currentArticle.date[1] ? currentArticle.date[1] : currentArticle.date[0],
@@ -91,8 +95,6 @@ export default function LatestNewsDetail() {
       text: currentArticle.text,
       username: session?.user.name,
     };
-
-    if (!session || !session.user || session.user.name === undefined) return;
 
     try {
       if (currentArticle === undefined) return;

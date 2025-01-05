@@ -27,10 +27,11 @@ export default function YoutubeDynamic(): JSX.Element {
   const videoId = searchParams.get("id");
   const index = Number(searchParams.get("index"));
 
-  // 유저 정보 및 유튜브 데이터 DB 에서 확인 후 북마크 버튼 스타일 변경 트리거 상태 변경.
   useEffect(() => {
+    // 유저 정보가 없으면 onSubmit 이벤트 종료.
     if (!session || !session.user || session.user.name === undefined) return;
 
+    // 유저 정보 및 유튜브 데이터 DB 에서 확인 후 북마크 버튼 스타일 변경 트리거 상태 변경.
     async function findMarkedYoutube() {
       try {
         const findBookmark = await findYoutubeBookmark(videoId as string, session?.user.name as string);
@@ -49,6 +50,10 @@ export default function YoutubeDynamic(): JSX.Element {
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    // 유저 정보가 없으면 onSubmit 이벤트 종료.
+    if (!session || !session.user || session.user.name === undefined) return;
+
+    // 현재 유튜브 영상 객체 생성
     const currentVideo = {
       videoId: youtubeList.items[index].id.videoId,
       title: youtubeList.items[index].snippet.title,
@@ -59,12 +64,8 @@ export default function YoutubeDynamic(): JSX.Element {
       username: session?.user.name,
     };
 
-    // 유저 정보가 없으면 onSubmit 이벤트 종료.
-    if (!session || !session.user || session.user.name === undefined) return;
-
     try {
       const findBookmark = await findYoutubeBookmark(videoId as string, session.user.name);
-      console.log(findBookmark);
 
       // 북마크된 데이터 있을 경우 confirm 창 띄우기. 북마크 삭제할지 확인.
       if (findBookmark && findBookmark.exists === true) {

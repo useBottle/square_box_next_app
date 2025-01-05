@@ -27,10 +27,11 @@ export default function NewsDynamic(): JSX.Element {
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  // 유저 정보 및 뉴스 데이터 DB 에서 확인 후 북마크 버튼 스타일 변경 트리거 상태 변경.
   useEffect(() => {
+    // 유저 정보가 없으면 onSubmit 이벤트 종료.
     if (!session || !session.user || session.user.name === undefined) return;
 
+    // 유저 정보 및 뉴스 데이터 DB 에서 확인 후 북마크 버튼 스타일 변경 트리거 상태 변경.
     async function findMarkedNews() {
       try {
         const findBookmark = await findNewsBookmark(newsList[newsId].title, session?.user.name as string);
@@ -49,6 +50,10 @@ export default function NewsDynamic(): JSX.Element {
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    // 유저 정보가 없으면 onSubmit 이벤트 종료.
+    if (!session || !session.user || session.user.name === undefined) return;
+
+    // 현재 뉴스 기사 객체 생성
     const currentNews = {
       title: newsList[newsId].title,
       date: article[newsId].date[1] ? article[newsId].date[1] : article[newsId].date[0],
@@ -57,9 +62,6 @@ export default function NewsDynamic(): JSX.Element {
       text: article[newsId].text,
       username: session?.user.name,
     };
-
-    // 유저 정보가 없으면 onSubmit 이벤트 종료.
-    if (!session || !session.user || session.user.name === undefined) return;
 
     try {
       const findBookmark = await findNewsBookmark(currentNews.title, session.user.name);
