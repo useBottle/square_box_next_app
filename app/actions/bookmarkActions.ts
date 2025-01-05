@@ -113,7 +113,7 @@ export async function findYoutubeBookmark(videoId: string, username: string) {
       };
     }
   } catch (error) {
-    console.error("find bookmarked youtube failed", error);
+    console.error("find bookmarked youtube video failed", error);
   }
 }
 
@@ -132,6 +132,34 @@ export async function setYoutubeBookmark(video: MarkedYoutubeVideo) {
       message: "bookmark youtube success",
     };
   } catch (error) {
-    console.error("bookmark youtube failed", error);
+    console.error("bookmark youtube video failed", error);
+  }
+}
+
+// 유튜브 북마크 삭제
+export async function deleteYoutubeBookmark(videoId: string, username: string) {
+  try {
+    await dbConnect();
+
+    const deleteBookmark = await MarkedYoutube.deleteOne({
+      videoId: videoId,
+      username: username,
+    });
+
+    if (deleteBookmark.deletedCount === 1) {
+      return {
+        delete: true,
+        message: "bookmark youtube delete success",
+      };
+    }
+
+    if (deleteBookmark.deletedCount === 0) {
+      return {
+        delete: false,
+        message: "bookmark youtube delete failed",
+      };
+    }
+  } catch (error) {
+    console.error("bookmark youtube video delete failed", error);
   }
 }
