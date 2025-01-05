@@ -6,6 +6,7 @@ import ExpiredData from "@/app/component/ExpiredData";
 import { RootState } from "@/store/store";
 import { youtubeDynamic } from "@/styles/Youtube.styles";
 import { css } from "@emotion/react";
+import { useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import YouTube, { YouTubeEvent } from "react-youtube";
@@ -13,6 +14,7 @@ import YouTube, { YouTubeEvent } from "react-youtube";
 export default function YoutubeDynamic(): JSX.Element {
   const youtubeList = useSelector((state: RootState) => state.youtube.youtubeList);
   const searchParams = useSearchParams();
+  const { data: session } = useSession();
 
   const videoId = searchParams.get("id");
   const index = Number(searchParams.get("index"));

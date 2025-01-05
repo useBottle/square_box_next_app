@@ -89,13 +89,7 @@ export default function NewsDynamic(): JSX.Element {
   };
 
   // newsId 가 안맞거나 article 에 문제가 생긴 경우 ExpiredData 렌더링
-  if (
-    typeof newsId !== "number" ||
-    newsId < 0 ||
-    newsId >= newsList.length ||
-    articleStatus === "failed" ||
-    article === undefined
-  ) {
+  if (typeof newsId !== "number" || newsId < 0 || newsId >= newsList.length || article === undefined) {
     return <ExpiredData />;
   }
 
