@@ -1,9 +1,13 @@
 "use server";
 
 import MarkedNews from "@/models/markedNews";
+import MarkedYoutube from "@/models/markedYoutube";
 import { currentArticle } from "@/types/types";
 import dbConnect from "@/util/database";
 
+// * 뉴스 북마크 서버 액션 함수들
+
+// 뉴스 북마크 검색
 export async function findNewsBookmark(title: string, username: string) {
   try {
     await dbConnect();
@@ -16,21 +20,22 @@ export async function findNewsBookmark(title: string, username: string) {
     if (findBookmark) {
       return {
         exists: true,
-        message: "bookmark already exists",
+        message: "article bookmark already exists",
       };
     }
 
     if (!findBookmark) {
       return {
         exists: false,
-        message: "bookmark not exists",
+        message: "article bookmark not exists",
       };
     }
   } catch (error) {
-    console.error("bookmark news failed", error);
+    console.error("find bookmarked news article failed", error);
   }
 }
 
+// 뉴스 북마크 추가
 export async function setNewsBookmark(article: currentArticle, username: string) {
   try {
     await dbConnect();
@@ -54,6 +59,7 @@ export async function setNewsBookmark(article: currentArticle, username: string)
   }
 }
 
+// 뉴스 북마크 삭제
 export async function deleteNewsBookmark(title: string, username: string) {
   try {
     await dbConnect();
@@ -78,5 +84,35 @@ export async function deleteNewsBookmark(title: string, username: string) {
     }
   } catch (error) {
     console.error("bookmark news delete failed", error);
+  }
+}
+
+// * 유튜브 북마크 서버 액션 함수들
+
+// 유튜브 북마크 검색
+export async function findYoutubeBookmark(videoId: string, username: string) {
+  try {
+    await dbConnect();
+
+    const findBookmark = await MarkedYoutube.findOne({
+      videoId: videoId,
+      username: username,
+    });
+
+    if (findBookmark) {
+      return {
+        exists: true,
+        message: "youtube bookmark already exists",
+      };
+    }
+
+    if (!findBookmark) {
+      return {
+        exists: false,
+        message: "youtube bookmark not exists",
+      };
+    }
+  } catch (error) {
+    console.error("find bookmarked youtube failed", error);
   }
 }
