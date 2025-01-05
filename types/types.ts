@@ -139,13 +139,12 @@ export interface MarkedNewsArticle {
 
 // 북마크 유튜브 데이터
 export interface MarkedYoutubeVideo {
-  kind: string;
-  etag: string;
-  id: {
-    videoId: string;
-    kind: string;
-  };
-  snippet: Snippet;
+  videoId: string;
+  title: string;
+  channelTitle: string;
+  publishedAt: string;
+  description: string;
+  thumbnails: string;
   username: string;
   createdAt: Date;
 }

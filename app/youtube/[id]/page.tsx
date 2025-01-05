@@ -50,7 +50,12 @@ export default function YoutubeDynamic(): JSX.Element {
     e.preventDefault();
 
     const currentVideo = {
-      ...youtubeList.items[index],
+      videoId: youtubeList.items[index].id.videoId,
+      title: youtubeList.items[index].snippet.title,
+      channelTitle: youtubeList.items[index].snippet.channelTitle,
+      publishedAt: youtubeList.items[index].snippet.publishedAt,
+      description: youtubeList.items[index].snippet.description,
+      thumbnails: youtubeList.items[index].snippet.thumbnails.high.url,
       username: session?.user.name,
     };
 
@@ -59,6 +64,7 @@ export default function YoutubeDynamic(): JSX.Element {
 
     try {
       const findBookmark = await findYoutubeBookmark(videoId as string, session.user.name);
+      console.log(findBookmark);
 
       // 북마크된 데이터 있을 경우 confirm 창 띄우기. 북마크 삭제할지 확인.
       if (findBookmark && findBookmark.exists === true) {

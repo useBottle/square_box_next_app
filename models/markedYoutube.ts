@@ -2,13 +2,12 @@ import { MarkedYoutubeVideo } from "@/types/types";
 import mongoose, { Schema } from "mongoose";
 
 const markedYoutubeSchema = new Schema<MarkedYoutubeVideo>({
-  kind: { type: String, required: true },
-  etag: { type: String, required: true },
-  id: {
-    videoId: { type: String, required: true },
-    kind: { type: String, required: true },
-  },
-  snippet: { type: Object, required: true },
+  videoId: { type: String, required: true },
+  title: { type: String, required: true },
+  channelTitle: { type: String, required: true },
+  publishedAt: { type: String, required: true },
+  description: { type: String, required: true },
+  thumbnails: { type: String, required: true },
   username: { type: String, required: true },
   createdAt: {
     type: Date,
