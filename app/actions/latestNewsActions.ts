@@ -1,6 +1,6 @@
 "use server";
 
-import { newsList } from "@/types/types";
+import { LatestNewsArticle, newsList } from "@/types/types";
 import axios from "axios";
 import * as cheerio from "cheerio";
 
@@ -44,8 +44,8 @@ export async function getLatestNewsList() {
 // 최신 뉴스 url 로 각 개별 데이터 요청
 export async function getLatestNewsArticle(urls: string[]) {
   try {
-    const results = urls
-      .map(async (url) => {
+    const articles: LatestNewsArticle[] = await Promise.all(
+      urls.map(async (url) => {
         const response = await axios.get(url);
         const $ = cheerio.load(response.data);
         const title = $(".title-article01 h1.tit").text().trim();
@@ -64,9 +64,9 @@ export async function getLatestNewsArticle(urls: string[]) {
           alt: alt || "",
           text: text,
         };
-      })
-      .filter((article) => article !== null);
-    return results;
+      }),
+    );
+    return articles;
   } catch (error) {
     console.error("fetching latest news articles failed", error);
   }
