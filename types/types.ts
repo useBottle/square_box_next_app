@@ -43,7 +43,7 @@ export interface articleData {
   text: string[];
 }
 
-// 뉴스 단일 기사 완전한 타입
+// 뉴스 상세 페이지 단일 기사 타입
 export interface currentArticle {
   title: string;
   date: string;
@@ -124,6 +124,16 @@ export interface youtubeApiResult {
   pageInfo: PageInfo;
 }
 
+// 유튜브 상세 페이지 단일 영상 타입
+export interface currentYoutubeVideo {
+  videoId: string;
+  title: string;
+  channelTitle: string;
+  publishedAt: string;
+  description: string;
+  thumbnails: string;
+}
+
 // * 북마크 관련 인터페이스
 
 // 북마크 뉴스 기사
@@ -135,6 +145,7 @@ export interface MarkedNewsArticle {
   text: string[];
   username: string;
   createdAt: Date;
+  category: string;
 }
 
 // 북마크 유튜브 데이터
@@ -147,4 +158,5 @@ export interface MarkedYoutubeVideo {
   thumbnails: string;
   username: string;
   createdAt: Date;
+  category: string;
 }

@@ -2,7 +2,7 @@
 
 import MarkedNews from "@/models/markedNews";
 import MarkedYoutube from "@/models/markedYoutube";
-import { currentArticle, MarkedYoutubeVideo } from "@/types/types";
+import { currentArticle, currentYoutubeVideo } from "@/types/types";
 import dbConnect from "@/util/database";
 
 // * 뉴스 북마크 서버 액션 함수들
@@ -15,6 +15,7 @@ export async function findNewsBookmark(title: string, username: string) {
     const findBookmark = await MarkedNews.findOne({
       title: title,
       username: username,
+      category: "news",
     });
 
     if (findBookmark) {
@@ -41,12 +42,9 @@ export async function setNewsBookmark(article: currentArticle, username: string)
     await dbConnect();
 
     const markedNews = new MarkedNews({
-      title: article.title,
-      date: article.date,
-      image: article.image,
-      alt: article.alt,
-      text: article.text,
+      ...article,
       username: username,
+      category: "news",
     });
     await markedNews.save();
 
@@ -67,6 +65,7 @@ export async function deleteNewsBookmark(title: string, username: string) {
     const deleteBookmark = await MarkedNews.deleteOne({
       title: title,
       username: username,
+      category: "news",
     });
 
     if (deleteBookmark.deletedCount === 1) {
@@ -97,6 +96,7 @@ export async function findYoutubeBookmark(videoId: string, username: string) {
     const findBookmark = await MarkedYoutube.findOne({
       videoId: videoId,
       username: username,
+      category: "youtube",
     });
 
     if (findBookmark) {
@@ -118,12 +118,14 @@ export async function findYoutubeBookmark(videoId: string, username: string) {
 }
 
 // 유튜브 북마크 추가
-export async function setYoutubeBookmark(video: MarkedYoutubeVideo) {
+export async function setYoutubeBookmark(video: currentYoutubeVideo, username: string) {
   try {
     await dbConnect();
 
     const markedYoutube = new MarkedYoutube({
       ...video,
+      username: username,
+      category: "youtube",
     });
     await markedYoutube.save();
 
@@ -144,6 +146,7 @@ export async function deleteYoutubeBookmark(videoId: string, username: string) {
     const deleteBookmark = await MarkedYoutube.deleteOne({
       videoId: videoId,
       username: username,
+      category: "youtube",
     });
 
     if (deleteBookmark.deletedCount === 1) {

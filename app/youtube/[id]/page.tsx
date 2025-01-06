@@ -6,7 +6,7 @@ import { deleteYoutubeBookmark, findYoutubeBookmark, setYoutubeBookmark } from "
 import ExpiredData from "@/app/component/ExpiredData";
 import { RootState } from "@/store/store";
 import { youtubeDynamic } from "@/styles/Youtube.styles";
-import { MarkedYoutubeVideo } from "@/types/types";
+import { currentYoutubeVideo, MarkedYoutubeVideo } from "@/types/types";
 import { css } from "@emotion/react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -61,7 +61,6 @@ export default function YoutubeDynamic(): JSX.Element {
       publishedAt: youtubeList.items[index].snippet.publishedAt,
       description: youtubeList.items[index].snippet.description,
       thumbnails: youtubeList.items[index].snippet.thumbnails.high.url,
-      username: session?.user.name,
     };
 
     try {
@@ -82,7 +81,7 @@ export default function YoutubeDynamic(): JSX.Element {
 
       // 북마크된 데이터 없을 경우 북마크 시도
       if (findBookmark && findBookmark.exists === false) {
-        const response = await setYoutubeBookmark(currentVideo as MarkedYoutubeVideo);
+        const response = await setYoutubeBookmark(currentVideo as currentYoutubeVideo, session.user.name);
         response && response.success === true && setBookmarkSuccess(true);
         // console.log(response);
         return;
