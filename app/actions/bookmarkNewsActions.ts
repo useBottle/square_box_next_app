@@ -1,7 +1,7 @@
 "use server";
 
 import MarkedNews from "@/models/markedNews";
-import { currentArticle } from "@/types/types";
+import { LatestNewsArticle } from "@/types/types";
 import dbConnect from "@/util/database";
 
 // 뉴스 북마크 검색
@@ -34,7 +34,7 @@ export async function findNewsBookmark(title: string, username: string) {
 }
 
 // 뉴스 북마크 추가
-export async function setNewsBookmark(article: currentArticle, username: string) {
+export async function setNewsBookmark(article: LatestNewsArticle, username: string) {
   try {
     await dbConnect();
 

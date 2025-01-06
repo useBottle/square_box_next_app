@@ -9,7 +9,7 @@ import ExpiredData from "@/app/component/ExpiredData";
 import { useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
-import { currentArticle } from "@/types/types";
+import { LatestNewsArticle } from "@/types/types";
 import ArticleSkeleton from "@/app/component/ArticleSkeleton";
 import { dynamicNewsStyles } from "@/styles/News.styles";
 import Image from "next/image";
@@ -26,7 +26,7 @@ export default function LatestNewsDetail() {
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoadingMarked, setIsLoadingMarked] = useState<boolean>(true);
   const [isLoadingArticle, setIsLoadingArticle] = useState<boolean>(true);
-  const [currentArticle, setCurrentArticle] = useState<currentArticle>({
+  const [currentArticle, setCurrentArticle] = useState<LatestNewsArticle>({
     title: "",
     date: "",
     image: "",

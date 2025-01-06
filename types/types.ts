@@ -43,15 +43,6 @@ export interface articleData {
   text: string[];
 }
 
-// 뉴스 상세 페이지 단일 기사 타입
-export interface currentArticle {
-  title: string;
-  date: string;
-  image: string;
-  alt: string;
-  text: string[];
-}
-
 // * 유튜브 관련 인터페이스
 
 // 유튜브 검색 결과 PageInfo
