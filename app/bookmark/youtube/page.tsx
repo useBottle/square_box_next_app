@@ -23,9 +23,29 @@ export default async function Bookmark() {
       <section className={styles.youtubeContainer}>
         <h4>북마크 유튜브 컨텐츠</h4>
         <div className={styles.contents}>
-          <div className={styles.emptyContents}>
-            <p>북마크한 영상이 없습니다</p>
-          </div>
+          {youtubeData && youtubeData.length !== 0 ? (
+            <ul>
+              {youtubeData.map((item, index) => {
+                return (
+                  <Link href={`/youtube/detail?id=${item.videoId}&index=${index}`} key={index}>
+                    <li>
+                      <Image src={item.thumbnails} alt={item.title} width={300} height={200} />
+                      <div className={styles.textGroup}>
+                        <h1 className={styles.title}>{item.title}</h1>
+                        <h4 className={styles.channel}>{item.channelTitle}</h4>
+                        <h4 className={styles.publishedAt}>{item.publishedAt}</h4>
+                        <p className={styles.description}>{item.description}</p>
+                      </div>
+                    </li>
+                  </Link>
+                );
+              })}
+            </ul>
+          ) : (
+            <div className={styles.emptyContents}>
+              <p>북마크한 영상이 없습니다</p>
+            </div>
+          )}
         </div>
       </section>
     </div>

@@ -6,7 +6,7 @@ import { deleteYoutubeBookmark, findYoutubeBookmark, setYoutubeBookmark } from "
 import ExpiredData from "@/app/component/ExpiredData";
 import { RootState } from "@/store/store";
 import { youtubeDynamic } from "@/styles/Youtube.styles";
-import { currentYoutubeVideo, MarkedYoutubeVideo } from "@/types/types";
+import { currentYoutubeVideo } from "@/types/types";
 import { css } from "@emotion/react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -113,9 +113,9 @@ export default function YoutubeDynamic(): JSX.Element {
           width: "100%",
           height: "250",
           playerVars: {
-            autoplay: 0, // 자동재생 O
-            rel: 0, // 관련 동영상 표시하지 않음
-            modestbranding: 1, // 컨트롤 바에 youtube 로고를 표시하지 않음
+            autoplay: 0, // 자동재생 off
+            rel: 0, // 관련 동영상 표시 x
+            modestbranding: 0, // 컨트롤 바에 youtube 로고 표시 x
           },
         }}
         onEnd={(e: YouTubeEvent) => {
