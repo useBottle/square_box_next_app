@@ -50,7 +50,7 @@ export const latestNews: CSSObject = {
           padding: "1rem",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
+          // justifyContent: "space-between",
           alignItems: "flex-start",
           boxSizing: "border-box",
 
@@ -66,15 +66,20 @@ export const latestNews: CSSObject = {
             WebkitBoxOrient: "vertical",
           },
 
+          ".date": {
+            marginTop: "2rem",
+          },
+
           p: {
-            fontSize: "1.1rem",
-            lineHeight: "1.2",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            display: "-webkit-box",
-            WebkitLineClamp: 2,
-            lineClamp: 2,
-            WebkitBoxOrient: "vertical",
+            display: "none",
+            // fontSize: "1.1rem",
+            // lineHeight: "1.2",
+            // overflow: "hidden",
+            // textOverflow: "ellipsis",
+            // display: "-webkit-box",
+            // WebkitLineClamp: 2,
+            // lineClamp: 2,
+            // WebkitBoxOrient: "vertical",
           },
         },
       },
