@@ -13,7 +13,7 @@ export const nav: CSSObject = {
   alignItems: "center",
   flexDirection: "column",
 
-  "& .back": {
+  ".back": {
     position: "absolute",
     top: "1.5rem",
     right: "5%",
@@ -24,7 +24,7 @@ export const nav: CSSObject = {
     cursor: "pointer",
   },
 
-  "& .logoPlate": {
+  ".logoPlate": {
     width: "90%",
     height: "4rem",
     margin: "2rem 0",
@@ -34,7 +34,7 @@ export const nav: CSSObject = {
     justifyContent: "center",
     alignItems: "center",
 
-    "& .logo": {
+    ".logo": {
       position: "absolute",
       display: "flex",
       alignItems: "center",
@@ -43,7 +43,7 @@ export const nav: CSSObject = {
       zIndex: 100,
     },
 
-    "& .overlay": {
+    ".overlay": {
       position: "absolute",
       width: "100%",
       height: "4rem",
@@ -53,14 +53,14 @@ export const nav: CSSObject = {
       zIndex: 99,
     },
 
-    "& img": {
+    img: {
       height: "100%",
       width: "100%",
       objectFit: "cover",
     },
   },
 
-  "& .userPlate": {
+  ".userPlate": {
     width: "90%",
     height: "4rem",
     display: "flex",
@@ -69,28 +69,28 @@ export const nav: CSSObject = {
     padding: "2rem 0",
     margin: "4rem 0",
 
-    "& img": {
+    img: {
       borderRadius: "50%",
     },
 
-    "& .replacedImg": {
+    ".replacedImg": {
       fontSize: "4rem",
     },
 
-    "& .userName": {
+    ".userName": {
       marginTop: "2rem",
       fontSize: "1.6rem",
     },
   },
 
-  "& ul": {
+  ul: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
     width: "90%",
 
-    "& li": {
+    li: {
       width: "100%",
 
       "& .list": {
@@ -107,7 +107,7 @@ export const nav: CSSObject = {
       },
     },
 
-    "& .auth": {
+    ".auth": {
       width: "100%",
       height: "5rem",
       borderTop: "none",
