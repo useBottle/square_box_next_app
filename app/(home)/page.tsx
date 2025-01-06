@@ -17,7 +17,6 @@ export const dynamic = "force-dynamic";
 export default function Home(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const latestNewsList = useSelector((state: RootState) => state.latestNews.latestNewsList);
-  const latestArticleSet = useSelector((state: RootState) => state.latestNews.latestArticleSet);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -3,7 +3,6 @@
 "use client";
 
 import { css } from "@emotion/react";
-import { getNewsArticle } from "@/app/actions/newsActions";
 import { GoBookmarkFill } from "react-icons/go";
 import { FaCheck } from "react-icons/fa6";
 import ExpiredData from "@/app/component/ExpiredData";
@@ -16,12 +15,14 @@ import { dynamicNewsStyles } from "@/styles/News.styles";
 import Image from "next/image";
 import Link from "next/link";
 import { deleteNewsBookmark, findNewsBookmark, setNewsBookmark } from "@/app/actions/bookmarkNewsActions";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 export default function LatestNewsDetail() {
   const { data: session } = useSession();
   const params = useParams();
-  const newsId = Number(params.id);
   const newsTitle = params.title;
+  const latestArticleSet = useSelector((state: RootState) => state.latestNews.latestArticleSet);
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoadingMarked, setIsLoadingMarked] = useState<boolean>(true);
   const [isLoadingArticle, setIsLoadingArticle] = useState<boolean>(true);
@@ -33,37 +34,14 @@ export default function LatestNewsDetail() {
     text: [],
   });
 
-  // useEffect(() => {
-  //   // 서버 액션에 캐시된 최신 뉴스 단일 기사 요청 후 없으면 별도로 직접 개별 요청
-  //   const getArticle = async () => {
-  //     let result: currentArticle | undefined;
-
-  //     try {
-  //       setIsLoadingArticle(true);
-
-  //       const article = await getNewsArticle(newsId);
-  //       console.log("cached article: ", article);
-  //       result = article;
-
-  //       if (result === undefined && typeof newsTitle === "string") {
-  //         result = (await getLatestArticle(newsTitle)) || undefined;
-  //       }
-  //       setCurrentArticle(result as currentArticle);
-  //       setIsLoadingArticle(false);
-  //     } catch (error) {
-  //       console.error("latest news article fetch failed", error);
-  //     }
-  //   };
-  //   getArticle();
-  // }, []);
-
   useEffect(() => {
-    const getArticle = async () => {
-      const result = await getLatestArticle(newsTitle as string);
-      console.log(result);
-    };
-    getArticle();
-  }, []);
+    latestArticleSet.map((item) => {
+      if (item.title === newsTitle) {
+        setCurrentArticle(item);
+        setIsLoadingArticle(false);
+      }
+    });
+  }, [latestArticleSet]);
 
   // currentArticle 이 업데이트 되면 해당 값이 북마크 되어있는지 확인
   useEffect(() => {
@@ -138,7 +116,7 @@ export default function LatestNewsDetail() {
   };
 
   // newsId 가 안맞거나 article에 문제가생긴 경우 ExpiredData 렌더링
-  if (typeof newsId !== "number" || newsId < 0 || currentArticle === undefined) {
+  if (typeof newsTitle !== "string" || currentArticle === undefined) {
     return <ExpiredData />;
   }
 
