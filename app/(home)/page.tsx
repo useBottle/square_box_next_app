@@ -38,7 +38,7 @@ export default function Home(): JSX.Element {
           {latestNewsList ? (
             latestNewsList.map((item, index) => {
               return (
-                <Link href={`/latest-news/${item.title}`} key={index}>
+                <Link href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`} key={index}>
                   <li>
                     <Image src={item.prevImg} width={100} height={100} alt="newsImg" />
                     <div className={styles.textGroup}>

@@ -7,7 +7,7 @@ import { GoBookmarkFill } from "react-icons/go";
 import { FaCheck } from "react-icons/fa6";
 import ExpiredData from "@/app/component/ExpiredData";
 import { useSession } from "next-auth/react";
-import { useParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 import { currentArticle } from "@/types/types";
 import ArticleSkeleton from "@/app/component/ArticleSkeleton";
@@ -20,8 +20,8 @@ import { RootState } from "@/store/store";
 
 export default function LatestNewsDetail() {
   const { data: session } = useSession();
-  const params = useParams();
-  const newsTitle = params.title;
+  const params = useSearchParams();
+  const newsTitle = decodeURIComponent(params.get("title") as string);
   const latestArticleSet = useSelector((state: RootState) => state.latestNews.latestArticleSet);
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoadingMarked, setIsLoadingMarked] = useState<boolean>(true);
