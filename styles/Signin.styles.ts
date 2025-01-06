@@ -7,7 +7,7 @@ export const signin: CSSObject = {
   justifyContent: "center",
   alignItems: "center",
 
-  "& .logo": {
+  ".logo": {
     margin: "2rem 0",
     width: "4rem",
     height: "4rem",
@@ -20,17 +20,17 @@ export const signin: CSSObject = {
     color: "#fff",
   },
 
-  "& h1": {
+  h1: {
     ...infoTitle,
     margin: "1rem 0",
   },
 
-  "& p": {
+  p: {
     ...infoText,
     margin: "1rem 0",
   },
 
-  "& form": {
+  form: {
     marginTop: "2rem",
     width: "90%",
     display: "flex",
@@ -38,7 +38,7 @@ export const signin: CSSObject = {
     justifyContent: "center",
     alignItems: "center",
 
-    "& .credentialsFields": {
+    ".credentialsFields": {
       display: "flex",
       flexDirection: "column",
       width: "100%",
@@ -48,7 +48,7 @@ export const signin: CSSObject = {
       },
     },
 
-    "& button": {
+    button: {
       ...globalBtn,
       background: "var(--main-color)",
       color: "#fff",
@@ -56,12 +56,12 @@ export const signin: CSSObject = {
     },
   },
 
-  "& .guideSignup": {
+  ".guideSignup": {
     marginTop: "3rem",
     fontSize: "1.2rem",
     color: "var(--shadow-color)",
 
-    "& .signupBtn": {
+    ".signupBtn": {
       margin: "2rem 0.5rem",
       fontSize: "1.2rem",
       color: "var(--basic-font)",
@@ -70,13 +70,13 @@ export const signin: CSSObject = {
     },
   },
 
-  "& .middleLine": {
+  ".middleLine": {
     margin: "2.5rem 0",
     width: "90vw",
     display: "flex",
     justifyContent: "center",
 
-    "& span": {
+    span: {
       fontSize: "1.2rem",
       padding: "0 1rem",
       display: "flex",
@@ -99,21 +99,21 @@ export const signin: CSSObject = {
     },
   },
 
-  "& button": {
+  button: {
     ...globalBtn,
     width: "90%",
 
-    "& span": {
+    span: {
       margin: "0 1rem",
     },
   },
 
-  "& .googleBtn": {
+  ".googleBtn": {
     background: "#fff",
     border: "0.5px solid #141414",
   },
 
-  "& .kakaoBtn": {
+  ".kakaoBtn": {
     background: "#fee20b",
     margin: "1rem 0",
   },
