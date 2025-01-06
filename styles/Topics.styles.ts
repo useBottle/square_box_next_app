@@ -6,7 +6,7 @@ export const topicsForm: CSSObject = {
   alignItems: "center",
   flexDirection: "column",
 
-  "& h4": {
+  h4: {
     width: "90%",
     fontSize: "1.2rem",
     color: "var(--basic-dark)",
@@ -16,19 +16,19 @@ export const topicsForm: CSSObject = {
     padding: "1rem 0",
   },
 
-  "& ul": {
+  ul: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     width: "90%",
     margin: "1rem 0",
 
-    "& a": {
+    a: {
       width: "100%",
       textDecoration: "none",
       color: "var(--basic-font)",
 
-      "& li": {
+      li: {
         width: "100%",
         display: "grid",
         gridTemplateColumns: "15% 75% 10%",
@@ -36,24 +36,24 @@ export const topicsForm: CSSObject = {
         fontSize: "1.4rem",
         cursor: "pointer",
 
-        "& .rank": {
+        ".rank": {
           marginLeft: "1rem",
         },
 
-        "& .state": {
+        ".state": {
           display: "flex",
           justifyContent: "flex-end",
           marginRight: "1rem",
 
-          "& .new": {
+          ".new": {
             color: "var(--state-new)",
           },
 
-          "& .up": {
+          ".up": {
             color: "var(--state-up)",
           },
 
-          "& .down": {
+          ".down": {
             color: "var(--state-down)",
           },
         },
@@ -80,13 +80,13 @@ export const topicsSkeleton: CSSObject = {
   width: "90%",
   margin: "1rem 0",
 
-  "& .list": {
+  ".list": {
     width: "100%",
     display: "grid",
     gridTemplateColumns: "8% 84% 6%",
     margin: "1rem 0",
 
-    "& span": {
+    span: {
       position: "relative",
       background: "lightgray",
       height: "1.8rem",
@@ -105,11 +105,11 @@ export const topicsSkeleton: CSSObject = {
       },
     },
 
-    "& .rank": {
+    ".rank": {
       marginLeft: "0.5rem",
     },
 
-    "& .keyword": {
+    ".keyword": {
       marginLeft: "2rem",
       marginRight: "2rem",
     },
