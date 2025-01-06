@@ -35,6 +35,7 @@ export default function LatestNewsDetail() {
   });
 
   useEffect(() => {
+    // 최신 뉴스 기사 중에서 쿼리 스트링과 일치하는 데이터로 상태 업데이트.
     latestArticleSet.map((item) => {
       if (item.title === newsTitle) {
         setCurrentArticle(item);
@@ -50,7 +51,6 @@ export default function LatestNewsDetail() {
     const findMarkedNews = async () => {
       try {
         // 상태 업데이트가 완료되지 않아 데이터가 비었을 경우 함수 종료.
-        console.log(currentArticle);
         if (currentArticle === undefined || currentArticle.title === "") return;
 
         if (session && session.user && session.user.name !== undefined) {
