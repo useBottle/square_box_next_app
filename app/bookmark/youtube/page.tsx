@@ -33,7 +33,7 @@ export default async function Bookmark() {
                       <div className={styles.textGroup}>
                         <h1 className={styles.title}>{item.title}</h1>
                         <h4 className={styles.channel}>{item.channelTitle}</h4>
-                        <h4 className={styles.publishedAt}>{item.publishedAt}</h4>
+                        <div className={styles.publishedAt}>{item.publishedAt}</div>
                         <p className={styles.description}>{item.description}</p>
                       </div>
                     </li>
