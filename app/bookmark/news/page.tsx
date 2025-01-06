@@ -1,7 +1,7 @@
 import { authOptions } from "@/util/authOptions";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import styles from "../../styles/Bookmark.module.scss";
+import styles from "../../../styles/BookmarkNews.module.scss";
 import { getMarkedNews } from "../../actions/bookmarkActions";
 import Link from "next/link";
 import Image from "next/image";
