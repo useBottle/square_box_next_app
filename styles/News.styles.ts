@@ -6,11 +6,11 @@ export const newsListStyles: CSSObject = {
   alignItems: "center",
   justifyContent: "center",
 
-  "& a": {
+  a: {
     display: "flex",
     justifyContent: "center",
 
-    "& li": {
+    li: {
       width: "90%",
       height: "10rem",
       overflow: "hidden",
@@ -22,14 +22,14 @@ export const newsListStyles: CSSObject = {
       borderRadius: "5px",
       boxSizing: "border-box",
 
-      "& img": {
+      img: {
         width: "100%",
         height: "100%",
         borderTopLeftRadius: "5px",
         borderBottomLeftRadius: "5px",
       },
 
-      "& .textGroup": {
+      ".textGroup": {
         padding: "1rem",
         height: "10rem",
         display: "flex",
@@ -38,7 +38,7 @@ export const newsListStyles: CSSObject = {
         alignItems: "flex-start",
         boxSizing: "border-box",
 
-        "& h6": {
+        h6: {
           fontSize: "1.4rem",
           lineHeight: 1.2,
           color: "var(--main-color)",
@@ -49,11 +49,11 @@ export const newsListStyles: CSSObject = {
           WebkitBoxOrient: "vertical",
         },
 
-        "& .date": {
+        ".date": {
           margin: "0.5rem 0",
         },
 
-        "& p": {
+        p: {
           fontSize: "1.1rem",
           lineHeight: 1.2,
           overflow: "hidden",
@@ -77,15 +77,15 @@ export const dynamicNewsStyles: CSSObject = {
   alignItems: "center",
   justifyContent: "center",
 
-  "& .imgGroup": {
+  ".imgGroup": {
     width: "100vw",
 
-    "& img": {
+    img: {
       width: "100%",
       height: "auto",
     },
 
-    "& .alt": {
+    ".alt": {
       fontSize: "1.2rem",
       color: "var(--basic-dark)",
       marginTop: "1rem",
@@ -94,24 +94,24 @@ export const dynamicNewsStyles: CSSObject = {
     },
   },
 
-  "& .textGroup": {
+  ".textGroup": {
     padding: "0 1rem",
     marginBottom: "10rem",
 
-    "& h1": {
+    h1: {
       marginTop: "4rem",
       fontSize: "2rem",
       color: "var(--main-color)",
     },
 
-    "& .date": {
+    ".date": {
       fontSize: "1.2rem",
       marginTop: "2rem",
       marginBottom: "4rem",
       color: "var(--basic-dark)",
     },
 
-    "& button": {
+    button: {
       width: "100%",
       padding: "0.8rem 0",
       fontSize: "2rem",
@@ -126,20 +126,20 @@ export const dynamicNewsStyles: CSSObject = {
       cursor: "pointer",
       marginBottom: "4rem",
 
-      "& span": {
+      span: {
         fontSize: "1.4rem",
         marginLeft: "0.5rem",
       },
     },
 
-    "& p": {
+    p: {
       margin: "2rem 0",
       fontSize: "1.4rem",
       whiteSpace: "pre-line",
     },
   },
 
-  "& .scrollTop": {
+  ".scrollTop": {
     padding: "0.8rem 1rem",
     marginBottom: "15rem",
     border: "1px solid var(--basic-font)",
@@ -172,14 +172,14 @@ export const newsSkeleton: CSSObject = {
   width: "100vw",
   margin: "1rem 0",
 
-  "& .list": {
+  ".list": {
     width: "90%",
     height: "10rem",
     display: "grid",
     gridTemplateColumns: "35% 65%",
     margin: "1.5rem",
 
-    "& .default": {
+    ".default": {
       position: "relative",
       overflow: "hidden",
       borderRadius: "5px",
@@ -197,11 +197,11 @@ export const newsSkeleton: CSSObject = {
       },
     },
 
-    "& .textGroup": {
+    ".textGroup": {
       margin: "1rem 0",
       marginLeft: "1rem",
 
-      "& .textFrame": {
+      ".textFrame": {
         width: "90%",
         height: "2rem",
         background: "lightgray",
@@ -225,7 +225,7 @@ export const articleSkeleton: CSSObject = {
   height: "100vh",
   width: "100vw",
 
-  "& .default": {
+  ".default": {
     position: "relative",
     overflow: "hidden",
     borderRadius: "3px",
@@ -243,22 +243,22 @@ export const articleSkeleton: CSSObject = {
     },
   },
 
-  "& .img": {
+  ".img": {
     width: "100%",
     height: "30rem",
     borderRadius: 0,
   },
 
-  "& .title": {
+  ".title": {
     width: "95%",
     height: "3rem",
     margin: "5rem 0",
   },
 
-  "& .textGroup": {
+  ".textGroup": {
     width: "95%",
 
-    "& .text": {
+    ".text": {
       width: "95%",
       height: "2rem",
       marginBottom: "1.5rem",
