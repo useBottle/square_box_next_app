@@ -11,7 +11,7 @@ export const modal: CSSObject = {
   backdropFilter: "blur(10px)",
   zIndex: 9999,
 
-  "& .signoutModalBox": {
+  ".signoutModalBox": {
     background: "var(--background)",
     position: "absolute",
     left: "50%",
@@ -24,17 +24,17 @@ export const modal: CSSObject = {
     alignItems: "center",
     flexDirection: "column",
 
-    "& h1": {
+    h1: {
       ...modalTitle,
       transform: "translateY(-50%)",
     },
 
-    "& .btnGroup": {
+    ".btnGroup": {
       position: "absolute",
       bottom: 0,
       width: "100%",
 
-      "& button": {
+      button: {
         background: "#eee",
         width: "50%",
         height: "5rem",
@@ -42,7 +42,7 @@ export const modal: CSSObject = {
         color: "var(--basic-font)",
       },
 
-      "& .signout": {
+      ".signout": {
         background: "var(--main-color)",
         color: "var(--reverse-font)",
       },
