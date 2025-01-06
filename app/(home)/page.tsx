@@ -4,13 +4,14 @@
 
 import Link from "next/link";
 import Topics from "../component/Topics";
-import styles from "../../styles/LatestNews.module.scss";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { getLatestNewsArticle, getLatestNewsList } from "../actions/latestNewsActions";
 import { setLatestArticleSet, setLatestNewsList } from "@/store/latestNews";
 import Image from "next/image";
+import { latestNews } from "@/styles/LatestNews.styles";
+import { css } from "@emotion/react";
 
 export const dynamic = "force-dynamic";
 
@@ -32,7 +33,7 @@ export default function Home(): JSX.Element {
   return (
     <div>
       <Topics />
-      <div className={styles.latestNews}>
+      <div css={css(latestNews)}>
         <h4>최신 뉴스 Top 10</h4>
         <ul>
           {latestNewsList ? (
@@ -41,9 +42,9 @@ export default function Home(): JSX.Element {
                 <Link href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`} key={index}>
                   <li>
                     <Image src={item.prevImg} width={100} height={100} alt="newsImg" />
-                    <div className={styles.textGroup}>
+                    <div className="textGroup">
                       <h6>{item.title}</h6>
-                      <div className={styles.date}>{item.date}</div>
+                      <div className="date">{item.date}</div>
                       <p>{item.summary}</p>
                     </div>
                   </li>
@@ -52,7 +53,7 @@ export default function Home(): JSX.Element {
             })
           ) : (
             // 데이터 로딩 실패 시 제공할 UI
-            <div className={styles.infoText}>
+            <div className="infoText">
               <p>데이터를 서버에서 불러오고 있습니다</p>
               <p>새로고침 해주세요</p>
             </div>
