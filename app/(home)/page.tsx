@@ -48,7 +48,7 @@ export default function Home(): JSX.Element {
       <div css={css(latestNews)}>
         <h4>최신 뉴스 Top 10</h4>
         <ul>
-          {latestNewsList.length !== 0 && false ? (
+          {latestNewsList.length !== 0 ? (
             latestNewsList.map((item, index) => {
               return (
                 <Link href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`} key={index}>
