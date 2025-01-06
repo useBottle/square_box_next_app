@@ -8,14 +8,14 @@ export const header: CSSObject = {
   zIndex: 999,
   padding: "0 5%",
 
-  "& .logo": {
+  ".logo": {
     display: "flex",
     alignItems: "center",
     color: "var(--basic-font)",
     fontSize: "2rem",
   },
 
-  "& .menuBtn": {
+  ".menuBtn": {
     fontSize: "2rem",
     color: "var(--basic-font)",
     cursor: "pointer",
