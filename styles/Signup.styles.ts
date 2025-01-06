@@ -7,7 +7,7 @@ export const signup: CSSObject = {
   justifyContent: "center",
   alignItems: "center",
 
-  "& .logo": {
+  ".logo": {
     margin: "2rem 0",
     width: "4rem",
     height: "4rem",
@@ -20,17 +20,17 @@ export const signup: CSSObject = {
     color: "#fff",
   },
 
-  "& h1": {
+  h1: {
     ...infoTitle,
     margin: "1rem 0",
   },
 
-  "& p": {
+  p: {
     ...infoText,
     margin: "1rem 0",
   },
 
-  "& form": {
+  form: {
     marginTop: "2rem",
     width: "90%",
     display: "flex",
@@ -38,18 +38,18 @@ export const signup: CSSObject = {
     justifyContent: "center",
     alignItems: "center",
 
-    "& input": {
+    input: {
       ...input,
     },
 
-    "& p": {
+    p: {
       fontSize: "1.2rem",
       color: "red",
       marginBottom: "2.5rem",
       alignSelf: "flex-start",
     },
 
-    "& button": {
+    button: {
       ...globalBtn,
       background: "var(--main-color)",
       color: "#fff",
@@ -57,12 +57,12 @@ export const signup: CSSObject = {
     },
   },
 
-  "& .guideSignin": {
+  ".guideSignin": {
     marginTop: "3rem",
     fontSize: "1.2rem",
     color: "var(--shadow-color)",
 
-    "& .signinBtn": {
+    ".signinBtn": {
       margin: "2rem 0.5rem",
       fontSize: "1.2rem",
       color: "var(--basic-font)",
