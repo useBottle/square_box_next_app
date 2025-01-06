@@ -2,9 +2,9 @@
 
 "use client";
 
-import { container } from "@/styles/socialRedirect.styles";
 import { useRouter } from "next/navigation";
 import { css } from "@emotion/react";
+import { container } from "@/styles/SocialRedirect.styles";
 
 export default function SocialRedirect(): JSX.Element {
   const router = useRouter();

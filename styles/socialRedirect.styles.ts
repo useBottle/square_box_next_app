@@ -6,12 +6,13 @@ export const container: CSSObject = {
   display: "flex",
   justifyContent: "center",
 
-  "& h1": {
+  h1: {
     position: "absolute",
     top: "15rem",
     fontSize: "2rem",
   },
-  "& button": {
+
+  button: {
     position: "absolute",
     bottom: "15rem",
     marginTop: "5rem",
