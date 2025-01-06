@@ -1,0 +1,41 @@
+.bookmark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  .youtubeContainer {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10rem;
+
+    h4 {
+      width: 100%;
+      font-size: 1.2rem;
+      color: var(--basic-dark);
+      margin-top: 5rem;
+      margin-bottom: 1rem;
+      border-bottom: 0.5px solid var(--form-color);
+      padding: 1rem 0;
+    }
+
+    .contents {
+      width: 100%;
+
+      .emptyContents {
+        width: 100%;
+        height: 30vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        p {
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+}
