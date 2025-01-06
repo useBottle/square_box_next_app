@@ -28,7 +28,8 @@ export default function NewsDynamic(): JSX.Element {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    // 유저 정보가 없으면 onSubmit 이벤트 종료.
+    window.scrollTo({ top: 0 });
+    // 유저 정보가 없으면 북마크 데이터 검색 요청하지 않음.
     if (!session || !session.user || session.user.name === undefined) return;
 
     // 유저 정보 및 뉴스 데이터 DB 에서 확인 후 북마크 버튼 스타일 변경 트리거 상태 변경.

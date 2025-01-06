@@ -42,6 +42,7 @@ export default function LatestNewsDetail(): JSX.Element {
         setIsLoadingArticle(false);
       }
     });
+    window.scrollTo({ top: 0 });
   }, [latestArticleSet]);
 
   // currentArticle 이 업데이트 되면 해당 값이 북마크 되어있는지 확인
