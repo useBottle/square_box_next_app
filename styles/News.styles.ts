@@ -264,11 +264,11 @@ export const articleSkeleton: CSSObject = {
       marginBottom: "1.5rem",
     },
 
-    "& .text:nth-child(2)": {
+    "& .text:nth-of-type(2)": {
       width: "80%",
     },
 
-    "& .text:nth-child(3)": {
+    "& .text:nth-of-type(3)": {
       width: "90%",
     },
   },

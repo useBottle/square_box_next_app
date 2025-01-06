@@ -12,6 +12,7 @@ import { setLatestArticleSet, setLatestNewsList } from "@/store/latestNews";
 import Image from "next/image";
 import { latestNews } from "@/styles/LatestNews.styles";
 import { css } from "@emotion/react";
+import LatestNewsSkeleton from "../component/LatestNewsSkeleton";
 
 export const dynamic = "force-dynamic";
 
@@ -47,7 +48,7 @@ export default function Home(): JSX.Element {
       <div css={css(latestNews)}>
         <h4>최신 뉴스 Top 10</h4>
         <ul>
-          {latestNewsList ? (
+          {latestNewsList.length !== 0 && false ? (
             latestNewsList.map((item, index) => {
               return (
                 <Link href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`} key={index}>
@@ -63,11 +64,7 @@ export default function Home(): JSX.Element {
               );
             })
           ) : (
-            // 데이터 로딩 실패 시 제공할 UI
-            <div className="infoText">
-              <p>데이터를 서버에서 불러오고 있습니다</p>
-              <p>새로고침 해주세요</p>
-            </div>
+            <LatestNewsSkeleton />
           )}
         </ul>
       </div>

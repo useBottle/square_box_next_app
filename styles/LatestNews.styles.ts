@@ -1,4 +1,4 @@
-import { CSSObject } from "@emotion/react";
+import { CSSObject, keyframes } from "@emotion/react";
 
 export const latestNews: CSSObject = {
   marginTop: "6rem",
@@ -83,15 +83,76 @@ export const latestNews: CSSObject = {
         marginBottom: "10rem",
       },
     },
+  },
+};
 
-    ".infoText": {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      flexDirection: "column",
-      fontSize: "1.6rem",
-      marginTop: "4rem",
-      marginBottom: "10rem",
+// Skeleton UI 애니메이션
+const shine = keyframes({
+  from: {
+    transform: "skew(45deg) translateX(0%)",
+  },
+  to: {
+    transform: "skew(45deg) translateX(200%)",
+  },
+});
+
+// 최신 뉴스 Top 10 의 Skeleton UI
+export const latestNewsSkeleton: CSSObject = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  width: "100%",
+
+  ".contentBox": {
+    width: "100%",
+    display: "grid",
+    gridTemplateColumns: "30% 70%",
+    margin: "1rem 0",
+
+    ".default": {
+      position: "relative",
+      overflow: "hidden",
+      background: "lightgray",
+      borderRadius: "3px",
+      height: "2rem",
+
+      "&::before": {
+        content: '""',
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        background: "#ffffff33",
+        animation: `${shine} infinite 1.5s ease-in-out`,
+      },
+    },
+
+    ".img": {
+      width: "10rem",
+      height: "10rem",
+    },
+
+    ".textGroup": {
+      marginLeft: "1rem",
+
+      ".title": {
+        height: "2.5rem",
+        marginBottom: "1.5rem",
+      },
+
+      ".text1": {
+        width: "80%",
+        marginBottom: "0.5rem",
+      },
+
+      ".text2": {
+        width: "85%",
+      },
+    },
+
+    "&:last-child": {
+      marginBottom: "4rem",
     },
   },
 };
