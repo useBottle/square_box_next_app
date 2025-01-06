@@ -18,7 +18,7 @@ import { deleteNewsBookmark, findNewsBookmark, setNewsBookmark } from "@/app/act
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 
-export default function LatestNewsDetail() {
+export default function LatestNewsDetail(): JSX.Element {
   const { data: session } = useSession();
   const params = useSearchParams();
   const newsTitle = decodeURIComponent(params.get("title") as string);

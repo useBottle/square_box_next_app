@@ -52,18 +52,18 @@ export const searchBarForm: CSSObject = {
   flexDirection: "column",
   width: "100%",
 
-  "& .inputSet": {
+  ".inputSet": {
     display: "flex",
     alignItems: "center",
     width: "90%",
 
-    "& .searchIcon": {
+    ".searchIcon": {
       position: "absolute",
       fontSize: "1.8rem",
       transform: "translateX(0.8rem)",
     },
 
-    "& input": {
+    input: {
       width: "100%",
       padding: "1rem 3rem",
       border: "none",
@@ -86,7 +86,7 @@ export const searchBarForm: CSSObject = {
       },
     },
 
-    "& .cancelIcon": {
+    ".cancelIcon": {
       position: "absolute",
       right: 0,
       fontSize: "1.6rem",
