@@ -12,12 +12,12 @@ export const loading: CSSObject = {
   alignItems: "center",
   height: "80vh",
 
-  "& .textBox": {
+  ".textBox": {
     padding: "2rem 6rem",
     background: "#fff",
     zIndex: 999,
 
-    "& h1": {
+    h1: {
       fontSize: "1.6rem",
       border: "1px solid var(--basic-font)",
       animation: `${blink} infinite 2s ease-in-out`,
@@ -26,7 +26,7 @@ export const loading: CSSObject = {
     },
   },
 
-  "& .square": {
+  ".square": {
     position: "absolute",
     width: "8rem",
     height: "20rem",
