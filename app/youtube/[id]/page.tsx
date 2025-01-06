@@ -60,7 +60,7 @@ export default function YoutubeDynamic(): JSX.Element {
       channelTitle: youtubeList.items[index].snippet.channelTitle,
       publishedAt: youtubeList.items[index].snippet.publishedAt,
       description: youtubeList.items[index].snippet.description,
-      thumbnails: youtubeList.items[index].snippet.thumbnails.high.url,
+      thumbnail: youtubeList.items[index].snippet.thumbnails.high.url,
     };
 
     try {

@@ -122,7 +122,7 @@ export interface currentYoutubeVideo {
   channelTitle: string;
   publishedAt: string;
   description: string;
-  thumbnails: string;
+  thumbnail: string;
 }
 
 // * 북마크 관련 인터페이스
@@ -146,7 +146,7 @@ export interface MarkedYoutubeVideo {
   channelTitle: string;
   publishedAt: string;
   description: string;
-  thumbnails: string;
+  thumbnail: string;
   username: string;
   createdAt: Date;
   category: string;

@@ -7,7 +7,7 @@ const markedYoutubeSchema = new Schema<MarkedYoutubeVideo>({
   channelTitle: { type: String, required: true },
   publishedAt: { type: String, required: true },
   description: { type: String, required: true },
-  thumbnails: { type: String, required: true },
+  thumbnail: { type: String, required: true },
   username: { type: String, required: true },
   category: { type: String, required: true },
   createdAt: {

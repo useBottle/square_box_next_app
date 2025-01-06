@@ -29,7 +29,7 @@ export default async function Bookmark() {
                 return (
                   <Link href={`/youtube/detail?id=${item.videoId}&index=${index}`} key={index}>
                     <li>
-                      <Image src={item.thumbnails} alt={item.title} width={300} height={200} />
+                      <Image src={item.thumbnail} alt={item.title} width={300} height={200} />
                       <div className={styles.textGroup}>
                         <h1 className={styles.title}>{item.title}</h1>
                         <h4 className={styles.channel}>{item.channelTitle}</h4>
