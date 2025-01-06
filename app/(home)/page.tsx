@@ -9,11 +9,16 @@ import axios from "axios";
 import * as cheerio from "cheerio";
 import { setNewsArticles } from "../actions/newsActions";
 import { newsList } from "@/types/types";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
 
 export const dynamic = "force-dynamic";
 
-export default function Home() {
+export default function Home(): JSX.Element {
+  const dispatch = useDispatch<AppDispatch>();
+  const latestNewsList = useSelector((state: RootState) => state.latestNews.latestNewsList);
+  const [result, setResult] = useState<newsList[]>([]);
   // async function fetchData() {
   //   const url = process.env.LATEST_NEWS_API || "";
 
@@ -84,9 +89,13 @@ export default function Home() {
   //     console.error("Error fetching latest news", error);
   //   }
   // }
+  // const result = await fetchData();
 
-  const result = await fetchData();
-  // console.log(result);
+  useEffect(() => {}, []);
+
+  useEffect(() => {
+    console.log(latestNewsList);
+  }, [latestNewsList]);
 
   return (
     <div>
@@ -94,8 +103,8 @@ export default function Home() {
       <div className={styles.latestNews}>
         <h4>최신 뉴스 Top 10</h4>
         <ul>
-          {result ? (
-            result.map((item, index) => {
+          {latestNewsList ? (
+            latestNewsList.map((item, index) => {
               return (
                 <Link href={`/latest-news/${item.title}`} key={index}>
                   <li>

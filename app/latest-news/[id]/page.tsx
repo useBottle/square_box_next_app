@@ -4,7 +4,6 @@
 
 import { css } from "@emotion/react";
 import { getNewsArticle } from "@/app/actions/newsActions";
-import { getLatestArticle } from "@/app/actions/latestNewsActions";
 import { GoBookmarkFill } from "react-icons/go";
 import { FaCheck } from "react-icons/fa6";
 import ExpiredData from "@/app/component/ExpiredData";
