@@ -27,7 +27,18 @@ export default function Home(): JSX.Element {
       const articles = await getLatestNewsArticle(result?.urls as string[]);
       dispatch(setLatestArticleSet(articles));
     };
+
     fetchData();
+
+    // 10분마다 최신 뉴스 리스트 갱신 요청.
+    const intervalFetch = setInterval(
+      () => {
+        fetchData();
+      },
+      1000 * 60 * 10,
+    );
+
+    return () => clearInterval(intervalFetch);
   }, []);
 
   return (
