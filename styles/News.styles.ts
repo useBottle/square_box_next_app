@@ -34,7 +34,7 @@ export const newsListStyles: CSSObject = {
         height: "10rem",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
+        // justifyContent: "space-between",
         alignItems: "flex-start",
         boxSizing: "border-box",
 
@@ -50,17 +50,18 @@ export const newsListStyles: CSSObject = {
         },
 
         ".date": {
-          margin: "0.5rem 0",
+          marginTop: "2rem",
         },
 
         p: {
-          fontSize: "1.1rem",
-          lineHeight: 1.2,
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          display: "-webkit-box",
-          WebkitLineClamp: 1,
-          WebkitBoxOrient: "vertical",
+          display: "none",
+          // fontSize: "1.1rem",
+          // lineHeight: 1.2,
+          // overflow: "hidden",
+          // textOverflow: "ellipsis",
+          // display: "-webkit-box",
+          // WebkitLineClamp: 1,
+          // WebkitBoxOrient: "vertical",
         },
       },
     },
