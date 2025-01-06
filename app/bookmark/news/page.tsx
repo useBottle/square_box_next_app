@@ -30,11 +30,13 @@ export default async function BookmarkNews() {
                 return (
                   <Link href={`/bookmark/detail?title=${encodeURIComponent(item.title)}`} key={index}>
                     <li>
-                      <Image src={item.prevImg} alt="newsImg" width={100} height={100} />
+                      <Image src={item.image} alt="newsImg" width={100} height={100} />
                       <div className={styles.textGroup}>
                         <h6>{item.title}</h6>
                         <div className={styles.date}>{item.date}</div>
-                        <p>{item.summary}</p>
+                        {item.text.map((item: string, index: number) => {
+                          return <p key={index}>{item}</p>;
+                        })}
                       </div>
                     </li>
                   </Link>
