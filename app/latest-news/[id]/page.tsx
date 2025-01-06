@@ -59,12 +59,17 @@ export default function LatestNewsDetail() {
 
   // currentArticle 이 업데이트 되면 해당 값이 북마크 되어있는지 확인
   useEffect(() => {
+    console.log(currentArticle);
     // 유저 정보 및 뉴스 데이터 DB 에서 확인 후 북마크 버튼 스타일 변경 트리거 상태 변경.
     const findMarkedNews = async () => {
       try {
+        // 상태 업데이트가 완료되지 않아 데이터가 비었을 경우 함수 종료.
+        console.log(currentArticle);
+        if (currentArticle === undefined || currentArticle.title === "") return;
+
         if (session && session.user && session.user.name !== undefined) {
           const findBookmark = await findNewsBookmark(currentArticle.title, session.user.name as string);
-
+          console.log(findBookmark);
           if (findBookmark && findBookmark.exists === true) {
             setBookmarkSuccess(true);
           }
@@ -89,7 +94,7 @@ export default function LatestNewsDetail() {
     // 현재 뉴스 기사 객체 생성
     const currentNews = {
       title: currentArticle.title,
-      date: currentArticle.date[1] ? currentArticle.date[1] : currentArticle.date[0],
+      date: currentArticle.date,
       image: currentArticle.image,
       alt: currentArticle.alt,
       text: currentArticle.text,
