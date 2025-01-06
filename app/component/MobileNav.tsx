@@ -35,7 +35,7 @@ export default function MobileNav(): JSX.Element {
     { text: "HOME", icon: <IoHomeOutline />, path: "/" },
     { text: "NEWS", icon: <IoNewspaperOutline />, path: "/news" },
     { text: "YOUTUBE", icon: <SlSocialYoutube />, path: "/youtube" },
-    { text: "BOOKMARK", icon: <IoBookmarkOutline />, path: "/bookmark" },
+    { text: "BOOKMARK", icon: <IoBookmarkOutline />, path: "/bookmark/news" },
   ];
 
   return (
