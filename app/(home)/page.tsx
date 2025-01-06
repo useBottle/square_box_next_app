@@ -92,7 +92,7 @@ export default async function Home() {
           {result ? (
             result.map((item, index) => {
               return (
-                <Link href={`/latest-news/${index}`} key={index}>
+                <Link href={`/latest-news/${item.title}`} key={index}>
                   <li>
                     <img src={item.prevImg} width={100} height={100} alt="newsImg" />
                     <div className={styles.textGroup}>
