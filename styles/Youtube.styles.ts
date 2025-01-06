@@ -7,33 +7,33 @@ export const youtube: CSSObject = {
   flexDirection: "column",
   width: "100vw",
 
-  "& a": {
+  a: {
     width: "90%",
     margin: "2rem 0",
 
-    "& li": {
+    li: {
       width: "100%",
       border: "1px solid #eee",
       borderRadius: "5px",
       boxSizing: "border-box",
 
-      "& img": {
+      img: {
         width: "100%",
         height: "auto",
         borderTopLeftRadius: "5px",
         borderTopRightRadius: "5px",
       },
 
-      "& .textGroup": {
+      ".textGroup": {
         padding: "1rem",
 
-        "& .title": {
+        ".title": {
           fontSize: "2rem",
           color: "var(--main-color)",
           margin: "1rem 0",
         },
 
-        "& .channel": {
+        ".channel": {
           fontSize: "1.4rem",
           padding: "0.5rem 1rem",
           color: "var(--reverse-font)",
@@ -44,13 +44,13 @@ export const youtube: CSSObject = {
           margin: "2rem 0",
         },
 
-        "& .publishedAt": {
+        ".publishedAt": {
           fontSize: "1.2rem",
           color: "var(--basic-font)",
           margin: "2rem 0",
         },
 
-        "& .description": {
+        ".description": {
           fontSize: "1.4rem",
           color: "var(--basic-font)",
           margin: "1rem 0",
@@ -67,20 +67,20 @@ export const youtubeDynamic: CSSObject = {
   flexDirection: "column",
   width: "100vw",
 
-  "& .player": {
+  ".player": {
     width: "100%",
   },
 
-  "& .textGroup": {
+  ".textGroup": {
     padding: "1rem",
 
-    "& .title": {
+    ".title": {
       fontSize: "2rem",
       color: "var(--main-color)",
       margin: "1rem 0",
     },
 
-    "& .channel": {
+    ".channel": {
       fontSize: "1.4rem",
       padding: "0.5rem 1rem",
       color: "var(--reverse-font)",
@@ -91,13 +91,13 @@ export const youtubeDynamic: CSSObject = {
       margin: "2rem 0",
     },
 
-    "& .publishedAt": {
+    ".publishedAt": {
       fontSize: "1.2rem",
       color: "var(--basic-font)",
       margin: "2rem 0",
     },
 
-    "& button": {
+    button: {
       width: "100%",
       padding: "0.8rem 0",
       fontSize: "2rem",
@@ -112,13 +112,13 @@ export const youtubeDynamic: CSSObject = {
       cursor: "pointer",
       marginBottom: "4rem",
 
-      "& span": {
+      span: {
         fontSize: "1.4rem",
         marginLeft: "0.5rem",
       },
     },
 
-    "& .description": {
+    ".description": {
       fontSize: "1.4rem",
       color: "var(--basic-font)",
       margin: "1rem 0",
@@ -143,11 +143,11 @@ export const youtubeSkeleton: CSSObject = {
   width: "100vw",
   margin: "1rem 0",
 
-  "& .list": {
+  ".list": {
     width: "90%",
     margin: "1.5rem",
 
-    "& .default": {
+    ".default": {
       position: "relative",
       overflow: "hidden",
       borderRadius: "5px",
@@ -165,37 +165,37 @@ export const youtubeSkeleton: CSSObject = {
       },
     },
 
-    "& .imgFrame": {
+    ".imgFrame": {
       width: "100%",
       height: "25rem",
     },
 
-    "& .textGroup": {
+    ".textGroup": {
       margin: "1rem 0",
       width: "100%",
 
-      "& .titleFrame": {
+      ".titleFrame": {
         height: "3rem",
         background: "lightgray",
         margin: "2rem 0",
       },
 
-      "& .channelFrame": {
+      ".channelFrame": {
         height: "3rem",
         background: "lightgray",
         margin: "2rem 0",
         width: "20%",
       },
 
-      "& .dateFrame": {
+      ".dateFrame": {
         height: "2rem",
         background: "lightgray",
         margin: "4rem 0",
         width: "30%",
       },
 
-      "& .descGroup": {
-        "& .descFrame": {
+      ".descGroup": {
+        ".descFrame": {
           height: "2rem",
           background: "lightgray",
           margin: "1rem 0",
