@@ -11,12 +11,12 @@ import ExpiredData from "@/app/component/ExpiredData";
 import { useSession } from "next-auth/react";
 import { useParams } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
-import { deleteNewsBookmark, findNewsBookmark, setNewsBookmark } from "@/app/actions/bookmarkActions";
 import { currentArticle } from "@/types/types";
 import ArticleSkeleton from "@/app/component/ArticleSkeleton";
 import { dynamicNewsStyles } from "@/styles/News.styles";
 import Image from "next/image";
 import Link from "next/link";
+import { deleteNewsBookmark, findNewsBookmark, setNewsBookmark } from "@/app/actions/bookmarkNewsActions";
 
 export default function LatestNewsDetail() {
   const { data: session } = useSession();

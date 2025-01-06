@@ -14,8 +14,8 @@ import { GoBookmarkFill } from "react-icons/go";
 import { FaCheck } from "react-icons/fa6";
 import { FormEvent, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import { deleteNewsBookmark, findNewsBookmark, setNewsBookmark } from "@/app/actions/bookmarkActions";
 import ExpiredData from "@/app/component/ExpiredData";
+import { deleteNewsBookmark, findNewsBookmark, setNewsBookmark } from "@/app/actions/bookmarkNewsActions";
 
 export default function NewsDynamic(): JSX.Element {
   const { data: session } = useSession();

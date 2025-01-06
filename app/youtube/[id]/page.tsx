@@ -2,7 +2,7 @@
 
 "use client";
 
-import { deleteYoutubeBookmark, findYoutubeBookmark, setYoutubeBookmark } from "@/app/actions/bookmarkActions";
+import { deleteYoutubeBookmark, findYoutubeBookmark, setYoutubeBookmark } from "@/app/actions/bookmarkYoutubeActions";
 import ExpiredData from "@/app/component/ExpiredData";
 import { RootState } from "@/store/store";
 import { youtubeDynamic } from "@/styles/Youtube.styles";
