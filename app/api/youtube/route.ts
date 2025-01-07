@@ -27,7 +27,7 @@ export async function POST(req: Request) {
       q: inputValue,
       part: "snippet",
       chart: "mostPopular",
-      maxResults: "20",
+      maxResults: "100",
       regionCode: "kr",
       key: process.env.YOUTUBE_API_KEY as string,
     });
