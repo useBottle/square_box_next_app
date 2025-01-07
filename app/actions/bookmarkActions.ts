@@ -3,6 +3,7 @@
 import MarkedNews from "@/models/markedNews";
 import MarkedYoutube from "@/models/markedYoutube";
 import dbConnect from "@/util/database";
+import { ObjectId } from "mongodb";
 
 // 뉴스 북마크 데이터 검색 및 반환
 export async function getMarkedNews(username: string) {
@@ -66,5 +67,54 @@ export async function getMarkedYoutube(username: string) {
   }
 }
 
-// 북마크 삭제
-export async function deleteBookmark(data: { category: string; id: string; username: string }) {}
+// id 값을 사용해 뉴스 북마크 삭제
+export async function deleteNewsBookmark(id: string, username: string) {
+  try {
+    await dbConnect();
+    const deleteBookmark = await MarkedNews.deleteOne({ _id: new ObjectId(id), username: username, category: "news" });
+
+    if (deleteBookmark.deletedCount === 1) {
+      return {
+        delete: true,
+        message: "bookmark news delete success",
+      };
+    }
+
+    if (deleteBookmark.deletedCount === 0) {
+      return {
+        delete: false,
+        message: "bookmark news delete failed",
+      };
+    }
+  } catch (error) {
+    console.error("bookmark news delete failed with id value", error);
+  }
+}
+
+// id 값을 사용해 유튜브 북마크 삭제
+export async function deleteYoutubeBookmark(id: string, username: string) {
+  try {
+    await dbConnect();
+    const deleteBookmark = await MarkedYoutube.deleteOne({
+      _id: new ObjectId(id),
+      username: username,
+      category: "youtube",
+    });
+
+    if (deleteBookmark.deletedCount === 1) {
+      return {
+        delete: true,
+        message: "bookmark youtube delete success",
+      };
+    }
+
+    if (deleteBookmark.deletedCount === 0) {
+      return {
+        delete: false,
+        message: "bookmark youtube delete failed",
+      };
+    }
+  } catch (error) {
+    console.error("bookmark youtube video delete failed with id value", error);
+  }
+}

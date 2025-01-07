@@ -55,12 +55,12 @@ export async function setNewsBookmark(article: LatestNewsArticle, username: stri
 }
 
 // 뉴스 북마크 삭제
-export async function deleteNewsBookmark(title: string, username: string) {
+export async function deleteNewsBookmark(article: LatestNewsArticle, username: string) {
   try {
     await dbConnect();
 
     const deleteBookmark = await MarkedNews.deleteOne({
-      title: title,
+      ...article,
       username: username,
       category: "news",
     });

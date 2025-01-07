@@ -35,7 +35,8 @@ export default function BookmarkDeleteBtn({ data }: { data: { category: string; 
   const session = useSession();
 
   const targetData = {
-    ...data,
+    category: data.category,
+    id: data.id,
     username: session.data?.user?.name as string,
   };
 
