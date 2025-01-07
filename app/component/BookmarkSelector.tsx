@@ -21,7 +21,7 @@ const btnGroup: CSSObject = {
       width: "100%",
       background: "transparent",
       border: "1.5px solid transparent",
-      fontSize: "1.6rem",
+      fontSize: "1.4rem",
       color: "var(--basic-font)",
       padding: "1rem 0",
       cursor: "pointer",
