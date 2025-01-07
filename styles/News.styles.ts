@@ -141,16 +141,14 @@ export const dynamicNewsStyles: CSSObject = {
   },
 
   ".scrollTop": {
-    padding: "0.8rem 1rem",
     marginBottom: "15rem",
-    border: "1px solid var(--basic-font)",
-    borderRadius: "5px",
-    boxSizing: "border-box",
+    border: "none",
+    fontSize: "5rem",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     color: "var(--basic-font)",
-    background: "var(--reverse-font)",
+    background: "transparent",
     cursor: "pointer",
   },
 };
