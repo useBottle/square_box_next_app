@@ -26,7 +26,6 @@ export default function Youtube() {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const triggerHeight = 300;
-      console.log(scrollPosition);
 
       if (scrollPosition > triggerHeight) {
         setBtnSwitch(true);
