@@ -27,7 +27,7 @@ export async function POST(req: Request) {
       q: inputValue,
       part: "snippet",
       chart: "mostPopular",
-      maxResults: "10",
+      maxResults: "20",
       regionCode: "kr",
       key: process.env.YOUTUBE_API_KEY as string,
     });
@@ -36,15 +36,20 @@ export async function POST(req: Request) {
     const result = response.data;
 
     const youtubeDataModified = { ...result };
-    youtubeDataModified.items.map((item: YouTubeVideo) => {
+    const modifiedItems = youtubeDataModified.items.map((item: YouTubeVideo) => {
       item.snippet.title = decodeHtmlEntities(item.snippet.title);
       item.snippet.description = decodeHtmlEntities(item.snippet.description);
       item.snippet.publishedAt = formatDate(item.snippet.publishedAt);
+      return item;
     });
+    // videoId undefined 인 데이터 필더링
+    const filterdItems = modifiedItems.filter((item: YouTubeVideo) => item.id.videoId !== undefined);
+    youtubeDataModified.items = filterdItems;
 
-    // console.log(youtubeDataModified.items);
+    console.log(youtubeDataModified.items);
     return NextResponse.json({ youtubeData: youtubeDataModified });
   } catch (error: unknown) {
     console.error("Youtube fetch failed.", error);
+    return NextResponse.json({ error: "Youtube fetch failed", status: 500 });
   }
 }
