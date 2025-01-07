@@ -2,13 +2,10 @@
 
 "use client";
 
-import { setSelected } from "@/store/bookmark";
-import { AppDispatch, RootState } from "@/store/store";
 import { css, CSSObject } from "@emotion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 const btnGroup: CSSObject = {
   display: "flex",
@@ -34,21 +31,20 @@ const btnGroup: CSSObject = {
 };
 
 export default function BookmarkSelector(): JSX.Element {
-  const selected = useSelector((state: RootState) => state.bookmark);
-  const dispatch = useDispatch<AppDispatch>();
   const pathname = usePathname();
+  const [selected, setSelected] = useState<string>("news");
 
   useEffect(() => {
-    pathname === "/bookmark/news" && dispatch(setSelected("news"));
-    pathname === "/bookmark/youtube" && dispatch(setSelected("youtube"));
+    pathname === "/bookmark/news" && setSelected("news");
+    pathname === "/bookmark/youtube" && setSelected("youtube");
   }, [pathname]);
 
   return (
     <div css={css(btnGroup)}>
-      <Link href="/bookmark/news" onClick={() => dispatch(setSelected("news"))}>
+      <Link href="/bookmark/news" onClick={() => setSelected("news")}>
         <button style={selected === "news" ? { borderBottom: "1.5px solid var(--basic-font)" } : {}}>NEWS</button>
       </Link>
-      <Link href="/bookmark/youtube" onClick={() => dispatch(setSelected("youtube"))}>
+      <Link href="/bookmark/youtube" onClick={() => setSelected("youtube")}>
         <button style={selected === "youtube" ? { borderBottom: "1.5px solid var(--basic-font)" } : {}}>YOUTUBE</button>
       </Link>
     </div>

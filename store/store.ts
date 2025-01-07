@@ -3,7 +3,6 @@ import switchesReducer from "../store/switches";
 import newsReducer from "../store/news";
 import latestNewsReducer from "../store/latestNews";
 import youtubeReducer from "../store/youtube";
-import bookmarkReducer from "../store/bookmark";
 
 const store = configureStore({
   reducer: {
@@ -11,7 +10,6 @@ const store = configureStore({
     news: newsReducer,
     latestNews: latestNewsReducer,
     youtube: youtubeReducer,
-    bookmark: bookmarkReducer,
   },
 });
 
