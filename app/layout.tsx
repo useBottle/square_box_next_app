@@ -29,6 +29,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>): JSX.Element {
+  const headerHeight = "5rem";
+
   return (
     <html lang="kr">
       <body className={notoSansKR.className}>
@@ -36,7 +38,7 @@ export default function RootLayout({
           <CheckToken />
           <MobileNav />
           <Header />
-          {children}
+          <div style={{ paddingTop: headerHeight }}>{children}</div>
         </Providers>
       </body>
     </html>

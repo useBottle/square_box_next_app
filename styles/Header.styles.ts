@@ -1,12 +1,16 @@
 import { CSSObject } from "@emotion/react";
 
 export const header: CSSObject = {
+  position: "fixed",
+  width: "100vw",
+  boxSizing: "border-box",
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
   height: "5rem",
   zIndex: 999,
   padding: "0 5%",
+  background: "var(--reverse-font)",
 
   ".logo": {
     display: "flex",
