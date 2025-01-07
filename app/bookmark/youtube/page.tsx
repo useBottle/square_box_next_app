@@ -5,6 +5,7 @@ import styles from "../../../styles/BookmarkYoutube.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { getMarkedYoutube } from "@/app/actions/bookmarkActions";
+import BookmarkSelector from "@/app/component/BookmarkSelector";
 
 export default async function Bookmark() {
   const session = await getServerSession(authOptions);
@@ -16,7 +17,7 @@ export default async function Bookmark() {
   const data = await getMarkedYoutube(session.user.name as string);
   const youtubeData = data?.exists === true ? data.data : [];
 
-  console.log("youtubeData: ", youtubeData);
+  // console.log("youtubeData: ", youtubeData);
 
   return (
     <div className={styles.bookmark}>

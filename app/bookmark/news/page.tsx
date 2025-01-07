@@ -5,6 +5,7 @@ import styles from "../../../styles/BookmarkNews.module.scss";
 import { getMarkedNews } from "../../actions/bookmarkActions";
 import Link from "next/link";
 import Image from "next/image";
+import BookmarkSelector from "@/app/component/BookmarkSelector";
 
 export default async function BookmarkNews() {
   const session = await getServerSession(authOptions);
@@ -14,10 +15,9 @@ export default async function BookmarkNews() {
   }
 
   const data = await getMarkedNews(session.user.name as string);
-
   const newsData = data?.exists === true ? data.data : [];
 
-  console.log("newsData: ", newsData);
+  // console.log("newsData: ", newsData);
 
   return (
     <div className={styles.bookmark}>
