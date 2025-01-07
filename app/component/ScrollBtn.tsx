@@ -10,7 +10,7 @@ const wave = keyframes({
   "0%": {
     width: "2rem",
     height: "2rem",
-    opacity: 1,
+    opacity: 0,
   },
   "50%": {
     width: "4rem",
@@ -39,7 +39,7 @@ const scrollBtn: CSSObject = {
   background: "var(--basic-font)",
   cursor: "pointer",
   padding: "1rem",
-  zIndex: 999,
+  zIndex: 100,
 
   ".circle": {
     position: "absolute",

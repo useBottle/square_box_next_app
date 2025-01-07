@@ -18,6 +18,7 @@ import plateBack from "../../public/images/snow_forest.jpg";
 import Image from "next/image";
 import { BsBox } from "react-icons/bs";
 import { Prompt } from "next/font/google";
+import { useEffect } from "react";
 
 const prompt = Prompt({
   subsets: ["latin"],
@@ -30,6 +31,18 @@ export default function MobileNav(): JSX.Element {
   const { navMenu } = useSelector((state: RootState) => state.switches);
   const { signoutModal } = useSelector((state: RootState) => state.switches);
   const session = useSession();
+
+  useEffect(() => {
+    if (navMenu) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [navMenu]);
 
   const menuItems = [
     { text: "HOME", icon: <IoHomeOutline />, path: "/" },

@@ -24,7 +24,7 @@ export default function Header(): JSX.Element {
 
   return (
     <header css={css(header)}>
-      <Link href="/" className="logo">
+      <Link href="/" className="logo" onClick={() => dispatch(setNavMenu(false))}>
         <BsBox />
         <h1 className={prompt.className} css={css({ marginLeft: "1rem" })}>
           Square Box
