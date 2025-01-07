@@ -27,65 +27,68 @@
       flex-direction: column;
       align-items: center;
 
-      ul {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        width: 100vw;
-      
-        a {
-          width: 90%;
-          margin: 2rem 0;
-      
-          li {
-            width: 100%;
-            border: 1px solid #eee;
-            border-radius: 5px;
-            box-sizing: border-box;
-      
-            img {
-              width: 100%;
-              height: auto;
-              border-top-left-radius: 5px;
-              border-top-right-radius: 5px;
+        ul {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          width: 100%;
+
+            a {
+              width: 90%;
+              margin: 2rem 0;
+          
+              li {
+                width: 100%;
+                border: 1px solid #eee;
+                border-radius: 5px;
+                box-sizing: border-box;
+                margin-bottom: 1.5rem;
+          
+                img {
+                  width: 100%;
+                  height: auto;
+                  border-top-left-radius: 5px;
+                  border-top-right-radius: 5px;
+                }
+          
+                .textGroup {
+                  padding: 1rem;
+          
+                  .title {
+                    font-size: 2rem;
+                    color: var(--main-color);
+                    margin: 1rem 0;
+                  }
+          
+                  .channel {
+                    font-size: 1.4rem;
+                    padding: 0.5rem 1rem;
+                    color: var(--reverse-font);
+                    background: var(--basic-font);
+                    border: 1px solid var(--basic-font);
+                    border-radius: 3px;
+                    width: fit-content;
+                    margin: 2rem 0;
+                  }
+          
+                  .publishedAt {
+                    font-size: 1.2rem;
+                    color: var(--basic-font);
+                    margin: 2rem 0;
+                  }
+          
+                  .description {
+                    font-size: 1.4rem;
+                    color: var(--basic-font);
+                    margin: 1rem 0;
+                  }
+                }
+              }
             }
-      
-            .textGroup {
-              padding: 1rem;
-      
-              .title {
-                font-size: 2rem;
-                color: var(--main-color);
-                margin: 1rem 0;
-              }
-      
-              .channel {
-                font-size: 1.4rem;
-                padding: 0.5rem 1rem;
-                color: var(--reverse-font);
-                background: var(--basic-font);
-                border: 1px solid var(--basic-font);
-                border-radius: 3px;
-                width: fit-content;
-                margin: 2rem 0;
-              }
-      
-              .publishedAt {
-                font-size: 1.2rem;
-                color: var(--basic-font);
-                margin: 2rem 0;
-              }
-      
-              .description {
-                font-size: 1.4rem;
-                color: var(--basic-font);
-                margin: 1rem 0;
-              }
-            }
-          }
+          
         }
-      }
+      
 
       .emptyContents {
         width: 100%;

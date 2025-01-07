@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getMarkedYoutube } from "@/app/actions/bookmarkActions";
 import ScrollBtn from "@/app/component/ScrollBtn";
+import BookmarkDeleteBtn from "@/app/component/BookmarkDeleteBtn";
 
 export default async function Bookmark() {
   const session = await getServerSession(authOptions);
@@ -29,17 +30,20 @@ export default async function Bookmark() {
               <ul>
                 {youtubeData.map((item, index) => {
                   return (
-                    <Link href={`/youtube/detail?id=${item.videoId}&index=${index}`} key={index}>
-                      <li>
-                        <Image src={item.thumbnail} alt={item.title} width={300} height={200} />
-                        <div className={styles.textGroup}>
-                          <h1 className={styles.title}>{item.title}</h1>
-                          <h4 className={styles.channel}>{item.channelTitle}</h4>
-                          <div className={styles.publishedAt}>{item.publishedAt}</div>
-                          <p className={styles.description}>{item.description}</p>
-                        </div>
-                      </li>
-                    </Link>
+                    <div>
+                      <Link href={`/youtube/detail?id=${item.videoId}&index=${index}`} key={index}>
+                        <li>
+                          <Image src={item.thumbnail} alt={item.title} width={300} height={200} />
+                          <div className={styles.textGroup}>
+                            <h1 className={styles.title}>{item.title}</h1>
+                            <h4 className={styles.channel}>{item.channelTitle}</h4>
+                            <div className={styles.publishedAt}>{item.publishedAt}</div>
+                            <p className={styles.description}>{item.description}</p>
+                          </div>
+                        </li>
+                      </Link>
+                      <BookmarkDeleteBtn />
+                    </div>
                   );
                 })}
               </ul>
