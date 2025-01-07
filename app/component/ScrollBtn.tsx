@@ -3,7 +3,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FaCircleArrowUp } from "react-icons/fa6";
+import { FaArrowUp } from "react-icons/fa6";
 import { css, CSSObject } from "@emotion/react";
 
 const scrollBtn: CSSObject = {
@@ -12,29 +12,16 @@ const scrollBtn: CSSObject = {
   transform: "translateX(-50%)",
   bottom: "5rem",
   border: "none",
-  fontSize: "5rem",
+  borderRadius: "50%",
+  fontSize: "2rem",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  color: "var(--basic-font)",
-  background: "transparent",
+  color: "var(--reverse-font)",
+  background: "var(--basic-font)",
   cursor: "pointer",
-  padding: 0,
-
-  ".icon": {
-    zIndex: 999,
-  },
-
-  ".iconBack": {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    background: "#fff",
-    width: "90%",
-    height: "90%",
-    borderRadius: "50%",
-  },
+  padding: "1rem",
+  zIndex: 999,
 };
 
 export default function ScrollBtn(): JSX.Element {
@@ -70,8 +57,7 @@ export default function ScrollBtn(): JSX.Element {
       }}
       style={!btnSwitch ? { display: "none" } : {}}
     >
-      <FaCircleArrowUp className="icon" />
-      <div className="iconBack" />
+      <FaArrowUp />
     </button>
   );
 }

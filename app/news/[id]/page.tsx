@@ -100,7 +100,6 @@ export default function NewsDynamic(): JSX.Element {
       if (findBookmark && findBookmark.exists === false) {
         // 유저와 일치하는 북마크 뉴스 데이터 모두 검색
         const markedNewsData = await getMarkedNews(session.user.name as string);
-        console.log(markedNewsData);
 
         // 북마크 수 10개 미만일 경우만 북마크 요청
         if (markedNewsData && (markedNewsData?.number as number) < 10) {
