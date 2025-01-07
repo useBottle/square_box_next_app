@@ -84,7 +84,6 @@ export default function YoutubeDynamic(): JSX.Element {
       if (findBookmark && findBookmark.exists === false) {
         // 유저와 일치하는 북마크 유튜브 데이터 모두 검색
         const markedYoutubeData = await getMarkedYoutube(session.user.name as string);
-        console.log(markedYoutubeData);
 
         // 북마크 수 10개 미만일 경우만 북마크 요청
         if (markedYoutubeData && (markedYoutubeData?.number as number) < 10) {

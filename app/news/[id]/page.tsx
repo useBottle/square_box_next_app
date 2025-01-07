@@ -23,7 +23,6 @@ import { articleData } from "@/types/types";
 export default function NewsDynamic(): JSX.Element {
   const { data: session } = useSession();
   const article = useSelector((state: RootState) => state.news.article);
-  const articleStatus = useSelector((state: RootState) => state.news.articleStatus);
   const params = useSearchParams();
   const newsTitle = decodeURIComponent(params.get("title") as string);
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
@@ -47,6 +46,7 @@ export default function NewsDynamic(): JSX.Element {
     });
 
     window.scrollTo({ top: 0 });
+
     // 유저 정보가 없으면 북마크 데이터 검색 요청하지 않음.
     if (!session || !session.user || session.user.name === undefined) return;
 
