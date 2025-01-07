@@ -4,7 +4,25 @@
 
 import { useEffect, useState } from "react";
 import { FaArrowUp } from "react-icons/fa6";
-import { css, CSSObject } from "@emotion/react";
+import { css, CSSObject, keyframes } from "@emotion/react";
+
+const wave = keyframes({
+  "0%": {
+    width: "2rem",
+    height: "2rem",
+    opacity: 1,
+  },
+  "50%": {
+    width: "4rem",
+    height: "4rem",
+    opacity: 1,
+  },
+  "100%": {
+    width: "5rem",
+    height: "5rem",
+    opacity: 0,
+  },
+});
 
 const scrollBtn: CSSObject = {
   position: "fixed",
@@ -22,6 +40,15 @@ const scrollBtn: CSSObject = {
   cursor: "pointer",
   padding: "1rem",
   zIndex: 999,
+
+  ".circle": {
+    position: "absolute",
+    width: "1.5rem",
+    height: "1.5rem",
+    border: "1px solid var(--basic-font)",
+    borderRadius: "50%",
+    animation: `${wave} 2s infinite ease-out`,
+  },
 };
 
 export default function ScrollBtn(): JSX.Element {
@@ -58,6 +85,7 @@ export default function ScrollBtn(): JSX.Element {
       style={!btnSwitch ? { display: "none" } : {}}
     >
       <FaArrowUp />
+      <div className="circle" />
     </button>
   );
 }
