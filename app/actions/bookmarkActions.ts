@@ -65,3 +65,6 @@ export async function getMarkedYoutube(username: string) {
     console.error("get bookmarked youtube videos failed", error);
   }
 }
+
+// 북마크 삭제
+export async function deleteBookmark(data: { category: string; id: string; username: string }) {}

@@ -41,7 +41,7 @@ export default async function BookmarkNews() {
                         </div>
                       </li>
                     </Link>
-                    <BookmarkDeleteBtn />
+                    <BookmarkDeleteBtn data={{ category: "news", id: item._id }} />
                   </div>
                 );
               })}

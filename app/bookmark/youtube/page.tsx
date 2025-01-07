@@ -19,7 +19,6 @@ export default async function Bookmark() {
   const youtubeData = data?.exists === true ? data.data : [];
 
   // console.log("youtubeData: ", youtubeData);
-  console.log("reloaded");
 
   return (
     <div className={styles.bookmark}>
@@ -43,7 +42,7 @@ export default async function Bookmark() {
                           </div>
                         </li>
                       </Link>
-                      <BookmarkDeleteBtn />
+                      <BookmarkDeleteBtn data={{ category: "youtube", id: item._id }} />
                     </div>
                   );
                 })}
