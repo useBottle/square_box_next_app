@@ -49,11 +49,11 @@ export default function BookmarkSelector(): JSX.Element {
     <div css={css(btnGroup)}>
       <Link href="/bookmark/news" onClick={() => setSelected("news")}>
         <button>NEWS</button>
-        <div className="underline" style={selected === "news" ? { display: "block" } : { display: "none" }} />
+        <div className="underline" style={selected === "news" ? {} : { background: "transparent" }} />
       </Link>
       <Link href="/bookmark/youtube" onClick={() => setSelected("youtube")}>
         <button>YOUTUBE</button>
-        <div className="underline" style={selected === "youtube" ? { display: "block" } : { display: "none" }} />
+        <div className="underline" style={selected === "youtube" ? {} : { background: "transparent" }} />
       </Link>
     </div>
   );
