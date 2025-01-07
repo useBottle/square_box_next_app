@@ -5,57 +5,106 @@ export const youtube: CSSObject = {
   justifyContent: "center",
   alignItems: "center",
   flexDirection: "column",
-  width: "100vw",
+  overflowX: "hidden",
+  width: "100%",
 
-  a: {
-    width: "90%",
-    margin: "2rem 0",
+  ".initYoutube": {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "50vh",
 
-    li: {
-      width: "100%",
-      border: "1px solid #eee",
-      borderRadius: "5px",
-      boxSizing: "border-box",
+    "& h1": {
+      fontSize: "1.6rem",
+    },
+  },
 
-      img: {
+  ul: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    width: "100%",
+
+    a: {
+      width: "90%",
+      margin: "2rem 0",
+
+      li: {
         width: "100%",
-        height: "auto",
-        borderTopLeftRadius: "5px",
-        borderTopRightRadius: "5px",
+        border: "1px solid #eee",
+        borderRadius: "5px",
+        boxSizing: "border-box",
+
+        img: {
+          width: "100%",
+          height: "auto",
+          borderTopLeftRadius: "5px",
+          borderTopRightRadius: "5px",
+        },
+
+        ".textGroup": {
+          padding: "1rem",
+
+          ".title": {
+            fontSize: "2rem",
+            color: "var(--main-color)",
+            margin: "1rem 0",
+          },
+
+          ".channel": {
+            fontSize: "1.4rem",
+            padding: "0.5rem 1rem",
+            color: "var(--reverse-font)",
+            background: "var(--basic-font)",
+            border: "1px solid var(--basic-font)",
+            borderRadius: "3px",
+            width: "fit-content",
+            margin: "2rem 0",
+          },
+
+          ".publishedAt": {
+            fontSize: "1.2rem",
+            color: "var(--basic-font)",
+            margin: "2rem 0",
+          },
+
+          ".description": {
+            fontSize: "1.4rem",
+            color: "var(--basic-font)",
+            margin: "1rem 0",
+          },
+        },
       },
+    },
+  },
 
-      ".textGroup": {
-        padding: "1rem",
+  ".scrollTop": {
+    position: "fixed",
+    bottom: "5rem",
+    border: "none",
+    fontSize: "5rem",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    color: "var(--basic-font)",
+    background: "transparent",
+    cursor: "pointer",
+    padding: 0,
 
-        ".title": {
-          fontSize: "2rem",
-          color: "var(--main-color)",
-          margin: "1rem 0",
-        },
+    ".icon": {
+      zIndex: 999,
+    },
 
-        ".channel": {
-          fontSize: "1.4rem",
-          padding: "0.5rem 1rem",
-          color: "var(--reverse-font)",
-          background: "var(--basic-font)",
-          border: "1px solid var(--basic-font)",
-          borderRadius: "3px",
-          width: "fit-content",
-          margin: "2rem 0",
-        },
-
-        ".publishedAt": {
-          fontSize: "1.2rem",
-          color: "var(--basic-font)",
-          margin: "2rem 0",
-        },
-
-        ".description": {
-          fontSize: "1.4rem",
-          color: "var(--basic-font)",
-          margin: "1rem 0",
-        },
-      },
+    ".iconBack": {
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      background: "#fff",
+      width: "90%",
+      height: "90%",
+      borderRadius: "50%",
     },
   },
 };
