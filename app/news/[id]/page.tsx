@@ -12,7 +12,6 @@ import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import { GoBookmarkFill } from "react-icons/go";
 import { FaCheck } from "react-icons/fa6";
-import { FaCircleArrowUp } from "react-icons/fa6";
 import { FormEvent, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import ExpiredData from "@/app/component/ExpiredData";

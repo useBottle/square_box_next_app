@@ -5,7 +5,6 @@
 import { css } from "@emotion/react";
 import { GoBookmarkFill } from "react-icons/go";
 import { FaCheck } from "react-icons/fa6";
-import { FaCircleArrowUp } from "react-icons/fa6";
 import ExpiredData from "@/app/component/ExpiredData";
 import { useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";

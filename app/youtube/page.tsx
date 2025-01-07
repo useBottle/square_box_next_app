@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import SearchBar from "../component/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
@@ -13,7 +13,6 @@ import Image from "next/image";
 import { youtube } from "@/styles/Youtube.styles";
 import YoutubeSkeleton from "../component/YoutubeSkeleton";
 import FetchFailedData from "../component/FetchFailedData";
-import { FaCircleArrowUp } from "react-icons/fa6";
 import ScrollBtn from "../component/ScrollBtn";
 
 export default function Youtube() {
