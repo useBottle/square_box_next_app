@@ -20,12 +20,18 @@ const btnGroup: CSSObject = {
     button: {
       width: "100%",
       background: "transparent",
-      border: "1.5px solid transparent",
       fontSize: "1.4rem",
       color: "var(--basic-font)",
       padding: "1rem 0",
       cursor: "pointer",
+      border: "none",
       boxSizing: "border-box",
+    },
+
+    ".underline": {
+      width: "100%",
+      height: "1.5px",
+      background: "var(--basic-font)",
     },
   },
 };
@@ -42,10 +48,12 @@ export default function BookmarkSelector(): JSX.Element {
   return (
     <div css={css(btnGroup)}>
       <Link href="/bookmark/news" onClick={() => setSelected("news")}>
-        <button style={selected === "news" ? { borderBottom: "1.5px solid var(--basic-font)" } : {}}>NEWS</button>
+        <button>NEWS</button>
+        <div className="underline" style={selected === "news" ? { display: "block" } : { display: "none" }} />
       </Link>
       <Link href="/bookmark/youtube" onClick={() => setSelected("youtube")}>
-        <button style={selected === "youtube" ? { borderBottom: "1.5px solid var(--basic-font)" } : {}}>YOUTUBE</button>
+        <button>YOUTUBE</button>
+        <div className="underline" style={selected === "youtube" ? { display: "block" } : { display: "none" }} />
       </Link>
     </div>
   );
