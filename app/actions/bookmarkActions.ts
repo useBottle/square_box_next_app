@@ -42,11 +42,16 @@ export async function getMarkedYoutube(username: string) {
 
     const findBookmark = await MarkedYoutube.find({ username: username, category: "youtube" });
 
+    const youtubeData = findBookmark.map((item) => {
+      const doc = item._doc;
+      return { ...doc, _id: doc._id.toString() };
+    });
+
     if (findBookmark) {
       return {
         exists: true,
         number: findBookmark.length,
-        data: findBookmark,
+        data: youtubeData,
       };
     }
 
