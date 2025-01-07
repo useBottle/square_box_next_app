@@ -63,7 +63,7 @@ export default function News(): JSX.Element {
       <ul css={css(newsListStyles)}>
         {newsList.map((item, index) => {
           return (
-            <Link href={`/news/${index}`} key={index}>
+            <Link href={`/news/detail?title=${encodeURIComponent(item.title)}`} key={index}>
               <li>
                 <Image src={item.prevImg} alt="newsImg" width={100} height={100} />
                 <div className="textGroup">

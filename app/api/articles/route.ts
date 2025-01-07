@@ -14,6 +14,7 @@ export async function POST(req: Request) {
         url.map(async (item) => {
           const response = await axios.get(item);
           const $ = cheerio.load(response.data);
+          const title = $(".col-main .title").text().trim();
           const img = $(".img-box img").attr("src");
           const alt = $(".img-box img").attr("alt");
           let date: string[] = [];
@@ -26,6 +27,7 @@ export async function POST(req: Request) {
             .filter((item) => item !== "");
 
           const article = {
+            title: title || "",
             image: img || "",
             alt: alt || "",
             date: date,
