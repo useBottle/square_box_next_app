@@ -19,6 +19,7 @@ export default async function Bookmark() {
   const youtubeData = data?.exists === true ? data.data : [];
 
   // console.log("youtubeData: ", youtubeData);
+  console.log("reloaded");
 
   return (
     <div className={styles.bookmark}>
@@ -30,8 +31,8 @@ export default async function Bookmark() {
               <ul>
                 {youtubeData.map((item, index) => {
                   return (
-                    <div>
-                      <Link href={`/youtube/detail?id=${item.videoId}&index=${index}`} key={index}>
+                    <div key={index}>
+                      <Link href={`/youtube/detail?id=${item.videoId}&index=${index}`}>
                         <li>
                           <Image src={item.thumbnail} alt={item.title} width={300} height={200} />
                           <div className={styles.textGroup}>

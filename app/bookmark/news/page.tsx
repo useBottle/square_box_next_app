@@ -28,8 +28,8 @@ export default async function BookmarkNews() {
             <ul>
               {newsData.map((item, index) => {
                 return (
-                  <div>
-                    <Link href={`/bookmark/detail?title=${encodeURIComponent(item.title)}`} key={index}>
+                  <div key={index}>
+                    <Link href={`/bookmark/detail?title=${encodeURIComponent(item.title)}`}>
                       <li>
                         <Image src={item.image} alt="newsImg" width={100} height={100} />
                         <div className={styles.textGroup}>

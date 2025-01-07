@@ -5,7 +5,7 @@ export const bookmark = createSlice({
   initialState: "news",
   reducers: {
     setSelected(state, action: PayloadAction<string>) {
-      state = action.payload;
+      return action.payload;
     },
   },
 });

@@ -27,7 +27,7 @@ export default function BookmarkDeleteBtn() {
   const selected = useSelector((state: RootState) => state.bookmark);
 
   return (
-    <Link href={selected === "news" ? "/bookmark/news" : "/bookmark/youtube"}>
+    <Link href={selected === "news" ? "/bookmark/news" : "/bookmark/youtube"} onClick={() => window.location.reload()}>
       <button css={css(btn)}>
         <IoTrashBinOutline />
       </button>
