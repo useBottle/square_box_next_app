@@ -24,13 +24,28 @@ const btn: CSSObject = {
 };
 
 const onClick = (data: { category: string; id: string; username: string }) => () => {
-  if (data.category === "news") {
-    deleteNewsBookmark(data.id, data.username);
-  }
+  async function deleteBookmark() {
+    if (data.category === "news") {
+      if (confirm("북마크를 제거하시겠습니까?")) {
+        const result = await deleteNewsBookmark(data.id, data.username);
 
-  if (data.category === "youtube") {
-    deleteYoutubeBookmark(data.id, data.username);
+        if (result && result.delete === false) {
+          alert("북마크 삭제에 실패했습니다. 재시도해주세요.");
+        }
+      }
+    }
+
+    if (data.category === "youtube") {
+      if (confirm("북마크를 제거하시겠습니까?")) {
+        const result = await deleteYoutubeBookmark(data.id, data.username);
+
+        if (result && result.delete === false) {
+          alert("북마크 삭제에 실패했습니다. 재시도해주세요.");
+        }
+      }
+    }
   }
+  deleteBookmark();
   window.location.reload();
 };
 
