@@ -16,6 +16,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import ExpiredData from "@/app/component/ExpiredData";
 import { deleteNewsBookmark, findNewsBookmark, setNewsBookmark } from "@/app/actions/bookmarkNewsActions";
+import { getMarkedNews } from "@/app/actions/bookmarkActions";
 
 export default function NewsDynamic(): JSX.Element {
   const { data: session } = useSession();
@@ -80,10 +81,22 @@ export default function NewsDynamic(): JSX.Element {
 
       // 북마크된 데이터 없을 경우 북마크 시도
       if (findBookmark && findBookmark.exists === false) {
-        const response = await setNewsBookmark(currentNews, session.user.name);
-        response && response.success === true && setBookmarkSuccess(true);
-        // console.log(response);
-        return;
+        // 유저와 일치하는 북마크 뉴스 데이터 모두 검색
+        const markedNewsData = await getMarkedNews(session.user.name as string);
+        console.log(markedNewsData);
+
+        // 북마크 수 10개 미만일 경우만 북마크 요청
+        if (markedNewsData && (markedNewsData?.number as number) < 10) {
+          const response = await setNewsBookmark(currentNews, session.user.name);
+          response && response.success === true && setBookmarkSuccess(true);
+          // console.log(response);
+          return;
+        }
+
+        if (markedNewsData && (markedNewsData?.number as number) === 10) {
+          alert("북마크는 10개 까지만 가능합니다.");
+          return;
+        }
       }
     } catch (error) {
       console.error("news bookmark failed", error);

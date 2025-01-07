@@ -11,10 +11,16 @@ export async function getMarkedNews(username: string) {
 
     const findBookmark = await MarkedNews.find({ username: username, category: "news" });
 
+    const newsData = findBookmark.map((item) => {
+      const doc = item._doc;
+      return { ...doc, _id: doc._id.toString() };
+    });
+
     if (findBookmark) {
       return {
         exists: true,
-        data: findBookmark,
+        number: findBookmark.length,
+        data: newsData,
       };
     }
 
@@ -39,6 +45,7 @@ export async function getMarkedYoutube(username: string) {
     if (findBookmark) {
       return {
         exists: true,
+        number: findBookmark.length,
         data: findBookmark,
       };
     }
