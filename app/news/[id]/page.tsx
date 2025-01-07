@@ -18,6 +18,7 @@ import { useSession } from "next-auth/react";
 import ExpiredData from "@/app/component/ExpiredData";
 import { deleteNewsBookmark, findNewsBookmark, setNewsBookmark } from "@/app/actions/bookmarkNewsActions";
 import { getMarkedNews } from "@/app/actions/bookmarkActions";
+import ScrollBtn from "@/app/component/ScrollBtn";
 
 export default function NewsDynamic(): JSX.Element {
   const { data: session } = useSession();
@@ -28,27 +29,8 @@ export default function NewsDynamic(): JSX.Element {
   const newsId = Number(params.id);
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [btnSwitch, setBtnSwitch] = useState<boolean>(false);
 
   useEffect(() => {
-    window.scrollTo({ top: 0 });
-
-    // scrollTo 버튼 활성화 스크롤 이벤트 함수
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const triggerHeight = 300;
-
-      if (scrollPosition > triggerHeight) {
-        setBtnSwitch(true);
-      }
-
-      if (scrollPosition <= triggerHeight) {
-        setBtnSwitch(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
     // 유저 정보가 없으면 북마크 데이터 검색 요청하지 않음.
     if (!session || !session.user || session.user.name === undefined) return;
 
@@ -65,8 +47,6 @@ export default function NewsDynamic(): JSX.Element {
       setIsLoading(false);
     }
     findMarkedNews();
-
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // 북마크 onSubmit 요청
@@ -180,16 +160,7 @@ export default function NewsDynamic(): JSX.Element {
           return <p key={index}>{item}</p>;
         })}
       </div>
-      <button
-        className="scrollTop"
-        onClick={() => {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }}
-        style={!btnSwitch ? { display: "none" } : {}}
-      >
-        <FaCircleArrowUp className="icon" />
-        <div className="iconBack" />
-      </button>
+      <ScrollBtn />
     </article>
   );
 }
