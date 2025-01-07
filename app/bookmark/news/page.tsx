@@ -5,7 +5,6 @@ import styles from "../../../styles/BookmarkNews.module.scss";
 import { getMarkedNews } from "../../actions/bookmarkActions";
 import Link from "next/link";
 import Image from "next/image";
-import BookmarkSelector from "@/app/component/BookmarkSelector";
 
 export default async function BookmarkNews() {
   const session = await getServerSession(authOptions);

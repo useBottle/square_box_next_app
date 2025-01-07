@@ -5,7 +5,6 @@ import styles from "../../../styles/BookmarkYoutube.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { getMarkedYoutube } from "@/app/actions/bookmarkActions";
-import BookmarkSelector from "@/app/component/BookmarkSelector";
 
 export default async function Bookmark() {
   const session = await getServerSession(authOptions);
