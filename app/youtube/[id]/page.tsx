@@ -2,6 +2,7 @@
 
 "use client";
 
+import { getMarkedYoutube } from "@/app/actions/bookmarkActions";
 import { deleteYoutubeBookmark, findYoutubeBookmark, setYoutubeBookmark } from "@/app/actions/bookmarkYoutubeActions";
 import ExpiredData from "@/app/component/ExpiredData";
 import { RootState } from "@/store/store";
@@ -81,10 +82,22 @@ export default function YoutubeDynamic(): JSX.Element {
 
       // 북마크된 데이터 없을 경우 북마크 시도
       if (findBookmark && findBookmark.exists === false) {
-        const response = await setYoutubeBookmark(currentVideo as currentYoutubeVideo, session.user.name);
-        response && response.success === true && setBookmarkSuccess(true);
-        // console.log(response);
-        return;
+        // 유저와 일치하는 북마크 유튜브 데이터 모두 검색
+        const markedYoutubeData = await getMarkedYoutube(session.user.name as string);
+        console.log(markedYoutubeData);
+
+        // 북마크 수 10개 미만일 경우만 북마크 요청
+        if (markedYoutubeData && (markedYoutubeData?.number as number) < 10) {
+          const response = await setYoutubeBookmark(currentVideo as currentYoutubeVideo, session.user.name);
+          response && response.success === true && setBookmarkSuccess(true);
+          // console.log(response);
+          return;
+        }
+
+        if (markedYoutubeData && (markedYoutubeData?.number as number) === 10) {
+          alert("북마크는 10개 까지만 가능합니다.");
+          return;
+        }
       }
     } catch (error) {
       console.error("youtube bookmark failed", error);
