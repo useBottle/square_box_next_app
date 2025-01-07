@@ -18,6 +18,7 @@ import Link from "next/link";
 import { deleteNewsBookmark, findNewsBookmark, setNewsBookmark } from "@/app/actions/bookmarkNewsActions";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import ScrollBtn from "@/app/component/ScrollBtn";
 
 export default function LatestNewsDetail(): JSX.Element {
   const { data: session } = useSession();
@@ -27,7 +28,6 @@ export default function LatestNewsDetail(): JSX.Element {
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoadingMarked, setIsLoadingMarked] = useState<boolean>(true);
   const [isLoadingArticle, setIsLoadingArticle] = useState<boolean>(true);
-  const [btnSwitch, setBtnSwitch] = useState<boolean>(false);
   const [currentArticle, setCurrentArticle] = useState<LatestNewsArticle>({
     title: "",
     date: "",
@@ -45,24 +45,6 @@ export default function LatestNewsDetail(): JSX.Element {
       }
     });
     window.scrollTo({ top: 0 });
-
-    // scrollTo 버튼 활성화 스크롤 이벤트 함수
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const triggerHeight = 300;
-
-      if (scrollPosition > triggerHeight) {
-        setBtnSwitch(true);
-      }
-
-      if (scrollPosition <= triggerHeight) {
-        setBtnSwitch(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
   }, [latestArticleSet]);
 
   // currentArticle 이 업데이트 되면 해당 값이 북마크 되어있는지 확인
@@ -187,16 +169,7 @@ export default function LatestNewsDetail(): JSX.Element {
           <p key={index}>{item}</p>
         ))}
       </div>
-      <button
-        className="scrollTop"
-        onClick={() => {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }}
-        style={!btnSwitch ? { display: "none" } : {}}
-      >
-        <FaCircleArrowUp className="icon" />
-        <div className="iconBack" />
-      </button>
+      <ScrollBtn />
     </article>
   );
 }

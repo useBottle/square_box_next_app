@@ -78,35 +78,6 @@ export const youtube: CSSObject = {
       },
     },
   },
-
-  ".scrollTop": {
-    position: "fixed",
-    bottom: "5rem",
-    border: "none",
-    fontSize: "5rem",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    color: "var(--basic-font)",
-    background: "transparent",
-    cursor: "pointer",
-    padding: 0,
-
-    ".icon": {
-      zIndex: 999,
-    },
-
-    ".iconBack": {
-      position: "absolute",
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      background: "#fff",
-      width: "90%",
-      height: "90%",
-      borderRadius: "50%",
-    },
-  },
 };
 
 export const youtubeDynamic: CSSObject = {
