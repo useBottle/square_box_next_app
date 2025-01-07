@@ -4,6 +4,9 @@
 
 import { IoTrashBinOutline } from "react-icons/io5";
 import { css, CSSObject } from "@emotion/react";
+import Link from "next/link";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 const btn: CSSObject = {
   border: "var(--basic-font) 1px solid",
@@ -21,9 +24,13 @@ const btn: CSSObject = {
 };
 
 export default function BookmarkDeleteBtn() {
+  const selected = useSelector((state: RootState) => state.bookmark);
+
   return (
-    <button css={css(btn)}>
-      <IoTrashBinOutline />
-    </button>
+    <Link href={selected === "news" ? "/bookmark/news" : "/bookmark/youtube"}>
+      <button css={css(btn)}>
+        <IoTrashBinOutline />
+      </button>
+    </Link>
   );
 }

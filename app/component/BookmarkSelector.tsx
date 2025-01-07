@@ -2,9 +2,11 @@
 
 "use client";
 
+import { setSelected } from "@/store/bookmark";
+import { AppDispatch, RootState } from "@/store/store";
 import { css, CSSObject } from "@emotion/react";
 import Link from "next/link";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const btnGroup: CSSObject = {
   display: "flex",
@@ -30,13 +32,14 @@ const btnGroup: CSSObject = {
 };
 
 export default function BookmarkSelector(): JSX.Element {
-  const [selected, setSelected] = useState<string>("news");
+  const selected = useSelector((state: RootState) => state.bookmark);
+  const dispatch = useDispatch<AppDispatch>();
 
   return (
     <div css={css(btnGroup)}>
       <Link href="/bookmark/news">
         <button
-          onClick={() => setSelected("news")}
+          onClick={() => dispatch(setSelected("news"))}
           style={selected === "news" ? { borderBottom: "1.5px solid var(--basic-font)" } : {}}
         >
           NEWS
@@ -44,7 +47,7 @@ export default function BookmarkSelector(): JSX.Element {
       </Link>
       <Link href="/bookmark/youtube">
         <button
-          onClick={() => setSelected("youtube")}
+          onClick={() => dispatch(setSelected("youtube"))}
           style={selected === "youtube" ? { borderBottom: "1.5px solid var(--basic-font)" } : {}}
         >
           YOUTUBE
