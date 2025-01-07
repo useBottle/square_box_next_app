@@ -23,7 +23,7 @@ export default async function BookmarkNews() {
     <div className={styles.bookmark}>
       <section className={styles.newsContainer}>
         <h4>
-          북마크 뉴스 컨텐츠<span>{newsData && newsData.length}</span>
+          북마크 뉴스 컨텐츠<span>{`${newsData && newsData.length} / 10`}</span>
         </h4>
         <div className={styles.contents}>
           {newsData && newsData.length !== 0 ? (

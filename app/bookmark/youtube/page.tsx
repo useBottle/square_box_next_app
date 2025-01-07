@@ -23,7 +23,9 @@ export default async function Bookmark() {
   return (
     <div className={styles.bookmark}>
       <section className={styles.youtubeContainer}>
-        <h4>북마크 유튜브 컨텐츠</h4>
+        <h4>
+          북마크 유튜브 컨텐츠<span>{`${youtubeData && youtubeData.length} / 10`}</span>
+        </h4>
         <div className={styles.contents}>
           {youtubeData && youtubeData.length !== 0 ? (
             <div>

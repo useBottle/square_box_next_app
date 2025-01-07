@@ -18,6 +18,8 @@
       margin-bottom: 5rem;
       border-bottom: 0.5px solid var(--form-color);
       padding: 1rem 0;
+      display: flex;
+      justify-content: space-between;
     }
 
     .contents {
