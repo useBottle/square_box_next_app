@@ -6,7 +6,7 @@ import { topicsForm } from "@/styles/Topics.styles";
 import { TopicsType } from "@/types/types";
 import { css } from "@emotion/react";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FaPlus, FaMinus, FaCaretUp, FaCaretDown } from "react-icons/fa6";
 import TopicsSkeleton from "./TopicsSkeleton";
 import Link from "next/link";
@@ -20,7 +20,7 @@ export default function Topics({ children }: { children: React.ReactNode }): JSX
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    const clickKeyword = async (keyword: string) => {
+    const clickKeyword = useCallback(async (keyword: string) => {
       if (keyword === "") return;
 
       try {
@@ -32,20 +32,21 @@ export default function Topics({ children }: { children: React.ReactNode }): JSX
       } catch (error) {
         console.error("Failed fetching news data of top10 keyword.", error);
       }
-    };
+    }, []);
 
-    clickKeyword(clickedKeyword);
+    if (clickedKeyword === "" || clickedKeyword === undefined) return;
+    if (clickedKeyword !== "") clickKeyword(clickedKeyword);
   }, [clickedKeyword]);
 
   useEffect(() => {
-    const fetchKeyword = async (): Promise<void> => {
+    const fetchKeyword = useCallback(async (): Promise<void> => {
       try {
         const response = await axios.get("/api/topics");
         setTopics(response.data.top10);
       } catch (error) {
         console.error("Failed fetching keyword data.", error);
       }
-    };
+    }, []);
 
     // TopicsServerComponent 에서 로드한 실시간 검색어를 먼저 렌더링 후 인터벌로 업데이트.
     const intervalFetch = setInterval(() => {
