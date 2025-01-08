@@ -36,33 +36,6 @@ export const fetchArticles = createAsyncThunk<articleData[], string[]>("data/fet
   }
 });
 
-// 각 실시간 검색어 별로 뉴스 데이터 요청 미들웨어
-export const fetchNewsOfTopics = createAsyncThunk<newsList[][], string[]>(
-  "data/fetchNewsOfTopics",
-  async (keywords: string[]) => {
-    try {
-      const results = await Promise.all(
-        keywords.map(async (keyword) => {
-          const response = await axios.post("/api/news", { inputValue: keyword, sort: "relation" });
-          const result = response.data.newsData;
-          const urls: string[] = [];
-          result.map((item: newsList) => {
-            if (item.href !== "") {
-              urls.push(item.href);
-            }
-          });
-          return [result, urls];
-        }),
-      );
-      console.log(results);
-      return results;
-    } catch (error) {
-      console.error("News of topics fetch failed on middleware.", error);
-      return [];
-    }
-  },
-);
-
 interface newsType {
   newsList: newsList[];
   articles: articleData[];
