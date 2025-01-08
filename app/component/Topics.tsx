@@ -62,7 +62,7 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
     // TopicsContainer 에서 로드한 실시간 검색어를 먼저 렌더링 후 인터벌로 업데이트.
     const intervalFetch = setInterval(() => {
       fetchKeyword();
-    }, 10000);
+    }, 1000 * 60);
 
     return () => clearInterval(intervalFetch);
   }, []);
