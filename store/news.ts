@@ -3,8 +3,8 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // 뉴스 전체 데이터 요청 미들웨어
-export const fetchNews = createAsyncThunk<[newsList[], string[]], string>(
-  "data/fetchNews",
+export const fetchNewsList = createAsyncThunk<[newsList[], string[]], string>(
+  "data/fetchNewsList",
   async (inputValue: string) => {
     try {
       if (inputValue === "") return [[], []];
@@ -96,17 +96,17 @@ export const news = createSlice({
     builder
 
       // 뉴스 전체 데이터 요청 수행 결과 처리
-      .addCase(fetchNews.pending, (state) => {
+      .addCase(fetchNewsList.pending, (state) => {
         state.newsStatus = "loading";
       })
-      .addCase(fetchNews.fulfilled, (state, action: PayloadAction<[newsList[], string[]] | undefined>) => {
+      .addCase(fetchNewsList.fulfilled, (state, action: PayloadAction<[newsList[], string[]] | undefined>) => {
         state.newsStatus = "succeeded";
         if (action.payload) {
           state.newsList = action.payload[0];
           state.urls = action.payload[1];
         }
       })
-      .addCase(fetchNews.rejected, (state) => {
+      .addCase(fetchNewsList.rejected, (state) => {
         state.newsStatus = "failed";
       })
 

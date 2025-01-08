@@ -2,7 +2,7 @@
 
 "use client";
 
-import { fetchArticles, fetchNews } from "@/store/news";
+import { fetchArticles, fetchNewsList } from "@/store/news";
 import { AppDispatch, RootState } from "@/store/store";
 import { fetchYoutube } from "@/store/youtube";
 import { searchBarForm } from "@/styles/default.styles";
@@ -34,7 +34,7 @@ export default function SearchBar(): JSX.Element {
 
     if (pageAccess === "news") {
       try {
-        const result = await dispatch(fetchNews(inputValue)).unwrap();
+        const result = await dispatch(fetchNewsList(inputValue)).unwrap();
         const urls = result[1];
         if (urls.length !== 0) {
           await dispatch(fetchArticles(urls));

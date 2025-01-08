@@ -22,7 +22,7 @@ import { articleData } from "@/types/types";
 
 export default function NewsDynamic(): JSX.Element {
   const { data: session } = useSession();
-  const article = useSelector((state: RootState) => state.news.article);
+  const articles = useSelector((state: RootState) => state.news.articles);
   const params = useSearchParams();
   const newsTitle = decodeURIComponent(params.get("title") as string);
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
@@ -38,7 +38,7 @@ export default function NewsDynamic(): JSX.Element {
 
   useEffect(() => {
     // 뉴스 기사 중에서 쿼리 스트링과 일치하는 데이터로 상태 업데이트.
-    article.map((item) => {
+    articles.map((item) => {
       if (item.title === newsTitle) {
         setCurrentArticle(item);
         setIsLoadingArticle(false);

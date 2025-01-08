@@ -9,7 +9,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaPlus, FaMinus, FaCaretUp, FaCaretDown } from "react-icons/fa6";
 import Link from "next/link";
-import { fetchArticles, fetchNews, fetchNewsOfTopics, setNewsList } from "@/store/news";
+import { fetchArticles, fetchNewsList, fetchNewsOfTopics, setNewsList } from "@/store/news";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
 
@@ -23,29 +23,35 @@ interface TopicsProps {
 export default function Topics({ data }: TopicsProps): JSX.Element {
   const [topics, setTopics] = useState<TopicsType[] | undefined>(undefined);
   const [clickedIndex, setClickedIndex] = useState<number>(0);
+  const [newsListArray, setNewsListArray] = useState<newsList[][] | undefined>(undefined);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
+    // topics 가 최초 업데이트 되기 전이면 서버에서 가져온 데이터로 뉴스 리스트 업데이트.
     if (topics === undefined && data.newsOfTopicsList?.length !== 0) {
       dispatch(setNewsList(data.newsOfTopicsList?.[clickedIndex] || []));
     }
-    // topics 가 업데이트 되었을 때, 클릭하면 가져온 데이터로 업데이트하는 로직 추가하기.
-  }, [clickedIndex]);
+    // topics 가 업데이트되면 여기서 fetchKeyword 로 가져온 데이터로 뉴스 리스트 업데이트.
+    if (topics !== undefined && newsListArray !== undefined) {
+      dispatch(setNewsList(newsListArray[clickedIndex]));
+    }
+  }, [clickedIndex, newsListArray]);
 
   useEffect(() => {
-    const fetchKeyword = async (): Promise<void> => {
+    const fetchKeyword = async () => {
       try {
         const topicsResponse = await axios.get("/api/topics");
-        // const results = await Promise.all(
-        //   topicsResponse.data.top10.map(async (item: TopicsType) => {
-        //     fetchNewsOfTopics([item.keyword]);
-        //     // const result = await dispatch(fetchNews(item.keyword)).unwrap();
-        //     // const urls = result[1];
-        //     // if (urls.length !== 0) {
-        //     //   await dispatch(fetchArticles(urls));
-        //     // }
-        //   }),
-        // );
+        // 실시간 검색어 별로 순회하여 뉴스 리스트 요청 후 배열로 상태 업데이트.
+        const results = await Promise.all(
+          topicsResponse.data.top10.map(async (item: TopicsType) => {
+            const response = await axios.post("/api/news", {
+              inputValue: item.keyword,
+              sort: "relation",
+            });
+            return response.data.newsList;
+          }),
+        );
+        setNewsListArray(results);
         // console.log(results);
         setTopics(topicsResponse.data.top10);
       } catch (error) {
@@ -66,7 +72,7 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
       <div css={css(topicsForm)}>
         <h4>실시간 검색어 Top 10</h4>
         <ul>
-          {(data.keywordsData || topics)?.map((item, index) => {
+          {(topics || data.keywordsData)?.map((item, index) => {
             return (
               <Link href="/news" key={index} onClick={() => setClickedIndex(index)}>
                 <li>
