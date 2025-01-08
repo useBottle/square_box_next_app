@@ -4,14 +4,14 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   const result = await req.json();
-  const url = result.url as string[] | undefined;
+  const urls = result.urls as string[] | undefined;
 
   try {
     let articles;
-    if (url && url.length !== 0) {
+    if (urls && urls.length !== 0) {
       // console.log(url);
       articles = await Promise.all(
-        url.map(async (item) => {
+        urls.map(async (item) => {
           const response = await axios.get(item);
           const $ = cheerio.load(response.data);
           const title = $(".col-main .title").text().trim();
@@ -38,7 +38,7 @@ export async function POST(req: Request) {
         }),
       );
     }
-    return NextResponse.json({ articleData: articles });
+    return NextResponse.json({ articlesData: articles });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: "Failed to fetch news article data." }, { status: 500 });

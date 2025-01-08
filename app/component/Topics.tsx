@@ -3,54 +3,57 @@
 "use client";
 
 import { topicsForm } from "@/styles/Topics.styles";
-import { TopicsType } from "@/types/types";
+import { newsList, TopicsType } from "@/types/types";
 import { css } from "@emotion/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaPlus, FaMinus, FaCaretUp, FaCaretDown } from "react-icons/fa6";
 import Link from "next/link";
-import { fetchArticles, fetchNews } from "@/store/news";
+import { fetchArticles, fetchNews, fetchNewsOfTopics, setNewsList } from "@/store/news";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
 
-export default function Topics({ data }: { data: TopicsType[] | undefined }): JSX.Element {
+interface TopicsProps {
+  data: {
+    keywordsData: TopicsType[] | undefined;
+    newsOfTopicsList: newsList[][] | undefined;
+  };
+}
+
+export default function Topics({ data }: TopicsProps): JSX.Element {
   const [topics, setTopics] = useState<TopicsType[] | undefined>(undefined);
-  const [clickedKeyword, setClickedKeyword] = useState<string>("");
+  const [clickedIndex, setClickedIndex] = useState<number>(0);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    const clickKeyword = async (keyword: string) => {
-      if (keyword === "") return;
-
-      try {
-        const result = await dispatch(fetchNews(keyword)).unwrap();
-        const urls = result[1];
-        if (urls.length !== 0) {
-          await dispatch(fetchArticles(urls));
-        }
-      } catch (error) {
-        console.error("Failed fetching news data of top10 keyword.", error);
-      }
-    };
-
-    if (clickedKeyword === "" || clickedKeyword === undefined) return;
-    if (clickedKeyword !== "") clickKeyword(clickedKeyword);
-  }, [clickedKeyword]);
+    if (topics === undefined && data.newsOfTopicsList?.length !== 0) {
+      dispatch(setNewsList(data.newsOfTopicsList?.[clickedIndex] || []));
+    }
+    // topics 가 업데이트 되었을 때, 클릭하면 가져온 데이터로 업데이트하는 로직 추가하기.
+  }, [clickedIndex]);
 
   useEffect(() => {
-    // 서버에서 가져온 최초 실시간 검색어 데이터로 업데이트.
-    // setTopics(data);
-
     const fetchKeyword = async (): Promise<void> => {
       try {
-        const response = await axios.get("/api/topics");
-        setTopics(response.data.top10);
+        const topicsResponse = await axios.get("/api/topics");
+        // const results = await Promise.all(
+        //   topicsResponse.data.top10.map(async (item: TopicsType) => {
+        //     fetchNewsOfTopics([item.keyword]);
+        //     // const result = await dispatch(fetchNews(item.keyword)).unwrap();
+        //     // const urls = result[1];
+        //     // if (urls.length !== 0) {
+        //     //   await dispatch(fetchArticles(urls));
+        //     // }
+        //   }),
+        // );
+        // console.log(results);
+        setTopics(topicsResponse.data.top10);
       } catch (error) {
         console.error("Failed fetching keyword data.", error);
       }
     };
 
-    // TopicsServerComponent 에서 로드한 실시간 검색어를 먼저 렌더링 후 인터벌로 업데이트.
+    // TopicsContainer 에서 로드한 실시간 검색어를 먼저 렌더링 후 인터벌로 업데이트.
     const intervalFetch = setInterval(() => {
       fetchKeyword();
     }, 10000);
@@ -63,9 +66,9 @@ export default function Topics({ data }: { data: TopicsType[] | undefined }): JS
       <div css={css(topicsForm)}>
         <h4>실시간 검색어 Top 10</h4>
         <ul>
-          {(data || topics)?.map((item, index) => {
+          {(data.keywordsData || topics)?.map((item, index) => {
             return (
-              <Link href="/news" key={index} onClick={() => setClickedKeyword(item.keyword)}>
+              <Link href="/news" key={index} onClick={() => setClickedIndex(index)}>
                 <li>
                   <span className="rank">{item.rank}</span>
                   <span className="keyword">{item.keyword}</span>

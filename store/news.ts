@@ -10,7 +10,7 @@ export const fetchNews = createAsyncThunk<[newsList[], string[]], string>(
       if (inputValue === "") return [[], []];
 
       const response = await axios.post("/api/news", { inputValue: inputValue, sort: "relation" });
-      const result = response.data.newsData;
+      const result = response.data.newsList;
       const urls: string[] = [];
       result.map((item: newsList) => {
         if (item.href !== "") {
@@ -28,17 +28,44 @@ export const fetchNews = createAsyncThunk<[newsList[], string[]], string>(
 // 뉴스 개별 데이터 요청 미들웨어
 export const fetchArticles = createAsyncThunk<articleData[], string[]>("data/fetchArticles", async (urls: string[]) => {
   try {
-    const requestArticles = await axios.post("/api/articles", { url: urls });
-    return requestArticles.data.articleData;
+    const requestArticles = await axios.post("/api/articles", { urls: urls });
+    return requestArticles.data.articlesData;
   } catch (error) {
     console.error("Articles fetch failed on middleware.", error);
     return [];
   }
 });
 
+// 각 실시간 검색어 별로 뉴스 데이터 요청 미들웨어
+export const fetchNewsOfTopics = createAsyncThunk<newsList[][], string[]>(
+  "data/fetchNewsOfTopics",
+  async (keywords: string[]) => {
+    try {
+      const results = await Promise.all(
+        keywords.map(async (keyword) => {
+          const response = await axios.post("/api/news", { inputValue: keyword, sort: "relation" });
+          const result = response.data.newsData;
+          const urls: string[] = [];
+          result.map((item: newsList) => {
+            if (item.href !== "") {
+              urls.push(item.href);
+            }
+          });
+          return [result, urls];
+        }),
+      );
+      console.log(results);
+      return results;
+    } catch (error) {
+      console.error("News of topics fetch failed on middleware.", error);
+      return [];
+    }
+  },
+);
+
 interface newsType {
   newsList: newsList[];
-  article: articleData[];
+  articles: articleData[];
   urls: string[];
   popularStatus: "idle" | "loading" | "succeeded" | "failed";
   newsStatus: "idle" | "loading" | "succeeded" | "failed";
@@ -47,7 +74,7 @@ interface newsType {
 
 const initialState: newsType = {
   newsList: [],
-  article: [],
+  articles: [],
   urls: [],
   popularStatus: "idle",
   newsStatus: "idle",
@@ -58,11 +85,11 @@ export const news = createSlice({
   name: "news",
   initialState,
   reducers: {
-    setNews(state, action: PayloadAction<newsList[]>) {
+    setNewsList(state, action: PayloadAction<newsList[]>) {
       state.newsList = action.payload;
     },
     setArticles(state, action: PayloadAction<articleData[]>) {
-      state.article = action.payload;
+      state.articles = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -90,7 +117,7 @@ export const news = createSlice({
       .addCase(fetchArticles.fulfilled, (state, action: PayloadAction<articleData[] | undefined>) => {
         state.articleStatus = "succeeded";
         if (action.payload) {
-          state.article = action.payload;
+          state.articles = action.payload;
         }
       })
       .addCase(fetchArticles.rejected, (state) => {
@@ -99,5 +126,5 @@ export const news = createSlice({
   },
 });
 
-export const { setNews, setArticles } = news.actions;
+export const { setNewsList, setArticles } = news.actions;
 export default news.reducer;

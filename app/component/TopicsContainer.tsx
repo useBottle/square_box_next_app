@@ -1,4 +1,4 @@
-import { TopicsType } from "@/types/types";
+import { newsList, TopicsType } from "@/types/types";
 import axios from "axios";
 import Topics from "./Topics";
 
@@ -12,12 +12,41 @@ const fetchKeyword = async (): Promise<TopicsType[] | undefined> => {
   }
 };
 
+const fetchNewsOfTopicsList = async (keywords: string[]) => {
+  try {
+    if (keywords) {
+      const newsListsResults = await Promise.all(
+        keywords.map(async (item) => {
+          // 순회중인 키워드의 뉴스 리스트 요청.
+          const response = await axios.post(`${process.env.NEXTAUTH_URL}/api/news` || "", {
+            inputValue: item,
+            sort: "relation",
+          });
+          return response.data.newsList;
+        }),
+      );
+      // console.log(newsListsResults);
+      return newsListsResults;
+    }
+  } catch (error) {
+    console.error("News of topics fetch failed.", error);
+  }
+};
+
 export default async function TopicsContainer() {
   const keywordsData: TopicsType[] | undefined = await fetchKeyword();
+  const keywords = keywordsData?.map((item) => item.keyword);
+
+  const newsOfTopicsList: newsList[][] | undefined = await fetchNewsOfTopicsList(keywords as string[]);
+
+  const data = {
+    keywordsData: keywordsData,
+    newsOfTopicsList: newsOfTopicsList,
+  };
 
   return (
     <div>
-      <Topics data={keywordsData} />
+      <Topics data={data} />
     </div>
   );
 }

@@ -27,8 +27,8 @@ export async function POST(req: Request) {
 
       const news = {
         title: h3,
-        href: href ? href : "",
-        prevImg: prevImg ? prevImg : "",
+        href: href ? href.trim() : "",
+        prevImg: prevImg || "",
         date: date,
         summary: summary,
       };
@@ -36,7 +36,7 @@ export async function POST(req: Request) {
     });
     const imgExistNewsData = newsData.filter((item) => item.prevImg !== "");
     const textExistNewsData = imgExistNewsData.filter((item) => item.summary !== "");
-    return NextResponse.json({ newsData: textExistNewsData });
+    return NextResponse.json({ newsList: textExistNewsData });
   } catch (error: unknown) {
     console.error(error);
   }
