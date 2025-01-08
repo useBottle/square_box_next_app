@@ -16,32 +16,37 @@ import { AppDispatch } from "@/store/store";
 
 export default function Topics({ children }: { children: React.ReactNode }): JSX.Element {
   const [topics, setTopics] = useState<TopicsType[] | undefined>(undefined);
+  const [clickedKeyword, setClickedKeyword] = useState<string>("");
   const dispatch = useDispatch<AppDispatch>();
 
-  const fetchKeyword = async (): Promise<void> => {
-    try {
-      const response = await axios.get("/api/topics");
-      setTopics(response.data.top10);
-    } catch (error) {
-      console.error("Failed fetching keyword data.", error);
-    }
-  };
+  useEffect(() => {
+    const clickKeyword = async (keyword: string) => {
+      if (keyword === "") return;
 
-  const clickKeyword = async (keyword: string) => {
-    if (keyword === "") return;
-
-    try {
-      const result = await dispatch(fetchNews(keyword)).unwrap();
-      const urls = result[1];
-      if (urls.length !== 0) {
-        await dispatch(fetchArticles(urls));
+      try {
+        const result = await dispatch(fetchNews(keyword)).unwrap();
+        const urls = result[1];
+        if (urls.length !== 0) {
+          await dispatch(fetchArticles(urls));
+        }
+      } catch (error) {
+        console.error("Failed fetching news data of top10 keyword.", error);
       }
-    } catch (error) {
-      console.error("Failed fetching news data of top10 keyword.", error);
-    }
-  };
+    };
+
+    clickKeyword(clickedKeyword);
+  }, [clickedKeyword]);
 
   useEffect(() => {
+    const fetchKeyword = async (): Promise<void> => {
+      try {
+        const response = await axios.get("/api/topics");
+        setTopics(response.data.top10);
+      } catch (error) {
+        console.error("Failed fetching keyword data.", error);
+      }
+    };
+
     // TopicsServerComponent 에서 로드한 실시간 검색어를 먼저 렌더링 후 인터벌로 업데이트.
     const intervalFetch = setInterval(() => {
       fetchKeyword();
@@ -54,7 +59,7 @@ export default function Topics({ children }: { children: React.ReactNode }): JSX
     <div>
       <div css={css(topicsForm)}>
         <h4>실시간 검색어 Top 10</h4>
-        {topics ? (
+        {/* {topics ? (
           <ul>
             {topics.map((item, index) => {
               return (
@@ -82,6 +87,33 @@ export default function Topics({ children }: { children: React.ReactNode }): JSX
           </ul>
         ) : (
           <TopicsSkeleton />
+        )} */}
+        {topics && (
+          <ul>
+            {topics.map((item, index) => {
+              return (
+                <Link href="/news" key={index} onClick={() => setClickedKeyword(item.keyword)}>
+                  <li>
+                    <span className="rank">{item.rank}</span>
+                    <span className="keyword">{item.keyword}</span>
+                    <span className="state">
+                      {(() => {
+                        if (item.state === "n") {
+                          return <FaPlus className="new" />;
+                        } else if (item.state === "s") {
+                          return <FaMinus className="stay" />;
+                        } else if (item.state === "+") {
+                          return <FaCaretUp className="up" />;
+                        } else if (item.state === "-") {
+                          return <FaCaretDown className="down" />;
+                        }
+                      })()}
+                    </span>
+                  </li>
+                </Link>
+              );
+            })}
+          </ul>
         )}
       </div>
       {children}

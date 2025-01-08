@@ -13,6 +13,7 @@ import Image from "next/image";
 import { latestNews } from "@/styles/LatestNews.styles";
 import { css } from "@emotion/react";
 import LatestNewsSkeleton from "../component/LatestNewsSkeleton";
+import TopicsServerComponent from "../component/TopicsServerComponent";
 
 export const dynamic = "force-dynamic";
 
@@ -44,7 +45,7 @@ export default function Home(): JSX.Element {
 
   return (
     <div>
-      <Topics children={<></>} />
+      <Topics children={<TopicsServerComponent />} />
       <div css={css(latestNews)}>
         <h4>최신 뉴스 Top 10</h4>
         <ul>
