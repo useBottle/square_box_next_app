@@ -1,6 +1,7 @@
 import { TopicsType } from "@/types/types";
 import axios from "axios";
 import TopicsInServer from "./TopicsInServer";
+import Topics from "./Topics";
 
 const fetchKeyword = async (): Promise<TopicsType[] | undefined> => {
   try {
@@ -12,13 +13,12 @@ const fetchKeyword = async (): Promise<TopicsType[] | undefined> => {
   }
 };
 
-export default async function TopicsServerComponent() {
+export default async function TopicsContainer() {
   const keywordsData: TopicsType[] | undefined = await fetchKeyword();
 
   return (
     <div>
-      <p>server component</p>
-      <TopicsInServer data={keywordsData} />
+      <Topics data={keywordsData} />
     </div>
   );
 }

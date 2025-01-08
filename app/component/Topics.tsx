@@ -8,13 +8,12 @@ import { css } from "@emotion/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaPlus, FaMinus, FaCaretUp, FaCaretDown } from "react-icons/fa6";
-import TopicsSkeleton from "./TopicsSkeleton";
 import Link from "next/link";
 import { fetchArticles, fetchNews } from "@/store/news";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
 
-export default function Topics({ children }: { children: React.ReactNode }): JSX.Element {
+export default function Topics({ data }: { data: TopicsType[] | undefined }): JSX.Element {
   const [topics, setTopics] = useState<TopicsType[] | undefined>(undefined);
   const [clickedKeyword, setClickedKeyword] = useState<string>("");
   const dispatch = useDispatch<AppDispatch>();
@@ -39,6 +38,9 @@ export default function Topics({ children }: { children: React.ReactNode }): JSX
   }, [clickedKeyword]);
 
   useEffect(() => {
+    // 서버에서 가져온 최초 실시간 검색어 데이터로 업데이트.
+    // setTopics(data);
+
     const fetchKeyword = async (): Promise<void> => {
       try {
         const response = await axios.get("/api/topics");
@@ -60,64 +62,32 @@ export default function Topics({ children }: { children: React.ReactNode }): JSX
     <div>
       <div css={css(topicsForm)}>
         <h4>실시간 검색어 Top 10</h4>
-        {/* {topics ? (
-          <ul>
-            {topics.map((item, index) => {
-              return (
-                <Link href="/news" key={index} onClick={() => clickKeyword(item.keyword)}>
-                  <li>
-                    <span className="rank">{item.rank}</span>
-                    <span className="keyword">{item.keyword}</span>
-                    <span className="state">
-                      {(() => {
-                        if (item.state === "n") {
-                          return <FaPlus className="new" />;
-                        } else if (item.state === "s") {
-                          return <FaMinus className="stay" />;
-                        } else if (item.state === "+") {
-                          return <FaCaretUp className="up" />;
-                        } else if (item.state === "-") {
-                          return <FaCaretDown className="down" />;
-                        }
-                      })()}
-                    </span>
-                  </li>
-                </Link>
-              );
-            })}
-          </ul>
-        ) : (
-          <TopicsSkeleton />
-        )} */}
-        {topics && (
-          <ul>
-            {topics.map((item, index) => {
-              return (
-                <Link href="/news" key={index} onClick={() => setClickedKeyword(item.keyword)}>
-                  <li>
-                    <span className="rank">{item.rank}</span>
-                    <span className="keyword">{item.keyword}</span>
-                    <span className="state">
-                      {(() => {
-                        if (item.state === "n") {
-                          return <FaPlus className="new" />;
-                        } else if (item.state === "s") {
-                          return <FaMinus className="stay" />;
-                        } else if (item.state === "+") {
-                          return <FaCaretUp className="up" />;
-                        } else if (item.state === "-") {
-                          return <FaCaretDown className="down" />;
-                        }
-                      })()}
-                    </span>
-                  </li>
-                </Link>
-              );
-            })}
-          </ul>
-        )}
+        <ul>
+          {(data || topics)?.map((item, index) => {
+            return (
+              <Link href="/news" key={index} onClick={() => setClickedKeyword(item.keyword)}>
+                <li>
+                  <span className="rank">{item.rank}</span>
+                  <span className="keyword">{item.keyword}</span>
+                  <span className="state">
+                    {(() => {
+                      if (item.state === "n") {
+                        return <FaPlus className="new" />;
+                      } else if (item.state === "s") {
+                        return <FaMinus className="stay" />;
+                      } else if (item.state === "+") {
+                        return <FaCaretUp className="up" />;
+                      } else if (item.state === "-") {
+                        return <FaCaretDown className="down" />;
+                      }
+                    })()}
+                  </span>
+                </li>
+              </Link>
+            );
+          })}
+        </ul>
       </div>
-      {children}
     </div>
   );
 }
