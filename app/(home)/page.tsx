@@ -1,4 +1,3 @@
-import TopicsServerComponent from "../component/TopicsServerComponent";
 import LatestNews from "../component/LatestNews";
 import TopicsContainer from "../component/TopicsContainer";
 
