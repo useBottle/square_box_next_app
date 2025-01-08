@@ -44,7 +44,7 @@ export default function Home(): JSX.Element {
 
   return (
     <div>
-      <Topics />
+      <Topics children={<></>} />
       <div css={css(latestNews)}>
         <h4>최신 뉴스 Top 10</h4>
         <ul>

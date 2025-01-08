@@ -14,7 +14,7 @@ import { fetchArticles, fetchNews } from "@/store/news";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
 
-export default function Topics(): JSX.Element {
+export default function Topics({ children }: { children: React.ReactNode }): JSX.Element {
   const [topics, setTopics] = useState<TopicsType[] | undefined>(undefined);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -84,6 +84,7 @@ export default function Topics(): JSX.Element {
           <TopicsSkeleton />
         )}
       </div>
+      {children}
     </div>
   );
 }
