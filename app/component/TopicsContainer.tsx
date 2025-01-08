@@ -1,6 +1,5 @@
 import { TopicsType } from "@/types/types";
 import axios from "axios";
-import TopicsInServer from "./TopicsInServer";
 import Topics from "./Topics";
 
 const fetchKeyword = async (): Promise<TopicsType[] | undefined> => {
