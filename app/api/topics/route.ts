@@ -8,7 +8,7 @@ export async function GET() {
 
     return NextResponse.json(result, { status: 200 });
   } catch (error: unknown) {
-    console.error("Error occurred", error);
-    return NextResponse.json({ message: "An unexpected error occurred" }, { status: 500 });
+    console.error("fetch keyword data failed", error);
+    return NextResponse.json({ message: "fetch keyword data failed" }, { status: 500 });
   }
 }
