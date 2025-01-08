@@ -1,9 +1,10 @@
 import { TopicsType } from "@/types/types";
 import axios from "axios";
+import TopicSingle from "./TopicSingle";
 
 const fetchKeyword = async (): Promise<TopicsType[] | undefined> => {
   try {
-    const response = await axios.get("/api/topics");
+    const response = await axios.get(process.env.TOPICS_API_URL || "");
     const keywordsData = response.data.top10;
     return keywordsData;
   } catch (error) {
@@ -18,7 +19,7 @@ export default async function TopicsServerComponent() {
     <div>
       <ul>
         {keywordsData?.map((item, index) => {
-          return <div key={index}>{item.keyword}</div>;
+          return <TopicSingle key={index} item={item} />;
         })}
       </ul>
     </div>
