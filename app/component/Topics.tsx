@@ -9,7 +9,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaPlus, FaMinus, FaCaretUp, FaCaretDown } from "react-icons/fa6";
 import Link from "next/link";
-import { fetchArticles, fetchNewsList, fetchNewsOfTopics, setNewsList } from "@/store/news";
+import { setNewsList } from "@/store/news";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
 
