@@ -1,6 +1,6 @@
 import { TopicsType } from "@/types/types";
 import axios from "axios";
-import TopicSingle from "./TopicSingle";
+import TopicsInServer from "./TopicsInServer";
 
 const fetchKeyword = async (): Promise<TopicsType[] | undefined> => {
   try {
@@ -17,11 +17,8 @@ export default async function TopicsServerComponent() {
 
   return (
     <div>
-      <ul>
-        {keywordsData?.map((item, index) => {
-          return <TopicSingle key={index} item={item} />;
-        })}
-      </ul>
+      <p>server component</p>
+      <TopicsInServer data={keywordsData} />
     </div>
   );
 }

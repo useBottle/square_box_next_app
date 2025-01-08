@@ -7,9 +7,10 @@ export const dynamic = "force-dynamic";
 export default function Home(): JSX.Element {
   return (
     <div>
-      <Topics>
+      {/* <Topics>
         <TopicsServerComponent />
-      </Topics>
+      </Topics> */}
+      <TopicsServerComponent />
       <LatestNews />
     </div>
   );
