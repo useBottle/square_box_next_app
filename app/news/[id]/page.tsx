@@ -42,7 +42,7 @@ export default function NewsDynamic(): JSX.Element {
 
   useEffect(() => {
     // 뉴스 기사 중에서 쿼리 스트링과 일치하는 데이터로 상태 업데이트.
-    articles.map((item) => {
+    articles.articles.map((item) => {
       if (item.title === newsTitle) {
         setCurrentArticle(item);
         setIsLoadingArticle(false);
