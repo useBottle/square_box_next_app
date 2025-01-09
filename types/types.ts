@@ -17,6 +17,11 @@ export interface TopicsType {
   summary: string;
 }
 
+export interface TopicsListType {
+  keyword: string;
+  newsList: newsList[];
+}
+
 // 최신 뉴스 단일 기사
 export interface LatestNewsArticle {
   title: string;
