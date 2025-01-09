@@ -3,7 +3,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { getLatestNewsArticle, getLatestNewsList } from "../actions/latestNewsActions";
@@ -17,30 +17,10 @@ import { LatestNewsProps } from "@/types/types";
 export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const storedLatestNews = useSelector((state: RootState) => state.latestNews.latestNewsList);
-  const [clickedNewsTitle, setClickedNewsTitle] = useState<string>("");
   const router = useRouter();
   const { latestNewsList, latestArticles } = data;
   const storedLatestArticles = useSelector((state: RootState) => state.latestNews.latestArticleSet);
   const storedArticle = useSelector((state: RootState) => state.latestNews.latestArticles);
-
-  useEffect(() => {
-    /* 
-    최신 뉴스 클릭 시 클라이언트에서 최신 뉴스 리스트 및 뉴스 기사를 디스패치 하기 전이면 
-    서버에서 가져온 articles 중 클릭한 타이틀과 일치하는 것으로 디스패치 
-  */
-    if (storedLatestNews.length === 0 && latestNewsList) {
-      console.log("latestNews  article: ", latestArticles.filter((article) => article.title === clickedNewsTitle)[0]);
-      dispatch(setLatestArticles(latestArticles.filter((article) => article.title === clickedNewsTitle)[0]));
-    }
-
-    /* 
-    최신 뉴스 클릭 시 클라이언트에서 최신 뉴스 리스트 및 뉴스 기사를 디스패치한 이후면
-    디스패치된 최신 뉴스 기사 세트 중 클릭한 타이틀과 일치하는 것으로 디스패치 
-  */
-    if (storedLatestArticles.length !== 0) {
-      dispatch(setLatestArticles(storedLatestArticles.filter((article) => article.title === clickedNewsTitle)[0]));
-    }
-  }, [clickedNewsTitle]);
 
   // 인터벌로 최신 뉴스 리스트 업데이트 및 각 리스트 요소 별 뉴스 기사 요청하여 업데이트
   useEffect(() => {
@@ -58,10 +38,26 @@ export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
     return () => clearInterval(intervalFetch);
   }, []);
 
-  const onClick = (title: string) => (e: React.MouseEvent) => {
+  const onClick = (clickedtitle: string) => (e: React.MouseEvent) => {
     e.preventDefault();
-    setClickedNewsTitle(title);
-    router.push(`/latest-news/detail?title=${encodeURIComponent(title)}`);
+    // setClickedNewsTitle(title);
+    /* 
+    최신 뉴스 클릭 시 클라이언트에서 최신 뉴스 리스트 및 뉴스 기사를 디스패치 하기 전이면 
+    서버에서 가져온 articles 중 클릭한 타이틀과 일치하는 것으로 디스패치 
+  */
+    if (storedLatestNews.length === 0 && latestNewsList) {
+      console.log("latestNews  article: ", latestArticles.filter((article) => article.title === clickedtitle)[0]);
+      dispatch(setLatestArticles(latestArticles.filter((article) => article.title === clickedtitle)[0]));
+    }
+
+    /* 
+    최신 뉴스 클릭 시 클라이언트에서 최신 뉴스 리스트 및 뉴스 기사를 디스패치한 이후면
+    디스패치된 최신 뉴스 기사 세트 중 클릭한 타이틀과 일치하는 것으로 디스패치 
+  */
+    if (storedLatestArticles.length !== 0) {
+      dispatch(setLatestArticles(storedLatestArticles.filter((article) => article.title === clickedtitle)[0]));
+    }
+    router.push(`/latest-news/detail?title=${encodeURIComponent(clickedtitle)}`);
   };
 
   useEffect(() => {
