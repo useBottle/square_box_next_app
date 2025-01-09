@@ -12,11 +12,13 @@ import Image from "next/image";
 import { latestNews } from "@/styles/LatestNews.styles";
 import { css } from "@emotion/react";
 import LatestNewsSkeleton from "../component/LatestNewsSkeleton";
+import { useRouter } from "next/navigation";
 
 export default function LatestNews(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const latestNewsList = useSelector((state: RootState) => state.latestNews.latestNewsList);
   const [clickedNewsTitle, setClickedNewsTitle] = useState<string>("");
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,6 +42,12 @@ export default function LatestNews(): JSX.Element {
     return () => clearInterval(intervalFetch);
   }, []);
 
+  const onClick = (title: string) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    setClickedNewsTitle(title);
+    router.push(`/latest-news/detail?title=${encodeURIComponent(title)}`);
+  };
+
   return (
     <div css={css(latestNews)}>
       <h4>최신 뉴스 Top 10</h4>
@@ -50,7 +58,7 @@ export default function LatestNews(): JSX.Element {
               <Link
                 href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`}
                 key={index}
-                onClick={() => setClickedNewsTitle(item.title)}
+                onClick={onClick(item.title)}
               >
                 <li>
                   <Image src={item.prevImg} width={100} height={100} alt="newsImg" />
