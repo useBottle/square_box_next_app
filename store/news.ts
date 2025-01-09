@@ -85,8 +85,7 @@ export const news = createSlice({
   initialState,
   reducers: {
     setNewsList(state, action: PayloadAction<newsListWithKeyword>) {
-      state.newsList.keyword = action.payload.keyword;
-      state.newsList.newsList = action.payload.newsList;
+      state.newsList = action.payload;
     },
     setArticles(state, action: PayloadAction<articlesWithKeyword>) {
       state.articles = action.payload;
@@ -121,8 +120,7 @@ export const news = createSlice({
       .addCase(fetchArticles.fulfilled, (state, action: PayloadAction<articlesWithKeyword | undefined>) => {
         state.articleStatus = "succeeded";
         if (action.payload) {
-          state.articles.keyword = action.payload.keyword;
-          state.articles.articles = action.payload.articles;
+          state.articles = action.payload;
         }
       })
       .addCase(fetchArticles.rejected, (state) => {
@@ -131,5 +129,5 @@ export const news = createSlice({
   },
 });
 
-export const { setNewsList, setArticles } = news.actions;
+export const { setNewsList, setArticles, setTotalArticles } = news.actions;
 export default news.reducer;
