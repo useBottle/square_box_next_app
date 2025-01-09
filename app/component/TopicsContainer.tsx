@@ -1,4 +1,4 @@
-import { newsList, TopicsListType, TopicsType } from "@/types/types";
+import { articleData, newsList, TopicsListType, TopicsType } from "@/types/types";
 import axios from "axios";
 import Topics from "./Topics";
 
@@ -12,27 +12,45 @@ const fetchKeyword = async (): Promise<TopicsType[] | undefined> => {
   }
 };
 
-const articlesOfTopics = [];
+// 모든 실시간 검색어 키워드에 해당하는 뉴스 리스트들의 각 뉴스 기사 데이터.
+const articlesOfTopics: { keyword: string; articles: articleData[] }[] = [];
 
 const fetchNewsOfTopicsList = async (keywords: string[]) => {
   try {
     if (keywords) {
       const newsListsResults = await Promise.all(
-        keywords.map(async (item) => {
+        keywords.map(async (keyword: string) => {
           // 순회중인 키워드의 뉴스 리스트 요청.
           const response = await axios.post(`${process.env.NEXTAUTH_URL}/api/news` || "", {
-            inputValue: item,
+            inputValue: keyword,
             sort: "relation",
           });
           const data = {
-            keyword: item,
+            keyword: keyword,
             newsList: response.data.newsList,
           };
+
+          const urls: string[] = [];
+
+          response.data.newsList.forEach((item: newsList) => {
+            if (item.href !== "") {
+              urls.push(item.href);
+            }
+          });
+
+          // 키워드에 해당하는 뉴스 리스트의 각 뉴스 기사 데이터 요청.
+          const responseArticles = await axios.post(`${process.env.NEXTAUTH_URL}/api/articles` || "", { urls: urls });
+          const articlesData = {
+            keyword: keyword,
+            articles: responseArticles.data.articlesData,
+          };
+
+          // 위의 뉴스 리스트의 각 뉴스 기사 데이터 (articles) 를 articlesOfTopics 배열에 푸쉬.
+          articlesOfTopics.push(articlesData);
           return data;
-          // newsList 의 urls 로 순회하여 articles 요청하는 로직 추가하기. articlesOfTopics 에 푸시.
         }),
       );
-      // console.log(newsListsResults);
+      // { keyword: string; newsList: newsList[] } 객체를 Promise.all 로 인한 newsListsResults 의 최종 배열에 반환.
       return newsListsResults;
     }
   } catch (error) {
@@ -45,10 +63,12 @@ export default async function TopicsContainer() {
   const keywords = keywordsData?.map((item) => item.keyword);
 
   const newsOfTopicsList: TopicsListType[] | undefined = await fetchNewsOfTopicsList(keywords as string[]);
+  console.log(articlesOfTopics);
 
   const data = {
     keywordsData: keywordsData,
     newsOfTopicsList: newsOfTopicsList,
+    totalArticles: articlesOfTopics,
   };
 
   return (
