@@ -13,6 +13,16 @@ import { setArticles, setNewsList, setTotalArticles } from "@/store/news";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 
+/**
+ * Topics.tsx
+ * 실시간 검색어를 서버에서 받아와 최초 렌더링 후 인터벌로 업데이트하여 다시 받아오는 클라이언트 컴포넌트.
+ *
+ * @params data - 실시간 검색어 Top10 키워드, 관련 뉴스 리스트, 관련 뉴스 기사 데이터
+ * @params data.keywordsData - 실시간 검색어 Top10 키워드
+ * @params data.newsOfTopicsList - 실시간 검색어 키워드 각각의 뉴스 리스트
+ * @params data.totalArticles - 실시간 검색어 키워드 각각의 뉴스 리스트를 순회한 전체 뉴스 기사
+ */
+
 export default function Topics({ data }: TopicsProps): JSX.Element {
   const [topics, setTopics] = useState<TopicsType[] | undefined>(undefined);
   const [clickedKeyword, setClickedKeyword] = useState<string>("");
@@ -53,6 +63,11 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
   }, [clickedKeyword, newsListArray]);
 
   useEffect(() => {
+    /**
+     * fetchKeyword
+     * 실시간 검색어를 순회하여 각 검색어에 해당하는 뉴스 리스트 요청.
+     * 실시간 검색어를 순회하여 얻은 뉴스 리스트마다 중첩으로 순회하여 각 뉴스 기사 데이터 요청.
+     */
     const fetchKeyword = async () => {
       try {
         const topicsResponse = await axios.get("/api/topics");
@@ -72,8 +87,8 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
               newsList: response.data.newsList,
             };
 
+            // 뉴스 리스트를 순회하여 각 기사의 url 수집.
             const urls: string[] = [];
-
             response.data.newsList.forEach((item: newsList) => {
               if (item.href !== "") {
                 urls.push(item.href);
