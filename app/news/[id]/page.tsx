@@ -125,11 +125,6 @@ export default function NewsDynamic(): JSX.Element {
     return <ExpiredData />;
   }
 
-  // 뉴스 개별 데이터 요청 중일 때 Skeleton UI 렌더링
-  if (isLoadingArticle) {
-    return <ArticleSkeleton />;
-  }
-
   return (
     <article css={css(dynamicNewsStyles)}>
       <figure className="imgGroup">

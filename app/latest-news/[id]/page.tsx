@@ -24,7 +24,7 @@ export default function LatestNewsDetail(): JSX.Element {
   const newsTitle = decodeURIComponent(params.get("title") as string);
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoadingMarked, setIsLoadingMarked] = useState<boolean>(true);
-  const storedArticle = useSelector((state: RootState) => state.latestNews.latestArticles);
+  const storedArticle = useSelector((state: RootState) => state.latestNews.latestArticle);
 
   // storedArticle 이 업데이트 되면 해당 값이 북마크 되어있는지 확인
   useEffect(() => {

@@ -1,4 +1,11 @@
-import { articleData, articlesWithKeyword, newsList, newsListExtends, newsListWithKeyword } from "@/types/types";
+import {
+  articleData,
+  articleOnTopic,
+  articlesWithKeyword,
+  newsList,
+  newsListExtends,
+  newsListWithKeyword,
+} from "@/types/types";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -57,6 +64,7 @@ interface newsType {
     keyword: string;
     articles: articleData[];
   };
+  article: articleOnTopic;
   totalArticles: { keyword: string; articles: articleData[] }[];
   urls: string[];
   popularStatus: "idle" | "loading" | "succeeded" | "failed";
@@ -74,6 +82,13 @@ const initialState: newsType = {
     articles: [],
   },
   totalArticles: [],
+  article: {
+    title: "",
+    date: [],
+    image: "",
+    alt: "",
+    text: [],
+  },
   urls: [],
   popularStatus: "idle",
   newsStatus: "idle",
@@ -92,6 +107,9 @@ export const news = createSlice({
     },
     setTotalArticles(state, action: PayloadAction<{ keyword: string; articles: articleData[] }[]>) {
       state.totalArticles = action.payload;
+    },
+    setSingleArticle(state, action: PayloadAction<articleOnTopic>) {
+      state.article = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -129,5 +147,5 @@ export const news = createSlice({
   },
 });
 
-export const { setNewsList, setArticles, setTotalArticles } = news.actions;
+export const { setNewsList, setArticles, setTotalArticles, setSingleArticle } = news.actions;
 export default news.reducer;

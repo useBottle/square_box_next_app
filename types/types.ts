@@ -34,6 +34,15 @@ export interface TopicsProps {
   };
 }
 
+// 실시간 검색어 연관 뉴스 리스트 중 단일 뉴스 기사
+export interface articleOnTopic {
+  title: string;
+  date: string[];
+  image: string;
+  alt: string;
+  text: string[];
+}
+
 // * 뉴스 관련 인터페이스
 
 // 최신 뉴스 단일 기사
