@@ -17,9 +17,9 @@ import { LatestNewsProps } from "@/types/types";
 export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const storedLatestNews = useSelector((state: RootState) => state.latestNews.latestNewsList);
-  const router = useRouter();
-  const { latestNewsList, latestArticles } = data;
   const storedLatestArticles = useSelector((state: RootState) => state.latestNews.latestArticleSet);
+  const { latestNewsList, latestArticles } = data;
+  const router = useRouter();
 
   // 인터벌로 최신 뉴스 리스트 업데이트 및 각 리스트 요소 별 뉴스 기사 요청하여 업데이트
   useEffect(() => {
@@ -62,24 +62,43 @@ export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
     <div css={css(latestNews)}>
       <h4>최신 뉴스 Top 10</h4>
       <ul>
-        {(latestNewsList || storedLatestNews)?.map((item, index) => {
-          return (
-            <Link
-              href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`}
-              key={index}
-              onClick={onClick(item.title)}
-            >
-              <li>
-                <Image src={item.prevImg} width={100} height={100} alt="newsImg" />
-                <div className="textGroup">
-                  <h6>{item.title}</h6>
-                  <div className="date">{item.date}</div>
-                  <p>{item.summary}</p>
-                </div>
-              </li>
-            </Link>
-          );
-        })}
+        {storedLatestNews.length === 0
+          ? latestNewsList.map((item, index) => {
+              return (
+                <Link
+                  href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`}
+                  key={index}
+                  onClick={onClick(item.title)}
+                >
+                  <li>
+                    <Image src={item.prevImg} width={100} height={100} alt="newsImg" />
+                    <div className="textGroup">
+                      <h6>{item.title}</h6>
+                      <div className="date">{item.date}</div>
+                      <p>{item.summary}</p>
+                    </div>
+                  </li>
+                </Link>
+              );
+            })
+          : storedLatestNews.map((item, index) => {
+              return (
+                <Link
+                  href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`}
+                  key={index}
+                  onClick={onClick(item.title)}
+                >
+                  <li>
+                    <Image src={item.prevImg} width={100} height={100} alt="newsImg" />
+                    <div className="textGroup">
+                      <h6>{item.title}</h6>
+                      <div className="date">{item.date}</div>
+                      <p>{item.summary}</p>
+                    </div>
+                  </li>
+                </Link>
+              );
+            })}
       </ul>
     </div>
   );
