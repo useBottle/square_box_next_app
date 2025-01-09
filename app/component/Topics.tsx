@@ -3,7 +3,7 @@
 "use client";
 
 import { topicsForm } from "@/styles/Topics.styles";
-import { newsList, TopicsListType, TopicsType } from "@/types/types";
+import { newsList, TopicsListType, TopicsProps, TopicsType } from "@/types/types";
 import { css } from "@emotion/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -12,13 +12,6 @@ import Link from "next/link";
 import { setNewsList } from "@/store/news";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
-
-interface TopicsProps {
-  data: {
-    keywordsData: TopicsType[] | undefined;
-    newsOfTopicsList: TopicsListType[] | undefined;
-  };
-}
 
 export default function Topics({ data }: TopicsProps): JSX.Element {
   const [topics, setTopics] = useState<TopicsType[] | undefined>(undefined);

@@ -22,6 +22,13 @@ export interface TopicsListType {
   newsList: newsList[];
 }
 
+export interface TopicsProps {
+  data: {
+    keywordsData: TopicsType[] | undefined;
+    newsOfTopicsList: TopicsListType[] | undefined;
+  };
+}
+
 // 최신 뉴스 단일 기사
 export interface LatestNewsArticle {
   title: string;
