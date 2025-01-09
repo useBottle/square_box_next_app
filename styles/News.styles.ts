@@ -59,6 +59,7 @@ export const newsListStyles: CSSObject = {
     width: "100%",
 
     a: {
+      width: "100%",
       display: "flex",
       justifyContent: "center",
 
@@ -75,7 +76,6 @@ export const newsListStyles: CSSObject = {
         boxSizing: "border-box",
 
         ".noImg": {
-          // width: "100%",
           height: "100%",
           borderTopLeftRadius: "5px",
           borderBottomLeftRadius: "5px",

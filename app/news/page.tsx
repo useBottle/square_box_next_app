@@ -78,7 +78,7 @@ export default function News(): JSX.Element {
           return (
             <Link href={`/news/detail?title=${encodeURIComponent(item.title)}`} key={index}>
               <li>
-                {!(item.prevImg.startsWith("https") || item.prevImg.startsWith("http")) ? (
+                {!item.prevImg.startsWith("https") || item.prevImg.startsWith("http") ? (
                   <div className="noImg">No Image</div>
                 ) : (
                   <Image src={item.prevImg} alt="newsImg" width={100} height={100} />
