@@ -53,10 +53,10 @@ export default function News(): JSX.Element {
   }
 
   return (
-    <div>
+    <div css={css(newsListStyles)}>
       <SearchBar />
       {newsList.length === 0 && !noNewsList && (
-        <div css={css(initNews)}>
+        <div className="initNews">
           <PiInfoFill className="icon" />
           <div className="textNback">
             <h1>뉴스를 검색해주세요</h1>
@@ -65,13 +65,13 @@ export default function News(): JSX.Element {
         </div>
       )}
       {noNewsList && (
-        <div css={css(initNews)}>
+        <div className="initNews">
           <PiWarningCircleFill className="icon" />
           <h1>검색된 뉴스가 없습니다</h1>
           <TbBoxOff className="backIcon" />
         </div>
       )}
-      <ul css={css(newsListStyles)}>
+      <ul>
         {newsList.map((item, index) => {
           return (
             <Link href={`/news/detail?title=${encodeURIComponent(item.title)}`} key={index}>

@@ -14,10 +14,10 @@ export const youtube: CSSObject = {
     justifyContent: "center",
     alignItems: "center",
     height: "60vh",
-    // background: "black",
+    width: "100%",
 
     ".icon": {
-      fontSize: "8rem",
+      fontSize: "6rem",
       marginBottom: "5rem",
       transform: "translateY(-7rem)",
     },
@@ -39,14 +39,15 @@ export const youtube: CSSObject = {
         border: "1px solid var(--basic-font)",
         borderLeft: "none",
         borderRight: "none",
-        padding: "1.5rem 0",
+        padding: "1rem 0",
       },
 
       ".backIcon": {
         position: "absolute",
         top: "50%",
-        fontSize: "20rem",
+        fontSize: "23rem",
         opacity: 0.1,
+        transform: "translateY(-3.5rem)",
       },
     },
   },

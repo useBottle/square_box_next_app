@@ -15,7 +15,7 @@ import YoutubeSkeleton from "../component/YoutubeSkeleton";
 import FetchFailedData from "../component/FetchFailedData";
 import ScrollBtn from "../component/ScrollBtn";
 import { PiInfoFill } from "react-icons/pi";
-import { AiOutlineFileSearch } from "react-icons/ai";
+import { PiFilmSlateLight } from "react-icons/pi";
 
 export default function Youtube() {
   const dispatch = useDispatch<AppDispatch>();
@@ -54,7 +54,7 @@ export default function Youtube() {
           <PiInfoFill className="icon" />
           <div className="textNback">
             <h1>영상을 검색해주세요</h1>
-            <AiOutlineFileSearch className="backIcon" />
+            <PiFilmSlateLight className="backIcon" />
           </div>
         </div>
       )}

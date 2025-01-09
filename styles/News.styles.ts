@@ -45,72 +45,125 @@ export const initNews: CSSObject = {
 
 export const newsListStyles: CSSObject = {
   display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
   justifyContent: "center",
+  alignItems: "center",
+  flexDirection: "column",
+  overflowX: "hidden",
+  width: "100%",
 
-  a: {
+  ".initNews": {
     display: "flex",
+    flexDirection: "column",
     justifyContent: "center",
+    alignItems: "center",
+    height: "60vh",
+    width: "100%",
 
-    li: {
-      width: "90%",
-      height: "10rem",
-      overflow: "hidden",
-      color: "var(--basic-font)",
-      display: "grid",
-      gridTemplateColumns: "35% 65%",
-      margin: "1.5rem",
-      border: "1px solid #eee",
-      borderRadius: "5px",
-      boxSizing: "border-box",
-
-      img: {
-        width: "100%",
-        height: "100%",
-        borderTopLeftRadius: "5px",
-        borderBottomLeftRadius: "5px",
-      },
-
-      ".textGroup": {
-        padding: "1rem",
-        height: "10rem",
-        display: "flex",
-        flexDirection: "column",
-        // justifyContent: "space-between",
-        alignItems: "flex-start",
-        boxSizing: "border-box",
-
-        h6: {
-          fontSize: "1.4rem",
-          lineHeight: 1.2,
-          color: "var(--main-color)",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-          display: "-webkit-box",
-          WebkitLineClamp: 2,
-          WebkitBoxOrient: "vertical",
-        },
-
-        ".date": {
-          marginTop: "2rem",
-        },
-
-        p: {
-          display: "none",
-          // fontSize: "1.1rem",
-          // lineHeight: 1.2,
-          // overflow: "hidden",
-          // textOverflow: "ellipsis",
-          // display: "-webkit-box",
-          // WebkitLineClamp: 1,
-          // WebkitBoxOrient: "vertical",
-        },
-      },
+    ".icon": {
+      fontSize: "6rem",
+      marginBottom: "5rem",
+      transform: "translateY(-7rem)",
     },
 
-    "&:last-child": {
-      marginBottom: "4rem",
+    ".textNback": {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      width: "90%",
+
+      h1: {
+        display: "flex",
+        justifyContent: "center",
+        width: "70%",
+        fontSize: "1.6rem",
+        background: "var(--reverse-font)",
+        zIndex: 10,
+        transform: "translateY(0.5rem)",
+        border: "1px solid var(--basic-font)",
+        borderLeft: "none",
+        borderRight: "none",
+        padding: "1rem 0",
+      },
+
+      ".backIcon": {
+        position: "absolute",
+        top: "50%",
+        fontSize: "20rem",
+        opacity: 0.1,
+      },
+    },
+  },
+
+  ul: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    width: "100%",
+
+    a: {
+      display: "flex",
+      justifyContent: "center",
+
+      li: {
+        width: "90%",
+        height: "10rem",
+        overflow: "hidden",
+        color: "var(--basic-font)",
+        display: "grid",
+        gridTemplateColumns: "35% 65%",
+        margin: "1.5rem",
+        border: "1px solid #eee",
+        borderRadius: "5px",
+        boxSizing: "border-box",
+
+        img: {
+          width: "100%",
+          height: "100%",
+          borderTopLeftRadius: "5px",
+          borderBottomLeftRadius: "5px",
+        },
+
+        ".textGroup": {
+          padding: "1rem",
+          height: "10rem",
+          display: "flex",
+          flexDirection: "column",
+          // justifyContent: "space-between",
+          alignItems: "flex-start",
+          boxSizing: "border-box",
+
+          h6: {
+            fontSize: "1.4rem",
+            lineHeight: 1.2,
+            color: "var(--main-color)",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            display: "-webkit-box",
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: "vertical",
+          },
+
+          ".date": {
+            marginTop: "2rem",
+          },
+
+          p: {
+            display: "none",
+            // fontSize: "1.1rem",
+            // lineHeight: 1.2,
+            // overflow: "hidden",
+            // textOverflow: "ellipsis",
+            // display: "-webkit-box",
+            // WebkitLineClamp: 1,
+            // WebkitBoxOrient: "vertical",
+          },
+        },
+      },
+
+      "&:last-child": {
+        marginBottom: "4rem",
+      },
     },
   },
 };
