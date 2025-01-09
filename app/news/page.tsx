@@ -7,12 +7,15 @@ import SearchBar from "../component/SearchBar";
 import { AppDispatch, RootState } from "@/store/store";
 import Link from "next/link";
 import Image from "next/image";
-import { newsListStyles } from "@/styles/News.styles";
-import { css, CSSObject } from "@emotion/react";
+import { initNews, newsListStyles } from "@/styles/News.styles";
+import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 import NewsSkeleton from "../component/NewsSkeleton";
 import { setPageState } from "@/store/switches";
 import FetchFailedData from "../component/FetchFailedData";
+import { PiWarningCircleFill, PiInfoFill } from "react-icons/pi";
+import { AiOutlineFileSearch } from "react-icons/ai";
+import { TbBoxOff } from "react-icons/tb";
 
 export default function News(): JSX.Element {
   const newsList = useSelector((state: RootState) => state.news.newsList.newsList);
@@ -49,28 +52,23 @@ export default function News(): JSX.Element {
     return <FetchFailedData />;
   }
 
-  const initNews: CSSObject = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "50vh",
-
-    "& h1": {
-      fontSize: "1.6rem",
-    },
-  };
-
   return (
     <div>
       <SearchBar />
-      {newsList.length === 0 && (
+      {newsList.length === 0 && !noNewsList && (
         <div css={css(initNews)}>
-          <h1>뉴스를 검색해주세요</h1>
+          <PiInfoFill className="icon" />
+          <div className="textNback">
+            <h1>뉴스를 검색해주세요</h1>
+            <AiOutlineFileSearch className="backIcon" />
+          </div>
         </div>
       )}
       {noNewsList && (
         <div css={css(initNews)}>
+          <PiWarningCircleFill className="icon" />
           <h1>검색된 뉴스가 없습니다</h1>
+          <TbBoxOff className="backIcon" />
         </div>
       )}
       <ul css={css(newsListStyles)}>

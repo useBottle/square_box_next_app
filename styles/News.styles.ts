@@ -1,5 +1,49 @@
 import { CSSObject, keyframes } from "@emotion/react";
 
+export const initNews: CSSObject = {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  height: "60vh",
+  // background: "black",
+
+  ".icon": {
+    fontSize: "8rem",
+    marginBottom: "5rem",
+    transform: "translateY(-7rem)",
+  },
+
+  ".textNback": {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    width: "90%",
+    // height: "100%",
+
+    h1: {
+      display: "flex",
+      justifyContent: "center",
+      width: "70%",
+      fontSize: "1.6rem",
+      background: "var(--reverse-font)",
+      zIndex: 999,
+      transform: "translateY(0.5rem)",
+      border: "1px solid var(--basic-font)",
+      borderLeft: "none",
+      borderRight: "none",
+      padding: "1.5rem 0",
+    },
+
+    ".backIcon": {
+      position: "absolute",
+      top: "50%",
+      fontSize: "20rem",
+      opacity: 0.1,
+    },
+  },
+};
+
 export const newsListStyles: CSSObject = {
   display: "flex",
   flexDirection: "column",
