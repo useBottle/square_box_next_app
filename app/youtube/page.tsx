@@ -14,13 +14,15 @@ import { youtube } from "@/styles/Youtube.styles";
 import YoutubeSkeleton from "../component/YoutubeSkeleton";
 import FetchFailedData from "../component/FetchFailedData";
 import ScrollBtn from "../component/ScrollBtn";
-import { PiInfoFill } from "react-icons/pi";
+import { PiInfoFill, PiWarningCircleFill } from "react-icons/pi";
 import { PiFilmSlateLight } from "react-icons/pi";
+import { TbBoxOff } from "react-icons/tb";
 
 export default function Youtube() {
   const dispatch = useDispatch<AppDispatch>();
   const youtubeList = useSelector((state: RootState) => state.youtube.youtubeList);
   const youtubeStatus = useSelector((state: RootState) => state.youtube.youtubeStatus);
+  const inputValue = useSelector((state: RootState) => state.switches.inputValue);
 
   useEffect(() => {
     // console.log(youtubeList);
@@ -49,13 +51,20 @@ export default function Youtube() {
   return (
     <div css={css(youtube)}>
       <SearchBar />
-      {youtubeList.items.length === 0 && (
+      {youtubeList.items.length === 0 && inputValue === "" && (
         <div className="initYoutube">
           <PiInfoFill className="icon" />
           <div className="textNback">
             <h1>영상을 검색해주세요</h1>
             <PiFilmSlateLight className="backIcon" />
           </div>
+        </div>
+      )}
+      {youtubeList.items.length === 0 && inputValue !== "" && (
+        <div className="initYoutube">
+          <PiWarningCircleFill className="icon" />
+          <h1>검색된 영상이 없습니다</h1>
+          <TbBoxOff className="backIcon" />
         </div>
       )}
       <ul>
