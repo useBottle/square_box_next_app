@@ -63,8 +63,10 @@ export default function Youtube() {
       {youtubeList.items.length === 0 && inputValue !== "" && (
         <div className="initYoutube">
           <PiWarningCircleFill className="icon" />
-          <h1>검색된 영상이 없습니다</h1>
-          <TbBoxOff className="backIcon" />
+          <div className="textNback">
+            <h1>검색된 영상이 없습니다</h1>
+            <TbBoxOff className="backIcon" />
+          </div>
         </div>
       )}
       <ul>

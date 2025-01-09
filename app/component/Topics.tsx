@@ -12,6 +12,7 @@ import Link from "next/link";
 import { setArticles, setNewsList, setTotalArticles } from "@/store/news";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
+import { useRouter } from "next/navigation";
 
 /**
  * Topics.tsx
@@ -29,6 +30,7 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
   const [newsListArray, setNewsListArray] = useState<newsListWithKeyword[] | undefined>(undefined);
   const totalArticles = useSelector((state: RootState) => state.news.totalArticles);
   const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();
 
   // 실시간 검색어를 클릭하면 해당 키워드에 대한 뉴스 리스트 업데이트.
   useEffect(() => {
@@ -124,6 +126,12 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
     return () => clearInterval(intervalFetch);
   }, []);
 
+  const onClick = (keyword: string) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    setClickedKeyword(keyword);
+    router.push("/news");
+  };
+
   return (
     <div>
       <div css={css(topicsForm)}>
@@ -131,7 +139,7 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
         <ul>
           {(topics || data.keywordsData)?.map((item, index) => {
             return (
-              <Link href="/news" key={index} onClick={() => setClickedKeyword(item.keyword)}>
+              <Link href="/news" key={index} onClick={onClick(item.keyword)}>
                 <li>
                   <span className="rank">{item.rank}</span>
                   <span className="keyword">{item.keyword}</span>

@@ -1,48 +1,5 @@
 import { CSSObject, keyframes } from "@emotion/react";
 
-export const initNews: CSSObject = {
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-  height: "60vh",
-  // background: "black",
-
-  ".icon": {
-    fontSize: "8rem",
-    marginBottom: "5rem",
-    transform: "translateY(-7rem)",
-  },
-
-  ".textNback": {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    width: "90%",
-
-    h1: {
-      display: "flex",
-      justifyContent: "center",
-      width: "70%",
-      fontSize: "1.6rem",
-      background: "var(--reverse-font)",
-      zIndex: 10,
-      transform: "translateY(0.5rem)",
-      border: "1px solid var(--basic-font)",
-      borderLeft: "none",
-      borderRight: "none",
-      padding: "1.5rem 0",
-    },
-
-    ".backIcon": {
-      position: "absolute",
-      top: "50%",
-      fontSize: "20rem",
-      opacity: 0.1,
-    },
-  },
-};
-
 export const newsListStyles: CSSObject = {
   display: "flex",
   justifyContent: "center",
@@ -116,6 +73,19 @@ export const newsListStyles: CSSObject = {
         border: "1px solid #eee",
         borderRadius: "5px",
         boxSizing: "border-box",
+
+        ".noImg": {
+          // width: "100%",
+          height: "100%",
+          borderTopLeftRadius: "5px",
+          borderBottomLeftRadius: "5px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          background: "var(--reverse-font)",
+          color: "var(--basic-font)",
+          fontSize: "1.4rem",
+        },
 
         img: {
           width: "100%",

@@ -68,7 +68,6 @@ export default async function TopicsContainer() {
   const keywords = keywordsData?.map((item) => item.keyword);
 
   const newsOfTopicsList: TopicsListType[] | undefined = await fetchNewsOfTopicsList(keywords as string[]);
-  console.log(articlesOfTopics);
 
   const data = {
     keywordsData: keywordsData,

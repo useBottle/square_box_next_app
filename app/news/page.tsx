@@ -7,7 +7,7 @@ import SearchBar from "../component/SearchBar";
 import { AppDispatch, RootState } from "@/store/store";
 import Link from "next/link";
 import Image from "next/image";
-import { initNews, newsListStyles } from "@/styles/News.styles";
+import { newsListStyles } from "@/styles/News.styles";
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 import NewsSkeleton from "../component/NewsSkeleton";
@@ -67,8 +67,10 @@ export default function News(): JSX.Element {
       {noNewsList && (
         <div className="initNews">
           <PiWarningCircleFill className="icon" />
-          <h1>검색된 뉴스가 없습니다</h1>
-          <TbBoxOff className="backIcon" />
+          <div className="textNback">
+            <h1>검색된 뉴스가 없습니다</h1>
+            <TbBoxOff className="backIcon" />
+          </div>
         </div>
       )}
       <ul>
@@ -76,7 +78,11 @@ export default function News(): JSX.Element {
           return (
             <Link href={`/news/detail?title=${encodeURIComponent(item.title)}`} key={index}>
               <li>
-                <Image src={item.prevImg} alt="newsImg" width={100} height={100} />
+                {!(item.prevImg.startsWith("https") || item.prevImg.startsWith("http")) ? (
+                  <div className="noImg">No Image</div>
+                ) : (
+                  <Image src={item.prevImg} alt="newsImg" width={100} height={100} />
+                )}
                 <div className="textGroup">
                   <h6>{item.title}</h6>
                   <div className="date">{item.date}</div>
