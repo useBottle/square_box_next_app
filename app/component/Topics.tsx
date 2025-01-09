@@ -126,6 +126,8 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
     return () => clearInterval(intervalFetch);
   }, []);
 
+  // Link 컴포넌트의 리디렉션 막고 useRouter 로 리디렉션. (리디렉션 전에 상태 업데이트 하기 위함)
+  // news 페이지로 리디렉션 전에 keyword 업데이트.
   const onClick = (keyword: string) => (e: React.MouseEvent) => {
     e.preventDefault();
     setClickedKeyword(keyword);
