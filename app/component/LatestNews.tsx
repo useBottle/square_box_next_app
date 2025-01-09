@@ -3,7 +3,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { getLatestNewsArticle, getLatestNewsList } from "../actions/latestNewsActions";
@@ -16,6 +16,7 @@ import LatestNewsSkeleton from "../component/LatestNewsSkeleton";
 export default function LatestNews(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const latestNewsList = useSelector((state: RootState) => state.latestNews.latestNewsList);
+  const [clickedNewsTitle, setClickedNewsTitle] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,7 +47,11 @@ export default function LatestNews(): JSX.Element {
         {latestNewsList.length !== 0 ? (
           latestNewsList.map((item, index) => {
             return (
-              <Link href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`} key={index}>
+              <Link
+                href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`}
+                key={index}
+                onClick={() => setClickedNewsTitle(item.title)}
+              >
                 <li>
                   <Image src={item.prevImg} width={100} height={100} alt="newsImg" />
                   <div className="textGroup">
