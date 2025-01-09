@@ -4,11 +4,19 @@ import { createSlice } from "@reduxjs/toolkit";
 interface LatestNewsType {
   latestNewsList: newsList[];
   latestArticleSet: LatestNewsArticle[];
+  latestArticles: LatestNewsArticle;
 }
 
 const initialState: LatestNewsType = {
   latestNewsList: [],
   latestArticleSet: [],
+  latestArticles: {
+    title: "",
+    date: "",
+    image: "",
+    alt: "",
+    text: [],
+  },
 };
 
 export const latestNews = createSlice({
@@ -21,8 +29,11 @@ export const latestNews = createSlice({
     setLatestArticleSet(state, action) {
       state.latestArticleSet = action.payload;
     },
+    setLatestArticles(state, action) {
+      state.latestArticles = action.payload;
+    },
   },
 });
 
-export const { setLatestNewsList, setLatestArticleSet } = latestNews.actions;
+export const { setLatestNewsList, setLatestArticleSet, setLatestArticles } = latestNews.actions;
 export default latestNews.reducer;
