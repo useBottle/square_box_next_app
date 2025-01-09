@@ -24,12 +24,17 @@ export default function Header(): JSX.Element {
 
   return (
     <header css={css(header)}>
-      <Link href="/" className="logo" onClick={() => dispatch(setNavMenu(false))}>
-        <BsBox />
-        <h1 className={prompt.className} css={css({ marginLeft: "1rem" })}>
-          Square Box
-        </h1>
-      </Link>
+      {!navMenu ? (
+        <Link href="/" className="logo" onClick={() => dispatch(setNavMenu(false))}>
+          <BsBox />
+          <h1 className={prompt.className} css={css({ marginLeft: "1rem" })}>
+            Square Box
+          </h1>
+        </Link>
+      ) : (
+        // menuBtn 에 space-between 적용하기 위한 빈 요소
+        <div />
+      )}
       {navMenu === false ? (
         <IoMenuOutline className="menuBtn" onClick={() => dispatch(setNavMenu(navMenu ? false : true))} />
       ) : (
