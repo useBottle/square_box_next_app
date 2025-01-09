@@ -3,7 +3,7 @@
 "use client";
 
 import { topicsForm } from "@/styles/Topics.styles";
-import { newsList, TopicsListType, TopicsProps, TopicsType } from "@/types/types";
+import { newsListWithKeyword, TopicsProps, TopicsType } from "@/types/types";
 import { css } from "@emotion/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -15,20 +15,29 @@ import { AppDispatch } from "@/store/store";
 
 export default function Topics({ data }: TopicsProps): JSX.Element {
   const [topics, setTopics] = useState<TopicsType[] | undefined>(undefined);
-  const [clickedIndex, setClickedIndex] = useState<number>(0);
-  const [newsListArray, setNewsListArray] = useState<newsList[][] | undefined>(undefined);
+  const [clickedKeyword, setClickedKeyword] = useState<string>("");
+  const [newsListArray, setNewsListArray] = useState<newsListWithKeyword[] | undefined>(undefined);
   const dispatch = useDispatch<AppDispatch>();
 
+  // 실시간 검색어를 클릭하면 해당 키워드에 대한 뉴스 리스트 업데이트.
   useEffect(() => {
     // topics 가 최초 업데이트 되기 전이면 서버에서 가져온 데이터로 뉴스 리스트 업데이트.
     if (topics === undefined && data.newsOfTopicsList?.length !== 0) {
-      dispatch(setNewsList(data.newsOfTopicsList?.[clickedIndex].newsList || []));
+      dispatch(
+        setNewsList(
+          data.newsOfTopicsList?.filter((item) => item.keyword === clickedKeyword)[0] || { keyword: "", newsList: [] },
+        ),
+      );
     }
     // topics 가 업데이트되면 여기서 fetchKeyword 로 가져온 데이터로 뉴스 리스트 업데이트.
     if (topics !== undefined && newsListArray !== undefined) {
-      dispatch(setNewsList(newsListArray[clickedIndex]));
+      dispatch(
+        setNewsList(
+          newsListArray.filter((item) => item.keyword === clickedKeyword)[0] || { keyword: "", newsList: [] },
+        ),
+      );
     }
-  }, [clickedIndex, newsListArray]);
+  }, [clickedKeyword, newsListArray]);
 
   useEffect(() => {
     const fetchKeyword = async () => {
@@ -41,7 +50,11 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
               inputValue: item.keyword,
               sort: "relation",
             });
-            return response.data.newsList;
+            const data = {
+              keyword: item.keyword,
+              newsList: response.data.newsList,
+            };
+            return data;
           }),
         );
         setNewsListArray(results);
@@ -67,7 +80,7 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
         <ul>
           {(topics || data.keywordsData)?.map((item, index) => {
             return (
-              <Link href="/news" key={index} onClick={() => setClickedIndex(index)}>
+              <Link href="/news" key={index} onClick={() => setClickedKeyword(item.keyword)}>
                 <li>
                   <span className="rank">{item.rank}</span>
                   <span className="keyword">{item.keyword}</span>

@@ -55,13 +55,13 @@ export default function News(): JSX.Element {
   return (
     <div>
       <SearchBar />
-      {newsList.length === 0 && (
+      {newsList.newsList.length === 0 && (
         <div css={css(initNews)}>
           <h1>뉴스를 검색해주세요</h1>
         </div>
       )}
       <ul css={css(newsListStyles)}>
-        {newsList.map((item, index) => {
+        {newsList.newsList.map((item, index) => {
           return (
             <Link href={`/news/detail?title=${encodeURIComponent(item.title)}`} key={index}>
               <li>

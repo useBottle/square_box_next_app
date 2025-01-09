@@ -35,7 +35,7 @@ export default function SearchBar(): JSX.Element {
     if (pageAccess === "news") {
       try {
         const result = await dispatch(fetchNewsList(inputValue)).unwrap();
-        const urls = result[1];
+        const urls = result.urls;
         if (urls.length !== 0) {
           await dispatch(fetchArticles(urls));
         }

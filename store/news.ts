@@ -1,13 +1,13 @@
-import { articleData, newsList } from "@/types/types";
+import { articleData, newsList, newsListExtends, newsListWithKeyword } from "@/types/types";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // 뉴스 전체 데이터 요청 미들웨어
-export const fetchNewsList = createAsyncThunk<[newsList[], string[]], string>(
+export const fetchNewsList = createAsyncThunk<newsListExtends, string>(
   "data/fetchNewsList",
-  async (inputValue: string) => {
+  async (inputValue: string): Promise<newsListExtends> => {
     try {
-      if (inputValue === "") return [[], []];
+      if (inputValue === "") return { keyword: "", newsList: [], urls: [] };
 
       const response = await axios.post("/api/news", { inputValue: inputValue, sort: "relation" });
       const result = response.data.newsList;
@@ -17,10 +17,15 @@ export const fetchNewsList = createAsyncThunk<[newsList[], string[]], string>(
           urls.push(item.href);
         }
       });
-      return [result, urls];
+      const data = {
+        keyword: inputValue,
+        newsList: result,
+        urls: urls,
+      };
+      return data;
     } catch (error) {
       console.error("News fetch failed on middleware.", error);
-      return [[], []];
+      return { keyword: "", newsList: [], urls: [] };
     }
   },
 );
@@ -37,7 +42,10 @@ export const fetchArticles = createAsyncThunk<articleData[], string[]>("data/fet
 });
 
 interface newsType {
-  newsList: newsList[];
+  newsList: {
+    keyword: string;
+    newsList: newsList[];
+  };
   articles: articleData[];
   urls: string[];
   popularStatus: "idle" | "loading" | "succeeded" | "failed";
@@ -46,7 +54,10 @@ interface newsType {
 }
 
 const initialState: newsType = {
-  newsList: [],
+  newsList: {
+    keyword: "",
+    newsList: [],
+  },
   articles: [],
   urls: [],
   popularStatus: "idle",
@@ -58,8 +69,9 @@ export const news = createSlice({
   name: "news",
   initialState,
   reducers: {
-    setNewsList(state, action: PayloadAction<newsList[]>) {
-      state.newsList = action.payload;
+    setNewsList(state, action: PayloadAction<newsListWithKeyword>) {
+      state.newsList.keyword = action.payload.keyword;
+      state.newsList.newsList = action.payload.newsList;
     },
     setArticles(state, action: PayloadAction<articleData[]>) {
       state.articles = action.payload;
@@ -72,11 +84,12 @@ export const news = createSlice({
       .addCase(fetchNewsList.pending, (state) => {
         state.newsStatus = "loading";
       })
-      .addCase(fetchNewsList.fulfilled, (state, action: PayloadAction<[newsList[], string[]] | undefined>) => {
+      .addCase(fetchNewsList.fulfilled, (state, action: PayloadAction<newsListExtends | undefined>) => {
         state.newsStatus = "succeeded";
         if (action.payload) {
-          state.newsList = action.payload[0];
-          state.urls = action.payload[1];
+          state.newsList.keyword = action.payload.keyword;
+          state.newsList.newsList = action.payload.newsList;
+          state.urls = action.payload.urls;
         }
       })
       .addCase(fetchNewsList.rejected, (state) => {

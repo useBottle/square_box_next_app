@@ -9,6 +9,8 @@ export interface AuthedUser {
   createdAt: Date;
 }
 
+// * 실시간 검색어 관련 인터페이스
+
 // 실시간 검색어
 export interface TopicsType {
   rank: number;
@@ -17,17 +19,21 @@ export interface TopicsType {
   summary: string;
 }
 
+// 실시간 검색어 별 뉴스 리스트
 export interface TopicsListType {
   keyword: string;
   newsList: newsList[];
 }
 
+// TopicsContainer Props
 export interface TopicsProps {
   data: {
     keywordsData: TopicsType[] | undefined;
     newsOfTopicsList: TopicsListType[] | undefined;
   };
 }
+
+// * 뉴스 관련 인터페이스
 
 // 최신 뉴스 단일 기사
 export interface LatestNewsArticle {
@@ -45,6 +51,19 @@ export interface newsList {
   href: string;
   date: string;
   summary: string;
+}
+
+// 뉴스 리스트 + 검색 키워드 + 리스트 요소 별 URL 배열
+export interface newsListExtends {
+  newsList: newsList[];
+  keyword: string;
+  urls: string[];
+}
+
+// 뉴스 리스트 + 검색 키워드
+export interface newsListWithKeyword {
+  newsList: newsList[];
+  keyword: string;
 }
 
 // 각 URL 로 요청해 받아온 뉴스 단일 기사
