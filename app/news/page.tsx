@@ -18,7 +18,6 @@ import { AiOutlineFileSearch } from "react-icons/ai";
 import { TbBoxOff } from "react-icons/tb";
 import { setSingleArticle } from "@/store/news";
 import { useRouter } from "next/navigation";
-import { articleOnTopic } from "@/types/types";
 
 export default function News(): JSX.Element {
   const newsList = useSelector((state: RootState) => state.news.newsList.newsList);
@@ -28,7 +27,6 @@ export default function News(): JSX.Element {
   const [noNewsList, setNoNewsList] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
-  const singleArticle = useSelector((state: RootState) => state.news.article);
 
   // 뉴스 페이지 접속 여부 체크 -> 검색 컴포넌트에서 검색 요청 토글 역할
   useEffect(() => {

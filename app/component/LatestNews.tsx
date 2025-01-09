@@ -13,6 +13,7 @@ import { latestNews } from "@/styles/LatestNews.styles";
 import { css } from "@emotion/react";
 import { useRouter } from "next/navigation";
 import { LatestNewsProps } from "@/types/types";
+import { setInputValue } from "@/store/switches";
 
 export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
@@ -55,6 +56,7 @@ export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
     if (storedLatestArticles.length !== 0) {
       dispatch(setLatestArticle(storedLatestArticles.filter((article) => article.title === clickedtitle)[0]));
     }
+    dispatch(setInputValue(clickedtitle));
     router.push(`/latest-news/detail?title=${encodeURIComponent(clickedtitle)}`);
   };
 

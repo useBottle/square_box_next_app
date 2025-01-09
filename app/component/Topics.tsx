@@ -13,6 +13,7 @@ import { setArticles, setNewsList, setTotalArticles } from "@/store/news";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { useRouter } from "next/navigation";
+import { setInputValue } from "@/store/switches";
 
 /**
  * Topics.tsx
@@ -125,6 +126,8 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
         setArticles(storedTotalArticles.filter((item) => item.keyword === keyword)[0] || { keyword: "", articles: [] }),
       );
     }
+
+    dispatch(setInputValue(keyword));
     router.push("/news");
   };
 

@@ -2,7 +2,6 @@
 
 "use client";
 
-import ArticleSkeleton from "@/app/component/ArticleSkeleton";
 import { RootState } from "@/store/store";
 import { dynamicNewsStyles } from "@/styles/News.styles";
 import { css } from "@emotion/react";
@@ -18,33 +17,17 @@ import ExpiredData from "@/app/component/ExpiredData";
 import { deleteNewsBookmark, findNewsBookmark, setNewsBookmark } from "@/app/actions/bookmarkNewsActions";
 import { getMarkedNews } from "@/app/actions/bookmarkActions";
 import ScrollBtn from "@/app/component/ScrollBtn";
-import { articleData } from "@/types/types";
+import { LatestNewsArticle } from "@/types/types";
 
 export default function NewsDynamic(): JSX.Element {
   const { data: session } = useSession();
-  const articles = useSelector((state: RootState) => state.news.articles);
+  const singleArticle = useSelector((state: RootState) => state.news.article);
   const params = useSearchParams();
   const newsTitle = decodeURIComponent(params.get("title") as string);
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isLoadingArticle, setIsLoadingArticle] = useState<boolean>(true);
-  const [currentArticle, setCurrentArticle] = useState<articleData>({
-    title: "",
-    date: [],
-    image: "",
-    alt: "",
-    text: [],
-  });
 
   useEffect(() => {
-    // 뉴스 기사 중에서 쿼리 스트링과 일치하는 데이터로 상태 업데이트.
-    articles.articles.map((item) => {
-      if (item.title === newsTitle) {
-        setCurrentArticle(item);
-        setIsLoadingArticle(false);
-      }
-    });
-
     window.scrollTo({ top: 0 });
 
     // 유저 정보가 없으면 북마크 데이터 검색 요청하지 않음.
@@ -72,17 +55,28 @@ export default function NewsDynamic(): JSX.Element {
     // 유저 정보가 없으면 onSubmit 이벤트 종료.
     if (!session || !session.user || session.user.name === undefined) return;
 
-    // 현재 뉴스 기사 객체 생성
-    const currentNews = {
-      title: newsTitle,
-      date: currentArticle.date[1] ? currentArticle.date[1] : currentArticle.date[0],
-      image: currentArticle.image,
-      alt: currentArticle.alt,
-      text: currentArticle.text,
+    const currentNews: LatestNewsArticle = {
+      title: "",
+      date: "",
+      image: "",
+      alt: "",
+      text: [],
     };
 
+    // * 현재 뉴스 기사 객체 생성
+    // topics, news 에서 직접 검색 등으로 뉴스 리스트를 띄우고 뉴스 기사를 클릭한 경우. (일반적 케이스)
+    if (singleArticle.title !== "") {
+      currentNews.title = singleArticle.title;
+      currentNews.date = singleArticle.date[1] ? singleArticle.date[1] : singleArticle.date[0];
+      currentNews.image = singleArticle.image;
+      currentNews.alt = singleArticle.alt;
+      currentNews.text = singleArticle.text;
+    }
+
+    const titleToUse = singleArticle.title !== "" ? singleArticle.title : currentNews?.title || "defaultTitle";
+
     try {
-      const findBookmark = await findNewsBookmark(currentNews.title, session.user.name);
+      const findBookmark = await findNewsBookmark(titleToUse, session.user.name);
 
       // 북마크된 데이터 있을 경우 confirm 창 띄우기. 북마크 삭제할지 확인.
       if (findBookmark && findBookmark.exists === true) {
@@ -121,19 +115,19 @@ export default function NewsDynamic(): JSX.Element {
   };
 
   // newsTitle 타입 불일치 또는 article 에 문제가 생긴 경우 ExpiredData 렌더링
-  if (typeof newsTitle !== "string" || currentArticle === undefined) {
+  if (typeof newsTitle !== "string" || singleArticle === undefined) {
     return <ExpiredData />;
   }
 
   return (
     <article css={css(dynamicNewsStyles)}>
       <figure className="imgGroup">
-        <Image src={currentArticle.image} alt="newsImg" width={200} height={200} />
-        <figcaption className="alt">{currentArticle.alt}</figcaption>
+        <Image src={singleArticle.image} alt="newsImg" width={200} height={200} />
+        <figcaption className="alt">{singleArticle.alt}</figcaption>
       </figure>
       <div className="textGroup">
-        <h1>{currentArticle.title}</h1>
-        <div className="date">{currentArticle.date[1] ? currentArticle.date[1] : currentArticle.date[0]}</div>
+        <h1>{singleArticle.title}</h1>
+        <div className="date">{singleArticle.date[1] ? singleArticle.date[1] : singleArticle.date[0]}</div>
         {session ? (
           <form onSubmit={onSubmit}>
             {!isLoading && (
@@ -160,7 +154,7 @@ export default function NewsDynamic(): JSX.Element {
             </button>
           </Link>
         )}
-        {currentArticle.text.map((item, index) => {
+        {singleArticle.text.map((item, index) => {
           return <p key={index}>{item}</p>;
         })}
       </div>
