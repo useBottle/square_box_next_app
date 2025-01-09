@@ -11,14 +11,15 @@ import { setLatestArticleSet, setLatestNewsList } from "@/store/latestNews";
 import Image from "next/image";
 import { latestNews } from "@/styles/LatestNews.styles";
 import { css } from "@emotion/react";
-import LatestNewsSkeleton from "../component/LatestNewsSkeleton";
 import { useRouter } from "next/navigation";
+import { LatestNewsProps } from "@/types/types";
 
-export default function LatestNews(): JSX.Element {
+export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
-  const latestNewsList = useSelector((state: RootState) => state.latestNews.latestNewsList);
+  const storedLatestNews = useSelector((state: RootState) => state.latestNews.latestNewsList);
   const [clickedNewsTitle, setClickedNewsTitle] = useState<string>("");
   const router = useRouter();
+  const { latestNewsList, latestArticles } = data;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,28 +53,24 @@ export default function LatestNews(): JSX.Element {
     <div css={css(latestNews)}>
       <h4>최신 뉴스 Top 10</h4>
       <ul>
-        {latestNewsList.length !== 0 ? (
-          latestNewsList.map((item, index) => {
-            return (
-              <Link
-                href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`}
-                key={index}
-                onClick={onClick(item.title)}
-              >
-                <li>
-                  <Image src={item.prevImg} width={100} height={100} alt="newsImg" />
-                  <div className="textGroup">
-                    <h6>{item.title}</h6>
-                    <div className="date">{item.date}</div>
-                    <p>{item.summary}</p>
-                  </div>
-                </li>
-              </Link>
-            );
-          })
-        ) : (
-          <LatestNewsSkeleton />
-        )}
+        {(latestNewsList || storedLatestNews)?.map((item, index) => {
+          return (
+            <Link
+              href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`}
+              key={index}
+              onClick={onClick(item.title)}
+            >
+              <li>
+                <Image src={item.prevImg} width={100} height={100} alt="newsImg" />
+                <div className="textGroup">
+                  <h6>{item.title}</h6>
+                  <div className="date">{item.date}</div>
+                  <p>{item.summary}</p>
+                </div>
+              </li>
+            </Link>
+          );
+        })}
       </ul>
     </div>
   );
