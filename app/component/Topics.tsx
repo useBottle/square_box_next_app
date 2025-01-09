@@ -28,23 +28,24 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
   const [topics, setTopics] = useState<TopicsType[] | undefined>(undefined);
   const [clickedKeyword, setClickedKeyword] = useState<string>("");
   const [newsListArray, setNewsListArray] = useState<newsListWithKeyword[] | undefined>(undefined);
-  const totalArticles = useSelector((state: RootState) => state.news.totalArticles);
+  const storedTotalArticles = useSelector((state: RootState) => state.news.totalArticles);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
+  const { newsOfTopicsList, keywordsData, totalArticles } = data;
 
   // 실시간 검색어를 클릭하면 해당 키워드에 대한 뉴스 리스트 업데이트.
   useEffect(() => {
     // topics 가 최초 업데이트 되기 전이면 서버에서 가져온 데이터로 뉴스 리스트 및 뉴스 기사들 업데이트.
-    if (topics === undefined && data.newsOfTopicsList?.length !== 0) {
+    if (topics === undefined && newsOfTopicsList?.length !== 0) {
       dispatch(
         setNewsList(
-          data.newsOfTopicsList?.filter((item) => item.keyword === clickedKeyword)[0] || { keyword: "", newsList: [] },
+          newsOfTopicsList?.filter((item) => item.keyword === clickedKeyword)[0] || { keyword: "", newsList: [] },
         ),
       );
 
       dispatch(
         setArticles(
-          data.totalArticles?.filter((item) => item.keyword === clickedKeyword)[0] || { keyword: "", articles: [] },
+          totalArticles?.filter((item) => item.keyword === clickedKeyword)[0] || { keyword: "", articles: [] },
         ),
       );
     }
@@ -58,7 +59,7 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
       );
       dispatch(
         setArticles(
-          totalArticles.filter((item) => item.keyword === clickedKeyword)[0] || { keyword: "", articles: [] },
+          storedTotalArticles.filter((item) => item.keyword === clickedKeyword)[0] || { keyword: "", articles: [] },
         ),
       );
     }
@@ -139,7 +140,7 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
       <div css={css(topicsForm)}>
         <h4>실시간 검색어 Top 10</h4>
         <ul>
-          {(topics || data.keywordsData)?.map((item, index) => {
+          {(topics || keywordsData)?.map((item, index) => {
             return (
               <Link href="/news" key={index} onClick={onClick(item.keyword)}>
                 <li>

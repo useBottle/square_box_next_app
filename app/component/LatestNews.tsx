@@ -22,6 +22,12 @@ export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
   const { latestNewsList, latestArticles } = data;
 
   useEffect(() => {
+    if (storedLatestNews.length === 0 && latestNewsList) {
+      dispatch(setLatestNewsList(latestNewsList));
+    }
+  }, [clickedNewsTitle]);
+
+  useEffect(() => {
     const fetchData = async () => {
       const result = await getLatestNewsList();
       dispatch(setLatestNewsList(result?.newsTop10List));
