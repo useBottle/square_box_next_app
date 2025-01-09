@@ -7,7 +7,7 @@ import { AppDispatch, RootState } from "@/store/store";
 import { fetchYoutube } from "@/store/youtube";
 import { searchBarForm } from "@/styles/default.styles";
 import { css, CSSObject } from "@emotion/react";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,6 +23,12 @@ export default function SearchBar(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const [inputValue, setInputValue] = useState<string>("");
   const pageAccess = useSelector((state: RootState) => state.switches.pageState);
+  const onKeyword = useSelector((state: RootState) => state.news.newsList.keyword);
+
+  // 뉴스 리스트 또는 실시간 검색어를 클릭한 경우, 해당 키워드로 inputValue 업데이트
+  useEffect(() => {
+    setInputValue(onKeyword);
+  }, [onKeyword]);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
