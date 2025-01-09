@@ -20,7 +20,6 @@ export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
   const router = useRouter();
   const { latestNewsList, latestArticles } = data;
   const storedLatestArticles = useSelector((state: RootState) => state.latestNews.latestArticleSet);
-  const storedArticle = useSelector((state: RootState) => state.latestNews.latestArticles);
 
   // 인터벌로 최신 뉴스 리스트 업데이트 및 각 리스트 요소 별 뉴스 기사 요청하여 업데이트
   useEffect(() => {
@@ -46,7 +45,6 @@ export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
     서버에서 가져온 articles 중 클릭한 타이틀과 일치하는 것으로 디스패치 
   */
     if (storedLatestNews.length === 0 && latestNewsList) {
-      console.log("latestNews  article: ", latestArticles.filter((article) => article.title === clickedtitle)[0]);
       dispatch(setLatestArticles(latestArticles.filter((article) => article.title === clickedtitle)[0]));
     }
 
@@ -59,11 +57,6 @@ export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
     }
     router.push(`/latest-news/detail?title=${encodeURIComponent(clickedtitle)}`);
   };
-
-  useEffect(() => {
-    console.log("stored articles Set: ", storedLatestArticles);
-    console.log("clicked article: ", storedArticle);
-  }, [storedLatestArticles, storedArticle]);
 
   return (
     <div css={css(latestNews)}>
