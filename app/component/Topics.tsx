@@ -3,7 +3,7 @@
 "use client";
 
 import { topicsForm } from "@/styles/Topics.styles";
-import { newsList, TopicsType } from "@/types/types";
+import { newsList, TopicsListType, TopicsType } from "@/types/types";
 import { css } from "@emotion/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -16,7 +16,7 @@ import { AppDispatch } from "@/store/store";
 interface TopicsProps {
   data: {
     keywordsData: TopicsType[] | undefined;
-    newsOfTopicsList: newsList[][] | undefined;
+    newsOfTopicsList: TopicsListType[] | undefined;
   };
 }
 
@@ -29,7 +29,7 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
   useEffect(() => {
     // topics 가 최초 업데이트 되기 전이면 서버에서 가져온 데이터로 뉴스 리스트 업데이트.
     if (topics === undefined && data.newsOfTopicsList?.length !== 0) {
-      dispatch(setNewsList(data.newsOfTopicsList?.[clickedIndex] || []));
+      dispatch(setNewsList(data.newsOfTopicsList?.[clickedIndex].newsList || []));
     }
     // topics 가 업데이트되면 여기서 fetchKeyword 로 가져온 데이터로 뉴스 리스트 업데이트.
     if (topics !== undefined && newsListArray !== undefined) {

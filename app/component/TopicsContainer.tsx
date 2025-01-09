@@ -1,4 +1,4 @@
-import { newsList, TopicsType } from "@/types/types";
+import { newsList, TopicsListType, TopicsType } from "@/types/types";
 import axios from "axios";
 import Topics from "./Topics";
 
@@ -12,6 +12,8 @@ const fetchKeyword = async (): Promise<TopicsType[] | undefined> => {
   }
 };
 
+const articlesOfTopics = [];
+
 const fetchNewsOfTopicsList = async (keywords: string[]) => {
   try {
     if (keywords) {
@@ -22,7 +24,12 @@ const fetchNewsOfTopicsList = async (keywords: string[]) => {
             inputValue: item,
             sort: "relation",
           });
-          return response.data.newsList;
+          const data = {
+            keyword: item,
+            newsList: response.data.newsList,
+          };
+          return data;
+          // newsList 의 urls 로 순회하여 articles 요청하는 로직 추가하기. articlesOfTopics 에 푸시.
         }),
       );
       // console.log(newsListsResults);
@@ -37,7 +44,7 @@ export default async function TopicsContainer() {
   const keywordsData: TopicsType[] | undefined = await fetchKeyword();
   const keywords = keywordsData?.map((item) => item.keyword);
 
-  const newsOfTopicsList: newsList[][] | undefined = await fetchNewsOfTopicsList(keywords as string[]);
+  const newsOfTopicsList: TopicsListType[] | undefined = await fetchNewsOfTopicsList(keywords as string[]);
 
   const data = {
     keywordsData: keywordsData,
