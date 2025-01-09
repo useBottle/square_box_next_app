@@ -4,6 +4,7 @@
 
 import { fetchArticles, fetchNewsList } from "@/store/news";
 import { AppDispatch, RootState } from "@/store/store";
+import { setInputValue } from "@/store/switches";
 import { fetchYoutube } from "@/store/youtube";
 import { searchBarForm } from "@/styles/default.styles";
 import { css, CSSObject } from "@emotion/react";
@@ -21,17 +22,18 @@ const form: CSSObject = {
 
 export default function SearchBar(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
-  const [inputValue, setInputValue] = useState<string>("");
+  // const [inputValue, setInputValue] = useState<string>("");
   const pageAccess = useSelector((state: RootState) => state.switches.pageState);
   const onKeyword = useSelector((state: RootState) => state.news.newsList.keyword);
+  const inputValue = useSelector((state: RootState) => state.switches.inputValue);
 
   // 뉴스 리스트 또는 실시간 검색어를 클릭한 경우, 해당 키워드로 inputValue 업데이트
   useEffect(() => {
-    setInputValue(onKeyword);
+    dispatch(setInputValue(onKeyword));
   }, [onKeyword]);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+    dispatch(setInputValue(e.target.value));
   };
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
