@@ -1,4 +1,4 @@
-import { articleData, newsList, newsListExtends, newsListWithKeyword } from "@/types/types";
+import { articleData, articlesWithKeyword, newsList, newsListExtends, newsListWithKeyword } from "@/types/types";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -31,22 +31,33 @@ export const fetchNewsList = createAsyncThunk<newsListExtends, string>(
 );
 
 // 뉴스 개별 데이터 요청 미들웨어
-export const fetchArticles = createAsyncThunk<articleData[], string[]>("data/fetchArticles", async (urls: string[]) => {
-  try {
-    const requestArticles = await axios.post("/api/articles", { urls: urls });
-    return requestArticles.data.articlesData;
-  } catch (error) {
-    console.error("Articles fetch failed on middleware.", error);
-    return [];
-  }
-});
+export const fetchArticles = createAsyncThunk<articlesWithKeyword, { urls: string[]; keyword: string }>(
+  "data/fetchArticles",
+  async ({ urls, keyword }: { urls: string[]; keyword: string }) => {
+    try {
+      const requestArticles = await axios.post("/api/articles", { urls: urls });
+      const data = {
+        keyword: keyword,
+        articles: requestArticles.data.articlesData,
+      };
+      return data;
+    } catch (error) {
+      console.error("Articles fetch failed on middleware.", error);
+      return { keyword: "", articles: [] };
+    }
+  },
+);
 
 interface newsType {
   newsList: {
     keyword: string;
     newsList: newsList[];
   };
-  articles: articleData[];
+  articles: {
+    keyword: string;
+    articles: articleData[];
+  };
+  totalArticles: { keyword: string; articles: articleData[] }[];
   urls: string[];
   popularStatus: "idle" | "loading" | "succeeded" | "failed";
   newsStatus: "idle" | "loading" | "succeeded" | "failed";
@@ -58,7 +69,11 @@ const initialState: newsType = {
     keyword: "",
     newsList: [],
   },
-  articles: [],
+  articles: {
+    keyword: "",
+    articles: [],
+  },
+  totalArticles: [],
   urls: [],
   popularStatus: "idle",
   newsStatus: "idle",
@@ -73,8 +88,11 @@ export const news = createSlice({
       state.newsList.keyword = action.payload.keyword;
       state.newsList.newsList = action.payload.newsList;
     },
-    setArticles(state, action: PayloadAction<articleData[]>) {
+    setArticles(state, action: PayloadAction<articlesWithKeyword>) {
       state.articles = action.payload;
+    },
+    setTotalArticles(state, action: PayloadAction<{ keyword: string; articles: articleData[] }[]>) {
+      state.totalArticles = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -100,10 +118,11 @@ export const news = createSlice({
       .addCase(fetchArticles.pending, (state) => {
         state.articleStatus = "loading";
       })
-      .addCase(fetchArticles.fulfilled, (state, action: PayloadAction<articleData[] | undefined>) => {
+      .addCase(fetchArticles.fulfilled, (state, action: PayloadAction<articlesWithKeyword | undefined>) => {
         state.articleStatus = "succeeded";
         if (action.payload) {
-          state.articles = action.payload;
+          state.articles.keyword = action.payload.keyword;
+          state.articles.articles = action.payload.articles;
         }
       })
       .addCase(fetchArticles.rejected, (state) => {

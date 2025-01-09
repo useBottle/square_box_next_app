@@ -9,7 +9,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaPlus, FaMinus, FaCaretUp, FaCaretDown } from "react-icons/fa6";
 import Link from "next/link";
-import { setNewsList } from "@/store/news";
+import { setArticles, setNewsList } from "@/store/news";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
 
@@ -26,6 +26,11 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
       dispatch(
         setNewsList(
           data.newsOfTopicsList?.filter((item) => item.keyword === clickedKeyword)[0] || { keyword: "", newsList: [] },
+        ),
+      );
+      dispatch(
+        setArticles(
+          data.totalArticles?.filter((item) => item.keyword === clickedKeyword)[0] || { keyword: "", articles: [] },
         ),
       );
     }

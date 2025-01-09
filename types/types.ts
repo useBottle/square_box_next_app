@@ -63,8 +63,8 @@ export interface newsListExtends {
 
 // 뉴스 리스트 + 검색 키워드
 export interface newsListWithKeyword {
-  newsList: newsList[];
   keyword: string;
+  newsList: newsList[];
 }
 
 // 각 URL 로 요청해 받아온 뉴스 단일 기사
@@ -74,6 +74,12 @@ export interface articleData {
   alt: string;
   date: string[];
   text: string[];
+}
+
+// 뉴스 기사들 데이터 + 검색 키워드
+export interface articlesWithKeyword {
+  keyword: string;
+  articles: articleData[];
 }
 
 // * 유튜브 관련 인터페이스
