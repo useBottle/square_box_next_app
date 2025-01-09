@@ -37,14 +37,6 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
         ),
       );
     }
-    console.log(
-      "clicked keywordnewsList: ",
-      data.newsOfTopicsList?.filter((item) => item.keyword === clickedKeyword)[0] || { keyword: "", newsList: [] },
-    );
-    console.log(
-      "clicked keyword newsListArray: ",
-      newsListArray?.filter((item) => item.keyword === clickedKeyword)[0] || { keyword: "", newsList: [] },
-    );
   }, [clickedKeyword, newsListArray]);
 
   useEffect(() => {
