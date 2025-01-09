@@ -19,7 +19,6 @@ export const initNews: CSSObject = {
     flexDirection: "column",
     alignItems: "center",
     width: "90%",
-    // height: "100%",
 
     h1: {
       display: "flex",
@@ -27,7 +26,7 @@ export const initNews: CSSObject = {
       width: "70%",
       fontSize: "1.6rem",
       background: "var(--reverse-font)",
-      zIndex: 999,
+      zIndex: 10,
       transform: "translateY(0.5rem)",
       border: "1px solid var(--basic-font)",
       borderLeft: "none",
