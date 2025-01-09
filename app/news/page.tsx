@@ -9,14 +9,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { newsListStyles } from "@/styles/News.styles";
 import { css, CSSObject } from "@emotion/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import NewsSkeleton from "../component/NewsSkeleton";
 import { setPageState } from "@/store/switches";
 import FetchFailedData from "../component/FetchFailedData";
 
 export default function News(): JSX.Element {
-  const newsList = useSelector((state: RootState) => state.news.newsList);
+  const newsList = useSelector((state: RootState) => state.news.newsList.newsList);
+  const keyword = useSelector((state: RootState) => state.news.newsList.keyword);
   const newsStatus = useSelector((state: RootState) => state.news.newsStatus);
+  const [noNewsList, setNoNewsList] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
 
   // 뉴스 페이지 접속 여부 체크 -> 검색 컴포넌트에서 검색 요청 토글 역할
@@ -26,6 +28,12 @@ export default function News(): JSX.Element {
       dispatch(setPageState("default"));
     };
   }, [dispatch]);
+
+  useEffect(() => {
+    if (keyword !== "" && newsList.length === 0) {
+      setNoNewsList(true);
+    }
+  }, [keyword, newsList]);
 
   if (newsStatus === "loading") {
     return (
@@ -55,13 +63,18 @@ export default function News(): JSX.Element {
   return (
     <div>
       <SearchBar />
-      {newsList.newsList.length === 0 && (
+      {newsList.length === 0 && (
         <div css={css(initNews)}>
           <h1>뉴스를 검색해주세요</h1>
         </div>
       )}
+      {noNewsList && (
+        <div css={css(initNews)}>
+          <h1>검색된 뉴스가 없습니다</h1>
+        </div>
+      )}
       <ul css={css(newsListStyles)}>
-        {newsList.newsList.map((item, index) => {
+        {newsList.map((item, index) => {
           return (
             <Link href={`/news/detail?title=${encodeURIComponent(item.title)}`} key={index}>
               <li>
