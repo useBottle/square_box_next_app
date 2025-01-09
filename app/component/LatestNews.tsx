@@ -3,7 +3,6 @@
 "use client";
 
 import Link from "next/link";
-import Topics from "../component/Topics";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
