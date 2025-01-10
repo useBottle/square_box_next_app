@@ -22,7 +22,7 @@ export default function NewsOfTopics(): JSX.Element {
   const newsListOfSingleTopic = useSelector((state: RootState) => state.topics.newsListOfSingleTopic);
   const articlesOfSingleTopic = useSelector((state: RootState) => state.topics.articlesOfSingleTopic);
   const onSearching = useSelector((state: RootState) => state.switches.onSearching);
-  const keyword = useSelector((state: RootState) => state.news.newsList.keyword);
+  const inputValue = useSelector((state: RootState) => state.switches.inputValue);
   const [noNewsList, setNoNewsList] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
@@ -32,6 +32,12 @@ export default function NewsOfTopics(): JSX.Element {
     dispatch(setPageState("news"));
 
     // articlesOfTopics 를 디스패치 해야함. 서버에서 이제 하지 않음.
+    const fetchArticlesOfSingleTopic = async () => {
+      try {
+      } catch (error) {
+        console.error("Articles of single topic fetch failed.", error);
+      }
+    };
 
     return () => {
       dispatch(setPageState("default"));
@@ -41,10 +47,10 @@ export default function NewsOfTopics(): JSX.Element {
   useEffect(() => {
     console.log("news list: ", newsListOfSingleTopic);
     // 검색어가 입력되어 있고 뉴스 리스트가 없을 때, noNewsList 상태 업데이트
-    if (keyword !== "" && newsListOfSingleTopic.newsList.length === 0) {
+    if (inputValue !== "" && newsListOfSingleTopic.newsList.length === 0) {
       setNoNewsList(true);
     }
-  }, [keyword, newsListOfSingleTopic]);
+  }, [inputValue, newsListOfSingleTopic]);
 
   // 뉴스 리스트 요소를 클릭하면 articles 중 title 과 일치하는 것으로 singleArticle 에 디스패치
   const onClick = (keyword: string) => (e: React.MouseEvent) => {

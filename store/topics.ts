@@ -1,5 +1,24 @@
-import { articleData, newsList, TopicsListType, TopicsType } from "@/types/types";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { articleData, articlesWithKeyword, newsList, TopicsListType, TopicsType } from "@/types/types";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import axios from "axios";
+
+// 뉴스 리스트의 각 뉴스 개별 데이터 요청 미들웨어
+export const fetchArticlesOfTopic = createAsyncThunk<articlesWithKeyword, { urls: string[]; keyword: string }>(
+  "data/fetchArticlesOfTopic",
+  async ({ urls, keyword }: { urls: string[]; keyword: string }) => {
+    try {
+      const requestArticles = await axios.post("/api/articles", { urls: urls });
+      const data = {
+        keyword: keyword,
+        articles: requestArticles.data.articlesData,
+      };
+      return data;
+    } catch (error) {
+      console.error("Articles fetch failed on middleware.", error);
+      return { keyword: "", articles: [] };
+    }
+  },
+);
 
 interface TopicsStatesType {
   topicsList: TopicsType[] | undefined;
@@ -9,6 +28,7 @@ interface TopicsStatesType {
     newsList: newsList[];
   };
   urlsOfNewsList: string[];
+  articlesStates: "idle" | "loading" | "succeeded" | "failed";
   articlesOfTopics: { keyword: string; articles: articleData[] }[] | undefined;
   articlesOfSingleTopic: {
     keyword: string;
@@ -24,6 +44,7 @@ const initialState: TopicsStatesType = {
     newsList: [],
   },
   urlsOfNewsList: [],
+  articlesStates: "idle",
   articlesOfTopics: undefined,
   articlesOfSingleTopic: {
     keyword: "",
@@ -53,6 +74,18 @@ export const topics = createSlice({
     setArticlesOfSingleTopic(state, action: PayloadAction<{ keyword: string; articles: articleData[] }>) {
       state.articlesOfSingleTopic = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchArticlesOfTopic.fulfilled, (state, action: PayloadAction<articlesWithKeyword>) => {
+        state.articlesOfSingleTopic = action.payload;
+      })
+      .addCase(fetchArticlesOfTopic.rejected, (state) => {
+        state.articlesStates = "failed";
+      })
+      .addCase(fetchArticlesOfTopic.pending, (state) => {
+        state.articlesStates = "loading";
+      });
   },
 });
 
