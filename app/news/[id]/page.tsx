@@ -28,7 +28,7 @@ export default function NewsDynamic(): JSX.Element {
   const singleArticle = useSelector((state: RootState) => state.news.article);
   const params = useSearchParams();
   const newsUrl = useSelector((state: RootState) => state.news.url);
-  const newsTitle = decodeURIComponent(params.get("title") as string);
+  const newsTitle = params.get("title") as string;
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
