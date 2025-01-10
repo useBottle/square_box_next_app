@@ -33,7 +33,6 @@ export default function LatestNewsDetail(): JSX.Element {
 
   // latestNewsArticle 이 업데이트 되면 해당 값이 북마크 되어있는지 확인
   useEffect(() => {
-    console.log(latestNewsArticle);
     window.scrollTo({ top: 0 });
 
     // 클릭한 뉴스에 대한 article 데이터 요청

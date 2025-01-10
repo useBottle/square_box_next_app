@@ -47,7 +47,6 @@ export default function LatestNews({
       dispatch(setLatestNewsArticle({ title: "", date: "", image: "", alt: "", text: [] }));
     }
     dispatch(setLatestNewsUrl(href));
-    dispatch(setInputValue(clickedTitle));
     router.push(`/latest-news/detail?title=${encodeURIComponent(clickedTitle)}`);
   };
 
