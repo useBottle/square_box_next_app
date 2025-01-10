@@ -66,7 +66,7 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
     }
 
     dispatch(setInputValue(keyword));
-    router.push("/news");
+    router.push("/news/topics");
   };
 
   return (

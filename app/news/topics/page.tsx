@@ -11,7 +11,6 @@ import { newsListStyles } from "@/styles/News.styles";
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 import { setPageState } from "@/store/switches";
-import FetchFailedData from "../../component/FetchFailedData";
 import { PiWarningCircleFill, PiInfoFill } from "react-icons/pi";
 import { AiOutlineFileSearch } from "react-icons/ai";
 import { TbBoxOff } from "react-icons/tb";
