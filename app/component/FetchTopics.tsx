@@ -15,6 +15,9 @@ export default function FetchTopics() {
      * fetchKeyword
      * 실시간 검색어를 순회하여 각 검색어에 해당하는 뉴스 리스트 요청.
      * 실시간 검색어를 순회하여 얻은 뉴스 리스트마다 중첩으로 순회하여 각 뉴스 기사 데이터 요청.
+     * 페이지 최초 접속 시의 실시간 검색어 및 해당하는 각 뉴스 리스트 셋은 TopicsContainer 에서 1회 초기 요청.
+     * 페이지 최초 접속 시의 실시간 검색에 따른 각 뉴스 리스트별로 모든 뉴스 기사 데이터 (totalArticles) 는 이곳에서 최초 요청.
+     * 이후 인터벌로 이곳에서 모든 데이터 업데이트.
      */
     const fetchKeyword = async () => {
       try {
@@ -65,17 +68,27 @@ export default function FetchTopics() {
 
         return resultData;
 
-        dispatch(setNewsListOfTopics(results));
-        dispatch(setTopicsList(topicsResponse.data.top10));
-        dispatch(setTotalArticles(articlesOfTopics));
+        // dispatch(setNewsListOfTopics(results));
+        // dispatch(setTopicsList(topicsResponse.data.top10));
+        // dispatch(setTotalArticles(articlesOfTopics));
       } catch (error) {
         console.error("Failed fetching keyword data.", error);
       }
     };
 
-    // TopicsContainer 에서 로드한 실시간 검색어를 먼저 렌더링 후 인터벌로 업데이트.
+    // 최초 topics, newsListOfTopics 를 클라이언트에서 받아와 사용하려면 이곳에서 디스패치.
+    const dispatchData = async () => {
+      const result = await fetchKeyword();
+      result?.totalArticles && dispatch(setTotalArticles(result.totalArticles));
+    };
+
+    dispatchData();
+
+    // topicsList, newsListOfTopics, totalArticles 를 인터벌로 디스패치.
     const intervalFetch = setInterval(async () => {
       const result = await fetchKeyword();
+      result?.topicsList && dispatch(setTopicsList(result.topicsList));
+      result?.newsListOfTopics && dispatch(setNewsListOfTopics(result.newsListOfTopics));
       result?.totalArticles && dispatch(setTotalArticles(result.totalArticles));
     }, 1000 * 60);
 
