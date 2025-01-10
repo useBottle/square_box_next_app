@@ -17,8 +17,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import ScrollBtn from "@/app/component/ScrollBtn";
 import { getMarkedNews } from "@/app/actions/bookmarkActions";
-import { fetchLatestNewsArticle } from "@/store/latestNews";
 import LatestNewsSkeleton from "@/app/component/LatestNewsSkeleton";
+import { getLatestNewsArticle } from "@/app/actions/latestNewsActions";
+import { setLatestNewsArticle } from "@/store/latestNews";
 
 export default function LatestNewsDetail(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
@@ -28,16 +29,20 @@ export default function LatestNewsDetail(): JSX.Element {
   const latestNewsUrl = useSelector((state: RootState) => state.latestNews.latestNewsUrl);
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoadingMarked, setIsLoadingMarked] = useState<boolean>(true);
-  const storedArticle = useSelector((state: RootState) => state.latestNews.latestNewsArticle);
+  const [isFetchingArticle, setIsFetchingArticle] = useState<boolean>(false);
+  const latestNewsArticle = useSelector((state: RootState) => state.latestNews.latestNewsArticle);
 
-  // storedArticle 이 업데이트 되면 해당 값이 북마크 되어있는지 확인
+  // latestNewsArticle 이 업데이트 되면 해당 값이 북마크 되어있는지 확인
   useEffect(() => {
     window.scrollTo({ top: 0 });
 
     // 클릭한 뉴스에 대한 article 데이터 요청
-    if (storedArticle.title !== newsTitle) {
+    if (latestNewsArticle.title === "" || latestNewsArticle.title !== newsTitle) {
       const fetchArticle = async () => {
-        // await dispatch(fetchLatestNewsArticle(latestNewsUrl));
+        setIsFetchingArticle(true);
+        const result = await getLatestNewsArticle(latestNewsUrl);
+        dispatch(setLatestNewsArticle(result));
+        setIsFetchingArticle(false);
       };
       fetchArticle();
     }
@@ -46,10 +51,10 @@ export default function LatestNewsDetail(): JSX.Element {
     const findMarkedNews = async () => {
       try {
         // 상태 업데이트가 완료되지 않아 데이터가 비었을 경우 함수 종료.
-        if (storedArticle === undefined || storedArticle.title === "") return;
+        if (latestNewsArticle.title === "") return;
 
         if (session && session.user && session.user.name !== undefined) {
-          const findBookmark = await findNewsBookmark(storedArticle.title, session.user.name as string);
+          const findBookmark = await findNewsBookmark(latestNewsArticle.title, session.user.name as string);
           // console.log(findBookmark);
           if (findBookmark && findBookmark.exists === true) {
             setBookmarkSuccess(true);
@@ -63,7 +68,7 @@ export default function LatestNewsDetail(): JSX.Element {
       }
     };
     findMarkedNews();
-  }, [storedArticle]);
+  }, [latestNewsArticle]);
 
   // 북마크 onSubmit 요청
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -74,16 +79,16 @@ export default function LatestNewsDetail(): JSX.Element {
 
     // 현재 뉴스 기사 객체 생성
     const currentNews = {
-      title: storedArticle.title,
-      date: storedArticle.date,
-      image: storedArticle.image,
-      alt: storedArticle.alt,
-      text: storedArticle.text,
+      title: latestNewsArticle.title,
+      date: latestNewsArticle.date,
+      image: latestNewsArticle.image,
+      alt: latestNewsArticle.alt,
+      text: latestNewsArticle.text,
     };
 
     try {
-      if (storedArticle === undefined) return;
-      const findBookmark = await findNewsBookmark(storedArticle.title, session.user.name);
+      if (latestNewsArticle.title === "") return;
+      const findBookmark = await findNewsBookmark(latestNewsArticle.title, session.user.name);
 
       // 북마크된 데이터 있을 경우 confirm 창 띄우기. 북마크 삭제할지 확인.
       if (findBookmark && findBookmark.exists === true) {
@@ -122,26 +127,25 @@ export default function LatestNewsDetail(): JSX.Element {
   };
 
   // newsId 가 안맞거나 article에 문제가생긴 경우 ExpiredData 렌더링
-  if (typeof newsTitle !== "string" || storedArticle.title === "") {
+  if (typeof newsTitle !== "string" || latestNewsArticle.title === "") {
     return <ExpiredData />;
   }
 
-  // 스켈레톤 UI 보여주는 로직 변경하기.
-  // if (latestNewsStatus === "loading") {
-  //   return <LatestNewsSkeleton />;
-  // }
+  if (isFetchingArticle === true) {
+    return <LatestNewsSkeleton />;
+  }
 
   return (
     <article css={css(dynamicNewsStyles)}>
-      {storedArticle.image && (
+      {latestNewsArticle.image && (
         <figure className="imgGroup">
-          <Image src={storedArticle.image} alt="newsImg" width={200} height={200} />
-          <figcaption className="alt">{storedArticle.alt}</figcaption>
+          <Image src={latestNewsArticle.image} alt="newsImg" width={200} height={200} />
+          <figcaption className="alt">{latestNewsArticle.alt}</figcaption>
         </figure>
       )}
       <div className="textGroup">
-        <h1>{storedArticle.title}</h1>
-        <div className="date">{storedArticle.date}</div>
+        <h1>{latestNewsArticle.title}</h1>
+        <div className="date">{latestNewsArticle.date}</div>
         {session ? (
           <form onSubmit={onSubmit}>
             {!isLoadingMarked && (
@@ -168,7 +172,7 @@ export default function LatestNewsDetail(): JSX.Element {
             </button>
           </Link>
         )}
-        {storedArticle.text.map((item, index) => (
+        {latestNewsArticle.text.map((item, index) => (
           <p key={index}>{item}</p>
         ))}
       </div>
