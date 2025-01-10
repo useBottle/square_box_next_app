@@ -17,7 +17,7 @@ import { TbBoxOff } from "react-icons/tb";
 import { setSingleArticle } from "@/store/news";
 import { useRouter } from "next/navigation";
 import NewsSkeleton from "@/app/component/NewsSkeleton";
-import { fetchArticlesOfTopic } from "@/store/topics";
+import { fetchArticlesOfTopic, setUrlOfArticle } from "@/store/topics";
 
 export default function NewsOfTopics(): JSX.Element {
   const newsListOfSingleTopic = useSelector((state: RootState) => state.topics.newsListOfSingleTopic);
@@ -57,10 +57,11 @@ export default function NewsOfTopics(): JSX.Element {
   }, [inputValue, newsListOfSingleTopic]);
 
   // 뉴스 리스트 요소를 클릭하면 articles 중 title 과 일치하는 것으로 singleArticle 에 디스패치
-  const onClick = (keyword: string) => (e: React.MouseEvent) => {
+  const onClick = (keyword: string, href: string) => (e: React.MouseEvent) => {
     e.preventDefault();
     const article = articlesOfSingleTopic?.articles.find((item) => item.title === keyword);
     article && dispatch(setSingleArticle(article));
+    dispatch(setUrlOfArticle(href));
     router.push(`/news/detail?title=${encodeURIComponent(keyword)}`);
   };
 
@@ -100,7 +101,7 @@ export default function NewsOfTopics(): JSX.Element {
             <Link
               href={`/news/detail?title=${encodeURIComponent(item.title)}`}
               key={index}
-              onClick={onClick(item.title)}
+              onClick={onClick(item.title, item.href)}
             >
               <li>
                 {!(item.prevImg.startsWith("https") || item.prevImg.startsWith("http")) ? (

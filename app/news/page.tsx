@@ -76,7 +76,7 @@ export default function News(): JSX.Element {
   const onClick = (keyword: string, href: string) => (e: React.MouseEvent) => {
     e.preventDefault();
     const articleData = articles.articles.find((item) => item.title === keyword);
-    if (articleData) dispatch(setSingleArticle(articleData));
+    articleData && dispatch(setSingleArticle(articleData));
     dispatch(setUrl(href));
     router.push(`/news/detail?title=${encodeURIComponent(keyword)}`);
   };
