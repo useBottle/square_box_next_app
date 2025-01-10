@@ -76,7 +76,7 @@ export default function FetchTopics() {
       }
     };
 
-    // 최초 topics, newsListOfTopics 를 클라이언트에서 받아와 사용하려면 이곳에서 디스패치.
+    // 최초 topics, newsListOfTopics 를 클라이언트에서 받아와 사용하려면 이곳에서 디스패치 추가.
     const dispatchData = async () => {
       const result = await fetchKeyword();
       result?.totalArticles && dispatch(setArticlesOfTopics(result.totalArticles));
@@ -84,7 +84,7 @@ export default function FetchTopics() {
 
     dispatchData();
 
-    // topicsList, newsListOfTopics, totalArticles 를 인터벌로 디스패치.
+    // topicsList, newsListOfTopics, articlesOfTopics 를 인터벌로 디스패치.
     const intervalFetch = setInterval(async () => {
       const result = await fetchKeyword();
       result?.topicsList && dispatch(setTopicsList(result.topicsList));

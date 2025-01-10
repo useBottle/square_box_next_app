@@ -20,7 +20,7 @@ import { useRouter } from "next/navigation";
 export default function News(): JSX.Element {
   const newsListOfSingleTopic = useSelector((state: RootState) => state.topics.newsListOfSingleTopic);
   const keyword = useSelector((state: RootState) => state.news.newsList.keyword);
-  const articlesOfTopics = useSelector((state: RootState) => state.topics.articlesOfTopics);
+  const articlesOfSingleTopic = useSelector((state: RootState) => state.topics.articlesOfSingleTopic);
   const [noNewsList, setNoNewsList] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
@@ -44,10 +44,7 @@ export default function News(): JSX.Element {
   // 뉴스 리스트 요소를 클릭하면 articles 중 title 과 일치하는 것으로 singleArticle 에 디스패치
   const onClick = (keyword: string) => (e: React.MouseEvent) => {
     e.preventDefault();
-    const articlesOfKeyword = articlesOfTopics?.find((item) => item.keyword === keyword);
-    const article = articlesOfKeyword?.articles.find((item) => item.title === keyword);
-    console.log("articlesOfKeyword: ", articlesOfKeyword);
-    console.log("article: ", article);
+    const article = articlesOfSingleTopic?.articles.find((item) => item.title === keyword);
     article && dispatch(setSingleArticle(article));
     router.push(`/news/detail?title=${encodeURIComponent(keyword)}`);
   };
