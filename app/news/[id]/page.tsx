@@ -130,8 +130,8 @@ export default function NewsDynamic(): JSX.Element {
     }
   };
 
-  // newsTitle 타입 불일치 또는 article 에 문제가 생긴 경우 ExpiredData 렌더링
-  if (typeof newsTitle !== "string" || singleArticle.title === "") {
+  // newsTitle 타입 불일치인 경우 ExpiredData 렌더링
+  if (typeof newsTitle !== "string") {
     return <ExpiredData />;
   }
 

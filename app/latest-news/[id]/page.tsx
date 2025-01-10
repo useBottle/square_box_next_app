@@ -19,7 +19,6 @@ import ScrollBtn from "@/app/component/ScrollBtn";
 import { getMarkedNews } from "@/app/actions/bookmarkActions";
 import { getLatestNewsArticle } from "@/app/actions/latestNewsActions";
 import { setLatestNewsArticle } from "@/store/latestNews";
-import ArticleSkeleton from "@/app/component/ArticleSkeleton";
 
 export default function LatestNewsDetail(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
@@ -29,7 +28,6 @@ export default function LatestNewsDetail(): JSX.Element {
   const latestNewsUrl = useSelector((state: RootState) => state.latestNews.latestNewsUrl);
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoadingMarked, setIsLoadingMarked] = useState<boolean>(true);
-  const [isFetchingArticle, setIsFetchingArticle] = useState<boolean>(false);
   const latestNewsArticle = useSelector((state: RootState) => state.latestNews.latestNewsArticle);
 
   // latestNewsArticle 이 업데이트 되면 해당 값이 북마크 되어있는지 확인
@@ -39,10 +37,8 @@ export default function LatestNewsDetail(): JSX.Element {
     // 클릭한 뉴스에 대한 article 데이터 요청
     if (latestNewsArticle.title === "" || latestNewsArticle.title !== newsTitle) {
       const fetchArticle = async () => {
-        setIsFetchingArticle(true);
         const result = await getLatestNewsArticle(latestNewsUrl);
         dispatch(setLatestNewsArticle(result));
-        setIsFetchingArticle(false);
       };
       fetchArticle();
     }
