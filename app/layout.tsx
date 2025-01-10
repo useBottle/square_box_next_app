@@ -6,6 +6,7 @@ import Header from "./component/Header";
 import MobileNav from "./component/MobileNav";
 import Providers from "./component/Providers";
 import CheckToken from "./component/CheckToken";
+import FetchTopics from "./component/FetchTopics";
 
 const notoSansKR = Noto_Sans_KR({
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({
           <CheckToken />
           <MobileNav />
           <Header />
+          <FetchTopics />
           <div style={{ paddingTop: headerHeight }}>{children}</div>
         </Providers>
       </body>
