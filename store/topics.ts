@@ -1,24 +1,5 @@
-import { articleData, articlesWithKeyword, newsList, TopicsListType, TopicsType } from "@/types/types";
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import axios from "axios";
-
-// 뉴스 리스트의 각 뉴스 개별 데이터 요청 미들웨어
-export const fetchArticlesOfTopic = createAsyncThunk<articlesWithKeyword, { urls: string[]; keyword: string }>(
-  "data/fetchArticlesOfTopic",
-  async ({ urls, keyword }: { urls: string[]; keyword: string }) => {
-    try {
-      const requestArticles = await axios.post("/api/articles", { urls: urls });
-      const data = {
-        keyword: keyword,
-        articles: requestArticles.data.articlesData,
-      };
-      return data;
-    } catch (error) {
-      console.error("Articles fetch failed on middleware.", error);
-      return { keyword: "", articles: [] };
-    }
-  },
-);
+import { newsList, TopicsListType, TopicsType } from "@/types/types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface TopicsStatesType {
   topicsList: TopicsType[] | undefined;
@@ -28,11 +9,6 @@ interface TopicsStatesType {
     newsList: newsList[];
   };
   urlsOfNewsList: string[];
-  articlesStates: "idle" | "loading" | "succeeded" | "failed";
-  articlesOfSingleTopic: {
-    keyword: string;
-    articles: articleData[];
-  };
 }
 
 const initialState: TopicsStatesType = {
@@ -43,11 +19,6 @@ const initialState: TopicsStatesType = {
     newsList: [],
   },
   urlsOfNewsList: [],
-  articlesStates: "idle",
-  articlesOfSingleTopic: {
-    keyword: "",
-    articles: [],
-  },
 };
 
 export const topics = createSlice({
@@ -66,29 +37,8 @@ export const topics = createSlice({
     setNewsListOfSingleTopic(state, action: PayloadAction<{ keyword: string; newsList: newsList[] }>) {
       state.newsListOfSingleTopic = action.payload;
     },
-    setArticlesOfSingleTopic(state, action: PayloadAction<{ keyword: string; articles: articleData[] }>) {
-      state.articlesOfSingleTopic = action.payload;
-    },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchArticlesOfTopic.fulfilled, (state, action: PayloadAction<articlesWithKeyword>) => {
-        state.articlesOfSingleTopic = action.payload;
-      })
-      .addCase(fetchArticlesOfTopic.rejected, (state) => {
-        state.articlesStates = "failed";
-      })
-      .addCase(fetchArticlesOfTopic.pending, (state) => {
-        state.articlesStates = "loading";
-      });
   },
 });
 
-export const {
-  setTopicsList,
-  setNewsListsOfTopics,
-  setNewsListOfSingleTopic,
-  setArticlesOfSingleTopic,
-  setUrlsOfNewsList,
-} = topics.actions;
+export const { setTopicsList, setNewsListsOfTopics, setNewsListOfSingleTopic, setUrlsOfNewsList } = topics.actions;
 export default topics.reducer;

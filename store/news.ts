@@ -1,11 +1,4 @@
-import {
-  articleData,
-  articleOnTopic,
-  articlesWithKeyword,
-  newsList,
-  newsListExtends,
-  newsListWithKeyword,
-} from "@/types/types";
+import { articleOnTopic, newsList, newsListExtends, newsListWithKeyword } from "@/types/types";
 import * as cheerio from "cheerio";
 
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
@@ -35,24 +28,6 @@ export const fetchNewsList = createAsyncThunk<newsListExtends, string>(
     } catch (error) {
       console.error("News fetch failed on middleware.", error);
       return { keyword: "", newsList: [], urls: [] };
-    }
-  },
-);
-
-// 검색한 뉴스 키워드에 대한 각각의 개별 뉴스 기사 요청 미들웨어
-export const fetchArticles = createAsyncThunk<articlesWithKeyword, { urls: string[]; keyword: string }>(
-  "data/fetchArticles",
-  async ({ urls, keyword }: { urls: string[]; keyword: string }) => {
-    try {
-      const requestArticles = await axios.post("/api/articles", { urls: urls });
-      const data = {
-        keyword: keyword,
-        articles: requestArticles.data.articlesData,
-      };
-      return data;
-    } catch (error) {
-      console.error("Articles fetch failed on middleware.", error);
-      return { keyword: "", articles: [] };
     }
   },
 );
@@ -97,16 +72,11 @@ interface newsType {
     keyword: string;
     newsList: newsList[];
   };
-  articles: {
-    keyword: string;
-    articles: articleData[];
-  };
   article: articleOnTopic;
   urls: string[];
   url: string;
   popularStatus: "idle" | "loading" | "succeeded" | "failed";
   newsStatus: "idle" | "loading" | "succeeded" | "failed";
-  articlesStatus: "idle" | "loading" | "succeeded" | "failed";
   articleStatus: "idle" | "loading" | "succeeded" | "failed";
 }
 
@@ -114,10 +84,6 @@ const initialState: newsType = {
   newsList: {
     keyword: "",
     newsList: [],
-  },
-  articles: {
-    keyword: "",
-    articles: [],
   },
   article: {
     title: "",
@@ -130,7 +96,6 @@ const initialState: newsType = {
   url: "",
   popularStatus: "idle",
   newsStatus: "idle",
-  articlesStatus: "idle",
   articleStatus: "idle",
 };
 
@@ -140,9 +105,6 @@ export const news = createSlice({
   reducers: {
     setNewsList(state, action: PayloadAction<newsListWithKeyword>) {
       state.newsList = action.payload;
-    },
-    setArticles(state, action: PayloadAction<articlesWithKeyword>) {
-      state.articles = action.payload;
     },
     setSingleArticle(state, action: PayloadAction<articleOnTopic>) {
       state.article = action.payload;
@@ -170,19 +132,7 @@ export const news = createSlice({
         state.newsStatus = "failed";
       })
 
-      // 뉴스 개별 데이터 요청 수행 결과 처리
-      .addCase(fetchArticles.pending, (state) => {
-        state.articlesStatus = "loading";
-      })
-      .addCase(fetchArticles.fulfilled, (state, action: PayloadAction<articlesWithKeyword | undefined>) => {
-        state.articlesStatus = "succeeded";
-        if (action.payload) {
-          state.articles = action.payload;
-        }
-      })
-      .addCase(fetchArticles.rejected, (state) => {
-        state.articleStatus = "failed";
-      })
+      // 하나의 뉴스 기사 데이터 요청 수행 결과 처리
       .addCase(fetchSingleArticle.pending, (state) => {
         state.articleStatus = "loading";
       })
@@ -198,5 +148,5 @@ export const news = createSlice({
   },
 });
 
-export const { setNewsList, setArticles, setSingleArticle, setUrl } = news.actions;
+export const { setNewsList, setSingleArticle, setUrl } = news.actions;
 export default news.reducer;

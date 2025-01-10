@@ -23,7 +23,6 @@ export default function News(): JSX.Element {
   const newsList = useSelector((state: RootState) => state.news.newsList.newsList);
   const keyword = useSelector((state: RootState) => state.news.newsList.keyword);
   const newsStatus = useSelector((state: RootState) => state.news.newsStatus);
-  const articles = useSelector((state: RootState) => state.news.articles);
   const singleArticle = useSelector((state: RootState) => state.news.article);
   const [noNewsList, setNoNewsList] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
@@ -68,8 +67,6 @@ export default function News(): JSX.Element {
     if (singleArticle.title !== clickedTitle) {
       dispatch(setSingleArticle({ title: "", date: [], image: "", alt: "", text: [] }));
     }
-    const articleData = articles.articles.find((item) => item.title === clickedTitle);
-    articleData && dispatch(setSingleArticle(articleData));
     dispatch(setUrl(href));
     router.push(`/news/detail?title=${encodeURIComponent(clickedTitle)}`);
   };

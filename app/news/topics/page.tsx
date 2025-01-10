@@ -20,7 +20,6 @@ import NewsSkeleton from "@/app/component/NewsSkeleton";
 
 export default function NewsOfTopics(): JSX.Element {
   const newsListOfSingleTopic = useSelector((state: RootState) => state.topics.newsListOfSingleTopic);
-  const articlesOfSingleTopic = useSelector((state: RootState) => state.topics.articlesOfSingleTopic);
   const onSearching = useSelector((state: RootState) => state.switches.onSearching);
   const inputValue = useSelector((state: RootState) => state.switches.inputValue);
   const singleArticle = useSelector((state: RootState) => state.news.article);
@@ -52,8 +51,6 @@ export default function NewsOfTopics(): JSX.Element {
     if (singleArticle.title !== clickedTitle) {
       dispatch(setSingleArticle({ title: "", date: [], image: "", alt: "", text: [] }));
     }
-    const article = articlesOfSingleTopic?.articles.find((item) => item.title === clickedTitle);
-    article && dispatch(setSingleArticle(article));
     dispatch(setUrl(href));
     router.push(`/news/detail?title=${encodeURIComponent(clickedTitle)}`);
   };
