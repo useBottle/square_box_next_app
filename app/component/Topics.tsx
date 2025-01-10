@@ -26,8 +26,10 @@ import { setInputValue } from "@/store/switches";
  */
 
 export default function Topics({ data }: TopicsProps): JSX.Element {
-  const [topics, setTopics] = useState<TopicsType[] | undefined>(undefined);
-  const [newsListArray, setNewsListArray] = useState<newsListWithKeyword[] | undefined>(undefined);
+  // const [topics, setTopics] = useState<TopicsType[] | undefined>(undefined);
+  // const [newsListArray, setNewsListArray] = useState<newsListWithKeyword[] | undefined>(undefined);
+  const topicsList = useSelector((state: RootState) => state.topics.topicsList);
+  const newsListOfTopics = useSelector((state: RootState) => state.topics.newsListOfTopics);
   const storedTotalArticles = useSelector((state: RootState) => state.news.totalArticles);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
@@ -97,7 +99,7 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
     실시간 검색어 클릭 시 클라이언트에서 실시간 검색어 별 뉴스 리스트 및 뉴스 기사를 디스패치 하기 전이면 
     서버에서 가져온 newsOfTopicsList 중 클릭한 타이틀과 일치하는 것으로 디스패치 
     */
-    if (topics === undefined && newsOfTopicsList?.length !== 0) {
+    if (topicsList === undefined && newsOfTopicsList !== undefined) {
       dispatch(
         setNewsList(newsOfTopicsList?.filter((item) => item.keyword === keyword)[0] || { keyword: "", newsList: [] }),
       );
@@ -111,9 +113,9 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
     실시간 검색어 클릭 시 클라이언트에서 실시간 검색어 별 리스트 및 뉴스 기사를 디스패치한 이후면
     디스패치된 리스트 및 뉴스 기사 세트 중 클릭한 타이틀과 일치하는 것으로 디스패치 
     */
-    if (topics !== undefined && newsListArray !== undefined) {
+    if (topicsList && newsListOfTopics) {
       dispatch(
-        setNewsList(newsListArray.filter((item) => item.keyword === keyword)[0] || { keyword: "", newsList: [] }),
+        setNewsList(newsListOfTopics.filter((item) => item.keyword === keyword)[0] || { keyword: "", newsList: [] }),
       );
       dispatch(
         setArticles(storedTotalArticles.filter((item) => item.keyword === keyword)[0] || { keyword: "", articles: [] }),
@@ -129,7 +131,7 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
       <div css={css(topicsForm)}>
         <h4>실시간 검색어 Top 10</h4>
         <ul>
-          {(topics || keywordsData)?.map((item, index) => {
+          {(topicsList || keywordsData)?.map((item, index) => {
             return (
               <Link href="/news" key={index} onClick={onClick(item.keyword)}>
                 <li>

@@ -2,13 +2,13 @@ import { TopicsListType, TopicsType } from "@/types/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface TopicsStatesType {
-  topicsList: TopicsType[];
-  newsListOfTopics: TopicsListType[];
+  topicsList: TopicsType[] | undefined;
+  newsListOfTopics: TopicsListType[] | undefined;
 }
 
 const initialState: TopicsStatesType = {
-  topicsList: [],
-  newsListOfTopics: [],
+  topicsList: undefined,
+  newsListOfTopics: undefined,
 };
 
 export const topics = createSlice({
