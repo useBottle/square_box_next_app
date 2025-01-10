@@ -29,7 +29,7 @@ export const fetchLatestNewsArticle = createAsyncThunk<LatestNewsArticle, string
       // console.log(article);
       return data;
     } catch (error) {
-      console.error("Single article fetch failed on middleware.", error);
+      console.error("Latest news article fetch failed on middleware.", error);
       return { title: "", date: "", image: "", alt: "", text: [] };
     }
   },

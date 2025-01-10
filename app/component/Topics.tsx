@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { useRouter } from "next/navigation";
 import { setInputValue } from "@/store/switches";
-import { setArticlesOfSingleTopic, setNewsListOfSingleTopic, setUrlsOfNewsList } from "@/store/topics";
+import { setNewsListOfSingleTopic, setUrlsOfNewsList } from "@/store/topics";
 
 /**
  * Topics.tsx
@@ -25,13 +25,12 @@ import { setArticlesOfSingleTopic, setNewsListOfSingleTopic, setUrlsOfNewsList }
 export default function Topics({ data }: TopicsProps): JSX.Element {
   const topicsList = useSelector((state: RootState) => state.topics.topicsList);
   const newsListsOfTopics = useSelector((state: RootState) => state.topics.newsListsOfTopics);
-  const articlesOfTopics = useSelector((state: RootState) => state.topics.articlesOfTopics);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const { newsOfTopicsList, keywordsData } = data;
 
   // Link 컴포넌트의 리디렉션 막고 useRouter 로 리디렉션. (리디렉션 전에 상태 업데이트 하기 위함)
-  // news 페이지로 리디렉션 전에 keyword 업데이트.
+  // news 페이지로 리디렉션 전에 inputValue 업데이트.
   const onClick = (keyword: string) => (e: React.MouseEvent) => {
     e.preventDefault();
     const newsList = newsOfTopicsList?.filter((item) => item.keyword === keyword)[0] || { keyword: "", newsList: [] };
@@ -52,19 +51,13 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
     }
 
     /* 
-    실시간 검색어 클릭 시 클라이언트에서 실시간 검색어 별 리스트 및 뉴스 기사를 디스패치한 이후면
-    디스패치된 리스트 및 뉴스 기사 세트 중 클릭한 타이틀과 일치하는 것으로 디스패치.
-    클릭한 시점에 articlesOfTopics 가 아직 디스패치되지 않은 경우 news - [id] 컴포넌트에서 별도로 article 디스패치.
+    실시간 검색어 클릭 시 클라이언트에서 실시간 검색어 별 리스트를 디스패치한 이후면
+    디스패치된 리스트 중 클릭한 타이틀과 일치하는 것으로 디스패치.
     */
-    if (topicsList && newsListsOfTopics && articlesOfTopics) {
+    if (topicsList && newsListsOfTopics) {
       dispatch(
         setNewsListOfSingleTopic(
           newsListsOfTopics.filter((item) => item.keyword === keyword)[0] || { keyword: "", newsList: [] },
-        ),
-      );
-      dispatch(
-        setArticlesOfSingleTopic(
-          articlesOfTopics?.filter((item) => item.keyword === keyword)[0] || { keyword: "", articles: [] },
         ),
       );
     }

@@ -29,7 +29,6 @@ interface TopicsStatesType {
   };
   urlsOfNewsList: string[];
   articlesStates: "idle" | "loading" | "succeeded" | "failed";
-  articlesOfTopics: { keyword: string; articles: articleData[] }[] | undefined;
   articlesOfSingleTopic: {
     keyword: string;
     articles: articleData[];
@@ -45,7 +44,6 @@ const initialState: TopicsStatesType = {
   },
   urlsOfNewsList: [],
   articlesStates: "idle",
-  articlesOfTopics: undefined,
   articlesOfSingleTopic: {
     keyword: "",
     articles: [],
@@ -64,9 +62,6 @@ export const topics = createSlice({
     },
     setUrlsOfNewsList(state, action: PayloadAction<string[]>) {
       state.urlsOfNewsList = action.payload;
-    },
-    setArticlesOfTopics(state, action: PayloadAction<{ keyword: string; articles: articleData[] }[]>) {
-      state.articlesOfTopics = action.payload;
     },
     setNewsListOfSingleTopic(state, action: PayloadAction<{ keyword: string; newsList: newsList[] }>) {
       state.newsListOfSingleTopic = action.payload;
@@ -92,7 +87,6 @@ export const topics = createSlice({
 export const {
   setTopicsList,
   setNewsListsOfTopics,
-  setArticlesOfTopics,
   setNewsListOfSingleTopic,
   setArticlesOfSingleTopic,
   setUrlsOfNewsList,

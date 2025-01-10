@@ -18,6 +18,7 @@ import { AppDispatch, RootState } from "@/store/store";
 import ScrollBtn from "@/app/component/ScrollBtn";
 import { getMarkedNews } from "@/app/actions/bookmarkActions";
 import { fetchLatestNewsArticle } from "@/store/latestNews";
+import LatestNewsSkeleton from "@/app/component/LatestNewsSkeleton";
 
 export default function LatestNewsDetail(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
@@ -28,6 +29,7 @@ export default function LatestNewsDetail(): JSX.Element {
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoadingMarked, setIsLoadingMarked] = useState<boolean>(true);
   const storedArticle = useSelector((state: RootState) => state.latestNews.latestNewsArticle);
+  const latestNewsStatus = useSelector((state: RootState) => state.latestNews.latestNewsStatus);
 
   // storedArticle 이 업데이트 되면 해당 값이 북마크 되어있는지 확인
   useEffect(() => {
@@ -124,6 +126,11 @@ export default function LatestNewsDetail(): JSX.Element {
   if (typeof newsTitle !== "string" || storedArticle.title === "") {
     return <ExpiredData />;
   }
+
+  // 스켈레톤 UI 보여주는 로직 변경하기.
+  // if (latestNewsStatus === "loading") {
+  //   return <LatestNewsSkeleton />;
+  // }
 
   return (
     <article css={css(dynamicNewsStyles)}>
