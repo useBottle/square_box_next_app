@@ -26,7 +26,7 @@ import { setInputValue } from "@/store/switches";
 export default function Topics({ data }: TopicsProps): JSX.Element {
   const topicsList = useSelector((state: RootState) => state.topics.topicsList);
   const newsListOfTopics = useSelector((state: RootState) => state.topics.newsListOfTopics);
-  const storedTotalArticles = useSelector((state: RootState) => state.news.totalArticles);
+  const storedTotalArticles = useSelector((state: RootState) => state.topics.totalArticles);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const { newsOfTopicsList, keywordsData, totalArticles } = data;
@@ -59,7 +59,9 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
         setNewsList(newsListOfTopics.filter((item) => item.keyword === keyword)[0] || { keyword: "", newsList: [] }),
       );
       dispatch(
-        setArticles(storedTotalArticles.filter((item) => item.keyword === keyword)[0] || { keyword: "", articles: [] }),
+        setArticles(
+          storedTotalArticles?.filter((item) => item.keyword === keyword)[0] || { keyword: "", articles: [] },
+        ),
       );
     }
 

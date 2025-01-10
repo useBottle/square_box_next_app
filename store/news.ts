@@ -65,7 +65,6 @@ interface newsType {
     articles: articleData[];
   };
   article: articleOnTopic;
-  totalArticles: { keyword: string; articles: articleData[] }[];
   urls: string[];
   popularStatus: "idle" | "loading" | "succeeded" | "failed";
   newsStatus: "idle" | "loading" | "succeeded" | "failed";
@@ -81,7 +80,6 @@ const initialState: newsType = {
     keyword: "",
     articles: [],
   },
-  totalArticles: [],
   article: {
     title: "",
     date: [],
@@ -104,9 +102,6 @@ export const news = createSlice({
     },
     setArticles(state, action: PayloadAction<articlesWithKeyword>) {
       state.articles = action.payload;
-    },
-    setTotalArticles(state, action: PayloadAction<{ keyword: string; articles: articleData[] }[]>) {
-      state.totalArticles = action.payload;
     },
     setSingleArticle(state, action: PayloadAction<articleOnTopic>) {
       state.article = action.payload;
@@ -147,5 +142,5 @@ export const news = createSlice({
   },
 });
 
-export const { setNewsList, setArticles, setTotalArticles, setSingleArticle } = news.actions;
+export const { setNewsList, setArticles, setSingleArticle } = news.actions;
 export default news.reducer;

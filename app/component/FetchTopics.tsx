@@ -3,10 +3,9 @@
 import { articleData, newsList, TopicsType } from "@/types/types";
 import axios from "axios";
 import { useEffect } from "react";
-import { setTotalArticles } from "@/store/news";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
-import { setNewsListOfTopics, setTopicsList } from "@/store/topics";
+import { setNewsListOfTopics, setTopicsList, setTotalArticles } from "@/store/topics";
 
 export default function FetchTopics() {
   const dispatch = useDispatch<AppDispatch>();
@@ -57,6 +56,15 @@ export default function FetchTopics() {
             return data;
           }),
         );
+
+        const resultData = {
+          newsListOfTopics: results,
+          topicsList: topicsResponse.data.top10,
+          totalArticles: articlesOfTopics,
+        };
+
+        return resultData;
+
         dispatch(setNewsListOfTopics(results));
         dispatch(setTopicsList(topicsResponse.data.top10));
         dispatch(setTotalArticles(articlesOfTopics));
@@ -66,8 +74,9 @@ export default function FetchTopics() {
     };
 
     // TopicsContainer 에서 로드한 실시간 검색어를 먼저 렌더링 후 인터벌로 업데이트.
-    const intervalFetch = setInterval(() => {
-      fetchKeyword();
+    const intervalFetch = setInterval(async () => {
+      const result = await fetchKeyword();
+      result?.totalArticles && dispatch(setTotalArticles(result.totalArticles));
     }, 1000 * 60);
 
     return () => clearInterval(intervalFetch);
