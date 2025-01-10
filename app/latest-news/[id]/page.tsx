@@ -24,11 +24,20 @@ export default function LatestNewsDetail(): JSX.Element {
   const newsTitle = decodeURIComponent(params.get("title") as string);
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoadingMarked, setIsLoadingMarked] = useState<boolean>(true);
-  const storedArticle = useSelector((state: RootState) => state.latestNews.latestArticle);
+  const storedArticle = useSelector((state: RootState) => state.latestNews.latestNewsArticle);
 
   // storedArticle 이 업데이트 되면 해당 값이 북마크 되어있는지 확인
   useEffect(() => {
     window.scrollTo({ top: 0 });
+
+    // 클릭한 뉴스에 대한 article 데이터 요청
+    if (storedArticle.title !== newsTitle) {
+      const fetchArticle = async () => {
+        // 최신뉴스 전용 article 로 수정
+        await dispatch(fetchSingleArticle(newsUrl));
+      };
+      fetchArticle();
+    }
 
     // 유저 정보 및 뉴스 데이터 DB에서 확인 후 북마크 버튼 스타일 변경 트리거 상태 변경.
     const findMarkedNews = async () => {

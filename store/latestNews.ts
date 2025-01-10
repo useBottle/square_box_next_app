@@ -3,14 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface LatestNewsType {
   latestNewsList: newsList[];
-  latestArticleSet: LatestNewsArticle[];
-  latestArticle: LatestNewsArticle;
+  latestNewsArticleSet: LatestNewsArticle[];
+  latestNewsArticle: LatestNewsArticle;
 }
 
 const initialState: LatestNewsType = {
   latestNewsList: [],
-  latestArticleSet: [],
-  latestArticle: {
+  latestNewsArticleSet: [],
+  latestNewsArticle: {
     title: "",
     date: "",
     image: "",
@@ -26,14 +26,14 @@ export const latestNews = createSlice({
     setLatestNewsList(state, action) {
       state.latestNewsList = action.payload;
     },
-    setLatestArticleSet(state, action) {
-      state.latestArticleSet = action.payload;
+    setLatestNewsArticleSet(state, action) {
+      state.latestNewsArticleSet = action.payload;
     },
-    setLatestArticle(state, action) {
-      state.latestArticle = action.payload;
+    setLatestNewsArticle(state, action) {
+      state.latestNewsArticle = action.payload;
     },
   },
 });
 
-export const { setLatestNewsList, setLatestArticleSet, setLatestArticle } = latestNews.actions;
+export const { setLatestNewsList, setLatestNewsArticleSet, setLatestNewsArticle } = latestNews.actions;
 export default latestNews.reducer;

@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { getLatestNewsArticle, getLatestNewsList } from "../actions/latestNewsActions";
-import { setLatestArticle, setLatestArticleSet, setLatestNewsList } from "@/store/latestNews";
+import { setLatestNewsArticle, setLatestNewsArticleSet, setLatestNewsList } from "@/store/latestNews";
 import Image from "next/image";
 import { latestNews } from "@/styles/LatestNews.styles";
 import { css } from "@emotion/react";
@@ -18,7 +18,7 @@ import { setInputValue } from "@/store/switches";
 export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const storedLatestNewsList = useSelector((state: RootState) => state.latestNews.latestNewsList);
-  const storedLatestNewsArticles = useSelector((state: RootState) => state.latestNews.latestArticleSet);
+  const storedLatestNewsArticles = useSelector((state: RootState) => state.latestNews.latestNewsArticleSet);
   const { latestNewsList, latestNewsArticles } = data;
   const router = useRouter();
 
@@ -29,7 +29,7 @@ export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
       dispatch(setLatestNewsList(result?.newsTop10List));
 
       const articles = await getLatestNewsArticle(result?.urls as string[]);
-      dispatch(setLatestArticleSet(articles));
+      dispatch(setLatestNewsArticleSet(articles));
     };
 
     // 10분마다 최신 뉴스 리스트 갱신 요청.
@@ -46,7 +46,7 @@ export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
     서버에서 가져온 articles 중 클릭한 타이틀과 일치하는 것으로 디스패치 
     */
     if (storedLatestNewsList.length === 0 && latestNewsList) {
-      dispatch(setLatestArticle(latestNewsArticles.filter((article) => article.title === clickedtitle)[0]));
+      dispatch(setLatestNewsArticle(latestNewsArticles.filter((article) => article.title === clickedtitle)[0]));
     }
 
     /* 
@@ -54,7 +54,7 @@ export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
     디스패치된 최신 뉴스 기사 세트 중 클릭한 타이틀과 일치하는 것으로 디스패치 
     */
     if (storedLatestNewsArticles.length !== 0) {
-      dispatch(setLatestArticle(storedLatestNewsArticles.filter((article) => article.title === clickedtitle)[0]));
+      dispatch(setLatestNewsArticle(storedLatestNewsArticles.filter((article) => article.title === clickedtitle)[0]));
     }
     dispatch(setInputValue(clickedtitle));
     router.push(`/latest-news/detail?title=${encodeURIComponent(clickedtitle)}`);
