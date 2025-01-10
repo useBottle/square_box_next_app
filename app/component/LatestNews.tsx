@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { getLatestNewsList } from "../actions/latestNewsActions";
-import { setLatestNewsList, setLatestNewsUrl } from "@/store/latestNews";
+import { setLatestNewsArticle, setLatestNewsList, setLatestNewsUrl } from "@/store/latestNews";
 import Image from "next/image";
 import { latestNews } from "@/styles/LatestNews.styles";
 import { css } from "@emotion/react";
@@ -15,10 +15,15 @@ import { useRouter } from "next/navigation";
 import { newsList } from "@/types/types";
 import { setInputValue } from "@/store/switches";
 
-export default function LatestNews({ data }: { data: { latestNewsList: newsList[] | undefined } }): JSX.Element {
+export default function LatestNews({
+  data,
+}: {
+  data: { latestNewsListFromServer: newsList[] | undefined };
+}): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
-  const storedLatestNewsList = useSelector((state: RootState) => state.latestNews.latestNewsList);
-  const { latestNewsList } = data;
+  const latestNewsList = useSelector((state: RootState) => state.latestNews.latestNewsList);
+  const latestNewsArticle = useSelector((state: RootState) => state.latestNews.latestNewsArticle);
+  const { latestNewsListFromServer } = data;
   const router = useRouter();
 
   // 인터벌로 최신 뉴스 리스트 업데이트
@@ -36,6 +41,11 @@ export default function LatestNews({ data }: { data: { latestNewsList: newsList[
 
   const onClick = (clickedtitle: string, href: string) => (e: React.MouseEvent) => {
     e.preventDefault();
+    // 디스패치 되어있는 최신 뉴스 기사와 클릭한 최신 뉴스 기사가 다를 경우 초기화.
+    // 기사 페이지 접속 시 이전 데이터로 깜박임 현상 방지하기 위함.
+    if (latestNewsArticle.title !== clickedtitle) {
+      dispatch(setLatestNewsArticle({ title: "", date: "", image: "", alt: "", text: [] }));
+    }
     dispatch(setLatestNewsUrl(href));
     dispatch(setInputValue(clickedtitle));
     router.push(`/latest-news/detail?title=${encodeURIComponent(clickedtitle)}`);
@@ -45,8 +55,8 @@ export default function LatestNews({ data }: { data: { latestNewsList: newsList[
     <div css={css(latestNews)}>
       <h4>최신 뉴스 Top 10</h4>
       <ul>
-        {storedLatestNewsList.length === 0
-          ? latestNewsList?.map((item, index) => {
+        {latestNewsList.length === 0
+          ? latestNewsListFromServer?.map((item, index) => {
               return (
                 <Link
                   href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`}
@@ -64,7 +74,7 @@ export default function LatestNews({ data }: { data: { latestNewsList: newsList[
                 </Link>
               );
             })
-          : storedLatestNewsList.map((item, index) => {
+          : latestNewsList.map((item, index) => {
               return (
                 <Link
                   href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`}

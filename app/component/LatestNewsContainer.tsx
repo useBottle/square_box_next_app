@@ -5,8 +5,8 @@ import LatestNews from "./LatestNews";
 const fetchData = async () => {
   const latestNewsList = await getLatestNewsList();
 
-  const data: { latestNewsList: newsList[] | undefined } = {
-    latestNewsList: latestNewsList?.newsTop10List,
+  const data: { latestNewsListFromServer: newsList[] | undefined } = {
+    latestNewsListFromServer: latestNewsList?.newsTop10List,
   };
 
   return data;

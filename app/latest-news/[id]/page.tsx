@@ -17,9 +17,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import ScrollBtn from "@/app/component/ScrollBtn";
 import { getMarkedNews } from "@/app/actions/bookmarkActions";
-import LatestNewsSkeleton from "@/app/component/LatestNewsSkeleton";
 import { getLatestNewsArticle } from "@/app/actions/latestNewsActions";
 import { setLatestNewsArticle } from "@/store/latestNews";
+import ArticleSkeleton from "@/app/component/ArticleSkeleton";
 
 export default function LatestNewsDetail(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
@@ -126,13 +126,9 @@ export default function LatestNewsDetail(): JSX.Element {
     }
   };
 
-  // newsId 가 안맞거나 article에 문제가생긴 경우 ExpiredData 렌더링
-  if (typeof newsTitle !== "string" || latestNewsArticle.title === "") {
+  // newsId 가 안맞는 경우 ExpiredData 렌더링
+  if (typeof newsTitle !== "string") {
     return <ExpiredData />;
-  }
-
-  if (isFetchingArticle === true) {
-    return <LatestNewsSkeleton />;
   }
 
   return (
