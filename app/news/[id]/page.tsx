@@ -34,6 +34,10 @@ export default function NewsDynamic(): JSX.Element {
   useEffect(() => {
     window.scrollTo({ top: 0 });
 
+    if (singleArticle.title !== newsTitle) {
+      // 현재 클릭한 뉴스의 개별 article 요청하는 로직 추가하기.
+    }
+
     // 유저 정보가 없으면 북마크 데이터 검색 요청하지 않음.
     if (!session || !session.user || session.user.name === undefined) return;
 

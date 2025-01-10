@@ -50,7 +50,6 @@ export default function NewsOfTopics(): JSX.Element {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log("news list: ", newsListOfSingleTopic);
     // 검색어가 입력되어 있고 뉴스 리스트가 없을 때, noNewsList 상태 업데이트
     if (inputValue !== "" && newsListOfSingleTopic.newsList.length === 0) {
       setNoNewsList(true);
@@ -60,7 +59,6 @@ export default function NewsOfTopics(): JSX.Element {
   // 뉴스 리스트 요소를 클릭하면 articles 중 title 과 일치하는 것으로 singleArticle 에 디스패치
   const onClick = (keyword: string) => (e: React.MouseEvent) => {
     e.preventDefault();
-    console.log("articlesOfSingleTopic: ", articlesOfSingleTopic);
     const article = articlesOfSingleTopic?.articles.find((item) => item.title === keyword);
     article && dispatch(setSingleArticle(article));
     router.push(`/news/detail?title=${encodeURIComponent(keyword)}`);
