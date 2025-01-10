@@ -40,34 +40,3 @@ export async function getLatestNewsList() {
     console.error("Error fetching latest news", error);
   }
 }
-
-// 최신 뉴스 url 로 각 개별 데이터 요청
-export async function getLatestNewsArticle(urls: string[]) {
-  try {
-    const articles: LatestNewsArticle[] = await Promise.all(
-      urls.map(async (url) => {
-        const response = await axios.get(url);
-        const $ = cheerio.load(response.data);
-        const title = $(".title-article01 h1.tit").text().trim();
-        const date = $(".title-article01 .update-time").attr("data-published-time");
-        const img = $(".image-zone .img-con .img img").attr("src");
-        const alt = $(".image-zone .desc-con .tit-cap").text().trim();
-        const text = $(".story-news.article p:not(.txt-copyright.adrs)")
-          .map((_, item) => $(item).text().trim())
-          .get()
-          .filter((item) => item !== "");
-
-        return {
-          title: title,
-          date: date || "",
-          image: img || "",
-          alt: alt || "",
-          text: text,
-        };
-      }),
-    );
-    return articles;
-  } catch (error) {
-    console.error("fetching latest news articles failed", error);
-  }
-}

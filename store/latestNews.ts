@@ -37,7 +37,6 @@ export const fetchLatestNewsArticle = createAsyncThunk<LatestNewsArticle, string
 
 interface LatestNewsType {
   latestNewsList: newsList[];
-  latestNewsArticleSet: LatestNewsArticle[];
   latestNewsArticle: LatestNewsArticle;
   latestNewsStatus: "idle" | "loading" | "succeeded" | "failed";
   latestNewsUrl: string;
@@ -45,7 +44,6 @@ interface LatestNewsType {
 
 const initialState: LatestNewsType = {
   latestNewsList: [],
-  latestNewsArticleSet: [],
   latestNewsArticle: {
     title: "",
     date: "",
@@ -63,9 +61,6 @@ export const latestNews = createSlice({
   reducers: {
     setLatestNewsList(state, action) {
       state.latestNewsList = action.payload;
-    },
-    setLatestNewsArticleSet(state, action) {
-      state.latestNewsArticleSet = action.payload;
     },
     setLatestNewsArticle(state, action) {
       state.latestNewsArticle = action.payload;
@@ -89,6 +84,5 @@ export const latestNews = createSlice({
   },
 });
 
-export const { setLatestNewsList, setLatestNewsArticleSet, setLatestNewsArticle, setLatestNewsUrl } =
-  latestNews.actions;
+export const { setLatestNewsList, setLatestNewsArticle, setLatestNewsUrl } = latestNews.actions;
 export default latestNews.reducer;
