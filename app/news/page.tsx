@@ -16,15 +16,13 @@ import FetchFailedData from "../component/FetchFailedData";
 import { PiWarningCircleFill, PiInfoFill } from "react-icons/pi";
 import { AiOutlineFileSearch } from "react-icons/ai";
 import { TbBoxOff } from "react-icons/tb";
-import { fetchArticles, setSingleArticle, setUrl } from "@/store/news";
+import { setSingleArticle, setUrl } from "@/store/news";
 import { useRouter } from "next/navigation";
 
 export default function News(): JSX.Element {
   const newsList = useSelector((state: RootState) => state.news.newsList.newsList);
   const keyword = useSelector((state: RootState) => state.news.newsList.keyword);
-  const inputValue = useSelector((state: RootState) => state.switches.inputValue);
   const newsStatus = useSelector((state: RootState) => state.news.newsStatus);
-  const newsUrls = useSelector((state: RootState) => state.news.urls);
   const articles = useSelector((state: RootState) => state.news.articles);
   const singleArticle = useSelector((state: RootState) => state.news.article);
   const [noNewsList, setNoNewsList] = useState<boolean>(false);
@@ -35,17 +33,6 @@ export default function News(): JSX.Element {
   useEffect(() => {
     dispatch(setPageState("news"));
     dispatch(setOnSearching(false));
-
-    // 각 뉴스 리스트에 대한 articles 요청
-    const fetchArticlesOfSingleTopic = async () => {
-      try {
-        await dispatch(fetchArticles({ keyword: inputValue, urls: newsUrls }));
-      } catch (error) {
-        console.error("Articles of single topic fetch failed.", error);
-      }
-    };
-
-    fetchArticlesOfSingleTopic();
 
     return () => {
       dispatch(setPageState("default"));

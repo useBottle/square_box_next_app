@@ -17,12 +17,10 @@ import { TbBoxOff } from "react-icons/tb";
 import { setSingleArticle, setUrl } from "@/store/news";
 import { useRouter } from "next/navigation";
 import NewsSkeleton from "@/app/component/NewsSkeleton";
-import { fetchArticlesOfTopic } from "@/store/topics";
 
 export default function NewsOfTopics(): JSX.Element {
   const newsListOfSingleTopic = useSelector((state: RootState) => state.topics.newsListOfSingleTopic);
   const articlesOfSingleTopic = useSelector((state: RootState) => state.topics.articlesOfSingleTopic);
-  const urlsOfNewsList = useSelector((state: RootState) => state.topics.urlsOfNewsList);
   const onSearching = useSelector((state: RootState) => state.switches.onSearching);
   const inputValue = useSelector((state: RootState) => state.switches.inputValue);
   const singleArticle = useSelector((state: RootState) => state.news.article);
@@ -33,17 +31,6 @@ export default function NewsOfTopics(): JSX.Element {
   useEffect(() => {
     // 뉴스 페이지 접속 여부 체크 -> 검색 컴포넌트에서 검색 요청 토글 역할
     dispatch(setPageState("news"));
-
-    // 각 뉴스 리스트에 대한 articles 요청
-    const fetchArticlesOfSingleTopic = async () => {
-      try {
-        await dispatch(fetchArticlesOfTopic({ keyword: inputValue, urls: urlsOfNewsList }));
-      } catch (error) {
-        console.error("Articles of single topic fetch failed.", error);
-      }
-    };
-
-    fetchArticlesOfSingleTopic();
 
     return () => {
       dispatch(setPageState("default"));
