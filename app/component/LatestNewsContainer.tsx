@@ -1,14 +1,12 @@
-import { LatestNewsArticle, LatestNewsProps, newsList } from "@/types/types";
-import { getLatestNewsArticle, getLatestNewsList } from "../actions/latestNewsActions";
+import { newsList } from "@/types/types";
+import { getLatestNewsList } from "../actions/latestNewsActions";
 import LatestNews from "./LatestNews";
 
 const fetchData = async () => {
   const latestNewsList = await getLatestNewsList();
-  const articles = await getLatestNewsArticle(latestNewsList?.urls as string[]);
 
-  const data = {
-    latestNewsList: latestNewsList?.newsTop10List as newsList[],
-    latestNewsArticles: articles as LatestNewsArticle[],
+  const data: { latestNewsList: newsList[] | undefined } = {
+    latestNewsList: latestNewsList?.newsTop10List,
   };
 
   return data;

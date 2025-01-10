@@ -53,14 +53,6 @@ export interface LatestNewsArticle {
   text: string[];
 }
 
-// LatestNewsContainer Props
-export interface LatestNewsProps {
-  data: {
-    latestNewsList: newsList[];
-    latestNewsArticles: LatestNewsArticle[];
-  };
-}
-
 // 뉴스 리스트
 export interface newsList {
   title: string;
