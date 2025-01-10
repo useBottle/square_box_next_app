@@ -6,6 +6,7 @@ import {
   newsListExtends,
   newsListWithKeyword,
 } from "@/types/types";
+import * as cheerio from "cheerio";
 
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
@@ -56,6 +57,41 @@ export const fetchArticles = createAsyncThunk<articlesWithKeyword, { urls: strin
   },
 );
 
+// 하나의 url 에 대한 뉴스 기사 요청 미들웨어
+export const fetchSingleArticle = createAsyncThunk<articleOnTopic, string>(
+  "data/fetchSingleArticle",
+  async (url: string): Promise<articleOnTopic> => {
+    try {
+      const response = await axios.get(url);
+      const $ = cheerio.load(response.data);
+      const title = $(".col-main .title").text().trim();
+      const img = $(".img-box img").attr("src");
+      const alt = $(".img-box img").attr("alt");
+      let date: string[] = [];
+      $(".info .wrt-text dd").map((_, item) => {
+        date.push($(item).text().trim());
+      });
+      const text = $(".editor-p")
+        .map((_, item) => $(item).text().trim())
+        .get()
+        .filter((item) => item !== "");
+
+      const article = {
+        title: title || "",
+        image: img || "",
+        alt: alt || "",
+        date: date,
+        text: text,
+      };
+      // console.log(article);
+      return article;
+    } catch (error) {
+      console.error("Single article fetch failed on middleware.", error);
+      return { title: "", date: [], image: "", alt: "", text: [] };
+    }
+  },
+);
+
 interface newsType {
   newsList: {
     keyword: string;
@@ -70,6 +106,7 @@ interface newsType {
   url: string;
   popularStatus: "idle" | "loading" | "succeeded" | "failed";
   newsStatus: "idle" | "loading" | "succeeded" | "failed";
+  articlesStatus: "idle" | "loading" | "succeeded" | "failed";
   articleStatus: "idle" | "loading" | "succeeded" | "failed";
 }
 
@@ -93,6 +130,7 @@ const initialState: newsType = {
   url: "",
   popularStatus: "idle",
   newsStatus: "idle",
+  articlesStatus: "idle",
   articleStatus: "idle",
 };
 
@@ -134,15 +172,27 @@ export const news = createSlice({
 
       // 뉴스 개별 데이터 요청 수행 결과 처리
       .addCase(fetchArticles.pending, (state) => {
-        state.articleStatus = "loading";
+        state.articlesStatus = "loading";
       })
       .addCase(fetchArticles.fulfilled, (state, action: PayloadAction<articlesWithKeyword | undefined>) => {
-        state.articleStatus = "succeeded";
+        state.articlesStatus = "succeeded";
         if (action.payload) {
           state.articles = action.payload;
         }
       })
       .addCase(fetchArticles.rejected, (state) => {
+        state.articleStatus = "failed";
+      })
+      .addCase(fetchSingleArticle.pending, (state) => {
+        state.articleStatus = "loading";
+      })
+      .addCase(fetchSingleArticle.fulfilled, (state, action: PayloadAction<articleOnTopic | undefined>) => {
+        state.articleStatus = "succeeded";
+        if (action.payload) {
+          state.article = action.payload;
+        }
+      })
+      .addCase(fetchSingleArticle.rejected, (state) => {
         state.articleStatus = "failed";
       });
   },
