@@ -10,7 +10,7 @@ import {
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// 뉴스 전체 데이터 요청 미들웨어
+// 검색한 뉴스 키워드에 대한 뉴스 리스트 요청 미들웨어
 export const fetchNewsList = createAsyncThunk<newsListExtends, string>(
   "data/fetchNewsList",
   async (inputValue: string): Promise<newsListExtends> => {
@@ -38,7 +38,7 @@ export const fetchNewsList = createAsyncThunk<newsListExtends, string>(
   },
 );
 
-// 뉴스 개별 데이터 요청 미들웨어
+// 검색한 뉴스 키워드에 대한 각각의 개별 뉴스 기사 요청 미들웨어
 export const fetchArticles = createAsyncThunk<articlesWithKeyword, { urls: string[]; keyword: string }>(
   "data/fetchArticles",
   async ({ urls, keyword }: { urls: string[]; keyword: string }) => {
