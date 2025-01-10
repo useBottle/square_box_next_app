@@ -28,6 +28,7 @@ export default function LatestNews({
 
   // 인터벌로 최신 뉴스 리스트 업데이트
   useEffect(() => {
+    console.log(latestNewsListFromServer);
     const fetchData = async () => {
       const result = await getLatestNewsList();
       dispatch(setLatestNewsList(result?.newsTop10List));
