@@ -146,10 +146,26 @@ export const dynamicNewsStyles: CSSObject = {
 
   ".imgGroup": {
     width: "100vw",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
 
     img: {
       width: "100%",
       height: "auto",
+    },
+
+    ".noImg": {
+      width: "90%",
+      height: "30vh",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      background: "var(--reverse-font)",
+      border: "1px dashed var(--basic-font)",
+      color: "var(--basic-font)",
+      fontSize: "2rem",
     },
 
     ".alt": {

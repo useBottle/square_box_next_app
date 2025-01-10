@@ -135,12 +135,14 @@ export default function LatestNewsDetail(): JSX.Element {
 
   return (
     <article css={css(dynamicNewsStyles)}>
-      {latestNewsArticle.image && (
-        <figure className="imgGroup">
+      <figure className="imgGroup">
+        {latestNewsArticle.image === "" || !latestNewsArticle.image.startsWith("https") ? (
+          <div className="noImg">No Image</div>
+        ) : (
           <Image src={latestNewsArticle.image} alt="newsImg" width={200} height={200} />
-          <figcaption className="alt">{latestNewsArticle.alt}</figcaption>
-        </figure>
-      )}
+        )}
+        <figcaption className="alt">{latestNewsArticle.alt}</figcaption>
+      </figure>
       <div className="textGroup">
         <h1>{latestNewsArticle.title}</h1>
         <div className="date">{latestNewsArticle.date}</div>

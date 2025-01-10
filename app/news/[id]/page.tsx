@@ -20,6 +20,7 @@ import ScrollBtn from "@/app/component/ScrollBtn";
 import { LatestNewsArticle } from "@/types/types";
 import { fetchSingleArticle } from "@/app/actions/newsActions";
 import { setSingleArticle } from "@/store/news";
+import ArticleSkeleton from "@/app/component/ArticleSkeleton";
 
 export default function NewsDynamic(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
@@ -30,10 +31,6 @@ export default function NewsDynamic(): JSX.Element {
   const newsTitle = decodeURIComponent(params.get("title") as string);
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    console.log("single article: ", singleArticle);
-  }, [singleArticle]);
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
@@ -135,10 +132,19 @@ export default function NewsDynamic(): JSX.Element {
     return <ExpiredData />;
   }
 
+  // singleArticle 이 업데이트 되기 전이면 Skeleton UI 렌더링
+  if (singleArticle.title === "") {
+    return <ArticleSkeleton />;
+  }
+
   return (
     <article css={css(dynamicNewsStyles)}>
       <figure className="imgGroup">
-        <Image src={singleArticle.image} alt="newsImg" width={200} height={200} />
+        {singleArticle.image === "" || !singleArticle.image.startsWith("https") ? (
+          <div className="noImg">No Image</div>
+        ) : (
+          <Image src={singleArticle.image} alt="newsImg" width={200} height={200} />
+        )}
         <figcaption className="alt">{singleArticle.alt}</figcaption>
       </figure>
       <div className="textGroup">
