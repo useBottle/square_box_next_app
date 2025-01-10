@@ -2,10 +2,11 @@
 
 import { articleData, newsList, TopicsType } from "@/types/types";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { setTotalArticles } from "@/store/news";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/store/store";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store/store";
+import { setNewsListOfTopics, setTopicsList } from "@/store/topics";
 
 export default function FetchTopics() {
   const dispatch = useDispatch<AppDispatch>();
@@ -56,8 +57,8 @@ export default function FetchTopics() {
             return data;
           }),
         );
-        // setNewsListArray(results); -> 슬라이스 생성 후 디스패치하기
-        // setTopics(topicsResponse.data.top10); -> 슬라이스 생성 후 디스패치하기
+        dispatch(setNewsListOfTopics(results));
+        dispatch(setTopicsList(topicsResponse.data.top10));
         dispatch(setTotalArticles(articlesOfTopics));
       } catch (error) {
         console.error("Failed fetching keyword data.", error);
