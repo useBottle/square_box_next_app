@@ -2,13 +2,13 @@
 
 "use client";
 
-import { RootState } from "@/store/store";
+import { AppDispatch, RootState } from "@/store/store";
 import { dynamicNewsStyles } from "@/styles/News.styles";
 import { css } from "@emotion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { GoBookmarkFill } from "react-icons/go";
 import { FaCheck } from "react-icons/fa6";
 import { FormEvent, useEffect, useState } from "react";
@@ -18,11 +18,14 @@ import { deleteNewsBookmark, findNewsBookmark, setNewsBookmark } from "@/app/act
 import { getMarkedNews } from "@/app/actions/bookmarkActions";
 import ScrollBtn from "@/app/component/ScrollBtn";
 import { LatestNewsArticle } from "@/types/types";
+import { fetchSingleArticle } from "@/store/news";
 
 export default function NewsDynamic(): JSX.Element {
+  const dispatch = useDispatch<AppDispatch>();
   const { data: session } = useSession();
   const singleArticle = useSelector((state: RootState) => state.news.article);
   const params = useSearchParams();
+  const newsUrl = useSelector((state: RootState) => state.news.url);
   const newsTitle = decodeURIComponent(params.get("title") as string);
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -34,8 +37,12 @@ export default function NewsDynamic(): JSX.Element {
   useEffect(() => {
     window.scrollTo({ top: 0 });
 
+    // 클릭한 뉴스에 대한 article 데이터 요청
     if (singleArticle.title !== newsTitle) {
-      // 현재 클릭한 뉴스의 개별 article 요청하는 로직 추가하기.
+      const fetchArticle = async () => {
+        await dispatch(fetchSingleArticle(newsUrl));
+      };
+      fetchArticle();
     }
 
     // 유저 정보가 없으면 북마크 데이터 검색 요청하지 않음.
