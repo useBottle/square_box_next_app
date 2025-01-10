@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import SearchBar from "../component/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
-import { setPageState } from "@/store/switches";
+import { setInputValue, setPageState } from "@/store/switches";
 import Link from "next/link";
 import { css } from "@emotion/react";
 import Image from "next/image";
@@ -28,6 +28,7 @@ export default function Youtube() {
     // console.log(youtubeList);
     // 유튜브 페이지 접속 여부 체크 -> 검색 컴포넌트에서 검색 요청 토글 역할
     dispatch(setPageState("youtube"));
+    dispatch(setInputValue(""));
 
     return () => {
       dispatch(setPageState("default"));
