@@ -8,7 +8,7 @@ const fetchData = async () => {
 
   const data = {
     latestNewsList: latestNewsList?.newsTop10List as newsList[],
-    latestArticles: articles as LatestNewsArticle[],
+    latestNewsArticles: articles as LatestNewsArticle[],
   };
 
   return data;

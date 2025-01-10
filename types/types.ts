@@ -57,7 +57,7 @@ export interface LatestNewsArticle {
 export interface LatestNewsProps {
   data: {
     latestNewsList: newsList[];
-    latestArticles: LatestNewsArticle[];
+    latestNewsArticles: LatestNewsArticle[];
   };
 }
 

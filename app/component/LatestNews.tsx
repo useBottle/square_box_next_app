@@ -17,9 +17,9 @@ import { setInputValue } from "@/store/switches";
 
 export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
-  const storedLatestNews = useSelector((state: RootState) => state.latestNews.latestNewsList);
-  const storedLatestArticles = useSelector((state: RootState) => state.latestNews.latestArticleSet);
-  const { latestNewsList, latestArticles } = data;
+  const storedLatestNewsList = useSelector((state: RootState) => state.latestNews.latestNewsList);
+  const storedLatestNewsArticles = useSelector((state: RootState) => state.latestNews.latestArticleSet);
+  const { latestNewsList, latestNewsArticles } = data;
   const router = useRouter();
 
   // 인터벌로 최신 뉴스 리스트 업데이트 및 각 리스트 요소 별 뉴스 기사 요청하여 업데이트
@@ -45,16 +45,16 @@ export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
     최신 뉴스 클릭 시 클라이언트에서 최신 뉴스 리스트 및 뉴스 기사를 디스패치 하기 전이면 
     서버에서 가져온 articles 중 클릭한 타이틀과 일치하는 것으로 디스패치 
     */
-    if (storedLatestNews.length === 0 && latestNewsList) {
-      dispatch(setLatestArticle(latestArticles.filter((article) => article.title === clickedtitle)[0]));
+    if (storedLatestNewsList.length === 0 && latestNewsList) {
+      dispatch(setLatestArticle(latestNewsArticles.filter((article) => article.title === clickedtitle)[0]));
     }
 
     /* 
     최신 뉴스 클릭 시 클라이언트에서 최신 뉴스 리스트 및 뉴스 기사를 디스패치한 이후면
     디스패치된 최신 뉴스 기사 세트 중 클릭한 타이틀과 일치하는 것으로 디스패치 
     */
-    if (storedLatestArticles.length !== 0) {
-      dispatch(setLatestArticle(storedLatestArticles.filter((article) => article.title === clickedtitle)[0]));
+    if (storedLatestNewsArticles.length !== 0) {
+      dispatch(setLatestArticle(storedLatestNewsArticles.filter((article) => article.title === clickedtitle)[0]));
     }
     dispatch(setInputValue(clickedtitle));
     router.push(`/latest-news/detail?title=${encodeURIComponent(clickedtitle)}`);
@@ -64,7 +64,7 @@ export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
     <div css={css(latestNews)}>
       <h4>최신 뉴스 Top 10</h4>
       <ul>
-        {storedLatestNews.length === 0
+        {storedLatestNewsList.length === 0
           ? latestNewsList.map((item, index) => {
               return (
                 <Link
@@ -83,7 +83,7 @@ export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
                 </Link>
               );
             })
-          : storedLatestNews.map((item, index) => {
+          : storedLatestNewsList.map((item, index) => {
               return (
                 <Link
                   href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`}
