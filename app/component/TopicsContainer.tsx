@@ -12,9 +12,6 @@ const fetchKeyword = async (): Promise<TopicsType[] | undefined> => {
   }
 };
 
-// 모든 실시간 검색어 키워드에 해당하는 뉴스 리스트들의 각 뉴스 기사 데이터.
-const articlesOfTopics: { keyword: string; articles: articleData[] }[] = [];
-
 /**
  * fetchNewsOfTopicsList
  * 실시간 검색어를 순회하여 각 검색어에 해당하는 뉴스 리스트 요청.
@@ -42,16 +39,6 @@ const fetchNewsOfTopicsList = async (keywords: string[]) => {
               urls.push(item.href);
             }
           });
-
-          // 키워드에 해당하는 뉴스 리스트의 각 뉴스 기사 데이터 요청.
-          const responseArticles = await axios.post(`${process.env.NEXTAUTH_URL}/api/articles` || "", { urls: urls });
-          const articlesData = {
-            keyword: keyword,
-            articles: responseArticles.data.articlesData,
-          };
-
-          // 위의 뉴스 리스트의 각 뉴스 기사 데이터 (articles) 를 articlesOfTopics 배열에 푸쉬.
-          articlesOfTopics.push(articlesData);
           return data;
         }),
       );
@@ -72,7 +59,6 @@ export default async function TopicsContainer() {
   const data = {
     keywordsData: keywordsData,
     newsOfTopicsList: newsOfTopicsList,
-    totalArticles: articlesOfTopics,
   };
 
   return (

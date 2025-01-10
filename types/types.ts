@@ -30,7 +30,6 @@ export interface TopicsProps {
   data: {
     keywordsData: TopicsType[] | undefined;
     newsOfTopicsList: TopicsListType[] | undefined;
-    totalArticles: { keyword: string; articles: articleData[] }[];
   };
 }
 
