@@ -42,6 +42,7 @@ export async function POST(req: Request) {
         item.prevImg.endsWith(".jpeg") ||
         item.prevImg.endsWith(".png") ||
         item.prevImg.endsWith(".gif") ||
+        item.prevImg.endsWith(".svg") ||
         item.prevImg.endsWith(".webp"),
     );
     const finalNewsList = noTroubleImgData.slice(0, 10);

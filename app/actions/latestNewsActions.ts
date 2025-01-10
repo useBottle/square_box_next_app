@@ -39,6 +39,7 @@ export async function getLatestNewsList(): Promise<{ newsTop10List: newsList[]; 
         item.prevImg.endsWith(".jpeg") ||
         item.prevImg.endsWith(".png") ||
         item.prevImg.endsWith(".gif") ||
+        item.prevImg.endsWith(".svg") ||
         item.prevImg.endsWith(".webp"),
     );
     const newsTop10List = noTroubleImgData.slice(0, 10);
