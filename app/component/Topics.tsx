@@ -25,7 +25,7 @@ import { setInputValue } from "@/store/switches";
 export default function Topics({ data }: TopicsProps): JSX.Element {
   const topicsList = useSelector((state: RootState) => state.topics.topicsList);
   const newsListOfTopics = useSelector((state: RootState) => state.topics.newsListOfTopics);
-  const totalArticles = useSelector((state: RootState) => state.topics.totalArticles);
+  const totalArticles = useSelector((state: RootState) => state.topics.articlesOfTopics);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const { newsOfTopicsList, keywordsData } = data;

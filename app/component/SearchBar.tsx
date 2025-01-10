@@ -8,6 +8,7 @@ import { setInputValue } from "@/store/switches";
 import { fetchYoutube } from "@/store/youtube";
 import { searchBarForm } from "@/styles/default.styles";
 import { css, CSSObject } from "@emotion/react";
+import { usePathname, useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
@@ -24,6 +25,8 @@ export default function SearchBar(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const pageAccess = useSelector((state: RootState) => state.switches.pageState);
   const inputValue = useSelector((state: RootState) => state.switches.inputValue);
+  // const pathName = usePathname();
+  // const router = useRouter();
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setInputValue(e.target.value));
@@ -40,7 +43,7 @@ export default function SearchBar(): JSX.Element {
         if (urls.length !== 0) {
           await dispatch(fetchArticles({ keyword: inputValue, urls: urls }));
         }
-        return;
+        // pathName !== "/news" && router.push("/news");
       } catch (error) {
         console.error("Error occurred. News fetch failed.", error);
       }

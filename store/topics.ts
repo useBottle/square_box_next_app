@@ -4,13 +4,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface TopicsStatesType {
   topicsList: TopicsType[] | undefined;
   newsListOfTopics: TopicsListType[] | undefined;
-  totalArticles: { keyword: string; articles: articleData[] }[] | undefined;
+  articlesOfTopics: { keyword: string; articles: articleData[] }[] | undefined;
 }
 
 const initialState: TopicsStatesType = {
   topicsList: undefined,
   newsListOfTopics: undefined,
-  totalArticles: undefined,
+  articlesOfTopics: undefined,
 };
 
 export const topics = createSlice({
@@ -24,7 +24,7 @@ export const topics = createSlice({
       state.newsListOfTopics = action.payload;
     },
     setTotalArticles(state, action: PayloadAction<{ keyword: string; articles: articleData[] }[]>) {
-      state.totalArticles = action.payload;
+      state.articlesOfTopics = action.payload;
     },
   },
 });

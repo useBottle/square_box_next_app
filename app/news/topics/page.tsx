@@ -3,16 +3,16 @@
 "use client";
 
 import { useDispatch, useSelector } from "react-redux";
-import SearchBar from "../component/SearchBar";
+import SearchBar from "../../component/SearchBar";
 import { AppDispatch, RootState } from "@/store/store";
 import Link from "next/link";
 import Image from "next/image";
 import { newsListStyles } from "@/styles/News.styles";
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
-import NewsSkeleton from "../component/NewsSkeleton";
+import NewsSkeleton from "../../component/NewsSkeleton";
 import { setPageState } from "@/store/switches";
-import FetchFailedData from "../component/FetchFailedData";
+import FetchFailedData from "../../component/FetchFailedData";
 import { PiWarningCircleFill, PiInfoFill } from "react-icons/pi";
 import { AiOutlineFileSearch } from "react-icons/ai";
 import { TbBoxOff } from "react-icons/tb";
@@ -23,7 +23,7 @@ export default function News(): JSX.Element {
   const newsList = useSelector((state: RootState) => state.news.newsList.newsList);
   const keyword = useSelector((state: RootState) => state.news.newsList.keyword);
   const newsStatus = useSelector((state: RootState) => state.news.newsStatus);
-  const articles = useSelector((state: RootState) => state.news.articles);
+  const articlesOfTopics = useSelector((state: RootState) => state.topics.articlesOfTopics);
   const [noNewsList, setNoNewsList] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
@@ -44,14 +44,15 @@ export default function News(): JSX.Element {
     }
   }, [keyword, newsList]);
 
-  if (newsStatus === "loading") {
-    return (
-      <div>
-        <SearchBar />
-        <NewsSkeleton />
-      </div>
-    );
-  }
+  // topics.ts 슬라이스에서 미들웨어 추가 후 적용하기.
+  // if (newsStatus === "loading") {
+  //   return (
+  //     <div>
+  //       <SearchBar />
+  //       <NewsSkeleton />
+  //     </div>
+  //   );
+  // }
 
   // newsStatus 가 failed 일 경우 FetchFailedData 렌더링
   if (newsStatus === "failed") {
@@ -61,10 +62,11 @@ export default function News(): JSX.Element {
   // 뉴스 리스트 요소를 클릭하면 articles 중 title 과 일치하는 것으로 singleArticle 에 디스패치
   const onClick = (keyword: string) => (e: React.MouseEvent) => {
     e.preventDefault();
-    const articleData = articles.articles.find((item) => item.title === keyword);
-    console.log("articleData: ", articleData);
-    console.log("articles: ", articles);
-    if (articleData) dispatch(setSingleArticle(articleData));
+    const articlesOfKeyword = articlesOfTopics?.find((item) => item.keyword === keyword);
+    const article = articlesOfKeyword?.articles.find((item) => item.title === keyword);
+    console.log("articlesOfKeyword: ", articlesOfKeyword);
+    console.log("article: ", article);
+    article && dispatch(setSingleArticle(article));
     router.push(`/news/detail?title=${encodeURIComponent(keyword)}`);
   };
 
