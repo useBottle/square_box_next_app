@@ -19,6 +19,7 @@ import ScrollBtn from "@/app/component/ScrollBtn";
 import { getMarkedNews } from "@/app/actions/bookmarkActions";
 import { getLatestNewsArticle } from "@/app/actions/latestNewsActions";
 import { setLatestNewsArticle } from "@/store/latestNews";
+import ArticleSkeleton from "@/app/component/ArticleSkeleton";
 
 export default function LatestNewsDetail(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
@@ -125,6 +126,11 @@ export default function LatestNewsDetail(): JSX.Element {
   // newsId 가 안맞는 경우 ExpiredData 렌더링
   if (typeof newsTitle !== "string") {
     return <ExpiredData />;
+  }
+
+  // latestNewsArticle 이 업데이트 되기 전이면 Skeleton UI 렌더링
+  if (latestNewsArticle.title === "") {
+    return <ArticleSkeleton />;
   }
 
   return (
