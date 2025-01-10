@@ -5,6 +5,7 @@ const initialState = {
   signoutModal: false,
   pageState: "default",
   inputValue: "",
+  onSearching: false,
 };
 
 export const switches = createSlice({
@@ -23,8 +24,11 @@ export const switches = createSlice({
     setInputValue(state, action: PayloadAction<string>) {
       state.inputValue = action.payload;
     },
+    setOnSearching(state, action: PayloadAction<boolean>) {
+      state.onSearching = action.payload;
+    },
   },
 });
 
-export const { setNavMenu, setSignoutModal, setPageState, setInputValue } = switches.actions;
+export const { setNavMenu, setSignoutModal, setPageState, setInputValue, setOnSearching } = switches.actions;
 export default switches.reducer;
