@@ -81,7 +81,16 @@ export default function NewsDynamic(): JSX.Element {
     if (singleArticle.title !== "") {
       currentNews.title = singleArticle.title;
       currentNews.date = singleArticle.date[1] ? singleArticle.date[1] : singleArticle.date[0];
-      currentNews.image = singleArticle.image;
+      currentNews.image = !(
+        singleArticle.image.endsWith(".jpg") ||
+        singleArticle.image.endsWith(".jpeg") ||
+        singleArticle.image.endsWith(".png") ||
+        singleArticle.image.endsWith(".gif") ||
+        singleArticle.image.endsWith(".svg") ||
+        singleArticle.image.endsWith(".webp")
+      )
+        ? singleArticle.image
+        : "";
       currentNews.alt = singleArticle.alt;
       currentNews.text = singleArticle.text;
     }
@@ -140,7 +149,7 @@ export default function NewsDynamic(): JSX.Element {
   return (
     <article css={css(dynamicNewsStyles)}>
       <figure className="imgGroup">
-        {singleArticle.image === "" || !singleArticle.image.startsWith("https") ? (
+        {singleArticle.image === "" ? (
           <div className="noImg">No Image</div>
         ) : (
           <Image src={singleArticle.image} alt="newsImg" width={200} height={200} />

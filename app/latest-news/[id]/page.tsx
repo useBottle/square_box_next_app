@@ -78,7 +78,16 @@ export default function LatestNewsDetail(): JSX.Element {
     const currentNews = {
       title: latestNewsArticle.title,
       date: latestNewsArticle.date,
-      image: latestNewsArticle.image,
+      image: !(
+        latestNewsArticle.image.endsWith(".jpg") ||
+        latestNewsArticle.image.endsWith(".jpeg") ||
+        latestNewsArticle.image.endsWith(".png") ||
+        latestNewsArticle.image.endsWith(".gif") ||
+        latestNewsArticle.image.endsWith(".svg") ||
+        latestNewsArticle.image.endsWith(".webp")
+      )
+        ? latestNewsArticle.image
+        : "",
       alt: latestNewsArticle.alt,
       text: latestNewsArticle.text,
     };
@@ -136,7 +145,7 @@ export default function LatestNewsDetail(): JSX.Element {
   return (
     <article css={css(dynamicNewsStyles)}>
       <figure className="imgGroup">
-        {latestNewsArticle.image === "" || !latestNewsArticle.image.startsWith("https") ? (
+        {latestNewsArticle.image === "" ? (
           <div className="noImg">No Image</div>
         ) : (
           <Image src={latestNewsArticle.image} alt="newsImg" width={200} height={200} />
