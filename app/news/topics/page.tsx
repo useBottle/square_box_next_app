@@ -10,7 +10,7 @@ import Image from "next/image";
 import { newsListStyles } from "@/styles/News.styles";
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
-import { setPageState } from "@/store/switches";
+import { setInputValue, setPageState } from "@/store/switches";
 import { PiWarningCircleFill, PiInfoFill } from "react-icons/pi";
 import { AiOutlineFileSearch } from "react-icons/ai";
 import { TbBoxOff } from "react-icons/tb";
@@ -33,6 +33,7 @@ export default function NewsOfTopics(): JSX.Element {
 
     return () => {
       dispatch(setPageState("default"));
+      dispatch(setInputValue(""));
     };
   }, [dispatch]);
 
