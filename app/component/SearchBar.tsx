@@ -25,8 +25,8 @@ export default function SearchBar(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const pageAccess = useSelector((state: RootState) => state.switches.pageState);
   const inputValue = useSelector((state: RootState) => state.switches.inputValue);
-  // const pathName = usePathname();
-  // const router = useRouter();
+  const pathName = usePathname();
+  const router = useRouter();
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setInputValue(e.target.value));
@@ -43,7 +43,7 @@ export default function SearchBar(): JSX.Element {
         if (urls.length !== 0) {
           await dispatch(fetchArticles({ keyword: inputValue, urls: urls }));
         }
-        // pathName !== "/news" && router.push("/news");
+        pathName !== "/news" && router.push("/news");
       } catch (error) {
         console.error("Error occurred. News fetch failed.", error);
       }

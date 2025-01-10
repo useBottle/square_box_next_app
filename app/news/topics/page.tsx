@@ -10,7 +10,6 @@ import Image from "next/image";
 import { newsListStyles } from "@/styles/News.styles";
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
-import NewsSkeleton from "../../component/NewsSkeleton";
 import { setPageState } from "@/store/switches";
 import FetchFailedData from "../../component/FetchFailedData";
 import { PiWarningCircleFill, PiInfoFill } from "react-icons/pi";
