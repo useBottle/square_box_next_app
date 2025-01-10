@@ -31,9 +31,12 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
 
   // Link 컴포넌트의 리디렉션 막고 useRouter 로 리디렉션. (리디렉션 전에 상태 업데이트 하기 위함)
   // news 페이지로 리디렉션 전에 inputValue 업데이트.
-  const onClick = (keyword: string) => (e: React.MouseEvent) => {
+  const onClick = (clickedTitle: string) => (e: React.MouseEvent) => {
     e.preventDefault();
-    const newsList = newsOfTopicsList?.filter((item) => item.keyword === keyword)[0] || { keyword: "", newsList: [] };
+    const newsList = newsOfTopicsList?.filter((item) => item.keyword === clickedTitle)[0] || {
+      keyword: "",
+      newsList: [],
+    };
     const urls: string[] = [];
     newsList.newsList.map((item) => {
       if (item.href !== "") {
@@ -57,12 +60,12 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
     if (topicsList && newsListsOfTopics) {
       dispatch(
         setNewsListOfSingleTopic(
-          newsListsOfTopics.filter((item) => item.keyword === keyword)[0] || { keyword: "", newsList: [] },
+          newsListsOfTopics.filter((item) => item.keyword === clickedTitle)[0] || { keyword: "", newsList: [] },
         ),
       );
     }
 
-    dispatch(setInputValue(keyword));
+    dispatch(setInputValue(clickedTitle));
     router.push("/news/topics");
   };
 
