@@ -16,13 +16,15 @@ import FetchFailedData from "../component/FetchFailedData";
 import { PiWarningCircleFill, PiInfoFill } from "react-icons/pi";
 import { AiOutlineFileSearch } from "react-icons/ai";
 import { TbBoxOff } from "react-icons/tb";
-import { setSingleArticle } from "@/store/news";
+import { fetchArticles, setSingleArticle } from "@/store/news";
 import { useRouter } from "next/navigation";
 
 export default function News(): JSX.Element {
   const newsList = useSelector((state: RootState) => state.news.newsList.newsList);
   const keyword = useSelector((state: RootState) => state.news.newsList.keyword);
+  const inputValue = useSelector((state: RootState) => state.switches.inputValue);
   const newsStatus = useSelector((state: RootState) => state.news.newsStatus);
+  const newsUrls = useSelector((state: RootState) => state.news.urls);
   const articles = useSelector((state: RootState) => state.news.articles);
   const [noNewsList, setNoNewsList] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
@@ -32,6 +34,18 @@ export default function News(): JSX.Element {
   // 뉴스 페이지 접속 여부 체크 -> 검색 컴포넌트에서 검색 요청 토글 역할
   useEffect(() => {
     dispatch(setPageState("news"));
+
+    // 각 뉴스 리스트에 대한 articles 요청
+    const fetchArticlesOfSingleTopic = async () => {
+      try {
+        await dispatch(fetchArticles({ keyword: inputValue, urls: newsUrls }));
+      } catch (error) {
+        console.error("Articles of single topic fetch failed.", error);
+      }
+    };
+
+    fetchArticlesOfSingleTopic();
+
     return () => {
       dispatch(setPageState("default"));
     };

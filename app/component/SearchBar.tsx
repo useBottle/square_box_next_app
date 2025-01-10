@@ -2,14 +2,14 @@
 
 "use client";
 
-import { fetchArticles, fetchNewsList } from "@/store/news";
+import { fetchNewsList } from "@/store/news";
 import { AppDispatch, RootState } from "@/store/store";
 import { setInputValue, setOnSearching } from "@/store/switches";
 import { fetchYoutube } from "@/store/youtube";
 import { searchBarForm } from "@/styles/default.styles";
 import { css, CSSObject } from "@emotion/react";
 import { usePathname, useRouter } from "next/navigation";
-import { ChangeEvent, FormEvent, useEffect } from "react";
+import { ChangeEvent, FormEvent } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
@@ -39,12 +39,8 @@ export default function SearchBar(): JSX.Element {
 
     if (pageAccess === "news") {
       try {
-        const result = await dispatch(fetchNewsList(inputValue)).unwrap();
-        const urls = result.urls;
-        if (urls.length !== 0) {
-          await dispatch(fetchArticles({ keyword: inputValue, urls: urls }));
-        }
-        // urls 를 디스패치하고 news 페이지에서 articles 요청해 디스패치하도록 적용해야함.
+        // 뉴스 검색 시 뉴스 리스트 요청 후 키워드, 리스트, urls 디스패치
+        await dispatch(fetchNewsList(inputValue));
         pathName !== "/news" && router.push("/news");
       } catch (error) {
         console.error("Error occurred. News fetch failed.", error);

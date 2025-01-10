@@ -33,7 +33,7 @@ export default function NewsOfTopics(): JSX.Element {
     // 뉴스 페이지 접속 여부 체크 -> 검색 컴포넌트에서 검색 요청 토글 역할
     dispatch(setPageState("news"));
 
-    // articlesOfTopics 를 디스패치 해야함. 서버에서 이제 하지 않음.
+    // 각 뉴스 리스트에 대한 articles 요청
     const fetchArticlesOfSingleTopic = async () => {
       try {
         await dispatch(fetchArticlesOfTopic({ keyword: inputValue, urls: urlsOfNewsList }));
