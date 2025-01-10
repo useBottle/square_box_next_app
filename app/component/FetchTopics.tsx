@@ -1,17 +1,11 @@
 "use client";
 
-import { topicsForm } from "@/styles/Topics.styles";
-import { articleData, newsList, newsListWithKeyword, TopicsProps, TopicsType } from "@/types/types";
-import { css } from "@emotion/react";
+import { articleData, newsList, TopicsType } from "@/types/types";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { FaPlus, FaMinus, FaCaretUp, FaCaretDown } from "react-icons/fa6";
-import Link from "next/link";
-import { setArticles, setNewsList, setTotalArticles } from "@/store/news";
+import { setTotalArticles } from "@/store/news";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
-import { useRouter } from "next/navigation";
-import { setInputValue } from "@/store/switches";
 
 export default function FetchTopics() {
   const dispatch = useDispatch<AppDispatch>();
