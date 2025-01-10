@@ -28,6 +28,10 @@ export default function NewsDynamic(): JSX.Element {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    console.log("single article: ", singleArticle);
+  }, [singleArticle]);
+
+  useEffect(() => {
     window.scrollTo({ top: 0 });
 
     // 유저 정보가 없으면 북마크 데이터 검색 요청하지 않음.
@@ -64,7 +68,6 @@ export default function NewsDynamic(): JSX.Element {
     };
 
     // * 현재 뉴스 기사 객체 생성
-    // topics, news 에서 직접 검색 등으로 뉴스 리스트를 띄우고 뉴스 기사를 클릭한 경우. (일반적 케이스)
     if (singleArticle.title !== "") {
       currentNews.title = singleArticle.title;
       currentNews.date = singleArticle.date[1] ? singleArticle.date[1] : singleArticle.date[0];
@@ -115,7 +118,7 @@ export default function NewsDynamic(): JSX.Element {
   };
 
   // newsTitle 타입 불일치 또는 article 에 문제가 생긴 경우 ExpiredData 렌더링
-  if (typeof newsTitle !== "string" || singleArticle === undefined) {
+  if (typeof newsTitle !== "string" || singleArticle.title === "") {
     return <ExpiredData />;
   }
 

@@ -37,6 +37,7 @@ export default function News(): JSX.Element {
   }, [dispatch]);
 
   useEffect(() => {
+    console.log("news list: ", newsList);
     // 검색어가 입력되어 있고 뉴스 리스트가 없을 때, noNewsList 상태 업데이트
     if (keyword !== "" && newsList.length === 0) {
       setNoNewsList(true);

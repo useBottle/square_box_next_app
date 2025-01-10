@@ -47,7 +47,7 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
 
     /* 
     실시간 검색어 클릭 시 클라이언트에서 실시간 검색어 별 리스트 및 뉴스 기사를 디스패치한 이후면
-    디스패치된 리스트 및 뉴스 기사 세트 중 클릭한 타이틀과 일치하는 것으로 디스패치 .
+    디스패치된 리스트 및 뉴스 기사 세트 중 클릭한 타이틀과 일치하는 것으로 디스패치.
     클릭한 시점에 totalArticles 가 아직 디스패치되지 않은 경우 news - [id] 컴포넌트에서 별도로 article 디스패치.
     */
     if (topicsList && newsListOfTopics && totalArticles) {

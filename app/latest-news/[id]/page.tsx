@@ -110,7 +110,7 @@ export default function LatestNewsDetail(): JSX.Element {
   };
 
   // newsId 가 안맞거나 article에 문제가생긴 경우 ExpiredData 렌더링
-  if (typeof newsTitle !== "string" || storedArticle === undefined) {
+  if (typeof newsTitle !== "string" || storedArticle.title === "") {
     return <ExpiredData />;
   }
 
