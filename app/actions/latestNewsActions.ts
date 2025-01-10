@@ -5,7 +5,7 @@ import axios from "axios";
 import * as cheerio from "cheerio";
 
 // 최신 뉴스 리스트 요청
-export async function getLatestNewsList() {
+export async function getLatestNewsList(): Promise<{ newsTop10List: newsList[]; urls: string[] }> {
   const url = process.env.LATEST_NEWS_API || "";
 
   try {
@@ -38,5 +38,34 @@ export async function getLatestNewsList() {
     return { newsTop10List: newsTop10List, urls: urls };
   } catch (error) {
     console.error("Error fetching latest news", error);
+    return { newsTop10List: [], urls: [] };
+  }
+}
+
+// 최신 뉴스 단일 기사 요청
+export async function getLatestNewsArticle(url: string): Promise<LatestNewsArticle> {
+  try {
+    const response = await axios.get(url);
+    const $ = cheerio.load(response.data);
+    const title = $(".title-article01 h1.tit").text().trim();
+    const date = $(".title-article01 .update-time").attr("data-published-time");
+    const img = $(".image-zone .img-con .img img").attr("src");
+    const alt = $(".image-zone .desc-con .tit-cap").text().trim();
+    const text = $(".story-news.article p:not(.txt-copyright.adrs)")
+      .map((_, item) => $(item).text().trim())
+      .get()
+      .filter((item) => item !== "");
+
+    const data = {
+      title: title,
+      date: date || "",
+      image: img || "",
+      alt: alt || "",
+      text: text,
+    };
+    return data;
+  } catch (error) {
+    console.error("Latest news article fetch failed on middleware.", error);
+    return { title: "", date: "", image: "", alt: "", text: [] };
   }
 }

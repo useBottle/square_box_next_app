@@ -29,7 +29,6 @@ export default function LatestNewsDetail(): JSX.Element {
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoadingMarked, setIsLoadingMarked] = useState<boolean>(true);
   const storedArticle = useSelector((state: RootState) => state.latestNews.latestNewsArticle);
-  const latestNewsStatus = useSelector((state: RootState) => state.latestNews.latestNewsStatus);
 
   // storedArticle 이 업데이트 되면 해당 값이 북마크 되어있는지 확인
   useEffect(() => {
@@ -38,7 +37,7 @@ export default function LatestNewsDetail(): JSX.Element {
     // 클릭한 뉴스에 대한 article 데이터 요청
     if (storedArticle.title !== newsTitle) {
       const fetchArticle = async () => {
-        await dispatch(fetchLatestNewsArticle(latestNewsUrl));
+        // await dispatch(fetchLatestNewsArticle(latestNewsUrl));
       };
       fetchArticle();
     }
