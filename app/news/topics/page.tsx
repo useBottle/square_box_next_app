@@ -22,9 +22,10 @@ import { fetchArticlesOfTopic } from "@/store/topics";
 export default function NewsOfTopics(): JSX.Element {
   const newsListOfSingleTopic = useSelector((state: RootState) => state.topics.newsListOfSingleTopic);
   const articlesOfSingleTopic = useSelector((state: RootState) => state.topics.articlesOfSingleTopic);
+  const urlsOfNewsList = useSelector((state: RootState) => state.topics.urlsOfNewsList);
   const onSearching = useSelector((state: RootState) => state.switches.onSearching);
   const inputValue = useSelector((state: RootState) => state.switches.inputValue);
-  const urlsOfNewsList = useSelector((state: RootState) => state.topics.urlsOfNewsList);
+  const singleArticle = useSelector((state: RootState) => state.news.article);
   const [noNewsList, setNoNewsList] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
@@ -57,12 +58,17 @@ export default function NewsOfTopics(): JSX.Element {
   }, [inputValue, newsListOfSingleTopic]);
 
   // 뉴스 리스트 요소를 클릭하면 articles 중 title 과 일치하는 것으로 singleArticle 에 디스패치
-  const onClick = (keyword: string, href: string) => (e: React.MouseEvent) => {
+  const onClick = (clickedTitle: string, href: string) => (e: React.MouseEvent) => {
     e.preventDefault();
-    const article = articlesOfSingleTopic?.articles.find((item) => item.title === keyword);
+    // 디스패치 되어있는 토픽 뉴스 기사와 클릭한 토픽 뉴스 기사가 다를 경우 초기화.
+    // 기사 상세 페이지 접속 시 이전 데이터로 깜박임 현상 방지하기 위함.
+    if (singleArticle.title !== clickedTitle) {
+      dispatch(setSingleArticle({ title: "", date: [], image: "", alt: "", text: [] }));
+    }
+    const article = articlesOfSingleTopic?.articles.find((item) => item.title === clickedTitle);
     article && dispatch(setSingleArticle(article));
     dispatch(setUrl(href));
-    router.push(`/news/detail?title=${encodeURIComponent(keyword)}`);
+    router.push(`/news/detail?title=${encodeURIComponent(clickedTitle)}`);
   };
 
   if (onSearching) {
