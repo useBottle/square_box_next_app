@@ -33,7 +33,15 @@ export async function getLatestNewsList(): Promise<{ newsTop10List: newsList[]; 
     });
     const imgExistNewsData = newsData.filter((item) => item.prevImg !== "");
     const textExistNewsData = imgExistNewsData.filter((item) => item.summary !== "");
-    const newsTop10List = textExistNewsData.slice(0, 10);
+    const noTroubleImgData = textExistNewsData.filter(
+      (item) =>
+        item.prevImg.endsWith(".jpg") ||
+        item.prevImg.endsWith(".jpeg") ||
+        item.prevImg.endsWith(".png") ||
+        item.prevImg.endsWith(".gif") ||
+        item.prevImg.endsWith(".webp"),
+    );
+    const newsTop10List = noTroubleImgData.slice(0, 10);
     const urls = newsTop10List.map((item) => item.href);
 
     return { newsTop10List: newsTop10List, urls: urls };

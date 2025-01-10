@@ -28,6 +28,7 @@ export default function NewsOfTopics(): JSX.Element {
   const router = useRouter();
 
   useEffect(() => {
+    console.log(newsListOfSingleTopic);
     window.scrollTo({ top: 0 });
     // 뉴스 페이지 접속 여부 체크 -> 검색 컴포넌트에서 검색 요청 토글 역할
     dispatch(setPageState("news"));

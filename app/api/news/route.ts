@@ -36,7 +36,16 @@ export async function POST(req: Request) {
     });
     const imgExistNewsData = newsData.filter((item) => item.prevImg !== "");
     const textExistNewsData = imgExistNewsData.filter((item) => item.summary !== "");
-    return NextResponse.json({ newsList: textExistNewsData });
+    const noTroubleImgData = textExistNewsData.filter(
+      (item) =>
+        item.prevImg.endsWith(".jpg") ||
+        item.prevImg.endsWith(".jpeg") ||
+        item.prevImg.endsWith(".png") ||
+        item.prevImg.endsWith(".gif") ||
+        item.prevImg.endsWith(".webp"),
+    );
+    const finalNewsList = noTroubleImgData.slice(0, 10);
+    return NextResponse.json({ newsList: finalNewsList });
   } catch (error: unknown) {
     console.error(error);
   }
