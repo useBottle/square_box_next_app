@@ -1,16 +1,32 @@
-import { articleData, TopicsListType, TopicsType } from "@/types/types";
+import { articleData, newsList, TopicsListType, TopicsType } from "@/types/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface TopicsStatesType {
   topicsList: TopicsType[] | undefined;
-  newsListOfTopics: TopicsListType[] | undefined;
+  newsListsOfTopics: TopicsListType[] | undefined;
+  newsListOfSingleTopic: {
+    keyword: string;
+    newsList: newsList[];
+  };
   articlesOfTopics: { keyword: string; articles: articleData[] }[] | undefined;
+  articlesOfSingleTopic: {
+    keyword: string;
+    articles: articleData[];
+  };
 }
 
 const initialState: TopicsStatesType = {
   topicsList: undefined,
-  newsListOfTopics: undefined,
+  newsListsOfTopics: undefined,
+  newsListOfSingleTopic: {
+    keyword: "",
+    newsList: [],
+  },
   articlesOfTopics: undefined,
+  articlesOfSingleTopic: {
+    keyword: "",
+    articles: [],
+  },
 };
 
 export const topics = createSlice({
@@ -20,14 +36,26 @@ export const topics = createSlice({
     setTopicsList(state, action: PayloadAction<TopicsType[]>) {
       state.topicsList = action.payload;
     },
-    setNewsListOfTopics(state, action: PayloadAction<TopicsListType[]>) {
-      state.newsListOfTopics = action.payload;
+    setNewsListsOfTopics(state, action: PayloadAction<TopicsListType[]>) {
+      state.newsListsOfTopics = action.payload;
     },
-    setTotalArticles(state, action: PayloadAction<{ keyword: string; articles: articleData[] }[]>) {
+    setArticlesOfTopics(state, action: PayloadAction<{ keyword: string; articles: articleData[] }[]>) {
       state.articlesOfTopics = action.payload;
+    },
+    setNewsListOfSingleTopic(state, action: PayloadAction<{ keyword: string; newsList: newsList[] }>) {
+      state.newsListOfSingleTopic = action.payload;
+    },
+    setArticlesOfSingleTopic(state, action: PayloadAction<{ keyword: string; articles: articleData[] }>) {
+      state.articlesOfSingleTopic = action.payload;
     },
   },
 });
 
-export const { setTopicsList, setNewsListOfTopics, setTotalArticles } = topics.actions;
+export const {
+  setTopicsList,
+  setNewsListsOfTopics,
+  setArticlesOfTopics,
+  setNewsListOfSingleTopic,
+  setArticlesOfSingleTopic,
+} = topics.actions;
 export default topics.reducer;

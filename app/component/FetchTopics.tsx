@@ -5,7 +5,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
-import { setNewsListOfTopics, setTopicsList, setTotalArticles } from "@/store/topics";
+import { setArticlesOfTopics, setNewsListsOfTopics, setTopicsList } from "@/store/topics";
 
 export default function FetchTopics() {
   const dispatch = useDispatch<AppDispatch>();
@@ -79,7 +79,7 @@ export default function FetchTopics() {
     // 최초 topics, newsListOfTopics 를 클라이언트에서 받아와 사용하려면 이곳에서 디스패치.
     const dispatchData = async () => {
       const result = await fetchKeyword();
-      result?.totalArticles && dispatch(setTotalArticles(result.totalArticles));
+      result?.totalArticles && dispatch(setArticlesOfTopics(result.totalArticles));
     };
 
     dispatchData();
@@ -88,8 +88,8 @@ export default function FetchTopics() {
     const intervalFetch = setInterval(async () => {
       const result = await fetchKeyword();
       result?.topicsList && dispatch(setTopicsList(result.topicsList));
-      result?.newsListOfTopics && dispatch(setNewsListOfTopics(result.newsListOfTopics));
-      result?.totalArticles && dispatch(setTotalArticles(result.totalArticles));
+      result?.newsListOfTopics && dispatch(setNewsListsOfTopics(result.newsListOfTopics));
+      result?.totalArticles && dispatch(setArticlesOfTopics(result.totalArticles));
     }, 1000 * 60);
 
     return () => clearInterval(intervalFetch);

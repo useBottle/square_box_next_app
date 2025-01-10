@@ -19,9 +19,8 @@ import { setSingleArticle } from "@/store/news";
 import { useRouter } from "next/navigation";
 
 export default function News(): JSX.Element {
-  const newsList = useSelector((state: RootState) => state.news.newsList.newsList);
+  const newsListOfSingleTopic = useSelector((state: RootState) => state.topics.newsListOfSingleTopic);
   const keyword = useSelector((state: RootState) => state.news.newsList.keyword);
-  const newsStatus = useSelector((state: RootState) => state.news.newsStatus);
   const articlesOfTopics = useSelector((state: RootState) => state.topics.articlesOfTopics);
   const [noNewsList, setNoNewsList] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
@@ -36,12 +35,12 @@ export default function News(): JSX.Element {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log("news list: ", newsList);
+    console.log("news list: ", newsListOfSingleTopic);
     // 검색어가 입력되어 있고 뉴스 리스트가 없을 때, noNewsList 상태 업데이트
-    if (keyword !== "" && newsList.length === 0) {
+    if (keyword !== "" && newsListOfSingleTopic.newsList.length === 0) {
       setNoNewsList(true);
     }
-  }, [keyword, newsList]);
+  }, [keyword, newsListOfSingleTopic]);
 
   // topics.ts 슬라이스에서 미들웨어 추가 후 적용하기.
   // if (newsStatus === "loading") {
@@ -54,9 +53,9 @@ export default function News(): JSX.Element {
   // }
 
   // newsStatus 가 failed 일 경우 FetchFailedData 렌더링
-  if (newsStatus === "failed") {
-    return <FetchFailedData />;
-  }
+  // if (newsStatus === "failed") {
+  //   return <FetchFailedData />;
+  // }
 
   // 뉴스 리스트 요소를 클릭하면 articles 중 title 과 일치하는 것으로 singleArticle 에 디스패치
   const onClick = (keyword: string) => (e: React.MouseEvent) => {
@@ -72,7 +71,7 @@ export default function News(): JSX.Element {
   return (
     <div css={css(newsListStyles)}>
       <SearchBar />
-      {newsList.length === 0 && !noNewsList && (
+      {newsListOfSingleTopic.newsList.length === 0 && !noNewsList && (
         <div className="initNews">
           <PiInfoFill className="icon" />
           <div className="textNback">
@@ -91,7 +90,7 @@ export default function News(): JSX.Element {
         </div>
       )}
       <ul>
-        {newsList.map((item, index) => {
+        {newsListOfSingleTopic.newsList.map((item, index) => {
           return (
             <Link
               href={`/news/detail?title=${encodeURIComponent(item.title)}`}

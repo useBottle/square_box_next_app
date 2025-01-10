@@ -43,6 +43,7 @@ export default function SearchBar(): JSX.Element {
         if (urls.length !== 0) {
           await dispatch(fetchArticles({ keyword: inputValue, urls: urls }));
         }
+        // urls 를 디스패치하고 news 페이지에서 articles 요청해 디스패치하도록 적용해야함.
         pathName !== "/news" && router.push("/news");
       } catch (error) {
         console.error("Error occurred. News fetch failed.", error);

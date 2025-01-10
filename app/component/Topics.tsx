@@ -7,11 +7,11 @@ import { TopicsProps } from "@/types/types";
 import { css } from "@emotion/react";
 import { FaPlus, FaMinus, FaCaretUp, FaCaretDown } from "react-icons/fa6";
 import Link from "next/link";
-import { setArticles, setNewsList } from "@/store/news";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { useRouter } from "next/navigation";
 import { setInputValue } from "@/store/switches";
+import { setArticlesOfSingleTopic, setNewsListOfSingleTopic } from "@/store/topics";
 
 /**
  * Topics.tsx
@@ -24,8 +24,8 @@ import { setInputValue } from "@/store/switches";
 
 export default function Topics({ data }: TopicsProps): JSX.Element {
   const topicsList = useSelector((state: RootState) => state.topics.topicsList);
-  const newsListOfTopics = useSelector((state: RootState) => state.topics.newsListOfTopics);
-  const totalArticles = useSelector((state: RootState) => state.topics.articlesOfTopics);
+  const newsListsOfTopics = useSelector((state: RootState) => state.topics.newsListsOfTopics);
+  const articlesOfTopics = useSelector((state: RootState) => state.topics.articlesOfTopics);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const { newsOfTopicsList, keywordsData } = data;
@@ -41,7 +41,9 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
     */
     if (topicsList === undefined && newsOfTopicsList !== undefined) {
       dispatch(
-        setNewsList(newsOfTopicsList?.filter((item) => item.keyword === keyword)[0] || { keyword: "", newsList: [] }),
+        setNewsListOfSingleTopic(
+          newsOfTopicsList?.filter((item) => item.keyword === keyword)[0] || { keyword: "", newsList: [] },
+        ),
       );
     }
 
@@ -50,12 +52,16 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
     디스패치된 리스트 및 뉴스 기사 세트 중 클릭한 타이틀과 일치하는 것으로 디스패치.
     클릭한 시점에 totalArticles 가 아직 디스패치되지 않은 경우 news - [id] 컴포넌트에서 별도로 article 디스패치.
     */
-    if (topicsList && newsListOfTopics && totalArticles) {
+    if (topicsList && newsListsOfTopics && articlesOfTopics) {
       dispatch(
-        setNewsList(newsListOfTopics.filter((item) => item.keyword === keyword)[0] || { keyword: "", newsList: [] }),
+        setNewsListOfSingleTopic(
+          newsListsOfTopics.filter((item) => item.keyword === keyword)[0] || { keyword: "", newsList: [] },
+        ),
       );
       dispatch(
-        setArticles(totalArticles?.filter((item) => item.keyword === keyword)[0] || { keyword: "", articles: [] }),
+        setArticlesOfSingleTopic(
+          articlesOfTopics?.filter((item) => item.keyword === keyword)[0] || { keyword: "", articles: [] },
+        ),
       );
     }
 
