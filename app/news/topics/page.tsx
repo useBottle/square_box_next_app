@@ -42,21 +42,6 @@ export default function News(): JSX.Element {
     }
   }, [keyword, newsListOfSingleTopic]);
 
-  // topics.ts 슬라이스에서 미들웨어 추가 후 적용하기.
-  // if (newsStatus === "loading") {
-  //   return (
-  //     <div>
-  //       <SearchBar />
-  //       <NewsSkeleton />
-  //     </div>
-  //   );
-  // }
-
-  // newsStatus 가 failed 일 경우 FetchFailedData 렌더링
-  // if (newsStatus === "failed") {
-  //   return <FetchFailedData />;
-  // }
-
   // 뉴스 리스트 요소를 클릭하면 articles 중 title 과 일치하는 것으로 singleArticle 에 디스패치
   const onClick = (keyword: string) => (e: React.MouseEvent) => {
     e.preventDefault();
