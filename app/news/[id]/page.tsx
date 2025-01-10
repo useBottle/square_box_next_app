@@ -18,7 +18,8 @@ import { deleteNewsBookmark, findNewsBookmark, setNewsBookmark } from "@/app/act
 import { getMarkedNews } from "@/app/actions/bookmarkActions";
 import ScrollBtn from "@/app/component/ScrollBtn";
 import { LatestNewsArticle } from "@/types/types";
-import { fetchSingleArticle } from "@/store/news";
+import { fetchSingleArticle } from "@/app/actions/newsActions";
+import { setSingleArticle } from "@/store/news";
 
 export default function NewsDynamic(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
@@ -40,7 +41,8 @@ export default function NewsDynamic(): JSX.Element {
     // 클릭한 뉴스에 대한 article 데이터 요청
     if (singleArticle.title !== newsTitle) {
       const fetchArticle = async () => {
-        await dispatch(fetchSingleArticle(newsUrl));
+        const result = await fetchSingleArticle(newsUrl);
+        dispatch(setSingleArticle(result));
       };
       fetchArticle();
     }
