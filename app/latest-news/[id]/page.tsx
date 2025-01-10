@@ -13,15 +13,18 @@ import { dynamicNewsStyles } from "@/styles/News.styles";
 import Image from "next/image";
 import Link from "next/link";
 import { deleteNewsBookmark, findNewsBookmark, setNewsBookmark } from "@/app/actions/bookmarkNewsActions";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
 import ScrollBtn from "@/app/component/ScrollBtn";
 import { getMarkedNews } from "@/app/actions/bookmarkActions";
+import { fetchLatestNewsArticle } from "@/store/latestNews";
 
 export default function LatestNewsDetail(): JSX.Element {
+  const dispatch = useDispatch<AppDispatch>();
   const { data: session } = useSession();
   const params = useSearchParams();
   const newsTitle = decodeURIComponent(params.get("title") as string);
+  const latestNewsUrl = useSelector((state: RootState) => state.latestNews.latestNewsUrl);
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoadingMarked, setIsLoadingMarked] = useState<boolean>(true);
   const storedArticle = useSelector((state: RootState) => state.latestNews.latestNewsArticle);
@@ -33,8 +36,7 @@ export default function LatestNewsDetail(): JSX.Element {
     // 클릭한 뉴스에 대한 article 데이터 요청
     if (storedArticle.title !== newsTitle) {
       const fetchArticle = async () => {
-        // 최신뉴스 전용 article 로 수정
-        await dispatch(fetchSingleArticle(newsUrl));
+        await dispatch(fetchLatestNewsArticle(latestNewsUrl));
       };
       fetchArticle();
     }

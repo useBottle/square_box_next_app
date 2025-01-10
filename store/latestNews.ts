@@ -40,6 +40,7 @@ interface LatestNewsType {
   latestNewsArticleSet: LatestNewsArticle[];
   latestNewsArticle: LatestNewsArticle;
   latestNewsStatus: "idle" | "loading" | "succeeded" | "failed";
+  latestNewsUrl: string;
 }
 
 const initialState: LatestNewsType = {
@@ -53,6 +54,7 @@ const initialState: LatestNewsType = {
     text: [],
   },
   latestNewsStatus: "idle",
+  latestNewsUrl: "",
 };
 
 export const latestNews = createSlice({
@@ -67,6 +69,9 @@ export const latestNews = createSlice({
     },
     setLatestNewsArticle(state, action) {
       state.latestNewsArticle = action.payload;
+    },
+    setLatestNewsUrl(state, action) {
+      state.latestNewsUrl = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -84,5 +89,6 @@ export const latestNews = createSlice({
   },
 });
 
-export const { setLatestNewsList, setLatestNewsArticleSet, setLatestNewsArticle } = latestNews.actions;
+export const { setLatestNewsList, setLatestNewsArticleSet, setLatestNewsArticle, setLatestNewsUrl } =
+  latestNews.actions;
 export default latestNews.reducer;

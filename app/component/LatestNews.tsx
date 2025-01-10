@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { getLatestNewsArticle, getLatestNewsList } from "../actions/latestNewsActions";
-import { setLatestNewsArticle, setLatestNewsArticleSet, setLatestNewsList } from "@/store/latestNews";
+import { setLatestNewsArticle, setLatestNewsArticleSet, setLatestNewsList, setLatestNewsUrl } from "@/store/latestNews";
 import Image from "next/image";
 import { latestNews } from "@/styles/LatestNews.styles";
 import { css } from "@emotion/react";
@@ -38,8 +38,9 @@ export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
     return () => clearInterval(intervalFetch);
   }, []);
 
-  const onClick = (clickedtitle: string) => (e: React.MouseEvent) => {
+  const onClick = (clickedtitle: string, href: string) => (e: React.MouseEvent) => {
     e.preventDefault();
+    dispatch(setLatestNewsUrl(href));
 
     /* 
     최신 뉴스 클릭 시 클라이언트에서 최신 뉴스 리스트 및 뉴스 기사를 디스패치 하기 전이면 
@@ -70,7 +71,7 @@ export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
                 <Link
                   href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`}
                   key={index}
-                  onClick={onClick(item.title)}
+                  onClick={onClick(item.title, item.href)}
                 >
                   <li>
                     <Image src={item.prevImg} width={100} height={100} alt="newsImg" />
@@ -88,7 +89,7 @@ export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
                 <Link
                   href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`}
                   key={index}
-                  onClick={onClick(item.title)}
+                  onClick={onClick(item.title, item.href)}
                 >
                   <li>
                     <Image src={item.prevImg} width={100} height={100} alt="newsImg" />
