@@ -28,7 +28,6 @@ interface TopicsStatesType {
     newsList: newsList[];
   };
   urlsOfNewsList: string[];
-  urlOfArticle: string;
   articlesStates: "idle" | "loading" | "succeeded" | "failed";
   articlesOfTopics: { keyword: string; articles: articleData[] }[] | undefined;
   articlesOfSingleTopic: {
@@ -45,7 +44,6 @@ const initialState: TopicsStatesType = {
     newsList: [],
   },
   urlsOfNewsList: [],
-  urlOfArticle: "",
   articlesStates: "idle",
   articlesOfTopics: undefined,
   articlesOfSingleTopic: {
@@ -76,9 +74,6 @@ export const topics = createSlice({
     setArticlesOfSingleTopic(state, action: PayloadAction<{ keyword: string; articles: articleData[] }>) {
       state.articlesOfSingleTopic = action.payload;
     },
-    setUrlOfArticle(state, action: PayloadAction<string>) {
-      state.urlOfArticle = action.payload;
-    },
   },
   extraReducers: (builder) => {
     builder
@@ -101,6 +96,5 @@ export const {
   setNewsListOfSingleTopic,
   setArticlesOfSingleTopic,
   setUrlsOfNewsList,
-  setUrlOfArticle,
 } = topics.actions;
 export default topics.reducer;

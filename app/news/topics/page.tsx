@@ -14,10 +14,10 @@ import { setPageState } from "@/store/switches";
 import { PiWarningCircleFill, PiInfoFill } from "react-icons/pi";
 import { AiOutlineFileSearch } from "react-icons/ai";
 import { TbBoxOff } from "react-icons/tb";
-import { setSingleArticle } from "@/store/news";
+import { setSingleArticle, setUrl } from "@/store/news";
 import { useRouter } from "next/navigation";
 import NewsSkeleton from "@/app/component/NewsSkeleton";
-import { fetchArticlesOfTopic, setUrlOfArticle } from "@/store/topics";
+import { fetchArticlesOfTopic } from "@/store/topics";
 
 export default function NewsOfTopics(): JSX.Element {
   const newsListOfSingleTopic = useSelector((state: RootState) => state.topics.newsListOfSingleTopic);
@@ -61,7 +61,7 @@ export default function NewsOfTopics(): JSX.Element {
     e.preventDefault();
     const article = articlesOfSingleTopic?.articles.find((item) => item.title === keyword);
     article && dispatch(setSingleArticle(article));
-    dispatch(setUrlOfArticle(href));
+    dispatch(setUrl(href));
     router.push(`/news/detail?title=${encodeURIComponent(keyword)}`);
   };
 
