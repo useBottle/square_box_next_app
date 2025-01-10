@@ -14,7 +14,7 @@ import { setPageState } from "@/store/switches";
 import { PiWarningCircleFill, PiInfoFill } from "react-icons/pi";
 import { AiOutlineFileSearch } from "react-icons/ai";
 import { TbBoxOff } from "react-icons/tb";
-import { setSingleArticle } from "@/store/news";
+import { fetchArticles, setSingleArticle } from "@/store/news";
 import { useRouter } from "next/navigation";
 import NewsSkeleton from "@/app/component/NewsSkeleton";
 
@@ -23,6 +23,7 @@ export default function NewsOfTopics(): JSX.Element {
   const articlesOfSingleTopic = useSelector((state: RootState) => state.topics.articlesOfSingleTopic);
   const onSearching = useSelector((state: RootState) => state.switches.onSearching);
   const inputValue = useSelector((state: RootState) => state.switches.inputValue);
+  const urlsOfNewsList = useSelector((state: RootState) => state.topics.urlsOfNewsList);
   const [noNewsList, setNoNewsList] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
@@ -34,10 +35,13 @@ export default function NewsOfTopics(): JSX.Element {
     // articlesOfTopics 를 디스패치 해야함. 서버에서 이제 하지 않음.
     const fetchArticlesOfSingleTopic = async () => {
       try {
+        await dispatch(fetchArticles({ keyword: inputValue, urls: urlsOfNewsList }));
       } catch (error) {
         console.error("Articles of single topic fetch failed.", error);
       }
     };
+
+    fetchArticlesOfSingleTopic();
 
     return () => {
       dispatch(setPageState("default"));
