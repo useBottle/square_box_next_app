@@ -4,7 +4,7 @@
 
 import { fetchArticles, fetchNewsList } from "@/store/news";
 import { AppDispatch, RootState } from "@/store/store";
-import { setInputValue } from "@/store/switches";
+import { setInputValue, setOnSearching } from "@/store/switches";
 import { fetchYoutube } from "@/store/youtube";
 import { searchBarForm } from "@/styles/default.styles";
 import { css, CSSObject } from "@emotion/react";
@@ -35,6 +35,7 @@ export default function SearchBar(): JSX.Element {
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (inputValue === "") return;
+    dispatch(setOnSearching(true));
 
     if (pageAccess === "news") {
       try {
@@ -53,11 +54,11 @@ export default function SearchBar(): JSX.Element {
     if (pageAccess === "youtube") {
       try {
         await dispatch(fetchYoutube(inputValue));
-        return;
       } catch (error) {
         console.error("Error occurred. Youtube fetch failed.", error);
       }
     }
+    dispatch(setOnSearching(false));
   };
 
   return (

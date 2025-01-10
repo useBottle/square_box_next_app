@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { useRouter } from "next/navigation";
 import { setInputValue } from "@/store/switches";
-import { setArticlesOfSingleTopic, setNewsListOfSingleTopic } from "@/store/topics";
+import { setArticlesOfSingleTopic, setNewsListOfSingleTopic, setUrlsOfNewsList } from "@/store/topics";
 
 /**
  * Topics.tsx
@@ -34,17 +34,21 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
   // news 페이지로 리디렉션 전에 keyword 업데이트.
   const onClick = (keyword: string) => (e: React.MouseEvent) => {
     e.preventDefault();
+    const newsList = newsOfTopicsList?.filter((item) => item.keyword === keyword)[0] || { keyword: "", newsList: [] };
+    const urls: string[] = [];
+    newsList.newsList.map((item) => {
+      if (item.href !== "") {
+        urls.push(item.href);
+      }
+    });
 
     /* 
     실시간 검색어 클릭 시 클라이언트에서 실시간 검색어 별 뉴스 리스트를 디스패치 하기 전이면 
     서버에서 가져온 newsOfTopicsList 중 클릭한 타이틀과 일치하는 것으로 디스패치 
     */
     if (topicsList === undefined && newsOfTopicsList !== undefined) {
-      dispatch(
-        setNewsListOfSingleTopic(
-          newsOfTopicsList?.filter((item) => item.keyword === keyword)[0] || { keyword: "", newsList: [] },
-        ),
-      );
+      dispatch(setNewsListOfSingleTopic(newsList));
+      dispatch(setUrlsOfNewsList(urls));
     }
 
     /* 

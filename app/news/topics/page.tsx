@@ -16,18 +16,23 @@ import { AiOutlineFileSearch } from "react-icons/ai";
 import { TbBoxOff } from "react-icons/tb";
 import { setSingleArticle } from "@/store/news";
 import { useRouter } from "next/navigation";
+import NewsSkeleton from "@/app/component/NewsSkeleton";
 
-export default function News(): JSX.Element {
+export default function NewsOfTopics(): JSX.Element {
   const newsListOfSingleTopic = useSelector((state: RootState) => state.topics.newsListOfSingleTopic);
-  const keyword = useSelector((state: RootState) => state.news.newsList.keyword);
   const articlesOfSingleTopic = useSelector((state: RootState) => state.topics.articlesOfSingleTopic);
+  const onSearching = useSelector((state: RootState) => state.switches.onSearching);
+  const keyword = useSelector((state: RootState) => state.news.newsList.keyword);
   const [noNewsList, setNoNewsList] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
 
-  // 뉴스 페이지 접속 여부 체크 -> 검색 컴포넌트에서 검색 요청 토글 역할
   useEffect(() => {
+    // 뉴스 페이지 접속 여부 체크 -> 검색 컴포넌트에서 검색 요청 토글 역할
     dispatch(setPageState("news"));
+
+    // articlesOfTopics 를 디스패치 해야함. 서버에서 이제 하지 않음.
+
     return () => {
       dispatch(setPageState("default"));
     };
@@ -44,10 +49,20 @@ export default function News(): JSX.Element {
   // 뉴스 리스트 요소를 클릭하면 articles 중 title 과 일치하는 것으로 singleArticle 에 디스패치
   const onClick = (keyword: string) => (e: React.MouseEvent) => {
     e.preventDefault();
+    console.log("articlesOfSingleTopic: ", articlesOfSingleTopic);
     const article = articlesOfSingleTopic?.articles.find((item) => item.title === keyword);
     article && dispatch(setSingleArticle(article));
     router.push(`/news/detail?title=${encodeURIComponent(keyword)}`);
   };
+
+  if (onSearching) {
+    return (
+      <div>
+        <SearchBar />
+        <NewsSkeleton />
+      </div>
+    );
+  }
 
   return (
     <div css={css(newsListStyles)}>

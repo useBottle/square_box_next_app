@@ -8,6 +8,7 @@ interface TopicsStatesType {
     keyword: string;
     newsList: newsList[];
   };
+  urlsOfNewsList: string[];
   articlesOfTopics: { keyword: string; articles: articleData[] }[] | undefined;
   articlesOfSingleTopic: {
     keyword: string;
@@ -22,6 +23,7 @@ const initialState: TopicsStatesType = {
     keyword: "",
     newsList: [],
   },
+  urlsOfNewsList: [],
   articlesOfTopics: undefined,
   articlesOfSingleTopic: {
     keyword: "",
@@ -38,6 +40,9 @@ export const topics = createSlice({
     },
     setNewsListsOfTopics(state, action: PayloadAction<TopicsListType[]>) {
       state.newsListsOfTopics = action.payload;
+    },
+    setUrlsOfNewsList(state, action: PayloadAction<string[]>) {
+      state.urlsOfNewsList = action.payload;
     },
     setArticlesOfTopics(state, action: PayloadAction<{ keyword: string; articles: articleData[] }[]>) {
       state.articlesOfTopics = action.payload;
@@ -57,5 +62,6 @@ export const {
   setArticlesOfTopics,
   setNewsListOfSingleTopic,
   setArticlesOfSingleTopic,
+  setUrlsOfNewsList,
 } = topics.actions;
 export default topics.reducer;
