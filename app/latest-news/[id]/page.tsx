@@ -23,7 +23,7 @@ export default function LatestNewsDetail(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const { data: session } = useSession();
   const params = useSearchParams();
-  const newsTitle = decodeURIComponent(params.get("title") as string);
+  const newsTitle = params.get("title");
   const latestNewsUrl = useSelector((state: RootState) => state.latestNews.latestNewsUrl);
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoadingMarked, setIsLoadingMarked] = useState<boolean>(true);

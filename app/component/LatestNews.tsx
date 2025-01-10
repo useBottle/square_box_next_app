@@ -24,6 +24,7 @@ export default function LatestNews({ data }: LatestNewsProps): JSX.Element {
 
   // 인터벌로 최신 뉴스 리스트 업데이트 및 각 리스트 요소 별 뉴스 기사 요청하여 업데이트
   useEffect(() => {
+    console.log(latestNewsArticles);
     const fetchData = async () => {
       const result = await getLatestNewsList();
       dispatch(setLatestNewsList(result?.newsTop10List));
