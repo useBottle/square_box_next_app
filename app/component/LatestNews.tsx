@@ -39,16 +39,16 @@ export default function LatestNews({
     return () => clearInterval(intervalFetch);
   }, []);
 
-  const onClick = (clickedtitle: string, href: string) => (e: React.MouseEvent) => {
+  const onClick = (clickedTitle: string, href: string) => (e: React.MouseEvent) => {
     e.preventDefault();
     // 디스패치 되어있는 최신 뉴스 기사와 클릭한 최신 뉴스 기사가 다를 경우 초기화.
-    // 기사 페이지 접속 시 이전 데이터로 깜박임 현상 방지하기 위함.
-    if (latestNewsArticle.title !== clickedtitle) {
+    // 기사 상세 페이지 접속 시 이전 데이터로 깜박임 현상 방지하기 위함.
+    if (latestNewsArticle.title !== clickedTitle) {
       dispatch(setLatestNewsArticle({ title: "", date: "", image: "", alt: "", text: [] }));
     }
     dispatch(setLatestNewsUrl(href));
-    dispatch(setInputValue(clickedtitle));
-    router.push(`/latest-news/detail?title=${encodeURIComponent(clickedtitle)}`);
+    dispatch(setInputValue(clickedTitle));
+    router.push(`/latest-news/detail?title=${encodeURIComponent(clickedTitle)}`);
   };
 
   return (

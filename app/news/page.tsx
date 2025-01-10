@@ -26,6 +26,7 @@ export default function News(): JSX.Element {
   const newsStatus = useSelector((state: RootState) => state.news.newsStatus);
   const newsUrls = useSelector((state: RootState) => state.news.urls);
   const articles = useSelector((state: RootState) => state.news.articles);
+  const singleArticle = useSelector((state: RootState) => state.news.article);
   const [noNewsList, setNoNewsList] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
@@ -73,12 +74,17 @@ export default function News(): JSX.Element {
   }
 
   // 뉴스 리스트 요소를 클릭하면 articles 중 title 과 일치하는 것으로 singleArticle 에 디스패치
-  const onClick = (keyword: string, href: string) => (e: React.MouseEvent) => {
+  const onClick = (clickedTitle: string, href: string) => (e: React.MouseEvent) => {
     e.preventDefault();
-    const articleData = articles.articles.find((item) => item.title === keyword);
+    // 디스패치 되어있는 뉴스 기사와 클릭한 뉴스 기사가 다를 경우 초기화.
+    // 기사 상세 페이지 접속 시 이전 데이터로 깜박임 현상 방지하기 위함.
+    if (singleArticle.title !== clickedTitle) {
+      dispatch(setSingleArticle({ title: "", date: [], image: "", alt: "", text: [] }));
+    }
+    const articleData = articles.articles.find((item) => item.title === clickedTitle);
     articleData && dispatch(setSingleArticle(articleData));
     dispatch(setUrl(href));
-    router.push(`/news/detail?title=${encodeURIComponent(keyword)}`);
+    router.push(`/news/detail?title=${encodeURIComponent(clickedTitle)}`);
   };
 
   return (
