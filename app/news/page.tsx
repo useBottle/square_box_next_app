@@ -11,7 +11,7 @@ import { newsListStyles } from "@/styles/News.styles";
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 import NewsSkeleton from "../component/NewsSkeleton";
-import { setPageState } from "@/store/switches";
+import { setOnSearching, setPageState } from "@/store/switches";
 import FetchFailedData from "../component/FetchFailedData";
 import { PiWarningCircleFill, PiInfoFill } from "react-icons/pi";
 import { AiOutlineFileSearch } from "react-icons/ai";
@@ -34,6 +34,7 @@ export default function News(): JSX.Element {
   // 뉴스 페이지 접속 여부 체크 -> 검색 컴포넌트에서 검색 요청 토글 역할
   useEffect(() => {
     dispatch(setPageState("news"));
+    dispatch(setOnSearching(false));
 
     // 각 뉴스 리스트에 대한 articles 요청
     const fetchArticlesOfSingleTopic = async () => {

@@ -36,6 +36,7 @@ export default function SearchBar(): JSX.Element {
     e.preventDefault();
     if (inputValue === "") return;
     dispatch(setOnSearching(true));
+    // onSearching 해제는 페이지 이동 후 해당 페이지에서 적용.
 
     if (pageAccess === "news") {
       try {
@@ -54,7 +55,6 @@ export default function SearchBar(): JSX.Element {
         console.error("Error occurred. Youtube fetch failed.", error);
       }
     }
-    dispatch(setOnSearching(false));
   };
 
   return (
