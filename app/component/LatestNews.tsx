@@ -55,43 +55,24 @@ export default function LatestNews({
     <div css={css(latestNews)}>
       <h4>최신 뉴스 Top 10</h4>
       <ul>
-        {latestNewsList.length === 0
-          ? latestNewsListFromServer?.map((item, index) => {
-              return (
-                <Link
-                  href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`}
-                  key={index}
-                  onClick={onClick(item.title, item.href)}
-                >
-                  <li>
-                    <Image src={item.prevImg} width={100} height={100} alt="newsImg" />
-                    <div className="textGroup">
-                      <h6>{item.title}</h6>
-                      <div className="date">{item.date}</div>
-                      <p>{item.summary}</p>
-                    </div>
-                  </li>
-                </Link>
-              );
-            })
-          : latestNewsList.map((item, index) => {
-              return (
-                <Link
-                  href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`}
-                  key={index}
-                  onClick={onClick(item.title, item.href)}
-                >
-                  <li>
-                    <Image src={item.prevImg} width={100} height={100} alt="newsImg" />
-                    <div className="textGroup">
-                      <h6>{item.title}</h6>
-                      <div className="date">{item.date}</div>
-                      <p>{item.summary}</p>
-                    </div>
-                  </li>
-                </Link>
-              );
-            })}
+        {(latestNewsList || latestNewsListFromServer)?.map((item, index) => {
+          return (
+            <Link
+              href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`}
+              key={index}
+              onClick={onClick(item.title, item.href)}
+            >
+              <li>
+                <Image src={item.prevImg} width={100} height={100} alt="newsImg" />
+                <div className="textGroup">
+                  <h6>{item.title}</h6>
+                  <div className="date">{item.date}</div>
+                  <p>{item.summary}</p>
+                </div>
+              </li>
+            </Link>
+          );
+        })}
       </ul>
     </div>
   );

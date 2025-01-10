@@ -9,7 +9,8 @@ export async function fetchSingleArticle(url: string): Promise<articleData> {
     const response = await axios.get(url);
     const $ = cheerio.load(response.data);
     const title = $(".col-main .title").text().trim();
-    const img = $(".img-box img").attr("src");
+    const imgUrl = $(".img-box img").attr("src");
+    const image = !(imgUrl?.startsWith("https:") || imgUrl?.startsWith("http:")) && `https:${imgUrl}`;
     const alt = $(".img-box img").attr("alt");
     let date: string[] = [];
     $(".info .wrt-text dd").map((_, item) => {
@@ -22,7 +23,7 @@ export async function fetchSingleArticle(url: string): Promise<articleData> {
 
     const article = {
       title: title || "",
-      image: img || "",
+      image: image || "",
       alt: alt || "",
       date: date,
       text: text,

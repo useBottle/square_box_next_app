@@ -2,13 +2,13 @@ import { LatestNewsArticle, newsList } from "@/types/types";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface LatestNewsType {
-  latestNewsList: newsList[];
+  latestNewsList: newsList[] | undefined;
   latestNewsArticle: LatestNewsArticle;
   latestNewsUrl: string;
 }
 
 const initialState: LatestNewsType = {
-  latestNewsList: [],
+  latestNewsList: undefined,
   latestNewsArticle: {
     title: "",
     date: "",

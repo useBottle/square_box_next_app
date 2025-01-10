@@ -16,7 +16,8 @@ export async function getLatestNewsList(): Promise<{ newsTop10List: newsList[]; 
     const newsData: newsList[] = [];
     list.each((_, item) => {
       const title = $(item).find(".item-box01 .news-con a .tit-news").text().trim();
-      const img = $(item).find(".item-box01 .img-con a img").attr("src");
+      const imgUrl = $(item).find(".item-box01 .img-con a img").attr("src");
+      const image = !(imgUrl?.startsWith("https:") || imgUrl?.startsWith("http:")) && `https:${imgUrl}`;
       const href = $(item).find(".item-box01 .img-con a").attr("href");
       const date = $(item).find(".item-box01 .info-box01 .txt-time").text().trim();
       const summary = $(item).find(".item-box01 .news-con .lead").text().trim();
@@ -24,7 +25,7 @@ export async function getLatestNewsList(): Promise<{ newsTop10List: newsList[]; 
       const news = {
         title: title,
         href: href || "",
-        prevImg: img || "",
+        prevImg: image || "",
         date: date,
         summary: summary,
       };
@@ -49,7 +50,8 @@ export async function getLatestNewsArticle(url: string): Promise<LatestNewsArtic
     const $ = cheerio.load(response.data);
     const title = $(".title-article01 h1.tit").text().trim();
     const date = $(".title-article01 .update-time").attr("data-published-time");
-    const img = $(".image-zone .img-con .img img").attr("src");
+    const imgUrl = $(".image-zone .img-con .img img").attr("src");
+    const image = !(imgUrl?.startsWith("https:") || imgUrl?.startsWith("http:")) && `https:${imgUrl}`;
     const alt = $(".image-zone .desc-con .tit-cap").text().trim();
     const text = $(".story-news.article p:not(.txt-copyright.adrs)")
       .map((_, item) => $(item).text().trim())
@@ -59,7 +61,7 @@ export async function getLatestNewsArticle(url: string): Promise<LatestNewsArtic
     const data = {
       title: title,
       date: date || "",
-      image: img || "",
+      image: image || "",
       alt: alt || "",
       text: text,
     };
