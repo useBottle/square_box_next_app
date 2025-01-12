@@ -12,6 +12,7 @@ import { AppDispatch, RootState } from "@/store/store";
 import { useRouter } from "next/navigation";
 import { setInputValue } from "@/store/switches";
 import { setNewsListOfSingleTopic, setUrlsOfNewsList } from "@/store/topics";
+import { useEffect } from "react";
 
 /**
  * Topics.tsx
@@ -28,6 +29,10 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const { newsOfTopicsList, keywordsData } = data;
+
+  useEffect(() => {
+    console.log("rerendered topics");
+  }, []);
 
   // Link 컴포넌트의 리디렉션 막고 useRouter 로 리디렉션. (리디렉션 전에 상태 업데이트 하기 위함)
   // news 페이지로 리디렉션 전에 inputValue 업데이트.
@@ -74,7 +79,7 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
       <div css={css(topicsForm)}>
         <h4>실시간 검색어 Top 10</h4>
         <ul>
-          {(topicsList || keywordsData)?.map((item, index) => {
+          {keywordsData?.map((item, index) => {
             return (
               <Link href="/news" key={index} onClick={onClick(item.keyword)}>
                 <li>

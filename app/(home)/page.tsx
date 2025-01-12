@@ -59,13 +59,13 @@ export default async function Home() {
   const latestNewsList = await fetchLatestNewsList();
 
   const dataOfTopics = {
-    keywordsData: keywordsData,
-    newsOfTopicsList: newsOfTopicsList,
+    keywordsData: keywordsData ? [...keywordsData] : undefined,
+    newsOfTopicsList: newsOfTopicsList ? [...newsOfTopicsList] : undefined,
   };
 
   return (
     <div>
-      <Topics data={dataOfTopics} />
+      <Topics data={{ ...dataOfTopics }} />
       <LatestNews data={latestNewsList} />
     </div>
   );
