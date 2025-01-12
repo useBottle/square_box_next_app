@@ -6,8 +6,9 @@ import axios from "axios";
 
 const fetchKeyword = async (): Promise<TopicsType[] | undefined> => {
   try {
-    const response = await axios.get(process.env.TOPICS_API_URL || "");
-    return response.data.top10;
+    const response = await fetch(process.env.TOPICS_API_URL || "", { method: "GET", cache: "force-cache" });
+    const data = await response.json();
+    return data.top10;
   } catch (error) {
     console.error("Failed fetching keyword data.", error);
   }
@@ -19,13 +20,18 @@ const fetchNewsOfTopicsList = async (keywords: string[]) => {
     const newsListsResults = await Promise.all(
       keywords.map(async (keyword: string) => {
         // 순회중인 키워드의 뉴스 리스트 요청.
-        const response = await axios.post(`${process.env.NEXTAUTH_URL}/api/news` || "", {
-          inputValue: keyword,
-          sort: "relation",
+        const response = await fetch(`${process.env.NEXTAUTH_URL}/api/news` || "", {
+          method: "POST",
+          cache: "force-cache",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ inputValue: keyword, sort: "relation" }),
         });
+        const data = await response.json();
         return {
           keyword: keyword,
-          newsList: response.data.newsList,
+          newsList: data.newsList,
         };
       }),
     );
