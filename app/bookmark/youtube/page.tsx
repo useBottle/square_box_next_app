@@ -7,8 +7,6 @@ import Image from "next/image";
 import { getMarkedYoutube } from "@/app/actions/bookmarkActions";
 import ScrollBtn from "@/app/component/ScrollBtn";
 import BookmarkDeleteBtn from "@/app/component/BookmarkDeleteBtn";
-import { Suspense } from "react";
-import Loading from "@/app/component/Loading";
 
 export default async function Bookmark() {
   const session = await getServerSession(authOptions);
@@ -23,45 +21,43 @@ export default async function Bookmark() {
   // console.log("youtubeData: ", youtubeData);
 
   return (
-    <Suspense fallback={<Loading />}>
-      <div className={styles.bookmark}>
-        <section className={styles.youtubeContainer}>
-          <h4>
-            북마크 유튜브 컨텐츠<span>{`${youtubeData && youtubeData.length} / 10`}</span>
-          </h4>
-          <div className={styles.contents}>
-            {youtubeData && youtubeData.length !== 0 ? (
-              <div>
-                <ul>
-                  {youtubeData.map((item, index) => {
-                    return (
-                      <div key={index}>
-                        <Link href={`/youtube/detail?id=${item.videoId}&index=${index}`}>
-                          <li>
-                            <Image src={item.thumbnail} alt={item.title} width={300} height={200} />
-                            <div className={styles.textGroup}>
-                              <h1 className={styles.title}>{item.title}</h1>
-                              <h4 className={styles.channel}>{item.channelTitle}</h4>
-                              <div className={styles.publishedAt}>{item.publishedAt}</div>
-                              <p className={styles.description}>{item.description}</p>
-                            </div>
-                          </li>
-                        </Link>
-                        <BookmarkDeleteBtn data={{ category: "youtube", id: item._id }} />
-                      </div>
-                    );
-                  })}
-                </ul>
-                <ScrollBtn />
-              </div>
-            ) : (
-              <div className={styles.emptyContents}>
-                <p>북마크한 영상이 없습니다</p>
-              </div>
-            )}
-          </div>
-        </section>
-      </div>
-    </Suspense>
+    <div className={styles.bookmark}>
+      <section className={styles.youtubeContainer}>
+        <h4>
+          북마크 유튜브 컨텐츠<span>{`${youtubeData && youtubeData.length} / 10`}</span>
+        </h4>
+        <div className={styles.contents}>
+          {youtubeData && youtubeData.length !== 0 ? (
+            <div>
+              <ul>
+                {youtubeData.map((item, index) => {
+                  return (
+                    <div key={index}>
+                      <Link href={`/youtube/detail?id=${item.videoId}&index=${index}`}>
+                        <li>
+                          <Image src={item.thumbnail} alt={item.title} width={300} height={200} />
+                          <div className={styles.textGroup}>
+                            <h1 className={styles.title}>{item.title}</h1>
+                            <h4 className={styles.channel}>{item.channelTitle}</h4>
+                            <div className={styles.publishedAt}>{item.publishedAt}</div>
+                            <p className={styles.description}>{item.description}</p>
+                          </div>
+                        </li>
+                      </Link>
+                      <BookmarkDeleteBtn data={{ category: "youtube", id: item._id }} />
+                    </div>
+                  );
+                })}
+              </ul>
+              <ScrollBtn />
+            </div>
+          ) : (
+            <div className={styles.emptyContents}>
+              <p>북마크한 영상이 없습니다</p>
+            </div>
+          )}
+        </div>
+      </section>
+    </div>
   );
 }
