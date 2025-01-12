@@ -32,6 +32,8 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
 
   useEffect(() => {
     console.log("rerendered topics");
+    const reload = setInterval(() => window.location.reload(), 60000);
+    return () => clearInterval(reload);
   }, []);
 
   // Link 컴포넌트의 리디렉션 막고 useRouter 로 리디렉션. (리디렉션 전에 상태 업데이트 하기 위함)
