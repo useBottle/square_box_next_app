@@ -2,7 +2,6 @@ import { getLatestNewsList } from "@/app/actions/latestNewsActions";
 import LatestNews from "@/app/component/LatestNews";
 import Topics from "@/app/component/Topics";
 import { TopicsListType, TopicsType } from "@/types/types";
-import axios from "axios";
 
 const fetchKeyword = async (): Promise<TopicsType[] | undefined> => {
   try {
