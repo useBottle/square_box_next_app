@@ -1,4 +1,4 @@
-import { articleData, newsList, TopicsListType, TopicsType } from "@/types/types";
+import { TopicsListType, TopicsType } from "@/types/types";
 import axios from "axios";
 import Topics from "./Topics";
 
