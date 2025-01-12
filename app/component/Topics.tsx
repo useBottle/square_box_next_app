@@ -57,13 +57,13 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
     실시간 검색어 클릭 시 클라이언트에서 실시간 검색어 별 리스트를 디스패치한 이후면
     디스패치된 리스트 중 클릭한 타이틀과 일치하는 것으로 디스패치.
     */
-    if (topicsList && newsListsOfTopics) {
-      dispatch(
-        setNewsListOfSingleTopic(
-          newsListsOfTopics.filter((item) => item.keyword === clickedTitle)[0] || { keyword: "", newsList: [] },
-        ),
-      );
-    }
+    // if (topicsList && newsListsOfTopics) {
+    //   dispatch(
+    //     setNewsListOfSingleTopic(
+    //       newsListsOfTopics.filter((item) => item.keyword === clickedTitle)[0] || { keyword: "", newsList: [] },
+    //     ),
+    //   );
+    // }
 
     dispatch(setInputValue(clickedTitle));
     router.push("/news/topics");
