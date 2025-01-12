@@ -10,8 +10,9 @@ export async function getLatestNewsList(): Promise<{ newsTop10List: newsList[]; 
 
   try {
     // 최신 뉴스 리스트 preview 데이터 요청
-    const response = await axios.get(url);
-    const $ = cheerio.load(response.data);
+    const response = await fetch(url, { method: "GET", cache: "force-cache" });
+    const html = await response.text();
+    const $ = cheerio.load(html);
     const list = $("ul.list li");
     const newsData: newsList[] = [];
     list.each((_, item) => {
