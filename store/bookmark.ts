@@ -12,6 +12,29 @@ const initialState: bookmarkSlice = {
     number: 0,
     data: [],
   },
+  clickedNews: {
+    title: "",
+    date: "",
+    image: "",
+    alt: "",
+    text: [],
+    username: "",
+    createdAt: "",
+    category: "",
+    _id: "",
+  },
+  clickedYoutube: {
+    videoId: "",
+    title: "",
+    channelTitle: "",
+    publishedAt: "",
+    description: "",
+    thumbnail: "",
+    username: "",
+    createdAt: "",
+    category: "",
+    _id: "",
+  },
 };
 
 export const bookmark = createSlice({
@@ -24,8 +47,14 @@ export const bookmark = createSlice({
     setMarkedYoutube: (state, action: PayloadAction<markedYoutube>) => {
       state.markedYoutube = action.payload;
     },
+    setClickedNews: (state, action: PayloadAction<MarkedNewsArticle>) => {
+      state.clickedNews = action.payload;
+    },
+    setClickedYoutube: (state, action: PayloadAction<MarkedYoutubeVideo>) => {
+      state.clickedYoutube = action.payload;
+    },
   },
 });
 
-export const { setMarkedNews, setMarkedYoutube } = bookmark.actions;
+export const { setMarkedNews, setMarkedYoutube, setClickedNews, setClickedYoutube } = bookmark.actions;
 export default bookmark.reducer;

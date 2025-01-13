@@ -214,6 +214,8 @@ export interface MarkedYoutubeVideo {
 export interface bookmarkSlice {
   markedNews: markedNews;
   markedYoutube: markedYoutube;
+  clickedNews: MarkedNewsArticle;
+  clickedYoutube: MarkedYoutubeVideo;
 }
 
 export interface markedNews {
