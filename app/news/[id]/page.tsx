@@ -31,6 +31,10 @@ export default function NewsDynamic(): JSX.Element {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    console.log("single article: ", singleArticle);
+  }, [singleArticle]);
+
+  useEffect(() => {
     window.scrollTo({ top: 0 });
 
     // 클릭한 뉴스에 대한 article 데이터 요청
@@ -79,16 +83,15 @@ export default function NewsDynamic(): JSX.Element {
     if (singleArticle.title !== "") {
       currentNews.title = singleArticle.title;
       currentNews.date = singleArticle.date[1] ? singleArticle.date[1] : singleArticle.date[0];
-      currentNews.image = !(
+      currentNews.image =
         singleArticle.image.endsWith(".jpg") ||
         singleArticle.image.endsWith(".jpeg") ||
         singleArticle.image.endsWith(".png") ||
         singleArticle.image.endsWith(".gif") ||
         singleArticle.image.endsWith(".svg") ||
         singleArticle.image.endsWith(".webp")
-      )
-        ? singleArticle.image
-        : "";
+          ? singleArticle.image
+          : "";
       currentNews.alt = singleArticle.alt;
       currentNews.text = singleArticle.text;
     }

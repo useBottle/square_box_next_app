@@ -76,16 +76,15 @@ export default function LatestNewsDetail(): JSX.Element {
     const currentNews = {
       title: latestNewsArticle.title,
       date: latestNewsArticle.date,
-      image: !(
+      image:
         latestNewsArticle.image.endsWith(".jpg") ||
         latestNewsArticle.image.endsWith(".jpeg") ||
         latestNewsArticle.image.endsWith(".png") ||
         latestNewsArticle.image.endsWith(".gif") ||
         latestNewsArticle.image.endsWith(".svg") ||
         latestNewsArticle.image.endsWith(".webp")
-      )
-        ? latestNewsArticle.image
-        : "",
+          ? latestNewsArticle.image
+          : "",
       alt: latestNewsArticle.alt,
       text: latestNewsArticle.text,
     };
