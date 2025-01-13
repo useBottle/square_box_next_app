@@ -198,3 +198,21 @@ export interface MarkedYoutubeVideo {
   createdAt: Date;
   category: string;
 }
+
+// 북마크 슬라이스 타입
+export interface bookmarkSlice {
+  markedNews: markedNews;
+  markedYoutube: markedYoutube;
+}
+
+export interface markedNews {
+  exists: boolean;
+  number: number;
+  data: MarkedNewsArticle[];
+}
+
+export interface markedYoutube {
+  exists: boolean;
+  number: number;
+  data: MarkedYoutubeVideo[];
+}
