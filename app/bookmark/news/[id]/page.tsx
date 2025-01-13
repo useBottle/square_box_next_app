@@ -4,7 +4,7 @@
 
 import { AppDispatch, RootState } from "@/store/store";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { css } from "@emotion/react";
@@ -16,13 +16,18 @@ import { findNewsBookmark, setNewsBookmark } from "@/app/actions/bookmarkNewsAct
 import { deleteNewsBookmark, getMarkedNews } from "@/app/actions/bookmarkActions";
 import { setMarkedNews } from "@/store/bookmark";
 import { setInBookmarkDetail } from "@/store/switches";
+import ExpiredData from "@/app/component/ExpiredData";
+import ArticleSkeleton from "@/app/component/ArticleSkeleton";
 
 export default function MarkedNewsDynamic(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
+  const params = useSearchParams();
+  const newsTitle = params.get("title") as string;
   const { data: session } = useSession();
   const clickedNews = useSelector((state: RootState) => state.bookmark.clickedNews);
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(true);
+  const pageState = useSelector((state: RootState) => state.switches.pageState);
 
   useEffect(() => {
     dispatch(setInBookmarkDetail(true));
@@ -86,6 +91,16 @@ export default function MarkedNewsDynamic(): JSX.Element {
       console.error("news bookmark failed", error);
     }
   };
+
+  // newsTitle 타입 불일치 또는 pageState 가 초기화된 경우 ExpiredData 렌더링
+  if (typeof newsTitle !== "string" || pageState === "default") {
+    return <ExpiredData />;
+  }
+
+  // clickedNews 가 업데이트 되기 전이면 Skeleton UI 렌더링
+  if (clickedNews.title === "") {
+    return <ArticleSkeleton />;
+  }
 
   return (
     <article css={css(dynamicNewsStyles)}>
