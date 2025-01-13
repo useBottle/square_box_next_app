@@ -13,15 +13,14 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { bookmarkNews } from "@/styles/BookmarkNews.styles";
 
-export default async function BookmarkNews() {
+export default function BookmarkNews() {
   const { data: session } = useSession();
   const markedNewsData = useSelector((state: RootState) => state.bookmark.markedNews.data);
 
   useEffect(() => {
     !session || !session.user || (session.user.name === undefined && redirect("/auth/signin"));
+    console.log("markedNewsData: ", markedNewsData);
   }, []);
-
-  // console.log("markedNewsData: ", markedNewsData);
 
   return (
     <div css={css(bookmarkNews)}>

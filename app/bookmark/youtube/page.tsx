@@ -14,15 +14,14 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { bookmarkYoutube } from "@/styles/BookmarkYoutube.styles";
 
-export default async function Bookmark() {
+export default function Bookmark() {
   const { data: session } = useSession();
   const markedYoutubeData = useSelector((state: RootState) => state.bookmark.markedYoutube.data);
 
   useEffect(() => {
     !session || !session.user || (session.user.name === undefined && redirect("/auth/signin"));
+    console.log("markedYoutubeData: ", markedYoutubeData);
   }, []);
-
-  // console.log("youtubeData: ", youtubeData);
 
   return (
     <div css={css(bookmarkYoutube)}>

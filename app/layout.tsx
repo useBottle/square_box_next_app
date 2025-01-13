@@ -31,8 +31,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>): JSX.Element {
-  const headerHeight = "5rem";
-
   return (
     <html lang="kr">
       <body className={notoSansKR.className}>
@@ -42,7 +40,7 @@ export default function RootLayout({
           <Header />
           <FetchTopics />
           <FetchBookmark />
-          <div style={{ paddingTop: headerHeight }}>{children}</div>
+          <div style={{ paddingTop: "5rem" }}>{children}</div>
         </Providers>
       </body>
     </html>
