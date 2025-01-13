@@ -11,11 +11,8 @@ import { youtubeDynamic } from "@/styles/Youtube.styles";
 import { currentYoutubeVideo } from "@/types/types";
 import { css } from "@emotion/react";
 import { useSession } from "next-auth/react";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
-import { FaCheck } from "react-icons/fa6";
-import { GoBookmarkFill } from "react-icons/go";
 import { useSelector } from "react-redux";
 import YouTube, { YouTubeEvent } from "react-youtube";
 

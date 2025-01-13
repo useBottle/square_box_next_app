@@ -3,15 +3,12 @@
 "use client";
 
 import { css } from "@emotion/react";
-import { GoBookmarkFill } from "react-icons/go";
-import { FaCheck } from "react-icons/fa6";
 import ExpiredData from "@/app/component/ExpiredData";
 import { useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 import { dynamicNewsStyles } from "@/styles/News.styles";
 import Image from "next/image";
-import Link from "next/link";
 import { deleteNewsBookmark, findNewsBookmark, setNewsBookmark } from "@/app/actions/bookmarkNewsActions";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
