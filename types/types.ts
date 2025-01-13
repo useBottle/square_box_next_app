@@ -182,7 +182,7 @@ export interface MarkedNewsArticle {
   alt: string;
   text: string[];
   username: string;
-  createdAt: Date;
+  createdAt: string;
   category: string;
   _id: string;
 }
@@ -196,7 +196,7 @@ export interface MarkedYoutubeVideo {
   description: string;
   thumbnail: string;
   username: string;
-  createdAt: Date;
+  createdAt: string;
   category: string;
   _id: string;
 }

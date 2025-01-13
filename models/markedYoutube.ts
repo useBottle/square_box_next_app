@@ -11,11 +11,11 @@ const markedYoutubeSchema = new Schema<MarkedYoutubeVideo>({
   username: { type: String, required: true },
   category: { type: String, required: true },
   createdAt: {
-    type: Date,
+    type: String,
     default: () => {
       const date = new Date();
       date.setHours(date.getHours() + 9);
-      return date;
+      return date.toISOString();
     },
   },
 });
