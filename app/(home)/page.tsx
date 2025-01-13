@@ -7,7 +7,6 @@ const fetchKeyword = async (): Promise<TopicsType[] | undefined> => {
   try {
     const response = await fetch(process.env.TOPICS_API_URL || "", {
       method: "GET",
-      cache: "force-cache",
       next: { revalidate: 180 },
     });
     const data = await response.json();
