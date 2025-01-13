@@ -1,22 +1,25 @@
-import { authOptions } from "@/util/authOptions";
-import { getServerSession } from "next-auth";
+/**@jsxImportSource @emotion/react */
+
+"use client";
+
 import { redirect } from "next/navigation";
 import styles from "../../../styles/BookmarkYoutube.module.scss";
 import Link from "next/link";
 import Image from "next/image";
-import { getMarkedYoutube } from "@/app/actions/bookmarkActions";
 import ScrollBtn from "@/app/component/ScrollBtn";
 import BookmarkDeleteBtn from "@/app/component/BookmarkDeleteBtn";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 export default async function Bookmark() {
-  const session = await getServerSession(authOptions);
+  const { data: session } = useSession();
+  const markedYoutubeData = useSelector((state: RootState) => state.bookmark.markedYoutube.data);
 
-  if (!session) {
-    redirect("/auth/signin");
-  }
-
-  const data = await getMarkedYoutube(session.user.name as string);
-  const youtubeData = data?.exists === true ? data.data : [];
+  useEffect(() => {
+    !session || !session.user || (session.user.name === undefined && redirect("/auth/signin"));
+  }, []);
 
   // console.log("youtubeData: ", youtubeData);
 
@@ -24,13 +27,13 @@ export default async function Bookmark() {
     <div className={styles.bookmark}>
       <section className={styles.youtubeContainer}>
         <h4>
-          북마크 유튜브 컨텐츠<span>{`${youtubeData && youtubeData.length} / 10`}</span>
+          북마크 유튜브 컨텐츠<span>{`${markedYoutubeData && markedYoutubeData.length} / 10`}</span>
         </h4>
         <div className={styles.contents}>
-          {youtubeData && youtubeData.length !== 0 ? (
+          {markedYoutubeData && markedYoutubeData.length !== 0 ? (
             <div>
               <ul>
-                {youtubeData.map((item, index) => {
+                {markedYoutubeData.map((item, index) => {
                   return (
                     <div key={index}>
                       <Link href={`/youtube/detail?id=${item.videoId}&index=${index}`}>
