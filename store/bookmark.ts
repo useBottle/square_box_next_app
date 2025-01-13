@@ -1,5 +1,5 @@
-import { bookmarkSlice, MarkedNewsArticle, MarkedYoutubeVideo } from "@/types/types";
-import { createSlice } from "@reduxjs/toolkit";
+import { bookmarkSlice, markedNews, MarkedNewsArticle, markedYoutube, MarkedYoutubeVideo } from "@/types/types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: bookmarkSlice = {
   markedNews: {
@@ -17,8 +17,15 @@ const initialState: bookmarkSlice = {
 export const bookmark = createSlice({
   name: "bookmark",
   initialState,
-  reducers: {},
+  reducers: {
+    setMarkedNews: (state, action: PayloadAction<markedNews>) => {
+      state.markedNews = action.payload;
+    },
+    setMarkedYoutube: (state, action: PayloadAction<markedYoutube>) => {
+      state.markedYoutube = action.payload;
+    },
+  },
 });
 
-export const {} = bookmark.actions;
+export const { setMarkedNews, setMarkedYoutube } = bookmark.actions;
 export default bookmark.reducer;
