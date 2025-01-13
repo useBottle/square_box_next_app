@@ -8,20 +8,24 @@ import YouTube, { YouTubeEvent } from "react-youtube";
 import BookmarkBtn from "@/app/component/BookmarkBtn";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { FormEvent, useEffect, useState } from "react";
 import { setInBookmarkDetail } from "@/store/switches";
 import { findYoutubeBookmark, setYoutubeBookmark } from "@/app/actions/bookmarkYoutubeActions";
 import { deleteYoutubeBookmark, getMarkedYoutube } from "@/app/actions/bookmarkActions";
 import { setMarkedYoutube } from "@/store/bookmark";
+import ExpiredData from "@/app/component/ExpiredData";
 
 export default function MarkedYoutubeDynamic(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
+  const params = useSearchParams();
+  const videoId = params.get("videoId") as string;
   const { data: session } = useSession();
   const clickedYoutube = useSelector((state: RootState) => state.bookmark.clickedYoutube);
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(true);
+  const pageState = useSelector((state: RootState) => state.switches.pageState);
 
   useEffect(() => {
     dispatch(setInBookmarkDetail(true));
@@ -85,6 +89,11 @@ export default function MarkedYoutubeDynamic(): JSX.Element {
       console.error("youtube bookmark failed", error);
     }
   };
+
+  // videoId 타입 불일치 또는 pageState 가 초기화된 경우 ExpiredData 렌더링
+  if (typeof videoId !== "string" || pageState === "default") {
+    return <ExpiredData />;
+  }
 
   return (
     <div css={css(youtubeDynamic)}>

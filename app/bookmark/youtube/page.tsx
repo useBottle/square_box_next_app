@@ -31,13 +31,13 @@ export default function Bookmark() {
     };
   }, []);
 
-  const onClick = (id: string, title: string) => (e: MouseEvent) => {
+  const onClick = (id: string, videoId: string) => (e: MouseEvent) => {
     e.preventDefault();
     const clickedYoutube = markedYoutubeData.find((item) => item._id === id);
     if (clickedYoutube) {
       dispatch(setClickedYoutube(clickedYoutube));
     }
-    router.push(`/bookmark/youtube/detail?title=${encodeURIComponent(title)}`);
+    router.push(`/bookmark/youtube/detail?title=${encodeURIComponent(videoId)}`);
   };
 
   return (
@@ -55,7 +55,7 @@ export default function Bookmark() {
                     <div key={index}>
                       <Link
                         href={`/youtube/detail?id=${item.videoId}&index=${index}`}
-                        onClick={onClick(item._id, item.title)}
+                        onClick={onClick(item._id, item.videoId)}
                       >
                         <li>
                           <Image src={item.thumbnail} alt={item.title} width={300} height={200} />
