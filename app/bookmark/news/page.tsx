@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { bookmarkNews } from "@/styles/BookmarkNews.styles";
 import { setClickedNews } from "@/store/bookmark";
-import { setInBookmarkDetail, setPageState } from "@/store/switches";
+import { setInBookmarkDetail } from "@/store/switches";
 import ExpiredData from "@/app/component/ExpiredData";
 
 export default function BookmarkNews() {

@@ -24,7 +24,6 @@ export default function Youtube() {
   const youtubeList = useSelector((state: RootState) => state.youtube.youtubeList);
   const youtubeStatus = useSelector((state: RootState) => state.youtube.youtubeStatus);
   const inputValue = useSelector((state: RootState) => state.switches.inputValue);
-  const pageState = useSelector((state: RootState) => state.switches.pageState);
 
   useEffect(() => {
     // console.log(youtubeList);
@@ -49,11 +48,6 @@ export default function Youtube() {
   // youtubeStatus 가 failed 일 경우 FetchFailedData 렌더링
   if (youtubeStatus === "failed") {
     return <FetchFailedData />;
-  }
-
-  // pageState 가 초기화된 경우 ExpiredData 렌더링
-  if (pageState === "default") {
-    return <ExpiredData />;
   }
 
   return (

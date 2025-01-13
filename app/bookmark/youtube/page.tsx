@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { bookmarkYoutube } from "@/styles/BookmarkYoutube.styles";
 import { setClickedYoutube } from "@/store/bookmark";
-import { setInBookmarkDetail, setPageState } from "@/store/switches";
+import { setInBookmarkDetail } from "@/store/switches";
 import ExpiredData from "@/app/component/ExpiredData";
 
 export default function Bookmark() {
