@@ -120,7 +120,6 @@ export default function NewsDynamic(): JSX.Element {
           const response = await setNewsBookmark(currentNews, session.user.name);
           response && response.success === true && setBookmarkSuccess(true);
           // console.log(response);
-          return;
         }
 
         if (markedNewsData && (markedNewsData?.number as number) === 10) {
