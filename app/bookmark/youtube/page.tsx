@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { bookmarkYoutube } from "@/styles/BookmarkYoutube.styles";
 import { setClickedYoutube } from "@/store/bookmark";
+import { setInBookmarkDetail } from "@/store/switches";
 
 export default function Bookmark() {
   const { data: session } = useSession();
@@ -22,7 +23,12 @@ export default function Bookmark() {
   const markedYoutubeData = useSelector((state: RootState) => state.bookmark.markedYoutube.data);
 
   useEffect(() => {
+    dispatch(setInBookmarkDetail(false));
     (!session || !session.user || !session.user.name) && router.push("/auth/signin");
+
+    return () => {
+      dispatch(setInBookmarkDetail(true));
+    };
   }, []);
 
   const onClick = (id: string, title: string) => (e: MouseEvent) => {
