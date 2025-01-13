@@ -3,7 +3,6 @@
 "use client";
 
 import { css, CSSObject } from "@emotion/react";
-import Link from "next/link";
 
 const infoText: CSSObject = {
   display: "flex",
@@ -27,7 +26,8 @@ export default function ExpiredData(): JSX.Element {
     <div css={css(infoText)}>
       <p>데이터가 만료되었습니다</p>
       <p>다시 시도해주세요</p>
-      <Link href="/">HOME</Link>
+      {/* layout 에서 데이터를 새로 요청하기 위해 새로고침이 발생해야하므로 Link 컴포넌트 사용 금지*/}
+      <a href="/">HOME</a>
     </div>
   );
 }
