@@ -21,7 +21,7 @@ export default function BookmarkNews() {
   const markedNewsData = useSelector((state: RootState) => state.bookmark.markedNews.data);
 
   useEffect(() => {
-    !session || !session.user || (session.user.name === undefined && redirect("/auth/signin"));
+    (!session || !session.user || !session.user.name) && redirect("/auth/signin");
   }, []);
 
   const onClick = (id: string, title: string) => (e: MouseEvent) => {
