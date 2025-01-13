@@ -18,12 +18,14 @@ import { AiOutlineFileSearch } from "react-icons/ai";
 import { TbBoxOff } from "react-icons/tb";
 import { setSingleArticle, setUrl } from "@/store/news";
 import { useRouter } from "next/navigation";
+import ExpiredData from "../component/ExpiredData";
 
 export default function News(): JSX.Element {
   const newsList = useSelector((state: RootState) => state.news.newsList.newsList);
   const keyword = useSelector((state: RootState) => state.news.newsList.keyword);
   const newsStatus = useSelector((state: RootState) => state.news.newsStatus);
   const singleArticle = useSelector((state: RootState) => state.news.article);
+  const pageState = useSelector((state: RootState) => state.switches.pageState);
   const [noNewsList, setNoNewsList] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
@@ -58,6 +60,11 @@ export default function News(): JSX.Element {
   // newsStatus 가 failed 일 경우 FetchFailedData 렌더링
   if (newsStatus === "failed") {
     return <FetchFailedData />;
+  }
+
+  // pageState 가 초기화된 경우 ExpiredData 렌더링
+  if (pageState === "default") {
+    return <ExpiredData />;
   }
 
   // 뉴스 리스트 요소를 클릭하면 articles 중 title 과 일치하는 것으로 singleArticle 에 디스패치

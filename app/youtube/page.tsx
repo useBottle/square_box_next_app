@@ -17,12 +17,14 @@ import ScrollBtn from "../component/ScrollBtn";
 import { PiInfoFill, PiWarningCircleFill } from "react-icons/pi";
 import { PiFilmSlateLight } from "react-icons/pi";
 import { TbBoxOff } from "react-icons/tb";
+import ExpiredData from "../component/ExpiredData";
 
 export default function Youtube() {
   const dispatch = useDispatch<AppDispatch>();
   const youtubeList = useSelector((state: RootState) => state.youtube.youtubeList);
   const youtubeStatus = useSelector((state: RootState) => state.youtube.youtubeStatus);
   const inputValue = useSelector((state: RootState) => state.switches.inputValue);
+  const pageState = useSelector((state: RootState) => state.switches.pageState);
 
   useEffect(() => {
     // console.log(youtubeList);
@@ -47,6 +49,11 @@ export default function Youtube() {
   // youtubeStatus 가 failed 일 경우 FetchFailedData 렌더링
   if (youtubeStatus === "failed") {
     return <FetchFailedData />;
+  }
+
+  // pageState 가 초기화된 경우 ExpiredData 렌더링
+  if (pageState === "default") {
+    return <ExpiredData />;
   }
 
   return (
