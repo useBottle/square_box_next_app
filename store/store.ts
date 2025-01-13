@@ -4,6 +4,7 @@ import newsReducer from "../store/news";
 import latestNewsReducer from "../store/latestNews";
 import youtubeReducer from "../store/youtube";
 import topicsReducer from "../store/topics";
+import bookmarkReducer from "../store/bookmark";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     latestNews: latestNewsReducer,
     youtube: youtubeReducer,
     topics: topicsReducer,
+    bookmark: bookmarkReducer,
   },
 });
 
