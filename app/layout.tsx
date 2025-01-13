@@ -7,6 +7,7 @@ import MobileNav from "./component/MobileNav";
 import Providers from "./component/Providers";
 import CheckToken from "./component/CheckToken";
 import FetchTopics from "./component/FetchTopics";
+import FetchBookmark from "./component/FetchBookmark";
 
 const notoSansKR = Noto_Sans_KR({
   subsets: ["latin"],
@@ -40,6 +41,7 @@ export default function RootLayout({
           <MobileNav />
           <Header />
           <FetchTopics />
+          <FetchBookmark />
           <div style={{ paddingTop: headerHeight }}>{children}</div>
         </Providers>
       </body>
