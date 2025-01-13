@@ -2,8 +2,8 @@
 
 "use client";
 
+import { css } from "@emotion/react";
 import { redirect } from "next/navigation";
-import styles from "../../../styles/BookmarkYoutube.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import ScrollBtn from "@/app/component/ScrollBtn";
@@ -12,6 +12,7 @@ import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import { bookmarkYoutube } from "@/styles/BookmarkYoutube.styles";
 
 export default async function Bookmark() {
   const { data: session } = useSession();
@@ -24,12 +25,12 @@ export default async function Bookmark() {
   // console.log("youtubeData: ", youtubeData);
 
   return (
-    <div className={styles.bookmark}>
-      <section className={styles.youtubeContainer}>
+    <div css={css(bookmarkYoutube)}>
+      <section className="youtubeContainer">
         <h4>
           북마크 유튜브 컨텐츠<span>{`${markedYoutubeData && markedYoutubeData.length} / 10`}</span>
         </h4>
-        <div className={styles.contents}>
+        <div className="contents">
           {markedYoutubeData && markedYoutubeData.length !== 0 ? (
             <div>
               <ul>
@@ -39,11 +40,11 @@ export default async function Bookmark() {
                       <Link href={`/youtube/detail?id=${item.videoId}&index=${index}`}>
                         <li>
                           <Image src={item.thumbnail} alt={item.title} width={300} height={200} />
-                          <div className={styles.textGroup}>
-                            <h1 className={styles.title}>{item.title}</h1>
-                            <h4 className={styles.channel}>{item.channelTitle}</h4>
-                            <div className={styles.publishedAt}>{item.publishedAt}</div>
-                            <p className={styles.description}>{item.description}</p>
+                          <div className="textGroup">
+                            <h1 className="title">{item.title}</h1>
+                            <h4 className="channel">{item.channelTitle}</h4>
+                            <div className="publishedAt">{item.publishedAt}</div>
+                            <p className="description">{item.description}</p>
                           </div>
                         </li>
                       </Link>
@@ -55,7 +56,7 @@ export default async function Bookmark() {
               <ScrollBtn />
             </div>
           ) : (
-            <div className={styles.emptyContents}>
+            <div className="emptyContents">
               <p>북마크한 영상이 없습니다</p>
             </div>
           )}
