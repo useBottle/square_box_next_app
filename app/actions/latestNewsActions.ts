@@ -9,8 +9,8 @@ export async function getLatestNewsList(): Promise<{ newsTop10List: newsList[]; 
   const url = process.env.LATEST_NEWS_API || "";
 
   try {
-    // 최신 뉴스 리스트 preview 데이터 요청
-    const response = await fetch(url, { method: "GET", cache: "force-cache" });
+    // 최신 뉴스 리스트 preview 데이터 요청 (3분마다 재검증하여 갱신)
+    const response = await fetch(url, { method: "GET", next: { revalidate: 60 * 3 } });
     const html = await response.text();
     const $ = cheerio.load(html);
     const list = $("ul.list li");

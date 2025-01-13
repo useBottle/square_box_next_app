@@ -3,6 +3,7 @@ import LatestNews from "@/app/component/LatestNews";
 import Topics from "@/app/component/Topics";
 import { TopicsListType, TopicsType } from "@/types/types";
 
+// 실시간 검색어 키워드 요청 (3분마다 재검증하여 갱신)
 const fetchKeyword = async (): Promise<TopicsType[] | undefined> => {
   try {
     const response = await fetch(process.env.TOPICS_API_URL || "", {
@@ -16,7 +17,7 @@ const fetchKeyword = async (): Promise<TopicsType[] | undefined> => {
   }
 };
 
-// 실시간 검색어를 순회하여 각 검색어에 해당하는 뉴스 리스트 요청.
+// 실시간 검색어를 순회하여 각 검색어에 해당하는 뉴스 리스트 요청
 const fetchNewsOfTopicsList = async (keywords: string[]) => {
   try {
     const newsListsResults = await Promise.all(
@@ -43,6 +44,7 @@ const fetchNewsOfTopicsList = async (keywords: string[]) => {
   }
 };
 
+// 최신 뉴스 리스트 요청
 const fetchLatestNewsList = async () => {
   const latestNewsList = await getLatestNewsList();
 
