@@ -11,11 +11,15 @@ const bookmarkLayout: CSSObject = {
 
 import { css, CSSObject } from "@emotion/react";
 import BookmarkSelector from "../component/BookmarkSelector";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 export default function BookmarkLayout({ children }: { children: React.ReactNode }): JSX.Element {
+  const inBookmarkDetail = useSelector((state: RootState) => state.switches.inBookmarkDetail);
+
   return (
     <div css={css(bookmarkLayout)}>
-      <BookmarkSelector />
+      {!inBookmarkDetail && <BookmarkSelector />}
       {children}
     </div>
   );

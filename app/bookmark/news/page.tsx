@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { bookmarkNews } from "@/styles/BookmarkNews.styles";
 import { setClickedNews } from "@/store/bookmark";
+import { setInBookmarkDetail } from "@/store/switches";
 
 export default function BookmarkNews() {
   const { data: session } = useSession();
@@ -30,6 +31,7 @@ export default function BookmarkNews() {
     if (clickedNews) {
       dispatch(setClickedNews(clickedNews));
     }
+    dispatch(setInBookmarkDetail(true));
     router.push(`/bookmark/news/detail?title=${encodeURIComponent(title)}`);
   };
 
