@@ -29,6 +29,7 @@ export default function LatestNewsDetail(): JSX.Element {
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoadingMarked, setIsLoadingMarked] = useState<boolean>(true);
   const latestNewsArticle = useSelector((state: RootState) => state.latestNews.latestNewsArticle);
+  const pageState = useSelector((state: RootState) => state.switches.pageState);
 
   // latestNewsArticle 이 업데이트 되면 해당 값이 북마크 되어있는지 확인
   useEffect(() => {
@@ -142,8 +143,8 @@ export default function LatestNewsDetail(): JSX.Element {
     }
   };
 
-  // newsId 가 안맞는 경우 ExpiredData 렌더링
-  if (typeof newsTitle !== "string") {
+  // newsTitle 타입 불일치 또는 pageState 가 초기화된 경우 ExpiredData 렌더링
+  if (typeof newsTitle !== "string" || pageState === "default") {
     return <ExpiredData />;
   }
 

@@ -30,6 +30,7 @@ export default function NewsDynamic(): JSX.Element {
   const newsTitle = params.get("title") as string;
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const pageState = useSelector((state: RootState) => state.switches.pageState);
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
@@ -146,8 +147,8 @@ export default function NewsDynamic(): JSX.Element {
     }
   };
 
-  // newsTitle 타입 불일치인 경우 ExpiredData 렌더링
-  if (typeof newsTitle !== "string") {
+  // newsTitle 타입 불일치 또는 pageState 가 초기화된 경우 ExpiredData 렌더링
+  if (typeof newsTitle !== "string" || pageState === "default") {
     return <ExpiredData />;
   }
 

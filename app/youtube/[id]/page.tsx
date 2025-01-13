@@ -24,6 +24,7 @@ export default function YoutubeDynamic(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const pageState = useSelector((state: RootState) => state.switches.pageState);
 
   const videoId = searchParams.get("id");
   const index = Number(searchParams.get("index"));
@@ -116,13 +117,14 @@ export default function YoutubeDynamic(): JSX.Element {
     }
   };
 
-  // index 가 안맞거나 youtubeList 가 비었을 경우 ExpiredData 렌더링
+  // index 타입 불이치 또는 youtubeList 가 비었을 경우 또는 pageState가 초기화된 경우 ExpiredData 렌더링
   if (
     typeof index !== "number" ||
     index < 0 ||
     index >= youtubeList.items.length ||
     youtubeList.items.length === 0 ||
-    youtubeList === undefined
+    youtubeList === undefined ||
+    pageState === "default"
   ) {
     return <ExpiredData />;
   }
