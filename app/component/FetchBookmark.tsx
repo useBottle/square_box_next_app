@@ -27,7 +27,7 @@ export default function FetchBookmark(): JSX.Element {
     };
 
     fetchBookmarkData();
-  }, []);
+  }, [session]);
 
   return <></>;
 }

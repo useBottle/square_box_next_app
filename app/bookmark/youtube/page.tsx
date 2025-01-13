@@ -20,7 +20,6 @@ export default function Bookmark() {
 
   useEffect(() => {
     !session || !session.user || (session.user.name === undefined && redirect("/auth/signin"));
-    console.log("markedYoutubeData: ", markedYoutubeData);
   }, []);
 
   return (

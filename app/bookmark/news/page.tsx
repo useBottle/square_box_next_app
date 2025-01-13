@@ -19,7 +19,6 @@ export default function BookmarkNews() {
 
   useEffect(() => {
     !session || !session.user || (session.user.name === undefined && redirect("/auth/signin"));
-    console.log("markedNewsData: ", markedNewsData);
   }, []);
 
   return (
