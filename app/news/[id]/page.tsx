@@ -21,6 +21,7 @@ import { LatestNewsArticle } from "@/types/types";
 import { fetchSingleArticle } from "@/app/actions/newsActions";
 import { setSingleArticle } from "@/store/news";
 import ArticleSkeleton from "@/app/component/ArticleSkeleton";
+import BookmarkBtn from "@/app/component/BookmarkBtn";
 
 export default function NewsDynamic(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
@@ -160,24 +161,7 @@ export default function NewsDynamic(): JSX.Element {
         <h1>{singleArticle.title}</h1>
         <div className="date">{singleArticle.date[1] ? singleArticle.date[1] : singleArticle.date[0]}</div>
         {session ? (
-          <form onSubmit={onSubmit}>
-            {!isLoading && (
-              <button
-                type="submit"
-                style={
-                  bookmarkSuccess
-                    ? {
-                        background: "var(--basic-font)",
-                        border: "var(--basic-font) solid 1px",
-                        color: "var(--reverse-font)",
-                      }
-                    : {}
-                }
-              >
-                {bookmarkSuccess ? <FaCheck /> : <GoBookmarkFill />}
-              </button>
-            )}
-          </form>
+          <form onSubmit={onSubmit}>{<BookmarkBtn success={bookmarkSuccess} isLoading={isLoading} />}</form>
         ) : (
           <Link href="/auth/signin">
             <button>
