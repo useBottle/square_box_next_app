@@ -15,6 +15,7 @@ import ScrollBtn from "@/app/component/ScrollBtn";
 import { findNewsBookmark, setNewsBookmark } from "@/app/actions/bookmarkNewsActions";
 import { deleteNewsBookmark, getMarkedNews } from "@/app/actions/bookmarkActions";
 import { setMarkedNews } from "@/store/bookmark";
+import { setInBookmarkDetail } from "@/store/switches";
 
 export default function MarkedNewsDynamic(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
@@ -24,6 +25,7 @@ export default function MarkedNewsDynamic(): JSX.Element {
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(true);
 
   useEffect(() => {
+    dispatch(setInBookmarkDetail(true));
     (!session || !session.user || !session.user.name) && router.push("/auth/signin");
 
     window.scrollTo({ top: 0 });

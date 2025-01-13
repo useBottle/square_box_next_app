@@ -22,7 +22,12 @@ export default function BookmarkNews() {
   const markedNewsData = useSelector((state: RootState) => state.bookmark.markedNews.data);
 
   useEffect(() => {
+    dispatch(setInBookmarkDetail(false));
     (!session || !session.user || !session.user.name) && router.push("/auth/signin");
+
+    return () => {
+      dispatch(setInBookmarkDetail(true));
+    };
   }, []);
 
   const onClick = (id: string, title: string) => (e: MouseEvent) => {
@@ -31,7 +36,7 @@ export default function BookmarkNews() {
     if (clickedNews) {
       dispatch(setClickedNews(clickedNews));
     }
-    dispatch(setInBookmarkDetail(true));
+    // dispatch(setInBookmarkDetail(true));
     router.push(`/bookmark/news/detail?title=${encodeURIComponent(title)}`);
   };
 
