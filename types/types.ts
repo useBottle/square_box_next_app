@@ -53,6 +53,15 @@ export interface LatestNewsArticle {
   text: string[];
 }
 
+// 북마크할 뉴스 단일 기사
+export interface SingleNewsArticle {
+  title: string;
+  date: string;
+  image: string;
+  alt: string;
+  text: string[];
+}
+
 // 뉴스 리스트
 export interface newsList {
   title: string;

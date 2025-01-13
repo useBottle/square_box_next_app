@@ -14,7 +14,7 @@ import ExpiredData from "@/app/component/ExpiredData";
 import { deleteNewsBookmark, findNewsBookmark, setNewsBookmark } from "@/app/actions/bookmarkNewsActions";
 import { getMarkedNews } from "@/app/actions/bookmarkActions";
 import ScrollBtn from "@/app/component/ScrollBtn";
-import { LatestNewsArticle } from "@/types/types";
+import { SingleNewsArticle } from "@/types/types";
 import { fetchSingleArticle } from "@/app/actions/newsActions";
 import { setSingleArticle } from "@/store/news";
 import ArticleSkeleton from "@/app/component/ArticleSkeleton";
@@ -67,7 +67,7 @@ export default function NewsDynamic(): JSX.Element {
     // 유저 정보가 없으면 onSubmit 이벤트 종료.
     if (!session || !session.user || session.user.name === undefined) return;
 
-    const currentNews: LatestNewsArticle = {
+    const currentNews: SingleNewsArticle = {
       title: "",
       date: "",
       image: "",
