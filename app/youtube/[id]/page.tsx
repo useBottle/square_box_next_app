@@ -4,6 +4,7 @@
 
 import { getMarkedYoutube } from "@/app/actions/bookmarkActions";
 import { deleteYoutubeBookmark, findYoutubeBookmark, setYoutubeBookmark } from "@/app/actions/bookmarkYoutubeActions";
+import BookmarkBtn from "@/app/component/BookmarkBtn";
 import ExpiredData from "@/app/component/ExpiredData";
 import { RootState } from "@/store/store";
 import { youtubeDynamic } from "@/styles/Youtube.styles";
@@ -140,22 +141,7 @@ export default function YoutubeDynamic(): JSX.Element {
         <div className="publishedAt">{youtubeList.items[index].snippet.publishedAt}</div>
         {session ? (
           <form onSubmit={onSubmit}>
-            {!isLoading && (
-              <button
-                type="submit"
-                style={
-                  bookmarkSuccess
-                    ? {
-                        background: "var(--basic-font)",
-                        border: "var(--basic-font) solid 1px",
-                        color: "var(--reverse-font)",
-                      }
-                    : {}
-                }
-              >
-                {bookmarkSuccess ? <FaCheck /> : <GoBookmarkFill />}
-              </button>
-            )}
+            {!isLoading && <BookmarkBtn success={bookmarkSuccess} isLoading={isLoading} />}
           </form>
         ) : (
           <Link href="/auth/signin">

@@ -161,7 +161,9 @@ export default function NewsDynamic(): JSX.Element {
         <h1>{singleArticle.title}</h1>
         <div className="date">{singleArticle.date[1] ? singleArticle.date[1] : singleArticle.date[0]}</div>
         {session ? (
-          <form onSubmit={onSubmit}>{<BookmarkBtn success={bookmarkSuccess} isLoading={isLoading} />}</form>
+          <form onSubmit={onSubmit}>
+            <BookmarkBtn success={bookmarkSuccess} isLoading={isLoading} />
+          </form>
         ) : (
           <Link href="/auth/signin">
             <button>
