@@ -1,34 +1,37 @@
-import { authOptions } from "@/util/authOptions";
-import { getServerSession } from "next-auth";
+/**@jsxImportSource @emotion/react */
+
+"use client";
+
 import { redirect } from "next/navigation";
 import styles from "../../../styles/BookmarkNews.module.scss";
-import { getMarkedNews } from "../../actions/bookmarkActions";
 import Link from "next/link";
 import Image from "next/image";
 import BookmarkDeleteBtn from "@/app/component/BookmarkDeleteBtn";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 export default async function BookmarkNews() {
-  const session = await getServerSession(authOptions);
+  const { data: session } = useSession();
+  const markedNewsData = useSelector((state: RootState) => state.bookmark.markedNews.data);
 
-  if (!session) {
-    redirect("/auth/signin");
-  }
+  useEffect(() => {
+    !session || !session.user || (session.user.name === undefined && redirect("/auth/signin"));
+  }, []);
 
-  const data = await getMarkedNews(session.user.name as string);
-  const newsData = data?.exists === true ? data.data : [];
-
-  // console.log("newsData: ", newsData);
+  // console.log("markedNewsData: ", markedNewsData);
 
   return (
     <div className={styles.bookmark}>
       <section className={styles.newsContainer}>
         <h4>
-          북마크 뉴스 컨텐츠<span>{`${newsData && newsData.length} / 10`}</span>
+          북마크 뉴스 컨텐츠<span>{`${markedNewsData && markedNewsData.length} / 10`}</span>
         </h4>
         <div className={styles.contents}>
-          {newsData && newsData.length !== 0 ? (
+          {markedNewsData && markedNewsData.length !== 0 ? (
             <ul>
-              {newsData.map((item, index) => {
+              {markedNewsData.map((item, index) => {
                 return (
                   <div key={index}>
                     <Link href={`/bookmark/detail?title=${encodeURIComponent(item.title)}`}>

@@ -184,6 +184,7 @@ export interface MarkedNewsArticle {
   username: string;
   createdAt: Date;
   category: string;
+  _id: string;
 }
 
 // 북마크 유튜브 데이터
@@ -197,6 +198,7 @@ export interface MarkedYoutubeVideo {
   username: string;
   createdAt: Date;
   category: string;
+  _id: string;
 }
 
 // 북마크 슬라이스 타입
