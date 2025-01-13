@@ -24,7 +24,6 @@ export default function YoutubeDynamic(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const markedYoutubeData = useSelector((state: RootState) => state.bookmark.markedYoutube.data);
 
   const videoId = searchParams.get("id");
   const index = Number(searchParams.get("index"));
