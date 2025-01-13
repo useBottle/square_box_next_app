@@ -2,6 +2,7 @@
 
 "use client";
 
+import { css } from "@emotion/react";
 import { redirect } from "next/navigation";
 import styles from "../../../styles/BookmarkNews.module.scss";
 import Link from "next/link";
@@ -11,6 +12,7 @@ import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import { bookmarkNews } from "@/styles/BookmarkNews.styles";
 
 export default async function BookmarkNews() {
   const { data: session } = useSession();
@@ -23,12 +25,12 @@ export default async function BookmarkNews() {
   // console.log("markedNewsData: ", markedNewsData);
 
   return (
-    <div className={styles.bookmark}>
-      <section className={styles.newsContainer}>
+    <div css={css(bookmarkNews)}>
+      <section className="newsContainer">
         <h4>
           북마크 뉴스 컨텐츠<span>{`${markedNewsData && markedNewsData.length} / 10`}</span>
         </h4>
-        <div className={styles.contents}>
+        <div className="contents">
           {markedNewsData && markedNewsData.length !== 0 ? (
             <ul>
               {markedNewsData.map((item, index) => {
@@ -37,9 +39,9 @@ export default async function BookmarkNews() {
                     <Link href={`/bookmark/detail?title=${encodeURIComponent(item.title)}`}>
                       <li>
                         <Image src={item.image} alt="newsImg" width={100} height={100} />
-                        <div className={styles.textGroup}>
+                        <div className="textGroup">
                           <h6>{item.title}</h6>
-                          <div className={styles.date}>{item.date}</div>
+                          <div className="date">{item.date}</div>
                           {item.text.map((item: string, index: number) => {
                             return <p key={index}>{item}</p>;
                           })}
@@ -52,7 +54,7 @@ export default async function BookmarkNews() {
               })}
             </ul>
           ) : (
-            <div className={styles.emptyContents}>
+            <div className="emptyContents">
               <p>북마크한 뉴스가 없습니다</p>
             </div>
           )}
