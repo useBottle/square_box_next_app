@@ -1,6 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+interface SwitchesType {
+  navMenu: boolean;
+  signoutModal: boolean;
+  pageState: "default" | "news" | "youtube";
+  inputValue: string;
+  onSearching: boolean;
+  inBookmarkDetail: boolean;
+}
+
+const initialState: SwitchesType = {
   navMenu: false,
   signoutModal: false,
   pageState: "default",
@@ -19,7 +28,7 @@ export const switches = createSlice({
     setSignoutModal(state, action: PayloadAction<boolean>) {
       state.signoutModal = action.payload;
     },
-    setPageState(state, action: PayloadAction<string>) {
+    setPageState(state, action: PayloadAction<"default" | "news" | "youtube">) {
       state.pageState = action.payload;
     },
     setInputValue(state, action: PayloadAction<string>) {
