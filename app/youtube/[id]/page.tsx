@@ -89,19 +89,6 @@ export default function YoutubeDynamic(): JSX.Element {
         if (markedYoutubeData && (markedYoutubeData?.number as number) < 10) {
           const response = await setYoutubeBookmark(currentVideo as currentYoutubeVideo, session.user.name);
           response && response.success === true && setBookmarkSuccess(true);
-
-          // 북마크된 최신 상태로 디스패치
-          const findAllyoutube = await getMarkedYoutube(session.user.name as string);
-          findAllyoutube &&
-            findAllyoutube.exists !== undefined &&
-            findAllyoutube.number !== undefined &&
-            dispatch(
-              setMarkedYoutube({
-                exists: findAllyoutube.exists,
-                number: findAllyoutube.number,
-                data: findAllyoutube.data,
-              }),
-            );
           // console.log(response);
           return;
         }
@@ -111,6 +98,19 @@ export default function YoutubeDynamic(): JSX.Element {
           return;
         }
       }
+
+      // 북마크된 최신 상태로 디스패치
+      const afterProcessYoutube = await getMarkedYoutube(session.user.name as string);
+      afterProcessYoutube &&
+        afterProcessYoutube.exists !== undefined &&
+        afterProcessYoutube.number !== undefined &&
+        dispatch(
+          setMarkedYoutube({
+            exists: afterProcessYoutube.exists,
+            number: afterProcessYoutube.number,
+            data: afterProcessYoutube.data,
+          }),
+        );
     } catch (error) {
       console.error("youtube bookmark failed", error);
       alert("북마크에 실패했습니다. 재시도해주세요.");
