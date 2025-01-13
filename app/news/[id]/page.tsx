@@ -119,19 +119,6 @@ export default function NewsDynamic(): JSX.Element {
         if (markedNewsData && (markedNewsData?.number as number) < 10) {
           const response = await setNewsBookmark(currentNews, session.user.name);
           response && response.success === true && setBookmarkSuccess(true);
-
-          // 북마크된 최신 상태로 디스패치
-          const findAllNews = await getMarkedNews(session.user.name as string);
-          findAllNews &&
-            findAllNews.exists !== undefined &&
-            findAllNews.number !== undefined &&
-            dispatch(
-              setMarkedNews({
-                exists: findAllNews.exists,
-                number: findAllNews.number,
-                data: findAllNews.data,
-              }),
-            );
           // console.log(response);
           return;
         }
@@ -141,6 +128,19 @@ export default function NewsDynamic(): JSX.Element {
           return;
         }
       }
+
+      // 북마크된 최신 상태로 디스패치
+      const afterProcessNews = await getMarkedNews(session.user.name as string);
+      afterProcessNews &&
+        afterProcessNews.exists !== undefined &&
+        afterProcessNews.number !== undefined &&
+        dispatch(
+          setMarkedNews({
+            exists: afterProcessNews.exists,
+            number: afterProcessNews.number,
+            data: afterProcessNews.data,
+          }),
+        );
     } catch (error) {
       console.error("news bookmark failed", error);
       alert("북마크에 실패했습니다. 재시도해주세요.");
