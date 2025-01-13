@@ -49,7 +49,7 @@ export default function LatestNewsDetail(): JSX.Element {
         // 상태 업데이트가 완료되지 않아 데이터가 비었을 경우 함수 종료.
         if (latestNewsArticle.title === "") return;
 
-        if (session && session.user && session.user.name !== undefined) {
+        if (session && session.user && session.user.name) {
           const findBookmark = await findNewsBookmark(latestNewsArticle.title, session.user.name as string);
           // console.log(findBookmark);
           if (findBookmark && findBookmark.exists === true) {
@@ -58,7 +58,7 @@ export default function LatestNewsDetail(): JSX.Element {
           setIsLoadingMarked(false);
 
           // 유저 세션이 없으면 함수 종료.
-        } else if (!session || !session.user || session.user.name === undefined) return;
+        } else if (!session || !session.user || !session.user.name) return;
       } catch (error) {
         console.error("news bookmark failed", error);
       }
@@ -71,7 +71,7 @@ export default function LatestNewsDetail(): JSX.Element {
     e.preventDefault();
 
     // 유저 정보가 없으면 onSubmit 이벤트 종료.
-    if (!session || !session.user || session.user.name === undefined) return;
+    if (!session || !session.user || !session.user.name) return;
 
     // 현재 뉴스 기사 객체 생성
     const currentNews = {

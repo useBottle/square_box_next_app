@@ -30,7 +30,7 @@ export default function YoutubeDynamic(): JSX.Element {
 
   useEffect(() => {
     // 유저 정보가 없으면 onSubmit 이벤트 종료.
-    if (!session || !session.user || session.user.name === undefined) return;
+    if (!session || !session.user || !session.user.name) return;
 
     // 유저 정보 및 유튜브 데이터 DB 에서 확인 후 북마크 버튼 스타일 변경 트리거 상태 변경.
     async function findMarkedYoutube() {
@@ -52,7 +52,7 @@ export default function YoutubeDynamic(): JSX.Element {
     e.preventDefault();
 
     // 유저 정보가 없으면 onSubmit 이벤트 종료.
-    if (!session || !session.user || session.user.name === undefined) return;
+    if (!session || !session.user || !session.user.name) return;
 
     // 현재 유튜브 영상 객체 생성
     const currentVideo = {
