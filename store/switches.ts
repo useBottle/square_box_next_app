@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface SwitchesType {
   navMenu: boolean;
   signoutModal: boolean;
-  pageState: "default" | "news" | "youtube";
+  pageState: "default" | "news" | "youtube" | "bookmark";
   inputValue: string;
   onSearching: boolean;
   inBookmarkDetail: boolean;
@@ -28,7 +28,7 @@ export const switches = createSlice({
     setSignoutModal(state, action: PayloadAction<boolean>) {
       state.signoutModal = action.payload;
     },
-    setPageState(state, action: PayloadAction<"default" | "news" | "youtube">) {
+    setPageState(state, action: PayloadAction<"default" | "news" | "youtube" | "bookmark">) {
       state.pageState = action.payload;
     },
     setInputValue(state, action: PayloadAction<string>) {

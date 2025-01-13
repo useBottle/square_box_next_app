@@ -14,13 +14,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { bookmarkYoutube } from "@/styles/BookmarkYoutube.styles";
 import { setClickedYoutube } from "@/store/bookmark";
-import { setInBookmarkDetail } from "@/store/switches";
+import { setInBookmarkDetail, setPageState } from "@/store/switches";
+import ExpiredData from "@/app/component/ExpiredData";
 
 export default function Bookmark() {
   const { data: session } = useSession();
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const markedYoutubeData = useSelector((state: RootState) => state.bookmark.markedYoutube.data);
+  const pageState = useSelector((state: RootState) => state.switches.pageState);
 
   useEffect(() => {
     dispatch(setInBookmarkDetail(false));
@@ -39,6 +41,11 @@ export default function Bookmark() {
     }
     router.push(`/bookmark/youtube/detail?title=${encodeURIComponent(videoId)}`);
   };
+
+  // pageState 가 초기화된 경우 ExpiredData 렌더링
+  if (pageState === "default") {
+    return <ExpiredData />;
+  }
 
   return (
     <div css={css(bookmarkYoutube)}>

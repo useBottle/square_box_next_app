@@ -13,13 +13,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { bookmarkNews } from "@/styles/BookmarkNews.styles";
 import { setClickedNews } from "@/store/bookmark";
-import { setInBookmarkDetail } from "@/store/switches";
+import { setInBookmarkDetail, setPageState } from "@/store/switches";
+import ExpiredData from "@/app/component/ExpiredData";
 
 export default function BookmarkNews() {
   const { data: session } = useSession();
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const markedNewsData = useSelector((state: RootState) => state.bookmark.markedNews.data);
+  const pageState = useSelector((state: RootState) => state.switches.pageState);
 
   useEffect(() => {
     dispatch(setInBookmarkDetail(false));
@@ -39,6 +41,11 @@ export default function BookmarkNews() {
     // dispatch(setInBookmarkDetail(true));
     router.push(`/bookmark/news/detail?title=${encodeURIComponent(title)}`);
   };
+
+  // pageState 가 초기화된 경우 ExpiredData 렌더링
+  if (pageState === "default") {
+    return <ExpiredData />;
+  }
 
   return (
     <div css={css(bookmarkNews)}>
