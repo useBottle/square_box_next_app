@@ -19,6 +19,7 @@ import { fetchSingleArticle } from "@/app/actions/newsActions";
 import { setSingleArticle } from "@/store/news";
 import ArticleSkeleton from "@/app/component/ArticleSkeleton";
 import BookmarkBtn from "@/app/component/BookmarkBtn";
+import { setMarkedNews } from "@/store/bookmark";
 
 export default function NewsDynamic(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
@@ -118,6 +119,19 @@ export default function NewsDynamic(): JSX.Element {
         if (markedNewsData && (markedNewsData?.number as number) < 10) {
           const response = await setNewsBookmark(currentNews, session.user.name);
           response && response.success === true && setBookmarkSuccess(true);
+
+          // 북마크된 최신 상태로 북마크된 뉴스 데이터 상태 업데이트
+          const findAllNews = await getMarkedNews(session.user.name as string);
+          findAllNews &&
+            findAllNews.exists !== undefined &&
+            findAllNews.number !== undefined &&
+            dispatch(
+              setMarkedNews({
+                exists: findAllNews.exists,
+                number: findAllNews.number,
+                data: findAllNews.data,
+              }),
+            );
           // console.log(response);
           return;
         }
