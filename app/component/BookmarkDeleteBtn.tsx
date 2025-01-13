@@ -7,6 +7,10 @@ import { css, CSSObject } from "@emotion/react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { deleteNewsBookmark, deleteYoutubeBookmark } from "../actions/bookmarkActions";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
+import { MarkedNewsArticle, MarkedYoutubeVideo } from "@/types/types";
+import { setMarkedNews, setMarkedYoutube } from "@/store/bookmark";
 
 const btn: CSSObject = {
   border: "var(--basic-font) 1px solid",
@@ -23,39 +27,55 @@ const btn: CSSObject = {
   marginBottom: "5rem",
 };
 
-const onClick = (data: { category: string; id: string; username: string }) => () => {
-  async function deleteBookmark() {
-    if (data.category === "news") {
-      if (confirm("북마크를 제거하시겠습니까?")) {
-        const result = await deleteNewsBookmark(data.id, data.username);
-
-        if (result && result.delete === false) {
-          alert("북마크 삭제에 실패했습니다. 재시도해주세요.");
-        }
-      }
-    }
-
-    if (data.category === "youtube") {
-      if (confirm("북마크를 제거하시겠습니까?")) {
-        const result = await deleteYoutubeBookmark(data.id, data.username);
-
-        if (result && result.delete === false) {
-          alert("북마크 삭제에 실패했습니다. 재시도해주세요.");
-        }
-      }
-    }
-  }
-  deleteBookmark();
-  window.location.reload();
-};
-
 export default function BookmarkDeleteBtn({ data }: { data: { category: string; id: string } }) {
   const session = useSession();
+  const dispatch = useDispatch<AppDispatch>();
+  const markedNewsData = useSelector((state: RootState) => state.bookmark.markedNews.data);
+  const markedYoutubeData = useSelector((state: RootState) => state.bookmark.markedYoutube.data);
+
+  const onClick =
+    (targetData: {
+      category: string;
+      id: string;
+      username: string;
+      markedNewsData: MarkedNewsArticle[];
+      markedYoutubeData: MarkedYoutubeVideo[];
+    }) =>
+    () => {
+      async function deleteBookmark() {
+        if (targetData.category === "news" && targetData.markedNewsData.length !== 0) {
+          if (confirm("북마크를 제거하시겠습니까?")) {
+            const deleteData = targetData.markedNewsData.filter((item) => item._id !== targetData.id);
+            dispatch(setMarkedNews({ exists: true, number: deleteData.length, data: deleteData }));
+            const result = await deleteNewsBookmark(targetData.id, targetData.username);
+
+            if (result && result.delete === false) {
+              alert("북마크 삭제에 실패했습니다. 재시도해주세요.");
+            }
+          }
+        }
+
+        if (targetData.category === "youtube") {
+          if (confirm("북마크를 제거하시겠습니까?")) {
+            const deleteData = targetData.markedYoutubeData.filter((item) => item._id !== targetData.id);
+            dispatch(setMarkedYoutube({ exists: true, number: deleteData.length, data: deleteData }));
+            const result = await deleteYoutubeBookmark(targetData.id, targetData.username);
+
+            if (result && result.delete === false) {
+              alert("북마크 삭제에 실패했습니다. 재시도해주세요.");
+            }
+          }
+        }
+      }
+      deleteBookmark();
+    };
 
   const targetData = {
     category: data.category,
     id: data.id,
     username: session.data?.user?.name as string,
+    markedNewsData: markedNewsData,
+    markedYoutubeData: markedYoutubeData,
   };
 
   return (
