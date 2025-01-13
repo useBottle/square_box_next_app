@@ -101,7 +101,6 @@ export default function YoutubeDynamic(): JSX.Element {
 
       // 북마크된 최신 상태로 디스패치
       const afterProcessYoutube = await getMarkedYoutube(session.user.name as string);
-      console.log("afterProcessYoutube", afterProcessYoutube);
       afterProcessYoutube &&
         afterProcessYoutube.exists !== undefined &&
         afterProcessYoutube.number !== undefined &&
@@ -117,10 +116,6 @@ export default function YoutubeDynamic(): JSX.Element {
       alert("북마크에 실패했습니다. 재시도해주세요.");
     }
   };
-
-  useEffect(() => {
-    console.log("markedYoutubeData", markedYoutubeData);
-  }, [markedYoutubeData]);
 
   // index 가 안맞거나 youtubeList 가 비었을 경우 ExpiredData 렌더링
   if (
