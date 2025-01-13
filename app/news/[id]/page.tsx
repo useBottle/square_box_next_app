@@ -160,17 +160,9 @@ export default function NewsDynamic(): JSX.Element {
       <div className="textGroup">
         <h1>{singleArticle.title}</h1>
         <div className="date">{singleArticle.date[1] ? singleArticle.date[1] : singleArticle.date[0]}</div>
-        {session ? (
-          <form onSubmit={onSubmit}>
-            <BookmarkBtn success={bookmarkSuccess} isLoading={isLoading} />
-          </form>
-        ) : (
-          <Link href="/auth/signin">
-            <button>
-              <span>북마크하려면 로그인 해야합니다</span>
-            </button>
-          </Link>
-        )}
+        <form onSubmit={onSubmit}>
+          <BookmarkBtn success={bookmarkSuccess} isLoading={isLoading} />
+        </form>
         {singleArticle.text.map((item, index) => {
           return <p key={index}>{item}</p>;
         })}

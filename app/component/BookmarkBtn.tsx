@@ -5,6 +5,8 @@
 import { css, CSSObject } from "@emotion/react";
 import { GoBookmarkFill } from "react-icons/go";
 import { FaCheck } from "react-icons/fa6";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 const bookmarkBtn: CSSObject = {
   button: {
@@ -30,25 +32,37 @@ const bookmarkBtn: CSSObject = {
 };
 
 export default function BookmarkBtn({ success, isLoading }: { success: boolean; isLoading: boolean }): JSX.Element {
+  const { data: session } = useSession();
+
   return (
     <div css={css(bookmarkBtn)}>
-      {!isLoading ? (
-        <button
-          type="submit"
-          style={
-            success
-              ? {
-                  background: "var(--basic-font)",
-                  border: "var(--basic-font) solid 1px",
-                  color: "var(--reverse-font)",
-                }
-              : {}
-          }
-        >
-          {success ? <FaCheck /> : <GoBookmarkFill />}
-        </button>
+      {session ? (
+        <>
+          {!isLoading ? (
+            <button
+              type="submit"
+              style={
+                success
+                  ? {
+                      background: "var(--basic-font)",
+                      border: "var(--basic-font) solid 1px",
+                      color: "var(--reverse-font)",
+                    }
+                  : {}
+              }
+            >
+              {success ? <FaCheck /> : <GoBookmarkFill />}
+            </button>
+          ) : (
+            <button></button>
+          )}
+        </>
       ) : (
-        <button></button>
+        <Link href="/auth/signin">
+          <button>
+            <span>북마크하려면 로그인 해야합니다</span>
+          </button>
+        </Link>
       )}
     </div>
   );
