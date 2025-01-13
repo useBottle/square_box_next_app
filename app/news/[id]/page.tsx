@@ -31,10 +31,6 @@ export default function NewsDynamic(): JSX.Element {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    console.log("single article: ", singleArticle);
-  }, [singleArticle]);
-
-  useEffect(() => {
     window.scrollTo({ top: 0 });
 
     // 클릭한 뉴스에 대한 article 데이터 요청
