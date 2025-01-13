@@ -6,6 +6,7 @@ const initialState = {
   pageState: "default",
   inputValue: "",
   onSearching: false,
+  inBookmarkDetail: false,
 };
 
 export const switches = createSlice({
@@ -27,8 +28,12 @@ export const switches = createSlice({
     setOnSearching(state, action: PayloadAction<boolean>) {
       state.onSearching = action.payload;
     },
+    setInBookmarkDetail(state, action: PayloadAction<boolean>) {
+      state.inBookmarkDetail = action.payload;
+    },
   },
 });
 
-export const { setNavMenu, setSignoutModal, setPageState, setInputValue, setOnSearching } = switches.actions;
+export const { setNavMenu, setSignoutModal, setPageState, setInputValue, setOnSearching, setInBookmarkDetail } =
+  switches.actions;
 export default switches.reducer;
