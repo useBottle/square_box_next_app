@@ -4,7 +4,6 @@
 
 import { css } from "@emotion/react";
 import { redirect } from "next/navigation";
-import styles from "../../../styles/BookmarkNews.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import BookmarkDeleteBtn from "@/app/component/BookmarkDeleteBtn";
