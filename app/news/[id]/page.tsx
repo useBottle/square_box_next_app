@@ -120,7 +120,7 @@ export default function NewsDynamic(): JSX.Element {
           const response = await setNewsBookmark(currentNews, session.user.name);
           response && response.success === true && setBookmarkSuccess(true);
 
-          // 북마크된 최신 상태로 북마크된 뉴스 데이터 상태 업데이트
+          // 북마크된 최신 상태로 디스패치
           const findAllNews = await getMarkedNews(session.user.name as string);
           findAllNews &&
             findAllNews.exists !== undefined &&

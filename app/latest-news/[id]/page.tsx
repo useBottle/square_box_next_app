@@ -18,6 +18,7 @@ import { getLatestNewsArticle } from "@/app/actions/latestNewsActions";
 import { setLatestNewsArticle } from "@/store/latestNews";
 import ArticleSkeleton from "@/app/component/ArticleSkeleton";
 import BookmarkBtn from "@/app/component/BookmarkBtn";
+import { setMarkedNews } from "@/store/bookmark";
 
 export default function LatestNewsDetail(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
@@ -114,6 +115,19 @@ export default function LatestNewsDetail(): JSX.Element {
         if (markedNewsData && (markedNewsData?.number as number) < 10) {
           const response = await setNewsBookmark(currentNews, session.user.name);
           response && response.success === true && setBookmarkSuccess(true);
+
+          // 북마크된 최신 상태로 디스패치
+          const findAllNews = await getMarkedNews(session.user.name as string);
+          findAllNews &&
+            findAllNews.exists !== undefined &&
+            findAllNews.number !== undefined &&
+            dispatch(
+              setMarkedNews({
+                exists: findAllNews.exists,
+                number: findAllNews.number,
+                data: findAllNews.data,
+              }),
+            );
           // console.log(response);
           return;
         }
