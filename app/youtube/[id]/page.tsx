@@ -139,7 +139,7 @@ export default function YoutubeDynamic(): JSX.Element {
         <h1 className="title">{youtubeList.items[index].snippet.title}</h1>
         <h4 className="channel">{youtubeList.items[index].snippet.channelTitle}</h4>
         <div className="publishedAt">{youtubeList.items[index].snippet.publishedAt}</div>
-        <form onSubmit={onSubmit}>{!isLoading && <BookmarkBtn success={bookmarkSuccess} isLoading={isLoading} />}</form>
+        <form onSubmit={onSubmit}>{<BookmarkBtn success={bookmarkSuccess} isLoading={isLoading} />}</form>
         <p className="description">{youtubeList.items[index].snippet.description}</p>
       </div>
     </div>
