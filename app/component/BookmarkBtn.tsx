@@ -2,16 +2,25 @@
 
 "use client";
 
-import { css, CSSObject } from "@emotion/react";
+import { css, CSSObject, keyframes } from "@emotion/react";
 import { GoBookmarkFill } from "react-icons/go";
 import { FaCheck } from "react-icons/fa6";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 
+const rotate = keyframes({
+  "0%": {
+    transform: "rotate(0deg)",
+  },
+  "100%": {
+    transform: "rotate(360deg)",
+  },
+});
+
 const bookmarkBtn: CSSObject = {
   button: {
     width: "100%",
-    padding: "0.8rem 0",
+    height: "4rem",
     fontSize: "2rem",
     display: "flex",
     justifyContent: "center",
@@ -27,6 +36,15 @@ const bookmarkBtn: CSSObject = {
     span: {
       fontSize: "1.4rem",
       marginLeft: "0.5rem",
+    },
+
+    ".spinner": {
+      width: "1.6rem",
+      height: "1.6rem",
+      border: "4px solid var(--shadow-color)",
+      borderRadius: "50%",
+      borderRightColor: "transparent",
+      animation: `${rotate} 1s linear infinite`,
     },
   },
 };
@@ -54,7 +72,9 @@ export default function BookmarkBtn({ success, isLoading }: { success: boolean; 
               {success ? <FaCheck /> : <GoBookmarkFill />}
             </button>
           ) : (
-            <button></button>
+            <button style={{ borderColor: "var(--shadow-color)" }}>
+              <div className="spinner" />
+            </button>
           )}
         </>
       ) : (
