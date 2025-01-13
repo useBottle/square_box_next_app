@@ -20,6 +20,7 @@ import { getMarkedNews } from "@/app/actions/bookmarkActions";
 import { getLatestNewsArticle } from "@/app/actions/latestNewsActions";
 import { setLatestNewsArticle } from "@/store/latestNews";
 import ArticleSkeleton from "@/app/component/ArticleSkeleton";
+import BookmarkBtn from "@/app/component/BookmarkBtn";
 
 export default function LatestNewsDetail(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
@@ -156,24 +157,7 @@ export default function LatestNewsDetail(): JSX.Element {
         <h1>{latestNewsArticle.title}</h1>
         <div className="date">{latestNewsArticle.date}</div>
         {session ? (
-          <form onSubmit={onSubmit}>
-            {!isLoadingMarked && (
-              <button
-                type="submit"
-                style={
-                  bookmarkSuccess
-                    ? {
-                        background: "var(--basic-font)",
-                        border: "var(--basic-font) solid 1px",
-                        color: "var(--reverse-font)",
-                      }
-                    : {}
-                }
-              >
-                {bookmarkSuccess ? <FaCheck /> : <GoBookmarkFill />}
-              </button>
-            )}
-          </form>
+          <form onSubmit={onSubmit}>{<BookmarkBtn success={bookmarkSuccess} isLoading={isLoadingMarked} />}</form>
         ) : (
           <Link href="/auth/signin">
             <button>
