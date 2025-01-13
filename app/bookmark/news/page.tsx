@@ -3,7 +3,7 @@
 "use client";
 
 import { css } from "@emotion/react";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import BookmarkDeleteBtn from "@/app/component/BookmarkDeleteBtn";
@@ -21,7 +21,7 @@ export default function BookmarkNews() {
   const markedNewsData = useSelector((state: RootState) => state.bookmark.markedNews.data);
 
   useEffect(() => {
-    (!session || !session.user || !session.user.name) && redirect("/auth/signin");
+    (!session || !session.user || !session.user.name) && router.push("/auth/signin");
   }, []);
 
   const onClick = (id: string, title: string) => (e: MouseEvent) => {
