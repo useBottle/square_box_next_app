@@ -3,23 +3,35 @@
 "use client";
 
 import { css } from "@emotion/react";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import BookmarkDeleteBtn from "@/app/component/BookmarkDeleteBtn";
 import { useSession } from "next-auth/react";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store/store";
+import { MouseEvent, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/store/store";
 import { bookmarkNews } from "@/styles/BookmarkNews.styles";
+import { setClickedNews } from "@/store/bookmark";
 
 export default function BookmarkNews() {
   const { data: session } = useSession();
+  const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();
   const markedNewsData = useSelector((state: RootState) => state.bookmark.markedNews.data);
 
   useEffect(() => {
     !session || !session.user || (session.user.name === undefined && redirect("/auth/signin"));
   }, []);
+
+  const onClick = (id: string, title: string) => (e: MouseEvent) => {
+    e.preventDefault();
+    const clickedNews = markedNewsData.find((item) => item._id === id);
+    if (clickedNews) {
+      dispatch(setClickedNews(clickedNews));
+    }
+    router.push(`/bookmark/detail?title=${encodeURIComponent(title)}`);
+  };
 
   return (
     <div css={css(bookmarkNews)}>
@@ -33,7 +45,10 @@ export default function BookmarkNews() {
               {markedNewsData.map((item, index) => {
                 return (
                   <div key={index}>
-                    <Link href={`/bookmark/detail?title=${encodeURIComponent(item.title)}`}>
+                    <Link
+                      href={`/bookmark/detail?title=${encodeURIComponent(item.title)}`}
+                      onClick={onClick(item._id, item.title)}
+                    >
                       <li>
                         <Image src={item.image} alt="newsImg" width={100} height={100} />
                         <div className="textGroup">
