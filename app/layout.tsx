@@ -39,7 +39,7 @@ export default function RootLayout({
           <CheckToken />
           <MobileNav />
           <Header />
-          {/* <FetchTopics /> */}
+          <FetchTopics />
           <div style={{ paddingTop: headerHeight }}>{children}</div>
         </Providers>
       </body>
