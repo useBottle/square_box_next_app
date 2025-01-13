@@ -156,15 +156,7 @@ export default function LatestNewsDetail(): JSX.Element {
       <div className="textGroup">
         <h1>{latestNewsArticle.title}</h1>
         <div className="date">{latestNewsArticle.date}</div>
-        {session ? (
-          <form onSubmit={onSubmit}>{<BookmarkBtn success={bookmarkSuccess} isLoading={isLoadingMarked} />}</form>
-        ) : (
-          <Link href="/auth/signin">
-            <button>
-              <span>북마크하려면 로그인 해야합니다</span>
-            </button>
-          </Link>
-        )}
+        <form onSubmit={onSubmit}>{<BookmarkBtn success={bookmarkSuccess} isLoading={isLoadingMarked} />}</form>
         {latestNewsArticle.text.map((item, index) => (
           <p key={index}>{item}</p>
         ))}
