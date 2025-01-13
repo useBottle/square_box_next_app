@@ -98,7 +98,7 @@ export default function MarkedNewsDynamic(): JSX.Element {
       </figure>
       <div className="textGroup">
         <h1>{clickedNews.title}</h1>
-        <div className="date">{clickedNews.date[1] ? clickedNews.date[1] : clickedNews.date[0]}</div>
+        <div className="date">{clickedNews.date}</div>
         <form onSubmit={onSubmit}>
           <BookmarkBtn success={bookmarkSuccess} isLoading={false} />
         </form>
