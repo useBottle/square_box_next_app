@@ -6,20 +6,22 @@ import { getMarkedYoutube } from "@/app/actions/bookmarkActions";
 import { deleteYoutubeBookmark, findYoutubeBookmark, setYoutubeBookmark } from "@/app/actions/bookmarkYoutubeActions";
 import BookmarkBtn from "@/app/component/BookmarkBtn";
 import ExpiredData from "@/app/component/ExpiredData";
-import { RootState } from "@/store/store";
+import { setMarkedYoutube } from "@/store/bookmark";
+import { AppDispatch, RootState } from "@/store/store";
 import { youtubeDynamic } from "@/styles/Youtube.styles";
 import { currentYoutubeVideo } from "@/types/types";
 import { css } from "@emotion/react";
 import { useSession } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import YouTube, { YouTubeEvent } from "react-youtube";
 
 export default function YoutubeDynamic(): JSX.Element {
   const youtubeList = useSelector((state: RootState) => state.youtube.youtubeList);
   const searchParams = useSearchParams();
   const { data: session } = useSession();
+  const dispatch = useDispatch<AppDispatch>();
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -87,6 +89,19 @@ export default function YoutubeDynamic(): JSX.Element {
         if (markedYoutubeData && (markedYoutubeData?.number as number) < 10) {
           const response = await setYoutubeBookmark(currentVideo as currentYoutubeVideo, session.user.name);
           response && response.success === true && setBookmarkSuccess(true);
+
+          // 북마크된 최신 상태로 디스패치
+          const findAllyoutube = await getMarkedYoutube(session.user.name as string);
+          findAllyoutube &&
+            findAllyoutube.exists !== undefined &&
+            findAllyoutube.number !== undefined &&
+            dispatch(
+              setMarkedYoutube({
+                exists: findAllyoutube.exists,
+                number: findAllyoutube.number,
+                data: findAllyoutube.data,
+              }),
+            );
           // console.log(response);
           return;
         }
