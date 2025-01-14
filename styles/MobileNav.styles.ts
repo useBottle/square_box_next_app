@@ -47,8 +47,6 @@ export const nav: CSSObject = {
       position: "absolute",
       width: "100%",
       height: "4rem",
-      borderRadius: "3px",
-      background: "rgba(0, 0, 0, 0)",
       backdropFilter: "blur(5px)",
       zIndex: 99,
     },
@@ -67,7 +65,7 @@ export const nav: CSSObject = {
     flexDirection: "column",
     alignItems: "center",
     padding: "2rem 0",
-    margin: "4rem 0",
+    margin: "2rem 0",
 
     img: {
       borderRadius: "50%",
@@ -78,12 +76,13 @@ export const nav: CSSObject = {
     },
 
     ".userName": {
-      marginTop: "2rem",
+      marginTop: "1rem",
       fontSize: "1.6rem",
     },
   },
 
   ul: {
+    marginTop: "5rem",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -92,13 +91,13 @@ export const nav: CSSObject = {
 
     li: {
       width: "100%",
+      margin: "1rem 0",
 
       "& .list": {
         width: "100%",
         height: "5rem",
         background: "transparent",
         borderBottom: "1px solid #eee",
-        margin: "1rem 0",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
@@ -122,6 +121,55 @@ export const nav: CSSObject = {
       fontSize: "1.6rem",
       margin: "1rem 0",
       padding: "0 0",
+    },
+  },
+
+  // 데스크탑 뷰
+  "@media (min-width: 1200px)": {
+    width: "40vw",
+    justifyContent: "space-between",
+
+    ".logoPlate": {
+      width: "98%",
+      marginTop: "5rem",
+
+      ".overlay": {
+        width: "100%",
+      },
+    },
+
+    ".userPlate": {
+      width: "100%",
+
+      img: {
+        width: "6rem",
+        height: "6rem",
+      },
+
+      ".replacedImg": {
+        fontSize: "6rem",
+      },
+
+      ".userName": {
+        fontSize: "1.8rem",
+      },
+    },
+
+    ul: {
+      width: "100%",
+      margin: "10rem 0",
+
+      li: {
+        margin: "2rem 0",
+
+        ".list": {
+          fontSize: "1.8rem",
+        },
+      },
+
+      ".auth": {
+        fontSize: "1.8rem",
+      },
     },
   },
 };
