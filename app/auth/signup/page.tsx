@@ -115,13 +115,24 @@ export default function Signup(): JSX.Element {
                   onFocus={() => setInputFocused(input.field)}
                   onClick={(e: MouseEvent) => e.stopPropagation()}
                 />
-                {input.value !== "" && emailCondition.test(input.value) && <FaCircleCheck className="checkIcon" />}
+                {input.value !== "" && input.condition.test(input.value) && (
+                  <FaCircleCheck className="checkIcon" style={input.field === "email" ? { display: "none" } : {}} />
+                )}
               </div>
+              {input.field === "email" && email !== "" && emailCondition.test(email) && (
+                <form className="duplicateForm">
+                  <button type="submit" className="duplicateBtn">
+                    중복 확인
+                  </button>
+                </form>
+              )}
               {!input.condition.test(input.value) ? input.infoElement : <p></p>}
             </>
           );
         })}
-        <button type="submit">회원 가입</button>
+        <button type="submit" className="signupBtn">
+          회원 가입
+        </button>
       </form>
       <p className="guideSignin">
         계정이 이미 있으신가요?

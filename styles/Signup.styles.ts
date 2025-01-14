@@ -41,7 +41,6 @@ export const signup: CSSObject = {
     ".inputContainer": {
       width: "100%",
       background: "#eee",
-      // background: "red",
       borderRadius: "3px",
       border: "1.5px solid transparent",
       margin: "0.6rem 0",
@@ -72,6 +71,17 @@ export const signup: CSSObject = {
       },
     },
 
+    ".duplicateForm": {
+      width: "100%",
+
+      ".duplicateBtn": {
+        ...globalBtn,
+        background: "var(--main-color)",
+        color: "#fff",
+        marginTop: "-2rem",
+      },
+    },
+
     p: {
       fontSize: "1.2rem",
       color: "red",
@@ -79,7 +89,7 @@ export const signup: CSSObject = {
       alignSelf: "flex-start",
     },
 
-    button: {
+    ".signupBtn": {
       ...globalBtn,
       background: "var(--main-color)",
       color: "#fff",
