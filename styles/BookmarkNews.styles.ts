@@ -62,7 +62,7 @@ export const bookmarkNews: CSSObject = {
             h6: {
               fontSize: "1.4rem",
               lineHeight: 1.2,
-              color: "var(--main-color)",
+              color: "var(--title-color)",
               overflow: "hidden",
               textOverflow: "ellipsis",
               display: "-webkit-box",
@@ -72,6 +72,7 @@ export const bookmarkNews: CSSObject = {
             },
 
             ".date": {
+              color: "var(--basic-dark)",
               margin: "0.5rem 0",
             },
 

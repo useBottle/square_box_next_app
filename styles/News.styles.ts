@@ -106,7 +106,7 @@ export const newsListStyles: CSSObject = {
           h6: {
             fontSize: "1.4rem",
             lineHeight: 1.2,
-            color: "var(--main-color)",
+            color: "var(--title-color)",
             overflow: "hidden",
             textOverflow: "ellipsis",
             display: "-webkit-box",
@@ -115,6 +115,7 @@ export const newsListStyles: CSSObject = {
           },
 
           ".date": {
+            color: "var(--basic-dark)",
             marginTop: "2rem",
           },
 
@@ -184,7 +185,7 @@ export const dynamicNewsStyles: CSSObject = {
     h1: {
       marginTop: "4rem",
       fontSize: "2rem",
-      color: "var(--main-color)",
+      color: "var(--title-color)",
     },
 
     ".date": {

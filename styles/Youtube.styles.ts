@@ -81,7 +81,7 @@ export const youtube: CSSObject = {
 
           ".title": {
             fontSize: "2rem",
-            color: "var(--main-color)",
+            color: "var(--title-color)",
             margin: "1rem 0",
           },
 
@@ -98,7 +98,7 @@ export const youtube: CSSObject = {
 
           ".publishedAt": {
             fontSize: "1.2rem",
-            color: "var(--basic-font)",
+            color: "var(--basic-dark)",
             margin: "2rem 0",
           },
 
@@ -129,7 +129,7 @@ export const youtubeDynamic: CSSObject = {
 
     ".title": {
       fontSize: "2rem",
-      color: "var(--main-color)",
+      color: "var(--title-color)",
       margin: "1rem 0",
     },
 
@@ -146,7 +146,7 @@ export const youtubeDynamic: CSSObject = {
 
     ".publishedAt": {
       fontSize: "1.2rem",
-      color: "var(--basic-font)",
+      color: "var(--basic-dark)",
       margin: "2rem 0",
     },
 
