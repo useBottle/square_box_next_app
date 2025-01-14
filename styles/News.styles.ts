@@ -201,6 +201,43 @@ export const dynamicNewsStyles: CSSObject = {
       whiteSpace: "pre-line",
     },
   },
+
+  "@media (min-width: 1200px)": {
+    width: "40vw",
+
+    ".imgGroup": {
+      width: "40vw",
+
+      ".alt": {
+        marginTop: "2rem",
+        fontSize: "1.4rem",
+      },
+    },
+
+    ".textGroup": {
+      padding: 0,
+
+      h1: {
+        marginTop: "6rem",
+        fontSize: "2.6rem",
+      },
+
+      ".date": {
+        fontSize: "1.4rem",
+        marginTop: "4rem",
+      },
+
+      form: {
+        width: "100%",
+        margin: "8rem 0",
+      },
+
+      p: {
+        fontSize: "1.8rem",
+        margin: "5rem 0",
+      },
+    },
+  },
 };
 
 // Skeleton UI 애니메이션
