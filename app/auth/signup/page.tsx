@@ -7,7 +7,7 @@ import { css } from "@emotion/react";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, FocusEvent, FormEvent, MouseEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, MouseEvent, useState } from "react";
 import { IoPersonOutline } from "react-icons/io5";
 import { FaCircleCheck } from "react-icons/fa6";
 
