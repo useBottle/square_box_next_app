@@ -60,7 +60,6 @@ export default function Signup(): JSX.Element {
       <form onSubmit={handleSubmit}>
         <div
           className="inputContainer"
-          onClick={() => setInputClicked("email")}
           style={
             inputClicked === "email"
               ? { border: "1.5px solid var(--main-color)", transition: "ease 0.3s" }
@@ -73,13 +72,13 @@ export default function Signup(): JSX.Element {
             placeholder="이메일"
             value={email}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+            onFocus={() => setInputClicked("email")}
           />
-          <FaCircleCheck className="checkIcon" />
+          {email !== "" && emailCondition.test(email) && <FaCircleCheck className="checkIcon" />}
         </div>
         {!emailCondition.test(email) ? <p>이메일 형식으로 입력해야 합니다</p> : <p></p>}
         <div
           className="inputContainer"
-          onClick={() => setInputClicked("name")}
           style={
             inputClicked === "name"
               ? { border: "1.5px solid var(--main-color)", transition: "ease 0.3s" }
@@ -92,13 +91,13 @@ export default function Signup(): JSX.Element {
             placeholder="이름"
             value={name}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
+            onFocus={() => setInputClicked("name")}
           />
-          <FaCircleCheck className="checkIcon" />
+          {name !== "" && nameCondition.test(name) && <FaCircleCheck className="checkIcon" />}
         </div>
         {!nameCondition.test(name) ? <p>영문 또는 한글로 4~20자여야 합니다</p> : <p></p>}
         <div
           className="inputContainer"
-          onClick={() => setInputClicked("password")}
           style={
             inputClicked === "password"
               ? { border: "1.5px solid var(--main-color)", transition: "ease 0.3s" }
@@ -111,8 +110,9 @@ export default function Signup(): JSX.Element {
             placeholder="패스워드"
             value={password}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+            onFocus={() => setInputClicked("password")}
           />
-          <FaCircleCheck className="checkIcon" />
+          {password !== "" && passwordCondition.test(password) && <FaCircleCheck className="checkIcon" />}
         </div>
         {!passwordCondition.test(password) ? (
           <p>
