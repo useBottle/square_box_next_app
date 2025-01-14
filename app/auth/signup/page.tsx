@@ -17,7 +17,7 @@ export default function Signup(): JSX.Element {
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [inputFocused, setInputFocused] = useState<"" | "email" | "name" | "password" | string>("");
-  const [userExists, setUserExists] = useState<boolean>(false);
+  const [userExists, setUserExists] = useState<"exists" | "not exists" | "default">("default");
   const [isDuplicateLoading, setIsDuplicateLoading] = useState<boolean>(false);
   const router = useRouter();
 
@@ -71,12 +71,12 @@ export default function Signup(): JSX.Element {
       const result = await findUser(email);
 
       if (result?.exists) {
-        setUserExists(true);
+        setUserExists("exists");
         alert("이메일이 이미 사용중입니다");
       }
 
       if (!result?.exists) {
-        setUserExists(false);
+        setUserExists("not exists");
         alert("사용가능한 이메일입니다");
       }
       setIsDuplicateLoading(false);
@@ -93,7 +93,7 @@ export default function Signup(): JSX.Element {
       value: email,
       onChange: (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
-        setUserExists(false);
+        setUserExists("default");
       },
       condition: emailCondition,
       infoElement: <p>이메일 형식으로 입력해야 합니다</p>,
@@ -161,13 +161,25 @@ export default function Signup(): JSX.Element {
                   // 스타일 조건에 이메일 중복 확인 후 상태 변경된 값으로 추가 적용해야함
                   <FaCircleCheck
                     className="checkIcon"
-                    style={input.field === "email" && !userExists ? { display: "none" } : {}}
+                    style={
+                      (input.field === "email" && userExists === "exists") || userExists === "default"
+                        ? { display: "none" }
+                        : {}
+                    }
                   />
                 )}
               </div>
               {input.field === "email" && email !== "" && emailCondition.test(email) && (
-                <button className="duplicateBtn" onClick={duplicateConfirm}>
-                  중복 확인
+                <button
+                  className="duplicateBtn"
+                  onClick={duplicateConfirm}
+                  style={
+                    isDuplicateLoading
+                      ? { border: "1px solid var(--shadow-color)", background: "var(--reverse-font)" }
+                      : {}
+                  }
+                >
+                  {isDuplicateLoading ? <div className="spinner" /> : "중복 확인"}
                 </button>
               )}
               {!input.condition.test(input.value) ? input.infoElement : <p></p>}

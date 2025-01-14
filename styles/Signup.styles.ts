@@ -1,5 +1,14 @@
-import { CSSObject } from "@emotion/react";
+import { CSSObject, keyframes } from "@emotion/react";
 import { globalBtn, infoText, infoTitle, input } from "./default.styles";
+
+const rotate = keyframes({
+  "0%": {
+    transform: "rotate(0deg)",
+  },
+  "100%": {
+    transform: "rotate(360deg)",
+  },
+});
 
 export const signup: CSSObject = {
   display: "flex",
@@ -78,6 +87,15 @@ export const signup: CSSObject = {
         ...globalBtn,
         background: "var(--main-color)",
         color: "#fff",
+
+        ".spinner": {
+          width: "1.6rem",
+          height: "1.6rem",
+          border: "4px solid var(--shadow-color)",
+          borderRadius: "50%",
+          borderRightColor: "transparent",
+          animation: `${rotate} 1s linear infinite`,
+        },
       },
 
       p: {
