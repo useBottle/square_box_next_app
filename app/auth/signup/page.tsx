@@ -15,7 +15,7 @@ export default function Signup(): JSX.Element {
   const [email, setEmail] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [inputClicked, setInputClicked] = useState<"" | "email" | "name" | "password">("");
+  const [inputClicked, setInputClicked] = useState<"" | "email" | "name" | "password" | string>("");
   const router = useRouter();
 
   // 이메일: 영문 대, 소문자, 숫자로 시작하고 @, . 기호 포함 + 빈 문자열 허용
@@ -50,6 +50,40 @@ export default function Signup(): JSX.Element {
     console.log(inputClicked);
   }, [inputClicked]);
 
+  const inputArray = [
+    {
+      field: "email",
+      type: "text",
+      placeholder: "이메일",
+      value: email,
+      onChange: (e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value),
+      condition: emailCondition,
+      infoElement: <p>이메일 형식으로 입력해야 합니다</p>,
+    },
+    {
+      field: "name",
+      type: "text",
+      placeholder: "이름",
+      value: name,
+      onChange: (e: ChangeEvent<HTMLInputElement>) => setName(e.target.value),
+      condition: nameCondition,
+      infoElement: <p>영문 또는 한글로 4~20자여야 합니다</p>,
+    },
+    {
+      field: "password",
+      type: "password",
+      placeholder: "패스워드",
+      value: password,
+      onChange: (e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value),
+      condition: passwordCondition,
+      infoElement: (
+        <p>
+          비밀번호는 영문 대문자, 숫자, 특수문자 각각 1자 이상 포함한 <br /> 8자 이상이어야 합니다
+        </p>
+      ),
+    },
+  ];
+
   return (
     <div css={css(signup)}>
       <div className="logo">
@@ -58,69 +92,32 @@ export default function Signup(): JSX.Element {
       <h1>회원가입</h1>
       <p>양식을 작성해주세요</p>
       <form onSubmit={handleSubmit}>
-        <div
-          className="inputContainer"
-          style={
-            inputClicked === "email"
-              ? { border: "1.5px solid var(--main-color)", transition: "ease 0.3s" }
-              : { border: "1.5px solid transparent" }
-          }
-        >
-          <input
-            name="email"
-            type="text"
-            placeholder="이메일"
-            value={email}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-            onFocus={() => setInputClicked("email")}
-          />
-          {email !== "" && emailCondition.test(email) && <FaCircleCheck className="checkIcon" />}
-        </div>
-        {!emailCondition.test(email) ? <p>이메일 형식으로 입력해야 합니다</p> : <p></p>}
-        <div
-          className="inputContainer"
-          style={
-            inputClicked === "name"
-              ? { border: "1.5px solid var(--main-color)", transition: "ease 0.3s" }
-              : { border: "1.5px solid transparent" }
-          }
-        >
-          <input
-            name="name"
-            type="text"
-            placeholder="이름"
-            value={name}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
-            onFocus={() => setInputClicked("name")}
-          />
-          {name !== "" && nameCondition.test(name) && <FaCircleCheck className="checkIcon" />}
-        </div>
-        {!nameCondition.test(name) ? <p>영문 또는 한글로 4~20자여야 합니다</p> : <p></p>}
-        <div
-          className="inputContainer"
-          style={
-            inputClicked === "password"
-              ? { border: "1.5px solid var(--main-color)", transition: "ease 0.3s" }
-              : { border: "1.5px solid transparent" }
-          }
-        >
-          <input
-            name="password"
-            type="password"
-            placeholder="패스워드"
-            value={password}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-            onFocus={() => setInputClicked("password")}
-          />
-          {password !== "" && passwordCondition.test(password) && <FaCircleCheck className="checkIcon" />}
-        </div>
-        {!passwordCondition.test(password) ? (
-          <p>
-            비밀번호는 영문 대문자, 숫자, 특수문자 각각 1자 이상 포함한 <br /> 8자 이상이어야 합니다
-          </p>
-        ) : (
-          <p></p>
-        )}
+        {inputArray.map((input) => {
+          return (
+            <>
+              <div
+                className="inputContainer"
+                key={input.field}
+                style={
+                  inputClicked === input.field
+                    ? { border: "1.5px solid var(--main-color)", transition: "ease 0.3s" }
+                    : { border: "1.5px solid transparent" }
+                }
+              >
+                <input
+                  name={input.field}
+                  type={input.type}
+                  placeholder={input.placeholder}
+                  value={input.value}
+                  onChange={input.onChange}
+                  onFocus={() => setInputClicked(input.field)}
+                />
+                {input.value !== "" && emailCondition.test(input.value) && <FaCircleCheck className="checkIcon" />}
+              </div>
+              {!input.condition.test(input.value) ? input.infoElement : <p></p>}
+            </>
+          );
+        })}
         <button type="submit">회원 가입</button>
       </form>
       <p className="guideSignin">
