@@ -56,7 +56,7 @@ export const latestNews: CSSObject = {
           h6: {
             fontSize: "1.4rem",
             fontWeight: 500,
-            lineHeight: 1.2,
+            lineHeight: 1.5,
             color: "var(--title-color)",
             overflow: "hidden",
             textOverflow: "ellipsis",

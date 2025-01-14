@@ -62,78 +62,126 @@ export const newsListStyles: CSSObject = {
       width: "100%",
       display: "flex",
       justifyContent: "center",
+      height: "12rem",
+      margin: "1.5rem 0",
 
       li: {
-        width: "90%",
-        height: "10rem",
-        overflow: "hidden",
+        width: "95%",
+        height: "100%",
         color: "var(--basic-font)",
         display: "grid",
         gridTemplateColumns: "35% 65%",
-        margin: "1.5rem",
-        border: "1px solid #eee",
-        borderRadius: "5px",
+        padding: "1rem",
         boxSizing: "border-box",
+        overflow: "hidden",
 
         ".noImg": {
           height: "100%",
-          borderTopLeftRadius: "5px",
-          borderBottomLeftRadius: "5px",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          background: "var(--reverse-font)",
+          background: "var(--background)",
           color: "var(--basic-font)",
           fontSize: "1.4rem",
         },
 
         img: {
           width: "100%",
-          height: "100%",
-          borderTopLeftRadius: "5px",
-          borderBottomLeftRadius: "5px",
+          height: "10rem",
         },
 
         ".textGroup": {
-          padding: "1rem",
-          height: "10rem",
+          width: "100%",
+          justifyContent: "space-between",
+          height: "100%",
+          padding: "0 1rem",
           display: "flex",
           flexDirection: "column",
-          // justifyContent: "space-between",
           alignItems: "flex-start",
           boxSizing: "border-box",
 
           h6: {
             fontSize: "1.4rem",
-            lineHeight: 1.2,
+            fontWeight: 500,
+            lineHeight: 1.5,
             color: "var(--title-color)",
             overflow: "hidden",
             textOverflow: "ellipsis",
             display: "-webkit-box",
             WebkitLineClamp: 2,
+            lineClamp: 2,
             WebkitBoxOrient: "vertical",
           },
 
           ".date": {
             color: "var(--basic-dark)",
-            marginTop: "2rem",
           },
 
           p: {
             display: "none",
-            // fontSize: "1.1rem",
-            // lineHeight: 1.2,
-            // overflow: "hidden",
-            // textOverflow: "ellipsis",
-            // display: "-webkit-box",
-            // WebkitLineClamp: 1,
-            // WebkitBoxOrient: "vertical",
           },
         },
       },
 
       "&:last-child": {
         marginBottom: "4rem",
+      },
+
+      "&:hover": {
+        background: "var(--list-back)",
+      },
+    },
+  },
+
+  "@media (min-width: 1200px)": {
+    width: "40vw",
+    marginTop: "10rem",
+
+    h4: {
+      width: "100%",
+      fontSize: "1.4rem",
+      marginBottom: "4rem",
+    },
+
+    ul: {
+      a: {
+        height: "18rem",
+
+        li: {
+          width: "100%",
+          height: "100%",
+          gridTemplateColumns: "20% 80%",
+
+          img: {
+            height: "16rem",
+          },
+
+          ".textGroup": {
+            justifyContent: "space-between",
+            height: "100%",
+            marginLeft: "1rem",
+
+            h6: {
+              fontSize: "2rem",
+              lineHeight: 1.5,
+            },
+
+            ".date": {
+              fontSize: "1.2rem",
+            },
+
+            p: {
+              fontSize: "1.4rem",
+              lineHeight: "1.5",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "-webkit-box",
+              WebkitLineClamp: 2,
+              lineClamp: 2,
+              WebkitBoxOrient: "vertical",
+            },
+          },
+        },
       },
     },
   },
