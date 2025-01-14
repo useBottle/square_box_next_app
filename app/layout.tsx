@@ -1,18 +1,13 @@
 import type { Metadata } from "next";
 import "../styles/reset.scss";
 import "../styles/globals.css";
-import { Noto_Sans_KR } from "next/font/google";
 import Header from "./component/Header";
 import MobileNav from "./component/MobileNav";
 import Providers from "./component/Providers";
 import CheckToken from "./component/CheckToken";
 import FetchTopics from "./component/FetchTopics";
 import FetchBookmark from "./component/FetchBookmark";
-
-const notoSansKR = Noto_Sans_KR({
-  subsets: ["latin"],
-  display: "swap",
-});
+import { notoSansKR } from "@/util/fontsLoader";
 
 export const metadata: Metadata = {
   title: "Square Box",
