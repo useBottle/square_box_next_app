@@ -131,7 +131,7 @@ export const nav: CSSObject = {
 
     ".logoPlate": {
       width: "98%",
-      marginTop: "5rem",
+      marginTop: "8rem",
 
       ".overlay": {
         width: "100%",
