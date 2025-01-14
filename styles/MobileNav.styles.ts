@@ -130,10 +130,16 @@ export const nav: CSSObject = {
     justifyContent: "space-between",
 
     ".logoPlate": {
+      height: "6rem",
       width: "98%",
       marginTop: "8rem",
 
+      ".logo": {
+        fontSize: "2.5rem",
+      },
+
       ".overlay": {
+        height: "6rem",
         width: "100%",
       },
     },
@@ -164,6 +170,7 @@ export const nav: CSSObject = {
 
         ".list": {
           fontSize: "1.8rem",
+          height: "6rem",
         },
       },
 

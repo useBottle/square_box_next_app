@@ -60,7 +60,7 @@ export const latestNews: CSSObject = {
             fontSize: "1.4rem",
             fontWeight: 500,
             lineHeight: 1.2,
-            color: "var(--main-color)",
+            color: "var(--title-color)",
             overflow: "hidden",
             textOverflow: "ellipsis",
             display: "-webkit-box",
