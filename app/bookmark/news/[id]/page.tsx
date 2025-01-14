@@ -15,7 +15,7 @@ import ScrollBtn from "@/app/component/ScrollBtn";
 import { findNewsBookmark, setNewsBookmark } from "@/app/actions/bookmarkNewsActions";
 import { deleteNewsBookmark, getMarkedNews } from "@/app/actions/bookmarkActions";
 import { setMarkedNews } from "@/store/bookmark";
-import { setInBookmarkDetail } from "@/store/switches";
+import { setPageState } from "@/store/switches";
 import ExpiredData from "@/app/component/ExpiredData";
 import ArticleSkeleton from "@/app/component/ArticleSkeleton";
 
@@ -30,8 +30,8 @@ export default function MarkedNewsDynamic(): JSX.Element {
   const pageState = useSelector((state: RootState) => state.switches.pageState);
 
   useEffect(() => {
-    dispatch(setInBookmarkDetail(true));
     (!session || !session.user || !session.user.name) && router.push("/auth/signin");
+    dispatch(setPageState("detail"));
 
     window.scrollTo({ top: 0 });
   }, []);

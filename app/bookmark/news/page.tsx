@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { bookmarkNews } from "@/styles/BookmarkNews.styles";
 import { setClickedNews } from "@/store/bookmark";
-import { setInBookmarkDetail } from "@/store/switches";
+import { setPageState } from "@/store/switches";
 import ExpiredData from "@/app/component/ExpiredData";
 
 export default function BookmarkNews() {
@@ -24,12 +24,8 @@ export default function BookmarkNews() {
   const pageState = useSelector((state: RootState) => state.switches.pageState);
 
   useEffect(() => {
-    dispatch(setInBookmarkDetail(false));
     (!session || !session.user || !session.user.name) && router.push("/auth/signin");
-
-    return () => {
-      dispatch(setInBookmarkDetail(true));
-    };
+    dispatch(setPageState("bookmark"));
   }, []);
 
   const onClick = (id: string, title: string) => (e: MouseEvent) => {

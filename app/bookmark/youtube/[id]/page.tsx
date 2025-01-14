@@ -11,7 +11,7 @@ import { AppDispatch, RootState } from "@/store/store";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { FormEvent, useEffect, useState } from "react";
-import { setInBookmarkDetail } from "@/store/switches";
+import { setPageState } from "@/store/switches";
 import { findYoutubeBookmark, setYoutubeBookmark } from "@/app/actions/bookmarkYoutubeActions";
 import { deleteYoutubeBookmark, getMarkedYoutube } from "@/app/actions/bookmarkActions";
 import { setMarkedYoutube } from "@/store/bookmark";
@@ -28,8 +28,8 @@ export default function MarkedYoutubeDynamic(): JSX.Element {
   const pageState = useSelector((state: RootState) => state.switches.pageState);
 
   useEffect(() => {
-    dispatch(setInBookmarkDetail(true));
     (!session || !session.user || !session.user.name) && router.push("/auth/signin");
+    dispatch(setPageState("detail"));
 
     window.scrollTo({ top: 0 });
   }, []);

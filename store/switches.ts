@@ -3,10 +3,9 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface SwitchesType {
   navMenu: boolean;
   signoutModal: boolean;
-  pageState: "default" | "news" | "youtube" | "bookmark";
+  pageState: "default" | "news" | "youtube" | "bookmark" | "detail";
   inputValue: string;
   onSearching: boolean;
-  inBookmarkDetail: boolean;
 }
 
 const initialState: SwitchesType = {
@@ -15,7 +14,6 @@ const initialState: SwitchesType = {
   pageState: "default",
   inputValue: "",
   onSearching: false,
-  inBookmarkDetail: false,
 };
 
 export const switches = createSlice({
@@ -28,7 +26,7 @@ export const switches = createSlice({
     setSignoutModal(state, action: PayloadAction<boolean>) {
       state.signoutModal = action.payload;
     },
-    setPageState(state, action: PayloadAction<"default" | "news" | "youtube" | "bookmark">) {
+    setPageState(state, action: PayloadAction<"default" | "news" | "youtube" | "bookmark" | "detail">) {
       state.pageState = action.payload;
     },
     setInputValue(state, action: PayloadAction<string>) {
@@ -37,12 +35,8 @@ export const switches = createSlice({
     setOnSearching(state, action: PayloadAction<boolean>) {
       state.onSearching = action.payload;
     },
-    setInBookmarkDetail(state, action: PayloadAction<boolean>) {
-      state.inBookmarkDetail = action.payload;
-    },
   },
 });
 
-export const { setNavMenu, setSignoutModal, setPageState, setInputValue, setOnSearching, setInBookmarkDetail } =
-  switches.actions;
+export const { setNavMenu, setSignoutModal, setPageState, setInputValue, setOnSearching } = switches.actions;
 export default switches.reducer;

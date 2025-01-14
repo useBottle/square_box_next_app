@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { bookmarkYoutube } from "@/styles/BookmarkYoutube.styles";
 import { setClickedYoutube } from "@/store/bookmark";
-import { setInBookmarkDetail } from "@/store/switches";
+import { setPageState } from "@/store/switches";
 import ExpiredData from "@/app/component/ExpiredData";
 
 export default function Bookmark() {
@@ -25,12 +25,8 @@ export default function Bookmark() {
   const pageState = useSelector((state: RootState) => state.switches.pageState);
 
   useEffect(() => {
-    dispatch(setInBookmarkDetail(false));
     (!session || !session.user || !session.user.name) && router.push("/auth/signin");
-
-    return () => {
-      dispatch(setInBookmarkDetail(true));
-    };
+    dispatch(setPageState("bookmark"));
   }, []);
 
   const onClick = (id: string, videoId: string) => (e: MouseEvent) => {
@@ -39,7 +35,7 @@ export default function Bookmark() {
     if (clickedYoutube) {
       dispatch(setClickedYoutube(clickedYoutube));
     }
-    router.push(`/bookmark/youtube/detail?title=${encodeURIComponent(videoId)}`);
+    router.push(`/bookmark/youtube/detail?videoId=${encodeURIComponent(videoId)}`);
   };
 
   // pageState 가 초기화된 경우 ExpiredData 렌더링
