@@ -25,7 +25,7 @@ export default function Signup(): JSX.Element {
   // 패스워드: 대문자, 소문자, 숫자, 특수문자 각각 1개 이상을 포함한 8자 이상 + 빈 문자열 허용
   const passwordCondition = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$|^$/;
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const signupSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (email === "" || name === "" || password === "") {
@@ -41,6 +41,17 @@ export default function Signup(): JSX.Element {
     try {
       await axios.post("/api/signup", { email: email, name: name, password: password });
       router.push("/");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const duplicateSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (email === "" && !emailCondition.test(email)) return;
+
+    try {
     } catch (error) {
       console.error(error);
     }
@@ -93,7 +104,7 @@ export default function Signup(): JSX.Element {
       </div>
       <h1>회원가입</h1>
       <p>양식을 작성해주세요</p>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={signupSubmit}>
         {inputArray.map((input) => {
           return (
             <>
@@ -116,11 +127,12 @@ export default function Signup(): JSX.Element {
                   onClick={(e: MouseEvent) => e.stopPropagation()}
                 />
                 {input.value !== "" && input.condition.test(input.value) && (
+                  // 스타일 조건에 이메일 중복 확인 후 상태 변경된 값으로 추가 적용해야함
                   <FaCircleCheck className="checkIcon" style={input.field === "email" ? { display: "none" } : {}} />
                 )}
               </div>
               {input.field === "email" && email !== "" && emailCondition.test(email) && (
-                <form className="duplicateForm">
+                <form className="duplicateForm" onSubmit={duplicateSubmit}>
                   <button type="submit" className="duplicateBtn">
                     중복 확인
                   </button>
