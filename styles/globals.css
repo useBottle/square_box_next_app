@@ -33,3 +33,17 @@ body {
   color: var(--basic-font);
   line-height: 1.5;
 }
+
+@media (min-width: 1200px) {
+  html {
+    max-width: 60vw;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+
+    body {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

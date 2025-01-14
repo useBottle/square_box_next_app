@@ -2,6 +2,7 @@ import { getLatestNewsList } from "@/app/actions/latestNewsActions";
 import LatestNews from "@/app/component/LatestNews";
 import Topics from "@/app/component/Topics";
 import { TopicsListType, TopicsType } from "@/types/types";
+import styles from "../../styles/Home.module.scss";
 
 // 실시간 검색어 키워드 요청 (3분마다 재검증하여 갱신)
 const fetchKeyword = async (): Promise<TopicsType[] | undefined> => {
@@ -65,7 +66,7 @@ export default async function Home() {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <Topics data={{ ...dataOfTopics }} />
       <LatestNews data={latestNewsList} />
     </div>

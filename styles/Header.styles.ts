@@ -24,4 +24,8 @@ export const header: CSSObject = {
     color: "var(--basic-font)",
     cursor: "pointer",
   },
+
+  "@media (min-width: 1200px)": {
+    maxWidth: "60vw",
+  },
 };

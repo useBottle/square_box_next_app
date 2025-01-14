@@ -2,6 +2,7 @@ import { CSSObject, keyframes } from "@emotion/react";
 
 // 실시간 검색어 Top 10 UI
 export const topicsForm: CSSObject = {
+  width: "100%",
   display: "flex",
   alignItems: "center",
   flexDirection: "column",
@@ -59,6 +60,10 @@ export const topicsForm: CSSObject = {
         },
       },
     },
+  },
+
+  "@media (min-width: 1200px)": {
+    maxWidth: "60vw",
   },
 };
 

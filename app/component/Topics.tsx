@@ -70,35 +70,33 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
   };
 
   return (
-    <div>
-      <div css={css(topicsForm)}>
-        <h4>실시간 검색어 Top 10</h4>
-        <ul>
-          {(topicsList || keywordsData)?.map((item, index) => {
-            return (
-              <Link href="/news" key={index} onClick={onClick(item.keyword)}>
-                <li>
-                  <span className="rank">{item.rank}</span>
-                  <span className="keyword">{item.keyword}</span>
-                  <span className="state">
-                    {(() => {
-                      if (item.state === "n") {
-                        return <FaPlus className="new" />;
-                      } else if (item.state === "s") {
-                        return <FaMinus className="stay" />;
-                      } else if (item.state === "+") {
-                        return <FaCaretUp className="up" />;
-                      } else if (item.state === "-") {
-                        return <FaCaretDown className="down" />;
-                      }
-                    })()}
-                  </span>
-                </li>
-              </Link>
-            );
-          })}
-        </ul>
-      </div>
+    <div css={css(topicsForm)}>
+      <h4>실시간 검색어 Top 10</h4>
+      <ul>
+        {(topicsList || keywordsData)?.map((item, index) => {
+          return (
+            <Link href="/news" key={index} onClick={onClick(item.keyword)}>
+              <li>
+                <span className="rank">{item.rank}</span>
+                <span className="keyword">{item.keyword}</span>
+                <span className="state">
+                  {(() => {
+                    if (item.state === "n") {
+                      return <FaPlus className="new" />;
+                    } else if (item.state === "s") {
+                      return <FaMinus className="stay" />;
+                    } else if (item.state === "+") {
+                      return <FaCaretUp className="up" />;
+                    } else if (item.state === "-") {
+                      return <FaCaretDown className="down" />;
+                    }
+                  })()}
+                </span>
+              </li>
+            </Link>
+          );
+        })}
+      </ul>
     </div>
   );
 }
