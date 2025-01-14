@@ -19,6 +19,7 @@ export default function Signup(): JSX.Element {
   const [inputFocused, setInputFocused] = useState<"" | "email" | "name" | "password" | string>("");
   const [userExists, setUserExists] = useState<"exists" | "not exists" | "default">("default");
   const [isDuplicateLoading, setIsDuplicateLoading] = useState<boolean>(false);
+  const [isSignupLoading, setIsSignupLoading] = useState<boolean>(false);
   const router = useRouter();
 
   // 이메일: 영문 대, 소문자, 숫자로 시작하고 @, . 기호 포함 + 빈 문자열 허용
@@ -43,9 +44,10 @@ export default function Signup(): JSX.Element {
       emailCondition.test(email) &&
       nameCondition.test(name) &&
       passwordCondition.test(password) &&
-      userExists === "exists"
+      (userExists === "exists" || userExists == "default")
     ) {
-      alert("입력하신 이메일은 이미 사용중입니다.\n다른 이메일로 가입해주세요.");
+      userExists === "exists" && alert("입력하신 이메일은 이미 사용중입니다.\n다른 이메일로 가입해주세요.");
+      userExists == "default" && alert("이메일 중복 확인을 진행해주세요");
       return;
     }
 
@@ -56,10 +58,11 @@ export default function Signup(): JSX.Element {
     }
 
     try {
+      setIsSignupLoading(true);
       const result = await axios.post("/api/signup", { email: email, name: name, password: password });
-      console.log(result);
+      setIsSignupLoading(false);
       result.status !== 200 && alert("회원가입 과정에 문제가 생겼습니다.\n다시 시도해주세요.");
-      result.status === 200 && alert("회원가입에 성공했습니다") && router.push("/");
+      result.status === 200 && alert("회원가입에 성공했습니다") && router.push("/auth/signin");
     } catch (error) {
       console.error(error);
     }
@@ -196,8 +199,12 @@ export default function Signup(): JSX.Element {
             </div>
           );
         })}
-        <button type="submit" className="signupBtn">
-          회원 가입
+        <button
+          type="submit"
+          className="signupBtn"
+          style={isSignupLoading ? { border: "1px solid var(--shadow-color)", background: "var(--reverse-font)" } : {}}
+        >
+          {isSignupLoading ? <div className="spinner" /> : "회원가입"}
         </button>
       </form>
       <p className="guideSignin">

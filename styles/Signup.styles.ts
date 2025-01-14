@@ -111,6 +111,15 @@ export const signup: CSSObject = {
       background: "var(--main-color)",
       color: "#fff",
       marginTop: "4rem",
+
+      ".spinner": {
+        width: "1.6rem",
+        height: "1.6rem",
+        border: "4px solid var(--shadow-color)",
+        borderRadius: "50%",
+        borderRightColor: "transparent",
+        animation: `${rotate} 1s linear infinite`,
+      },
     },
   },
 
