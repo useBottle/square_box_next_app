@@ -61,8 +61,14 @@ export default function Signup(): JSX.Element {
       setIsSignupLoading(true);
       const result = await axios.post("/api/signup", { email: email, name: name, password: password });
       setIsSignupLoading(false);
-      result.status !== 200 && alert("회원가입 과정에 문제가 생겼습니다.\n다시 시도해주세요.");
-      result.status === 200 && alert("회원가입에 성공했습니다") && router.push("/auth/signin");
+      result.data.userExists && alert("이메일이 이미 사용중입니다.\n다른 이메일로 가입해주세요.");
+      result.status !== 200 &&
+        result.data.userExists === undefined &&
+        alert("회원가입 과정에 문제가 생겼습니다.\n다시 시도해주세요.");
+      if (result.status === 200 && result.data.userExists === undefined) {
+        alert("회원가입에 성공했습니다");
+        router.push("/auth/signin");
+      }
     } catch (error) {
       console.error(error);
     }

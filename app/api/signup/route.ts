@@ -9,6 +9,11 @@ export async function POST(req: Request) {
 
   try {
     await dbConnect();
+    const findUser = await Users.findOne({ email: result.email });
+    if (findUser) {
+      return NextResponse.json({ message: "User already exists", userExists: true });
+    }
+
     const newUser = new Users({
       ...result,
       password: hashedPassword,
