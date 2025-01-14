@@ -316,8 +316,8 @@ export const newsSkeleton: CSSObject = {
     ".default": {
       position: "relative",
       overflow: "hidden",
-      borderRadius: "5px",
       background: "lightgray",
+      borderRadius: "3px",
 
       "&::before": {
         content: '""',
@@ -346,6 +346,34 @@ export const newsSkeleton: CSSObject = {
           height: "2.5rem",
           background: "lightgray",
           marginBottom: "1rem",
+        },
+      },
+    },
+  },
+
+  "@media (min-width: 1200px)": {
+    width: "40vw",
+    position: "absolute",
+    left: "50%",
+    top: "70%",
+    transform: "translate(-50%, -50%)",
+
+    ".list": {
+      width: "100%",
+      height: "18rem",
+      gridTemplateColumns: "20% 80%",
+
+      ".textGroup": {
+        margin: "0 2rem",
+
+        ".textFrame": {
+          height: "3rem",
+          marginBottom: "1rem",
+
+          "&:first-of-type": {
+            height: "3.5rem",
+            marginBottom: "2rem",
+          },
         },
       },
     },
