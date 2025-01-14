@@ -25,14 +25,15 @@ export const latestNews: CSSObject = {
       width: "100%",
       display: "flex",
       justifyContent: "center",
+      height: "12rem",
+      margin: "1.5rem 0",
 
       li: {
         width: "95%",
-        height: "12rem",
+        height: "100%",
         color: "var(--basic-font)",
         display: "grid",
         gridTemplateColumns: "35% 65%",
-        margin: "1.5rem 0",
         background: "var(--list-back)",
         padding: "1rem",
         borderRadius: "5px",
@@ -46,6 +47,7 @@ export const latestNews: CSSObject = {
         },
 
         ".textGroup": {
+          width: "100%",
           justifyContent: "space-between",
           height: "100%",
           padding: "1rem",
@@ -67,6 +69,10 @@ export const latestNews: CSSObject = {
             WebkitBoxOrient: "vertical",
           },
 
+          ".date": {
+            color: "var(--basic-dark)",
+          },
+
           p: {
             display: "none",
           },
@@ -84,14 +90,19 @@ export const latestNews: CSSObject = {
     marginTop: "10rem",
 
     h4: {
+      width: "100%",
       fontSize: "1.4rem",
       marginBottom: "4rem",
     },
 
     ul: {
       a: {
+        height: "18rem",
+
         li: {
-          height: "18rem",
+          width: "100%",
+          height: "100%",
+          gridTemplateColumns: "20% 80%",
 
           img: {
             height: "16rem",
@@ -103,12 +114,11 @@ export const latestNews: CSSObject = {
             marginLeft: "1rem",
 
             h6: {
-              fontSize: "1.6rem",
+              fontSize: "1.8rem",
               lineHeight: 1.5,
             },
 
             ".date": {
-              margin: "1rem 0",
               fontSize: "1.2rem",
             },
 

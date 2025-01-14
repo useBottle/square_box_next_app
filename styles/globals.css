@@ -38,7 +38,7 @@ body {
 /* 데스크탑 뷰 */
 @media (min-width: 1200px) {
   html {
-    max-width: 60vw;
+    max-width: 40vw;
     display: flex;
     justify-content: center;
     margin: 0 auto;

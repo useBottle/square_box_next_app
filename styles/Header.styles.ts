@@ -27,7 +27,7 @@ export const header: CSSObject = {
 
   // 데스크탑 뷰
   "@media (min-width: 1200px)": {
-    maxWidth: "60vw",
-    padding: "0 4.5rem",
+    maxWidth: "40vw",
+    padding: 0,
   },
 };

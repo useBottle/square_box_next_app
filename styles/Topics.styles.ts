@@ -64,16 +64,21 @@ export const topicsForm: CSSObject = {
 
   // 데스크탑 뷰
   "@media (min-width: 1200px)": {
-    maxWidth: "60vw",
+    maxWidth: "40vw",
     marginTop: "5rem",
 
     h4: {
+      width: "100%",
       fontSize: "1.4rem",
       marginBottom: "2rem",
     },
 
     ul: {
+      width: "100%",
+
       a: {
+        margin: "0.5rem 0",
+
         li: {
           fontSize: "1.6rem",
         },
