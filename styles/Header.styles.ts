@@ -25,8 +25,9 @@ export const header: CSSObject = {
     cursor: "pointer",
   },
 
+  // 데스크탑 뷰
   "@media (min-width: 1200px)": {
     maxWidth: "60vw",
-    padding: "0 9.5rem",
+    padding: "0 4.5rem",
   },
 };

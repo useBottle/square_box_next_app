@@ -16,7 +16,7 @@ export const latestNews: CSSObject = {
   },
 
   ul: {
-    width: "90%",
+    width: "100%",
     display: "flex",
     alignItems: "center",
     flexDirection: "column",
@@ -27,36 +27,37 @@ export const latestNews: CSSObject = {
       justifyContent: "center",
 
       li: {
-        width: "100%",
-        height: "10rem",
+        width: "95%",
+        height: "12rem",
         color: "var(--basic-font)",
         display: "grid",
         gridTemplateColumns: "35% 65%",
         margin: "1.5rem 0",
-        border: "1px solid #eee",
+        background: "var(--list-back)",
+        padding: "1rem",
         borderRadius: "5px",
         boxSizing: "border-box",
         overflow: "hidden",
 
         img: {
           width: "100%",
-          height: "100%",
-          borderTopLeftRadius: "5px",
-          borderBottomLeftRadius: "5px",
+          height: "10rem",
+          borderRadius: "5px",
         },
 
         ".textGroup": {
-          height: "10rem",
+          justifyContent: "space-between",
+          height: "100%",
           padding: "1rem",
           display: "flex",
           flexDirection: "column",
-          // justifyContent: "space-between",
           alignItems: "flex-start",
           boxSizing: "border-box",
 
           h6: {
             fontSize: "1.4rem",
-            lineHeight: "1.2",
+            fontWeight: 500,
+            lineHeight: 1.2,
             color: "var(--main-color)",
             overflow: "hidden",
             textOverflow: "ellipsis",
@@ -66,26 +67,63 @@ export const latestNews: CSSObject = {
             WebkitBoxOrient: "vertical",
           },
 
-          ".date": {
-            marginTop: "2rem",
-          },
-
           p: {
             display: "none",
-            // fontSize: "1.1rem",
-            // lineHeight: "1.2",
-            // overflow: "hidden",
-            // textOverflow: "ellipsis",
-            // display: "-webkit-box",
-            // WebkitLineClamp: 2,
-            // lineClamp: 2,
-            // WebkitBoxOrient: "vertical",
           },
         },
       },
 
       "&:last-child": {
         marginBottom: "10rem",
+      },
+    },
+  },
+
+  // 데스크탑 뷰
+  "@media (min-width: 1200px)": {
+    marginTop: "10rem",
+
+    h4: {
+      fontSize: "1.4rem",
+      marginBottom: "4rem",
+    },
+
+    ul: {
+      a: {
+        li: {
+          height: "18rem",
+
+          img: {
+            height: "16rem",
+          },
+
+          ".textGroup": {
+            justifyContent: "space-between",
+            height: "100%",
+            marginLeft: "1rem",
+
+            h6: {
+              fontSize: "1.6rem",
+              lineHeight: 1.5,
+            },
+
+            ".date": {
+              margin: "1rem 0",
+              fontSize: "1.2rem",
+            },
+
+            p: {
+              fontSize: "1.4rem",
+              lineHeight: "1.5",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "-webkit-box",
+              WebkitLineClamp: 2,
+              lineClamp: 2,
+              WebkitBoxOrient: "vertical",
+            },
+          },
+        },
       },
     },
   },
