@@ -7,7 +7,7 @@ import { css } from "@emotion/react";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FocusEvent, FormEvent, MouseEvent, useEffect, useState } from "react";
 import { IoPersonOutline } from "react-icons/io5";
 import { FaCircleCheck } from "react-icons/fa6";
 
@@ -15,7 +15,7 @@ export default function Signup(): JSX.Element {
   const [email, setEmail] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [inputClicked, setInputClicked] = useState<"" | "email" | "name" | "password" | string>("");
+  const [inputFocused, setInputFocused] = useState<"" | "email" | "name" | "password" | string>("");
   const router = useRouter();
 
   // 이메일: 영문 대, 소문자, 숫자로 시작하고 @, . 기호 포함 + 빈 문자열 허용
@@ -45,10 +45,6 @@ export default function Signup(): JSX.Element {
       console.error(error);
     }
   };
-
-  useEffect(() => {
-    console.log(inputClicked);
-  }, [inputClicked]);
 
   const inputArray = [
     {
@@ -85,7 +81,13 @@ export default function Signup(): JSX.Element {
   ];
 
   return (
-    <div css={css(signup)}>
+    <div
+      css={css(signup)}
+      onClick={(e: MouseEvent) => {
+        e.stopPropagation();
+        setInputFocused("");
+      }}
+    >
       <div className="logo">
         <IoPersonOutline />
       </div>
@@ -99,7 +101,7 @@ export default function Signup(): JSX.Element {
                 className="inputContainer"
                 key={input.field}
                 style={
-                  inputClicked === input.field
+                  inputFocused === input.field
                     ? { border: "1.5px solid var(--main-color)", transition: "ease 0.3s" }
                     : { border: "1.5px solid transparent" }
                 }
@@ -110,7 +112,8 @@ export default function Signup(): JSX.Element {
                   placeholder={input.placeholder}
                   value={input.value}
                   onChange={input.onChange}
-                  onFocus={() => setInputClicked(input.field)}
+                  onFocus={() => setInputFocused(input.field)}
+                  onClick={(e: MouseEvent) => e.stopPropagation()}
                 />
                 {input.value !== "" && emailCondition.test(input.value) && <FaCircleCheck className="checkIcon" />}
               </div>
