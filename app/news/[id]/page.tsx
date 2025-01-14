@@ -20,6 +20,7 @@ import { setSingleArticle } from "@/store/news";
 import ArticleSkeleton from "@/app/component/ArticleSkeleton";
 import BookmarkBtn from "@/app/component/BookmarkBtn";
 import { setMarkedNews } from "@/store/bookmark";
+import { setPageState } from "@/store/switches";
 
 export default function NewsDynamic(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
@@ -34,6 +35,7 @@ export default function NewsDynamic(): JSX.Element {
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
+    dispatch(setPageState("news"));
 
     // 클릭한 뉴스에 대한 article 데이터 요청
     if (singleArticle.title !== newsTitle) {

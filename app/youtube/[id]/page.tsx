@@ -8,6 +8,7 @@ import BookmarkBtn from "@/app/component/BookmarkBtn";
 import ExpiredData from "@/app/component/ExpiredData";
 import { setMarkedYoutube } from "@/store/bookmark";
 import { AppDispatch, RootState } from "@/store/store";
+import { setPageState } from "@/store/switches";
 import { youtubeDynamic } from "@/styles/Youtube.styles";
 import { currentYoutubeVideo } from "@/types/types";
 import { css } from "@emotion/react";
@@ -30,7 +31,9 @@ export default function YoutubeDynamic(): JSX.Element {
   const index = Number(searchParams.get("index"));
 
   useEffect(() => {
-    // 유저 정보가 없으면 onSubmit 이벤트 종료.
+    dispatch(setPageState("youtube"));
+
+    // 유저 정보가 없으면 북마크 데이터 확인하지 않음
     if (!session || !session.user || !session.user.name) return;
 
     // 유저 정보 및 유튜브 데이터 DB 에서 확인 후 북마크 버튼 스타일 변경 트리거 상태 변경.

@@ -19,6 +19,7 @@ import { setLatestNewsArticle } from "@/store/latestNews";
 import ArticleSkeleton from "@/app/component/ArticleSkeleton";
 import BookmarkBtn from "@/app/component/BookmarkBtn";
 import { setMarkedNews } from "@/store/bookmark";
+import { setPageState } from "@/store/switches";
 
 export default function LatestNewsDetail(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
@@ -34,6 +35,7 @@ export default function LatestNewsDetail(): JSX.Element {
   // latestNewsArticle 이 업데이트 되면 해당 값이 북마크 되어있는지 확인
   useEffect(() => {
     window.scrollTo({ top: 0 });
+    dispatch(setPageState("news"));
 
     // 클릭한 뉴스에 대한 article 데이터 요청
     if (latestNewsArticle.title === "" || latestNewsArticle.title !== newsTitle) {
