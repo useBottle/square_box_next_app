@@ -9,7 +9,7 @@ import { fetchYoutube } from "@/store/youtube";
 import { searchBarForm } from "@/styles/default.styles";
 import { css, CSSObject } from "@emotion/react";
 import { usePathname, useRouter } from "next/navigation";
-import { ChangeEvent, FormEvent } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +19,10 @@ const form: CSSObject = {
   justifyContent: "center",
   width: "100vw",
   margin: "4rem 0",
+
+  "@media (min-width: 1200px)": {
+    marginBottom: "10rem",
+  },
 };
 
 export default function SearchBar(): JSX.Element {
@@ -27,6 +31,7 @@ export default function SearchBar(): JSX.Element {
   const inputValue = useSelector((state: RootState) => state.switches.inputValue);
   const pathName = usePathname();
   const router = useRouter();
+  const [inputFocused, setInputFocused] = useState<boolean>(false);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setInputValue(e.target.value));
@@ -60,10 +65,28 @@ export default function SearchBar(): JSX.Element {
   return (
     <div css={css(form)}>
       <form css={css(searchBarForm)} onSubmit={onSubmit}>
-        <div className="inputSet">
+        <div
+          className="inputSet"
+          style={
+            inputFocused
+              ? { border: "1.5px solid var(--main-color)", transition: "ease 0.3s" }
+              : { border: "1.5px solid transparent" }
+          }
+        >
           <IoIosSearch className="searchIcon" />
-          <input type="search" placeholder="Search" value={inputValue} onChange={onChange} />
-          {inputValue && <MdCancel className="cancelIcon" onClick={() => dispatch(setInputValue(""))} />}
+          <input
+            type="search"
+            placeholder="Search"
+            value={inputValue}
+            onChange={onChange}
+            onFocus={() => setInputFocused(true)}
+            onBlur={() => setInputFocused(false)}
+          />
+          {inputValue ? (
+            <MdCancel className="cancelIcon" onClick={() => dispatch(setInputValue(""))} />
+          ) : (
+            <div className="cancelIcon" />
+          )}
         </div>
       </form>
     </div>

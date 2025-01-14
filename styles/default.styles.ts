@@ -54,21 +54,25 @@ export const searchBarForm: CSSObject = {
 
   ".inputSet": {
     display: "flex",
+    justifyContent: "center",
     alignItems: "center",
     width: "90%",
+    height: "4rem",
+    background: "#eee",
+    border: "1.5px solid transparent",
+    borderRadius: "3px",
+    boxSizing: "border-box",
 
     ".searchIcon": {
-      position: "absolute",
       fontSize: "1.8rem",
-      transform: "translateX(0.8rem)",
     },
 
     input: {
-      width: "100%",
-      padding: "1rem 3rem",
-      border: "none",
-      borderRadius: "3px",
+      width: "85%",
+      height: "95%",
       background: "#eee",
+      border: "1.5px solid transparent",
+      boxSizing: "border-box",
       outline: "none",
       color: "var(--basic-font)",
 
@@ -87,10 +91,30 @@ export const searchBarForm: CSSObject = {
     },
 
     ".cancelIcon": {
-      position: "absolute",
-      right: 0,
+      width: "2rem",
+      height: "2rem",
       fontSize: "1.6rem",
-      transform: "translateX(-3rem)",
+      marginLeft: "0.5rem",
+      cursor: "pointer",
+    },
+  },
+
+  "@media (min-width: 1200px)": {
+    width: "40vw",
+
+    ".inputSet": {
+      width: "100%",
+      height: "6rem",
+
+      ".searchIcon": {
+        fontSize: "3rem",
+      },
+
+      input: {
+        width: "90%",
+        padding: "1.5rem 1rem",
+        fontSize: "1.6rem",
+      },
     },
   },
 };

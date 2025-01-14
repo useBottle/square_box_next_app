@@ -140,13 +140,7 @@ export default function Signup(): JSX.Element {
   ];
 
   return (
-    <div
-      css={css(signup)}
-      onClick={(e: MouseEvent) => {
-        e.stopPropagation();
-        setInputFocused("");
-      }}
-    >
+    <div css={css(signup)}>
       <div className="logo">
         <IoPersonOutline />
       </div>
@@ -171,6 +165,7 @@ export default function Signup(): JSX.Element {
                   value={input.value}
                   onChange={input.onChange}
                   onFocus={() => setInputFocused(input.field)}
+                  onBlur={() => setInputFocused("")}
                   onClick={(e: MouseEvent) => e.stopPropagation()}
                 />
                 {input.value !== "" && input.condition.test(input.value) && (
