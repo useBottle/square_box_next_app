@@ -176,19 +176,22 @@ export default function Signup(): JSX.Element {
                   />
                 )}
               </div>
-              {input.field === "email" && email !== "" && emailCondition.test(email) && (
-                <button
-                  className="duplicateBtn"
-                  onClick={duplicateConfirm}
-                  style={
-                    isDuplicateLoading
-                      ? { border: "1px solid var(--shadow-color)", background: "var(--reverse-font)" }
-                      : {}
-                  }
-                >
-                  {isDuplicateLoading ? <div className="spinner" /> : "중복 확인"}
-                </button>
-              )}
+              {input.field === "email" &&
+                email !== "" &&
+                emailCondition.test(email) &&
+                (userExists === "default" || userExists === "exists") && (
+                  <button
+                    className="duplicateBtn"
+                    onClick={duplicateConfirm}
+                    style={
+                      isDuplicateLoading
+                        ? { border: "1px solid var(--shadow-color)", background: "var(--reverse-font)" }
+                        : {}
+                    }
+                  >
+                    {isDuplicateLoading ? <div className="spinner" /> : "중복 확인"}
+                  </button>
+                )}
               {!input.condition.test(input.value) ? input.infoElement : <p></p>}
             </div>
           );
