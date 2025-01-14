@@ -38,55 +38,54 @@ export const signup: CSSObject = {
     justifyContent: "center",
     alignItems: "center",
 
-    ".inputContainer": {
+    div: {
       width: "100%",
-      background: "#eee",
-      borderRadius: "3px",
-      border: "1.5px solid transparent",
-      margin: "0.6rem 0",
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      boxSizing: "border-box",
 
-      input: {
-        ...input,
-        width: "90%",
-        margin: 0,
+      ".inputContainer": {
+        width: "100%",
+        background: "#eee",
+        borderRadius: "3px",
+        border: "1.5px solid transparent",
+        margin: "0.6rem 0",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        boxSizing: "border-box",
+
+        input: {
+          ...input,
+          width: "90%",
+          margin: 0,
+
+          "&:focus": {
+            border: "1.5px solid transparent",
+          },
+        },
+
+        ".checkIcon": {
+          fontSize: "1.8rem",
+          color: "var(--input-check)",
+          marginRight: "1rem",
+        },
 
         "&:focus": {
-          border: "1.5px solid transparent",
+          border: "1.5px solid var(--main-color)",
+          transition: "ease 0.3s",
         },
       },
-
-      ".checkIcon": {
-        fontSize: "1.8rem",
-        color: "var(--input-check)",
-        marginRight: "1rem",
-      },
-
-      "&:focus": {
-        border: "1.5px solid var(--main-color)",
-        transition: "ease 0.3s",
-      },
-    },
-
-    ".duplicateForm": {
-      width: "100%",
 
       ".duplicateBtn": {
         ...globalBtn,
         background: "var(--main-color)",
         color: "#fff",
-        marginTop: "-2rem",
       },
-    },
 
-    p: {
-      fontSize: "1.2rem",
-      color: "red",
-      marginBottom: "2.5rem",
-      alignSelf: "flex-start",
+      p: {
+        fontSize: "1.2rem",
+        color: "red",
+        marginBottom: "2.5rem",
+        alignSelf: "flex-start",
+      },
     },
 
     ".signupBtn": {

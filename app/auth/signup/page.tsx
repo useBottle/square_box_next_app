@@ -10,12 +10,15 @@ import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, MouseEvent, useState } from "react";
 import { IoPersonOutline } from "react-icons/io5";
 import { FaCircleCheck } from "react-icons/fa6";
+import { findUser } from "@/app/actions/findUserActions";
 
 export default function Signup(): JSX.Element {
   const [email, setEmail] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [inputFocused, setInputFocused] = useState<"" | "email" | "name" | "password" | string>("");
+  const [userExists, setUserExists] = useState<boolean>(false);
+  const [isDuplicateLoading, setIsDuplicateLoading] = useState<boolean>(false);
   const router = useRouter();
 
   // 이메일: 영문 대, 소문자, 숫자로 시작하고 @, . 기호 포함 + 빈 문자열 허용
@@ -27,12 +30,21 @@ export default function Signup(): JSX.Element {
 
   const signupSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    e.stopPropagation();
 
+    // 각 input 필드 중 하나라도 입력되지 않은 경우
     if (email === "" || name === "" || password === "") {
       alert("이메일, 이름, 패스워드를 모두 입력해야 합니다.");
       return;
     }
 
+    // 각 input 필드가 조건에 모두 맞지만 이메일이 이미 존재하는 경우
+    if (emailCondition.test(email) && nameCondition.test(name) && passwordCondition.test(password) && userExists) {
+      alert("입력하신 이메일은 이미 사용중입니다. \n 다른 이메일로 가입해주세요.");
+      return;
+    }
+
+    // 각 input 필드가 하나라도 조건에 맞지 않을 경우
     if (!emailCondition.test(email) || !nameCondition.test(name) || !passwordCondition.test(password)) {
       alert("회원가입 양식 조건에 맞지 않습니다");
       return;
@@ -46,12 +58,28 @@ export default function Signup(): JSX.Element {
     }
   };
 
-  const duplicateSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const duplicateConfirm = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    e.stopPropagation();
 
-    if (email === "" && !emailCondition.test(email)) return;
+    // 이메일 필드가 입력되지 않았거나 조건에 맞지 않을 경우
+    if (email === "") return;
+    if (!emailCondition.test(email)) return;
 
     try {
+      setIsDuplicateLoading(true);
+      const result = await findUser(email);
+
+      if (result?.exists) {
+        setUserExists(true);
+        alert("이메일이 이미 사용중입니다");
+      }
+
+      if (!result?.exists) {
+        setUserExists(false);
+        alert("사용가능한 이메일입니다");
+      }
+      setIsDuplicateLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -63,7 +91,10 @@ export default function Signup(): JSX.Element {
       type: "text",
       placeholder: "이메일",
       value: email,
-      onChange: (e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value),
+      onChange: (e: ChangeEvent<HTMLInputElement>) => {
+        setEmail(e.target.value);
+        setUserExists(false);
+      },
       condition: emailCondition,
       infoElement: <p>이메일 형식으로 입력해야 합니다</p>,
     },
@@ -82,6 +113,7 @@ export default function Signup(): JSX.Element {
       placeholder: "패스워드",
       value: password,
       onChange: (e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value),
+
       condition: passwordCondition,
       infoElement: (
         <p>
@@ -107,10 +139,9 @@ export default function Signup(): JSX.Element {
       <form onSubmit={signupSubmit}>
         {inputArray.map((input) => {
           return (
-            <>
+            <div key={input.field}>
               <div
                 className="inputContainer"
-                key={input.field}
                 style={
                   inputFocused === input.field
                     ? { border: "1.5px solid var(--main-color)", transition: "ease 0.3s" }
@@ -128,18 +159,19 @@ export default function Signup(): JSX.Element {
                 />
                 {input.value !== "" && input.condition.test(input.value) && (
                   // 스타일 조건에 이메일 중복 확인 후 상태 변경된 값으로 추가 적용해야함
-                  <FaCircleCheck className="checkIcon" style={input.field === "email" ? { display: "none" } : {}} />
+                  <FaCircleCheck
+                    className="checkIcon"
+                    style={input.field === "email" && !userExists ? { display: "none" } : {}}
+                  />
                 )}
               </div>
               {input.field === "email" && email !== "" && emailCondition.test(email) && (
-                <form className="duplicateForm" onSubmit={duplicateSubmit}>
-                  <button type="submit" className="duplicateBtn">
-                    중복 확인
-                  </button>
-                </form>
+                <button className="duplicateBtn" onClick={duplicateConfirm}>
+                  중복 확인
+                </button>
               )}
               {!input.condition.test(input.value) ? input.infoElement : <p></p>}
-            </>
+            </div>
           );
         })}
         <button type="submit" className="signupBtn">
