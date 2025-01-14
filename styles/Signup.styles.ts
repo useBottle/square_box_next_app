@@ -59,6 +59,7 @@ export const signup: CSSObject = {
 
   ".guideSignin": {
     marginTop: "3rem",
+    marginBottom: "5rem",
     fontSize: "1.2rem",
     color: "var(--shadow-color)",
 
