@@ -39,8 +39,13 @@ export default function Signup(): JSX.Element {
     }
 
     // 각 input 필드가 조건에 모두 맞지만 이메일이 이미 존재하는 경우
-    if (emailCondition.test(email) && nameCondition.test(name) && passwordCondition.test(password) && userExists) {
-      alert("입력하신 이메일은 이미 사용중입니다. \n 다른 이메일로 가입해주세요.");
+    if (
+      emailCondition.test(email) &&
+      nameCondition.test(name) &&
+      passwordCondition.test(password) &&
+      userExists === "exists"
+    ) {
+      alert("입력하신 이메일은 이미 사용중입니다.\n다른 이메일로 가입해주세요.");
       return;
     }
 
@@ -51,8 +56,10 @@ export default function Signup(): JSX.Element {
     }
 
     try {
-      await axios.post("/api/signup", { email: email, name: name, password: password });
-      router.push("/");
+      const result = await axios.post("/api/signup", { email: email, name: name, password: password });
+      console.log(result);
+      result.status !== 200 && alert("회원가입 과정에 문제가 생겼습니다.\n다시 시도해주세요.");
+      result.status === 200 && alert("회원가입에 성공했습니다") && router.push("/");
     } catch (error) {
       console.error(error);
     }
