@@ -11,6 +11,7 @@
   --state-up: #ff625d;
   --state-down: #3d8bff;
   --square: #355e876f;
+  --input-check: #60d375;
 }
 
 [data-theme="dark"] {

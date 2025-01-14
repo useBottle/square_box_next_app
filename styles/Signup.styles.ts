@@ -38,8 +38,38 @@ export const signup: CSSObject = {
     justifyContent: "center",
     alignItems: "center",
 
-    input: {
-      ...input,
+    ".inputContainer": {
+      width: "100%",
+      background: "#eee",
+      // background: "red",
+      borderRadius: "3px",
+      border: "1.5px solid transparent",
+      margin: "0.6rem 0",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      boxSizing: "border-box",
+
+      input: {
+        ...input,
+        width: "90%",
+        margin: 0,
+
+        "&:focus": {
+          border: "1.5px solid transparent",
+        },
+      },
+
+      ".checkIcon": {
+        fontSize: "1.8rem",
+        color: "var(--input-check)",
+        marginRight: "1rem",
+      },
+
+      "&:focus": {
+        border: "1.5px solid var(--main-color)",
+        transition: "ease 0.3s",
+      },
     },
 
     p: {
