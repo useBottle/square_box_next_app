@@ -34,23 +34,20 @@ export const latestNews: CSSObject = {
         color: "var(--basic-font)",
         display: "grid",
         gridTemplateColumns: "35% 65%",
-        background: "var(--list-back)",
         padding: "1rem",
-        borderRadius: "5px",
         boxSizing: "border-box",
         overflow: "hidden",
 
         img: {
           width: "100%",
           height: "10rem",
-          borderRadius: "5px",
         },
 
         ".textGroup": {
           width: "100%",
           justifyContent: "space-between",
           height: "100%",
-          padding: "1rem",
+          padding: "0 1rem",
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",
@@ -81,6 +78,10 @@ export const latestNews: CSSObject = {
 
       "&:last-child": {
         marginBottom: "10rem",
+      },
+
+      "&:hover": {
+        background: "var(--list-back)",
       },
     },
   },
@@ -114,7 +115,7 @@ export const latestNews: CSSObject = {
             marginLeft: "1rem",
 
             h6: {
-              fontSize: "1.8rem",
+              fontSize: "2rem",
               lineHeight: 1.5,
             },
 
