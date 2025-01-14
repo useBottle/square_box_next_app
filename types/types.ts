@@ -6,7 +6,7 @@ export interface AuthedUser {
   image?: string;
   provider: string;
   refreshToken: string;
-  createdAt: Date;
+  createdAt: string;
 }
 
 // * 실시간 검색어 관련 인터페이스

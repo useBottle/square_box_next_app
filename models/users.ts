@@ -9,11 +9,11 @@ const userSchema = new Schema<AuthedUser>({
   provider: { type: String, required: true },
   refreshToken: { type: String },
   createdAt: {
-    type: Date,
+    type: String,
     default: () => {
       const date = new Date();
       date.setHours(date.getHours() + 9);
-      return date;
+      return date.toISOString();
     },
   },
 });
