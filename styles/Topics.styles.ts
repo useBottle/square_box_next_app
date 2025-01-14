@@ -64,6 +64,18 @@ export const topicsForm: CSSObject = {
 
   "@media (min-width: 1200px)": {
     maxWidth: "60vw",
+
+    h4: {
+      fontSize: "1.4rem",
+    },
+
+    ul: {
+      a: {
+        li: {
+          fontSize: "1.6rem",
+        },
+      },
+    },
   },
 };
 

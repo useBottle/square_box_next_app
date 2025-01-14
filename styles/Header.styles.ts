@@ -9,7 +9,7 @@ export const header: CSSObject = {
   justifyContent: "space-between",
   height: "5rem",
   zIndex: 999,
-  padding: "0 5%",
+  padding: "0 2.5rem",
   background: "var(--reverse-font)",
 
   ".logo": {
@@ -27,5 +27,6 @@ export const header: CSSObject = {
 
   "@media (min-width: 1200px)": {
     maxWidth: "60vw",
+    padding: "0 9.5rem",
   },
 };
