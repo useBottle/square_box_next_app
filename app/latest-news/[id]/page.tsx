@@ -20,6 +20,7 @@ import ArticleSkeleton from "@/app/component/ArticleSkeleton";
 import BookmarkBtn from "@/app/component/BookmarkBtn";
 import { setMarkedNews } from "@/store/bookmark";
 import { setPageState } from "@/store/switches";
+import { SUITfont } from "@/util/fontsLoader";
 
 export default function LatestNewsDetail(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
@@ -156,7 +157,7 @@ export default function LatestNewsDetail(): JSX.Element {
   }
 
   return (
-    <article css={css(dynamicNewsStyles)}>
+    <article css={css(dynamicNewsStyles)} className={SUITfont.className}>
       <figure className="imgGroup">
         {latestNewsArticle.image === "" ? (
           <div className="noImg">No Image</div>
