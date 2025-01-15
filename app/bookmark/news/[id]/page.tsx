@@ -28,6 +28,7 @@ export default function MarkedNewsDynamic(): JSX.Element {
   const clickedNews = useSelector((state: RootState) => state.bookmark.clickedNews);
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(true);
   const pageState = useSelector((state: RootState) => state.switches.pageState);
+  const navMenu = useSelector((state: RootState) => state.switches.navMenu);
 
   useEffect(() => {
     (!session || !session.user || !session.user.name) && router.push("/auth/signin");
@@ -104,25 +105,29 @@ export default function MarkedNewsDynamic(): JSX.Element {
 
   return (
     <article css={css(dynamicNewsStyles)}>
-      <figure className="imgGroup">
-        {clickedNews.image === "" ? (
-          <div className="noImg">No Image</div>
-        ) : (
-          <Image src={clickedNews.image} alt="newsImg" width={200} height={200} />
-        )}
-        <figcaption className="alt">{clickedNews.alt}</figcaption>
-      </figure>
-      <div className="textGroup">
-        <h1>{clickedNews.title}</h1>
-        <div className="date">{clickedNews.date}</div>
-        <form onSubmit={onSubmit}>
-          <BookmarkBtn success={bookmarkSuccess} isLoading={false} />
-        </form>
-        {clickedNews.text.map((item, index) => {
-          return <p key={index}>{item}</p>;
-        })}
-      </div>
-      <ScrollBtn />
+      {!navMenu && (
+        <div className="bookmarkNewsDetailWrapper">
+          <figure className="imgGroup">
+            {clickedNews.image === "" ? (
+              <div className="noImg">No Image</div>
+            ) : (
+              <Image src={clickedNews.image} alt="newsImg" width={200} height={200} />
+            )}
+            <figcaption className="alt">{clickedNews.alt}</figcaption>
+          </figure>
+          <div className="textGroup">
+            <h1>{clickedNews.title}</h1>
+            <div className="date">{clickedNews.date}</div>
+            <form onSubmit={onSubmit}>
+              <BookmarkBtn success={bookmarkSuccess} isLoading={false} />
+            </form>
+            {clickedNews.text.map((item, index) => {
+              return <p key={index}>{item}</p>;
+            })}
+          </div>
+          <ScrollBtn />
+        </div>
+      )}
     </article>
   );
 }
