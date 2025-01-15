@@ -32,6 +32,7 @@ export default function LatestNewsDetail(): JSX.Element {
   const [isLoadingMarked, setIsLoadingMarked] = useState<boolean>(true);
   const latestNewsArticle = useSelector((state: RootState) => state.latestNews.latestNewsArticle);
   const pageState = useSelector((state: RootState) => state.switches.pageState);
+  const navMenu = useSelector((state: RootState) => state.switches.navMenu);
 
   // latestNewsArticle 이 업데이트 되면 해당 값이 북마크 되어있는지 확인
   useEffect(() => {
@@ -158,23 +159,27 @@ export default function LatestNewsDetail(): JSX.Element {
 
   return (
     <article css={css(dynamicNewsStyles)} className={SUITfont.className}>
-      <figure className="imgGroup">
-        {latestNewsArticle.image === "" ? (
-          <div className="noImg">No Image</div>
-        ) : (
-          <Image src={latestNewsArticle.image} alt="newsImg" width={200} height={200} />
-        )}
-        <figcaption className="alt">{latestNewsArticle.alt}</figcaption>
-      </figure>
-      <div className="textGroup">
-        <h1>{latestNewsArticle.title}</h1>
-        <div className="date">{latestNewsArticle.date}</div>
-        <form onSubmit={onSubmit}>{<BookmarkBtn success={bookmarkSuccess} isLoading={isLoadingMarked} />}</form>
-        {latestNewsArticle.text.map((item, index) => (
-          <p key={index}>{item}</p>
-        ))}
-      </div>
-      <ScrollBtn />
+      {!navMenu && (
+        <div className="latestNewsDetailWrapper">
+          <figure className="imgGroup">
+            {latestNewsArticle.image === "" ? (
+              <div className="noImg">No Image</div>
+            ) : (
+              <Image src={latestNewsArticle.image} alt="newsImg" width={200} height={200} />
+            )}
+            <figcaption className="alt">{latestNewsArticle.alt}</figcaption>
+          </figure>
+          <div className="textGroup">
+            <h1>{latestNewsArticle.title}</h1>
+            <div className="date">{latestNewsArticle.date}</div>
+            <form onSubmit={onSubmit}>{<BookmarkBtn success={bookmarkSuccess} isLoading={isLoadingMarked} />}</form>
+            {latestNewsArticle.text.map((item, index) => (
+              <p key={index}>{item}</p>
+            ))}
+          </div>
+          <ScrollBtn />
+        </div>
+      )}
     </article>
   );
 }
