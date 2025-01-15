@@ -24,6 +24,7 @@ export default function Youtube() {
   const youtubeStatus = useSelector((state: RootState) => state.youtube.youtubeStatus);
   const inputValue = useSelector((state: RootState) => state.switches.inputValue);
   const noYoutubeData = useSelector((state: RootState) => state.youtube.noYoutubeData);
+  const navMenu = useSelector((state: RootState) => state.switches.navMenu);
 
   useEffect(() => {
     // console.log(youtubeList);
@@ -52,43 +53,47 @@ export default function Youtube() {
 
   return (
     <div css={css(youtube)}>
-      <SearchBar />
-      {!noYoutubeData && youtubeList.items.length === 0 && (
-        <div className="initYoutube">
-          <PiInfoFill className="icon" />
-          <div className="textNback">
-            <h1>영상을 검색해주세요</h1>
-            <PiFilmSlateLight className="backIcon" />
-          </div>
+      {!navMenu && (
+        <div className="youtubeWrapper">
+          <SearchBar />
+          {!noYoutubeData && youtubeList.items.length === 0 && (
+            <div className="initYoutube">
+              <PiInfoFill className="icon" />
+              <div className="textNback">
+                <h1>영상을 검색해주세요</h1>
+                <PiFilmSlateLight className="backIcon" />
+              </div>
+            </div>
+          )}
+          {noYoutubeData && inputValue !== "" && (
+            <div className="initYoutube">
+              <PiWarningCircleFill className="icon" />
+              <div className="textNback">
+                <h1>검색된 영상이 없습니다</h1>
+                <TbBoxOff className="backIcon" />
+              </div>
+            </div>
+          )}
+          <ul>
+            {youtubeList.items.map((item, index) => {
+              return (
+                <Link href={`/youtube/detail?id=${item.id.videoId}&index=${index}`} key={index}>
+                  <li>
+                    <Image src={item.snippet.thumbnails.high.url} alt={item.snippet.title} width={300} height={200} />
+                    <div className="textGroup">
+                      <h1 className="title">{item.snippet.title}</h1>
+                      <h4 className="channel">{item.snippet.channelTitle}</h4>
+                      <div className="publishedAt">{item.snippet.publishedAt}</div>
+                      <p className="description">{item.snippet.description}</p>
+                    </div>
+                  </li>
+                </Link>
+              );
+            })}
+          </ul>
+          <ScrollBtn />
         </div>
       )}
-      {noYoutubeData && inputValue !== "" && (
-        <div className="initYoutube">
-          <PiWarningCircleFill className="icon" />
-          <div className="textNback">
-            <h1>검색된 영상이 없습니다</h1>
-            <TbBoxOff className="backIcon" />
-          </div>
-        </div>
-      )}
-      <ul>
-        {youtubeList.items.map((item, index) => {
-          return (
-            <Link href={`/youtube/detail?id=${item.id.videoId}&index=${index}`} key={index}>
-              <li>
-                <Image src={item.snippet.thumbnails.high.url} alt={item.snippet.title} width={300} height={200} />
-                <div className="textGroup">
-                  <h1 className="title">{item.snippet.title}</h1>
-                  <h4 className="channel">{item.snippet.channelTitle}</h4>
-                  <div className="publishedAt">{item.snippet.publishedAt}</div>
-                  <p className="description">{item.snippet.description}</p>
-                </div>
-              </li>
-            </Link>
-          );
-        })}
-      </ul>
-      <ScrollBtn />
     </div>
   );
 }
