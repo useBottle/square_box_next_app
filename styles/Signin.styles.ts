@@ -43,7 +43,7 @@ export const signin: CSSObject = {
       flexDirection: "column",
       width: "100%",
 
-      "& input": {
+      input: {
         ...input,
       },
     },
@@ -116,5 +116,22 @@ export const signin: CSSObject = {
   ".kakaoBtn": {
     background: "#fee20b",
     margin: "1rem 0",
+  },
+
+  "@media (min-width: 1200px)": {
+    width: "40vw",
+    height: "calc(100vh - 8rem)",
+
+    form: {
+      width: "30%",
+    },
+
+    ".middleLine": {
+      width: "30%",
+    },
+
+    button: {
+      width: "30%",
+    },
   },
 };

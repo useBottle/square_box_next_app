@@ -11,10 +11,16 @@ export const input: CSSObject = {
   background: "#eee",
   margin: "0.6rem 0",
   outline: "none",
+  color: "var(--basic-font)",
 
   "&:focus": {
     border: "1.5px solid var(--main-color)",
     transition: "ease 0.3s",
+  },
+
+  "@media (min-width: 1200px)": {
+    height: "5rem",
+    fontSize: "1.6rem",
   },
 };
 
@@ -44,6 +50,11 @@ export const globalBtn: CSSObject = {
   fontSize: "1.4rem",
   boxSizing: "border-box",
   color: "#000",
+
+  "@media (min-width: 1200px)": {
+    height: "5rem",
+    fontSize: "1.6rem",
+  },
 };
 
 export const searchBarForm: CSSObject = {
