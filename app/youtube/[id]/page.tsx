@@ -26,6 +26,7 @@ export default function YoutubeDynamic(): JSX.Element {
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const pageState = useSelector((state: RootState) => state.switches.pageState);
+  const navMenu = useSelector((state: RootState) => state.switches.navMenu);
 
   const videoId = searchParams.get("id");
   const index = Number(searchParams.get("index"));
@@ -134,30 +135,34 @@ export default function YoutubeDynamic(): JSX.Element {
 
   return (
     <div css={css(youtubeDynamic)}>
-      <YouTube
-        className="player"
-        videoId={videoId}
-        key={videoId}
-        opts={{
-          width: "100%",
-          height: "250",
-          playerVars: {
-            autoplay: 0, // 자동재생 off
-            rel: 0, // 관련 동영상 표시 x
-            modestbranding: 0, // 컨트롤 바에 youtube 로고 표시 x
-          },
-        }}
-        onEnd={(e: YouTubeEvent) => {
-          e.target.stopVideo(0);
-        }}
-      />
-      <div className="textGroup">
-        <h1 className="title">{youtubeList.items[index].snippet.title}</h1>
-        <h4 className="channel">{youtubeList.items[index].snippet.channelTitle}</h4>
-        <div className="publishedAt">{youtubeList.items[index].snippet.publishedAt}</div>
-        <form onSubmit={onSubmit}>{<BookmarkBtn success={bookmarkSuccess} isLoading={isLoading} />}</form>
-        <p className="description">{youtubeList.items[index].snippet.description}</p>
-      </div>
+      {!navMenu && (
+        <div className="youtubeDetailWrapper">
+          <YouTube
+            className="player"
+            videoId={videoId}
+            key={videoId}
+            opts={{
+              width: "100%",
+              height: "250",
+              playerVars: {
+                autoplay: 0, // 자동재생 off
+                rel: 0, // 관련 동영상 표시 x
+                modestbranding: 0, // 컨트롤 바에 youtube 로고 표시 x
+              },
+            }}
+            onEnd={(e: YouTubeEvent) => {
+              e.target.stopVideo(0);
+            }}
+          />
+          <div className="textGroup">
+            <h1 className="title">{youtubeList.items[index].snippet.title}</h1>
+            <h4 className="channel">{youtubeList.items[index].snippet.channelTitle}</h4>
+            <div className="publishedAt">{youtubeList.items[index].snippet.publishedAt}</div>
+            <form onSubmit={onSubmit}>{<BookmarkBtn success={bookmarkSuccess} isLoading={isLoading} />}</form>
+            <p className="description">{youtubeList.items[index].snippet.description}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

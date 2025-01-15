@@ -181,81 +181,85 @@ export const youtube: CSSObject = {
 };
 
 export const youtubeDynamic: CSSObject = {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  flexDirection: "column",
-  width: "100vw",
+  ".youtubeDetailWrapper": {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    width: "100vw",
 
-  ".player": {
-    width: "100%",
-  },
-
-  ".textGroup": {
-    padding: "1rem",
-
-    ".title": {
-      fontSize: "2rem",
-      color: "var(--title-color)",
-      margin: "1rem 0",
+    ".player": {
+      width: "100%",
     },
 
-    ".channel": {
-      fontSize: "1.4rem",
-      padding: "0.5rem 1rem",
-      color: "var(--reverse-font)",
-      background: "var(--basic-font)",
-      border: "1px solid var(--basic-font)",
-      borderRadius: "3px",
-      width: "fit-content",
-      margin: "2rem 0",
-    },
+    ".textGroup": {
+      padding: "1rem",
 
-    ".publishedAt": {
-      fontSize: "1.2rem",
-      color: "var(--basic-dark)",
-      margin: "2rem 0",
-    },
+      ".title": {
+        fontSize: "2rem",
+        color: "var(--title-color)",
+        margin: "1rem 0",
+      },
 
-    ".description": {
-      fontSize: "1.4rem",
-      color: "var(--basic-font)",
-      margin: "1rem 0",
+      ".channel": {
+        fontSize: "1.4rem",
+        padding: "0.5rem 1rem",
+        color: "var(--reverse-font)",
+        background: "var(--basic-font)",
+        border: "1px solid var(--basic-font)",
+        borderRadius: "3px",
+        width: "fit-content",
+        margin: "2rem 0",
+      },
+
+      ".publishedAt": {
+        fontSize: "1.2rem",
+        color: "var(--basic-dark)",
+        margin: "2rem 0",
+      },
+
+      ".description": {
+        fontSize: "1.4rem",
+        color: "var(--basic-font)",
+        margin: "1rem 0",
+      },
     },
   },
 
   "@media (min-width: 1200px)": {
-    width: "40vw",
+    ".youtubeDetailWrapper": {
+      width: "40vw",
 
-    iframe: {
-      width: "calc(40vw - 1px)",
-      height: "50vh",
-    },
-
-    ".textGroup": {
-      width: "100%",
-
-      ".title": {
-        fontSize: "2.6rem",
-        marginTop: "6rem",
+      iframe: {
+        width: "calc(40vw - 1px)",
+        height: "50vh",
       },
 
-      ".channel": {
-        marginTop: "4rem",
-      },
+      ".textGroup": {
+        width: "100%",
 
-      ".publishedAt": {
-        marginTop: "4rem",
-        fontSize: "1.4rem",
-      },
+        ".title": {
+          fontSize: "2.6rem",
+          marginTop: "6rem",
+        },
 
-      form: {
-        margin: "4rem 0",
-      },
+        ".channel": {
+          marginTop: "4rem",
+        },
 
-      ".description": {
-        fontSize: "1.8rem",
-        margin: "5rem 0",
+        ".publishedAt": {
+          marginTop: "4rem",
+          fontSize: "1.4rem",
+        },
+
+        form: {
+          margin: "4rem 0",
+        },
+
+        ".description": {
+          fontSize: "1.8rem",
+          margin: "5rem 0",
+        },
       },
     },
   },
