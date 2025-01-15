@@ -53,7 +53,7 @@ export default function Youtube() {
   return (
     <div css={css(youtube)}>
       <SearchBar />
-      {youtubeList.items.length === 0 && inputValue === "" && (
+      {!noYoutubeData && youtubeList.items.length === 0 && (
         <div className="initYoutube">
           <PiInfoFill className="icon" />
           <div className="textNback">
