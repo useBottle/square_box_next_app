@@ -28,6 +28,7 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const { newsOfTopicsList, keywordsData } = data;
+  const navMenu = useSelector((state: RootState) => state.switches.navMenu);
 
   // Link 컴포넌트의 리디렉션 막고 useRouter 로 리디렉션. (리디렉션 전에 상태 업데이트 하기 위함)
   // news 페이지로 리디렉션 전에 inputValue 업데이트.
@@ -71,32 +72,36 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
 
   return (
     <div css={css(topicsForm)}>
-      <h4>실시간 검색어 Top 10</h4>
-      <ul>
-        {(topicsList || keywordsData)?.map((item, index) => {
-          return (
-            <Link href="/news" key={index} onClick={onClick(item.keyword)}>
-              <li>
-                <span className="rank">{item.rank}</span>
-                <span className="keyword">{item.keyword}</span>
-                <span className="state">
-                  {(() => {
-                    if (item.state === "n") {
-                      return <FaPlus className="new" />;
-                    } else if (item.state === "s") {
-                      return <FaMinus className="stay" />;
-                    } else if (item.state === "+") {
-                      return <FaCaretUp className="up" />;
-                    } else if (item.state === "-") {
-                      return <FaCaretDown className="down" />;
-                    }
-                  })()}
-                </span>
-              </li>
-            </Link>
-          );
-        })}
-      </ul>
+      {!navMenu && (
+        <div className="topicsWrapper">
+          <h4>실시간 검색어 Top 10</h4>
+          <ul>
+            {(topicsList || keywordsData)?.map((item, index) => {
+              return (
+                <Link href="/news" key={index} onClick={onClick(item.keyword)}>
+                  <li>
+                    <span className="rank">{item.rank}</span>
+                    <span className="keyword">{item.keyword}</span>
+                    <span className="state">
+                      {(() => {
+                        if (item.state === "n") {
+                          return <FaPlus className="new" />;
+                        } else if (item.state === "s") {
+                          return <FaMinus className="stay" />;
+                        } else if (item.state === "+") {
+                          return <FaCaretUp className="up" />;
+                        } else if (item.state === "-") {
+                          return <FaCaretDown className="down" />;
+                        }
+                      })()}
+                    </span>
+                  </li>
+                </Link>
+              );
+            })}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
