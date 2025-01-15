@@ -8,6 +8,7 @@ import CheckToken from "./component/CheckToken";
 import FetchTopics from "./component/FetchTopics";
 import FetchBookmark from "./component/FetchBookmark";
 import { SUITfont } from "@/util/fontsLoader";
+import styles from "../styles/Layout.module.scss";
 
 export const metadata: Metadata = {
   title: "Square Box",
@@ -35,7 +36,7 @@ export default function RootLayout({
           <Header />
           <FetchTopics />
           <FetchBookmark />
-          <div style={{ paddingTop: "5rem" }}>{children}</div>
+          <div className={styles.layout}>{children}</div>
         </Providers>
       </body>
     </html>

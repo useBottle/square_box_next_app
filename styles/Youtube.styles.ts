@@ -219,6 +219,14 @@ export const youtubeDynamic: CSSObject = {
       margin: "1rem 0",
     },
   },
+
+  "@media (min-width: 1200px)": {
+    width: "40vw",
+
+    iframe: {
+      height: "40vh",
+    },
+  },
 };
 
 // Skeleton UI 애니메이션
