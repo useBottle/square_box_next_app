@@ -94,49 +94,54 @@ export const latestNews: CSSObject = {
   // 데스크탑 뷰
   "@media (min-width: 1200px)": {
     marginTop: "13rem",
+    width: "100%",
 
-    h4: {
+    ".latestNewsWrapper": {
       width: "100%",
-      fontSize: "1.4rem",
-      marginBottom: "4rem",
-    },
 
-    ul: {
-      a: {
-        height: "18rem",
+      h4: {
+        width: "100%",
+        fontSize: "1.4rem",
+        marginBottom: "4rem",
+      },
 
-        li: {
-          width: "100%",
-          height: "100%",
-          gridTemplateColumns: "20% 80%",
+      ul: {
+        a: {
+          height: "18rem",
 
-          img: {
-            height: "16rem",
-          },
-
-          ".textGroup": {
-            justifyContent: "space-between",
+          li: {
+            width: "100%",
             height: "100%",
-            marginLeft: "1rem",
+            gridTemplateColumns: "20% 80%",
 
-            h6: {
-              fontSize: "2rem",
-              lineHeight: 1.5,
+            img: {
+              height: "16rem",
             },
 
-            ".date": {
-              fontSize: "1.2rem",
-            },
+            ".textGroup": {
+              justifyContent: "space-between",
+              height: "100%",
+              marginLeft: "1rem",
 
-            p: {
-              fontSize: "1.4rem",
-              lineHeight: "1.5",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              display: "-webkit-box",
-              WebkitLineClamp: 2,
-              lineClamp: 2,
-              WebkitBoxOrient: "vertical",
+              h6: {
+                fontSize: "2rem",
+                lineHeight: 1.5,
+              },
+
+              ".date": {
+                fontSize: "1.2rem",
+              },
+
+              p: {
+                fontSize: "1.4rem",
+                lineHeight: "1.5",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                lineClamp: 2,
+                WebkitBoxOrient: "vertical",
+              },
             },
           },
         },
