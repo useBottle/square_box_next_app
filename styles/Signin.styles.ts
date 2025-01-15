@@ -122,12 +122,38 @@ export const signin: CSSObject = {
     width: "40vw",
     height: "calc(100vh - 8rem)",
 
+    ".logo": {
+      width: "5rem",
+      height: "5rem",
+      fontSize: "2.5rem",
+    },
+
+    h1: {
+      fontSize: "2.5rem",
+    },
+
+    p: {
+      fontSize: "1.6rem",
+    },
+
     form: {
       width: "30%",
     },
 
+    ".guideSignup": {
+      fontSize: "1.4rem",
+
+      ".signupBtn": {
+        fontSize: "1.4rem",
+      },
+    },
+
     ".middleLine": {
       width: "30%",
+
+      span: {
+        fontSize: "1.4rem",
+      },
     },
 
     button: {
