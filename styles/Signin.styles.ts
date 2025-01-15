@@ -104,6 +104,10 @@ export const signin: CSSObject = {
     width: "90%",
 
     span: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      lineHeight: 1,
       margin: "0 1rem",
     },
   },
@@ -130,10 +134,12 @@ export const signin: CSSObject = {
 
     h1: {
       fontSize: "2.5rem",
+      margin: "2rem 0",
     },
 
     p: {
       fontSize: "1.6rem",
+      marginBottom: "4rem",
     },
 
     form: {
