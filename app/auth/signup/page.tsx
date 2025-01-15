@@ -11,6 +11,8 @@ import { ChangeEvent, FormEvent, MouseEvent, useState } from "react";
 import { IoPersonOutline } from "react-icons/io5";
 import { FaCircleCheck } from "react-icons/fa6";
 import { findUser } from "@/app/actions/findUserActions";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 export default function Signup(): JSX.Element {
   const [email, setEmail] = useState<string>("");
@@ -20,6 +22,7 @@ export default function Signup(): JSX.Element {
   const [userExists, setUserExists] = useState<"exists" | "not exists" | "default">("default");
   const [isDuplicateLoading, setIsDuplicateLoading] = useState<boolean>(false);
   const [isSignupLoading, setIsSignupLoading] = useState<boolean>(false);
+  const navMenu = useSelector((state: RootState) => state.switches.navMenu);
   const router = useRouter();
 
   // 이메일: 영문 대, 소문자, 숫자로 시작하고 @, . 기호 포함 + 빈 문자열 허용
@@ -141,79 +144,85 @@ export default function Signup(): JSX.Element {
 
   return (
     <div css={css(signup)}>
-      <div className="logo">
-        <IoPersonOutline />
-      </div>
-      <h1>회원가입</h1>
-      <p>양식을 작성해주세요</p>
-      <form onSubmit={signupSubmit}>
-        {inputArray.map((input) => {
-          return (
-            <div key={input.field}>
-              <div
-                className="inputContainer"
-                style={
-                  inputFocused === input.field
-                    ? { border: "1.5px solid var(--main-color)", transition: "ease 0.3s" }
-                    : { border: "1.5px solid transparent" }
-                }
-              >
-                <input
-                  name={input.field}
-                  type={input.type}
-                  placeholder={input.placeholder}
-                  value={input.value}
-                  onChange={input.onChange}
-                  onFocus={() => setInputFocused(input.field)}
-                  onBlur={() => setInputFocused("")}
-                  onClick={(e: MouseEvent) => e.stopPropagation()}
-                />
-                {input.value !== "" && input.condition.test(input.value) && (
-                  // 스타일 조건에 이메일 중복 확인 후 상태 변경된 값으로 추가 적용해야함
-                  <FaCircleCheck
-                    className="checkIcon"
+      {!navMenu && (
+        <div className="signupWrapper">
+          <div className="logo">
+            <IoPersonOutline />
+          </div>
+          <h1>회원가입</h1>
+          <p>양식을 작성해주세요</p>
+          <form onSubmit={signupSubmit}>
+            {inputArray.map((input) => {
+              return (
+                <div key={input.field}>
+                  <div
+                    className="inputContainer"
                     style={
-                      (input.field === "email" && userExists === "exists") || userExists === "default"
-                        ? { display: "none" }
-                        : {}
-                    }
-                  />
-                )}
-              </div>
-              {input.field === "email" &&
-                email !== "" &&
-                emailCondition.test(email) &&
-                (userExists === "default" || userExists === "exists") && (
-                  <button
-                    className="duplicateBtn"
-                    onClick={duplicateConfirm}
-                    style={
-                      isDuplicateLoading
-                        ? { border: "1px solid var(--shadow-color)", background: "var(--reverse-font)" }
-                        : {}
+                      inputFocused === input.field
+                        ? { border: "1.5px solid var(--main-color)", transition: "ease 0.3s" }
+                        : { border: "1.5px solid transparent" }
                     }
                   >
-                    {isDuplicateLoading ? <div className="spinner" /> : "중복 확인"}
-                  </button>
-                )}
-              {!input.condition.test(input.value) ? input.infoElement : <p></p>}
-            </div>
-          );
-        })}
-        <button
-          type="submit"
-          className="signupBtn"
-          style={isSignupLoading ? { border: "1px solid var(--shadow-color)", background: "var(--reverse-font)" } : {}}
-        >
-          {isSignupLoading ? <div className="spinner" /> : "회원가입"}
-        </button>
-      </form>
-      <p className="guideSignin">
-        계정이 이미 있으신가요?
-        <Link href="/auth/signin" className="signinBtn">
-          로그인
-        </Link>
-      </p>
+                    <input
+                      name={input.field}
+                      type={input.type}
+                      placeholder={input.placeholder}
+                      value={input.value}
+                      onChange={input.onChange}
+                      onFocus={() => setInputFocused(input.field)}
+                      onBlur={() => setInputFocused("")}
+                      onClick={(e: MouseEvent) => e.stopPropagation()}
+                    />
+                    {input.value !== "" && input.condition.test(input.value) && (
+                      // 스타일 조건에 이메일 중복 확인 후 상태 변경된 값으로 추가 적용해야함
+                      <FaCircleCheck
+                        className="checkIcon"
+                        style={
+                          (input.field === "email" && userExists === "exists") || userExists === "default"
+                            ? { display: "none" }
+                            : {}
+                        }
+                      />
+                    )}
+                  </div>
+                  {input.field === "email" &&
+                    email !== "" &&
+                    emailCondition.test(email) &&
+                    (userExists === "default" || userExists === "exists") && (
+                      <button
+                        className="duplicateBtn"
+                        onClick={duplicateConfirm}
+                        style={
+                          isDuplicateLoading
+                            ? { border: "1px solid var(--shadow-color)", background: "var(--reverse-font)" }
+                            : {}
+                        }
+                      >
+                        {isDuplicateLoading ? <div className="spinner" /> : "중복 확인"}
+                      </button>
+                    )}
+                  {!input.condition.test(input.value) ? input.infoElement : <p></p>}
+                </div>
+              );
+            })}
+            <button
+              type="submit"
+              className="signupBtn"
+              style={
+                isSignupLoading ? { border: "1px solid var(--shadow-color)", background: "var(--reverse-font)" } : {}
+              }
+            >
+              {isSignupLoading ? <div className="spinner" /> : "회원가입"}
+            </button>
+          </form>
+          <p className="guideSignin">
+            계정이 이미 있으신가요?
+            <Link href="/auth/signin" className="signinBtn">
+              로그인
+            </Link>
+          </p>
+        </div>
+      )}
     </div>
   );
 }
