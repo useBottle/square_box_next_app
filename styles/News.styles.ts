@@ -13,29 +13,31 @@ export const newsListStyles: CSSObject = {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    height: "60vh",
+    height: "45rem",
     width: "100%",
 
     ".icon": {
       fontSize: "6rem",
-      marginBottom: "5rem",
-      transform: "translateY(-7rem)",
+      marginBottom: "7rem",
     },
 
     ".textNback": {
+      position: "relative",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      width: "90%",
+      width: "60%",
 
       h1: {
+        position: "absolute",
+        top: "50%",
+        transform: "translateY(-50%)",
         display: "flex",
         justifyContent: "center",
-        width: "70%",
+        width: "100%",
         fontSize: "1.6rem",
         background: "var(--reverse-font)",
         zIndex: 10,
-        transform: "translateY(0.5rem)",
         border: "1px solid var(--basic-font)",
         borderLeft: "none",
         borderRight: "none",
@@ -43,8 +45,6 @@ export const newsListStyles: CSSObject = {
       },
 
       ".backIcon": {
-        position: "absolute",
-        top: "50%",
         fontSize: "20rem",
         opacity: 0.1,
       },
@@ -136,6 +136,8 @@ export const newsListStyles: CSSObject = {
   "@media (min-width: 1200px)": {
     width: "40vw",
     marginTop: "10rem",
+
+    ".initNews": {},
 
     ul: {
       a: {
