@@ -137,12 +137,6 @@ export const newsListStyles: CSSObject = {
     width: "40vw",
     marginTop: "10rem",
 
-    h4: {
-      width: "100%",
-      fontSize: "1.4rem",
-      marginBottom: "4rem",
-    },
-
     ul: {
       a: {
         height: "18rem",
