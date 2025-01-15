@@ -429,7 +429,6 @@ export const articleSkeleton: CSSObject = {
   ".img": {
     width: "100%",
     height: "30rem",
-    borderRadius: 0,
   },
 
   ".title": {
