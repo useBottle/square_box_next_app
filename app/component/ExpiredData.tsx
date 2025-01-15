@@ -12,12 +12,20 @@ const infoText: CSSObject = {
   height: "80vh",
   fontSize: "1.6rem",
 
-  "& a": {
+  a: {
     color: "var(--reverse-font)",
     padding: "1rem 2rem",
     background: "var(--basic-font)",
     borderRadius: "3px",
     marginTop: "8rem",
+  },
+
+  "@media (min-width: 1200px)": {
+    fontSize: "2.4rem",
+
+    a: {
+      fontSize: "1.6rem",
+    },
   },
 };
 
