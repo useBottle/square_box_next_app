@@ -137,7 +137,25 @@ export const newsListStyles: CSSObject = {
     width: "40vw",
     marginTop: "10rem",
 
-    ".initNews": {},
+    ".initNews": {
+      height: "90rem",
+
+      ".icon": {
+        fontSize: "8rem",
+        marginBottom: "15rem",
+      },
+
+      ".textNback": {
+        h1: {
+          fontSize: "2rem",
+          padding: "2rem 0",
+        },
+
+        ".backIcon": {
+          fontSize: "40rem",
+        },
+      },
+    },
 
     ul: {
       a: {
