@@ -159,7 +159,7 @@ export const signin: CSSObject = {
         paddingLeft: "5rem",
 
         ".logo": {
-          fontSize: "15rem",
+          fontSize: "13rem",
         },
 
         h1: {
