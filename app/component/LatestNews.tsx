@@ -24,6 +24,7 @@ export default function LatestNews({
   const latestNewsList = useSelector((state: RootState) => state.latestNews.latestNewsList);
   const latestNewsArticle = useSelector((state: RootState) => state.latestNews.latestNewsArticle);
   const { latestNewsListFromServer } = data;
+  const navMenu = useSelector((state: RootState) => state.switches.navMenu);
   const router = useRouter();
 
   // 인터벌로 최신 뉴스 리스트 업데이트
@@ -53,27 +54,31 @@ export default function LatestNews({
 
   return (
     <div css={css(latestNews)}>
-      <h4>최신 뉴스 Top 10</h4>
-      <ul>
-        {(latestNewsList || latestNewsListFromServer)?.map((item, index) => {
-          return (
-            <Link
-              href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`}
-              key={index}
-              onClick={onClick(item.title, item.href)}
-            >
-              <li>
-                <Image src={item.prevImg} width={100} height={100} alt="newsImg" />
-                <div className="textGroup">
-                  <h6>{item.title}</h6>
-                  <div className="date">{item.date}</div>
-                  <p>{item.summary}</p>
-                </div>
-              </li>
-            </Link>
-          );
-        })}
-      </ul>
+      {!navMenu && (
+        <div className="latestNewsWrapper">
+          <h4>최신 뉴스 Top 10</h4>
+          <ul>
+            {(latestNewsList || latestNewsListFromServer)?.map((item, index) => {
+              return (
+                <Link
+                  href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`}
+                  key={index}
+                  onClick={onClick(item.title, item.href)}
+                >
+                  <li>
+                    <Image src={item.prevImg} width={100} height={100} alt="newsImg" />
+                    <div className="textGroup">
+                      <h6>{item.title}</h6>
+                      <div className="date">{item.date}</div>
+                      <p>{item.summary}</p>
+                    </div>
+                  </li>
+                </Link>
+              );
+            })}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
