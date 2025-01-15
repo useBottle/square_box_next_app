@@ -22,6 +22,7 @@ export default function BookmarkNews() {
   const router = useRouter();
   const markedNewsData = useSelector((state: RootState) => state.bookmark.markedNews.data);
   const pageState = useSelector((state: RootState) => state.switches.pageState);
+  const navMenu = useSelector((state: RootState) => state.switches.navMenu);
 
   useEffect(() => {
     (!session || !session.user || !session.user.name) && router.push("/auth/signin");
@@ -45,43 +46,45 @@ export default function BookmarkNews() {
 
   return (
     <div css={css(bookmarkNews)}>
-      <section className="newsContainer">
-        <h4>
-          북마크 뉴스 컨텐츠<span>{`${markedNewsData && markedNewsData.length} / 10`}</span>
-        </h4>
-        <div className="contents">
-          {markedNewsData && markedNewsData.length !== 0 ? (
-            <ul>
-              {markedNewsData.map((item, index) => {
-                return (
-                  <div key={index}>
-                    <Link
-                      href={`/bookmark/detail?title=${encodeURIComponent(item.title)}`}
-                      onClick={onClick(item._id, item.title)}
-                    >
-                      <li>
-                        <Image src={item.image} alt="newsImg" width={100} height={100} />
-                        <div className="textGroup">
-                          <h6>{item.title}</h6>
-                          <div className="date">{item.date}</div>
-                          {item.text.map((item: string, index: number) => {
-                            return <p key={index}>{item}</p>;
-                          })}
-                        </div>
-                      </li>
-                    </Link>
-                    <BookmarkDeleteBtn data={{ category: "news", id: item._id }} />
-                  </div>
-                );
-              })}
-            </ul>
-          ) : (
-            <div className="emptyContents">
-              <p>북마크한 뉴스가 없습니다</p>
-            </div>
-          )}
-        </div>
-      </section>
+      {!navMenu && (
+        <section className="newsContainer">
+          <h4>
+            북마크 뉴스 컨텐츠<span>{`${markedNewsData && markedNewsData.length} / 10`}</span>
+          </h4>
+          <div className="contents">
+            {markedNewsData && markedNewsData.length !== 0 ? (
+              <ul>
+                {markedNewsData.map((item, index) => {
+                  return (
+                    <div key={index}>
+                      <Link
+                        href={`/bookmark/detail?title=${encodeURIComponent(item.title)}`}
+                        onClick={onClick(item._id, item.title)}
+                      >
+                        <li>
+                          <Image src={item.image} alt="newsImg" width={100} height={100} />
+                          <div className="textGroup">
+                            <h6>{item.title}</h6>
+                            <div className="date">{item.date}</div>
+                            {item.text.map((item: string, index: number) => {
+                              return <p key={index}>{item}</p>;
+                            })}
+                          </div>
+                        </li>
+                      </Link>
+                      <BookmarkDeleteBtn data={{ category: "news", id: item._id }} />
+                    </div>
+                  );
+                })}
+              </ul>
+            ) : (
+              <div className="emptyContents">
+                <p>북마크한 뉴스가 없습니다</p>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
     </div>
   );
 }
