@@ -224,7 +224,34 @@ export const youtubeDynamic: CSSObject = {
     width: "40vw",
 
     iframe: {
-      height: "40vh",
+      height: "50vh",
+    },
+
+    ".textGroup": {
+      width: "100%",
+
+      ".title": {
+        fontSize: "2.6rem",
+        marginTop: "6rem",
+      },
+
+      ".channel": {
+        marginTop: "4rem",
+      },
+
+      ".publishedAt": {
+        marginTop: "4rem",
+        fontSize: "1.4rem",
+      },
+
+      form: {
+        margin: "4rem 0",
+      },
+
+      ".description": {
+        fontSize: "1.8rem",
+        margin: "5rem 0",
+      },
     },
   },
 };
