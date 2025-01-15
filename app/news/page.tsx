@@ -18,7 +18,6 @@ import { AiOutlineFileSearch } from "react-icons/ai";
 import { TbBoxOff } from "react-icons/tb";
 import { setSingleArticle, setUrl } from "@/store/news";
 import { useRouter } from "next/navigation";
-import ExpiredData from "../component/ExpiredData";
 
 export default function News(): JSX.Element {
   const newsList = useSelector((state: RootState) => state.news.newsList.newsList);

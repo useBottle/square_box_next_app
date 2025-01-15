@@ -7,10 +7,10 @@ import SearchBar from "../../component/SearchBar";
 import { AppDispatch, RootState } from "@/store/store";
 import Link from "next/link";
 import Image from "next/image";
-import { newsListStyles } from "@/styles/News.styles";
+import { newsListStyles, newsSkeleton } from "@/styles/News.styles";
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
-import { setInputValue, setOnSearching, setPageState } from "@/store/switches";
+import { setOnSearching, setPageState } from "@/store/switches";
 import { PiWarningCircleFill, PiInfoFill } from "react-icons/pi";
 import { AiOutlineFileSearch } from "react-icons/ai";
 import { TbBoxOff } from "react-icons/tb";
@@ -59,7 +59,7 @@ export default function NewsOfTopics(): JSX.Element {
 
   if (onSearching) {
     return (
-      <div>
+      <div css={css(newsSkeleton)}>
         <SearchBar />
         <NewsSkeleton />
       </div>
