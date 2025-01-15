@@ -150,7 +150,7 @@ export const signin: CSSObject = {
         flexDirection: "column",
         width: "100%",
         height: "60%",
-        border: "2px solid var(--basic-dark)",
+        border: "3px solid var(--basic-dark)",
         borderRight: "none",
         borderRadius: "5px",
         borderTopRightRadius: "0",
