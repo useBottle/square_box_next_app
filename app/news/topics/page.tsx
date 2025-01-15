@@ -10,7 +10,7 @@ import Image from "next/image";
 import { newsListStyles } from "@/styles/News.styles";
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
-import { setInputValue, setPageState } from "@/store/switches";
+import { setInputValue, setOnSearching, setPageState } from "@/store/switches";
 import { PiWarningCircleFill, PiInfoFill } from "react-icons/pi";
 import { AiOutlineFileSearch } from "react-icons/ai";
 import { TbBoxOff } from "react-icons/tb";
@@ -31,6 +31,7 @@ export default function NewsOfTopics(): JSX.Element {
     window.scrollTo({ top: 0 });
     // 뉴스 페이지 접속 여부 체크 -> 검색 컴포넌트에서 검색 요청 토글 역할
     dispatch(setPageState("news"));
+    dispatch(setOnSearching(false));
 
     return () => {
       dispatch(setPageState("default"));
