@@ -17,7 +17,6 @@ import ScrollBtn from "../component/ScrollBtn";
 import { PiInfoFill, PiWarningCircleFill } from "react-icons/pi";
 import { PiFilmSlateLight } from "react-icons/pi";
 import { TbBoxOff } from "react-icons/tb";
-import ExpiredData from "../component/ExpiredData";
 
 export default function Youtube() {
   const dispatch = useDispatch<AppDispatch>();
