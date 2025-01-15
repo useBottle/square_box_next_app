@@ -110,6 +110,31 @@ export const youtube: CSSObject = {
       },
     },
   },
+
+  "@media (min-width: 1200px)": {
+    width: "40vw",
+    marginTop: "10rem",
+
+    ".initYoutube": {
+      height: "90rem",
+
+      ".icon": {
+        fontSize: "5rem",
+        marginBottom: "15rem",
+      },
+
+      ".textNback": {
+        h1: {
+          fontSize: "2rem",
+          padding: "1.5rem 0",
+        },
+
+        ".backIcon": {
+          fontSize: "40rem",
+        },
+      },
+    },
+  },
 };
 
 export const youtubeDynamic: CSSObject = {

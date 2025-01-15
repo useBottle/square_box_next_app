@@ -141,14 +141,14 @@ export const newsListStyles: CSSObject = {
       height: "90rem",
 
       ".icon": {
-        fontSize: "8rem",
+        fontSize: "5rem",
         marginBottom: "15rem",
       },
 
       ".textNback": {
         h1: {
           fontSize: "2rem",
-          padding: "2rem 0",
+          padding: "1.5rem 0",
         },
 
         ".backIcon": {
