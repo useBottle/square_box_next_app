@@ -1,87 +1,92 @@
 import { CSSObject, keyframes } from "@emotion/react";
 
 export const latestNews: CSSObject = {
-  marginTop: "6rem",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
+  width: "100%",
 
-  h4: {
-    width: "90%",
-    fontSize: "1.2rem",
-    color: "var(--basic-dark)",
-    marginBottom: "1rem",
-    borderBottom: "0.5px solid var(--form-color)",
-    padding: "1rem 0",
-  },
-
-  ul: {
+  ".latestNewsWrapper": {
     width: "100%",
+    marginTop: "6rem",
     display: "flex",
-    alignItems: "center",
     flexDirection: "column",
+    alignItems: "center",
 
-    a: {
+    h4: {
+      width: "90%",
+      fontSize: "1.2rem",
+      color: "var(--basic-dark)",
+      marginBottom: "1rem",
+      borderBottom: "0.5px solid var(--form-color)",
+      padding: "1rem 0",
+    },
+
+    ul: {
       width: "100%",
       display: "flex",
-      justifyContent: "center",
-      height: "12rem",
-      margin: "1.5rem 0",
+      alignItems: "center",
+      flexDirection: "column",
 
-      li: {
-        width: "95%",
-        height: "100%",
-        color: "var(--basic-font)",
-        display: "grid",
-        gridTemplateColumns: "35% 65%",
-        padding: "1rem",
-        boxSizing: "border-box",
-        overflow: "hidden",
+      a: {
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        height: "12rem",
+        margin: "1.5rem 0",
 
-        img: {
-          width: "100%",
-          height: "10rem",
-        },
-
-        ".textGroup": {
-          width: "100%",
-          justifyContent: "space-between",
+        li: {
+          width: "95%",
           height: "100%",
-          padding: "0 1rem",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
+          color: "var(--basic-font)",
+          display: "grid",
+          gridTemplateColumns: "35% 65%",
+          padding: "1rem",
           boxSizing: "border-box",
+          overflow: "hidden",
 
-          h6: {
-            fontSize: "1.4rem",
-            fontWeight: 500,
-            lineHeight: 1.5,
-            color: "var(--title-color)",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            display: "-webkit-box",
-            WebkitLineClamp: 2,
-            lineClamp: 2,
-            WebkitBoxOrient: "vertical",
+          img: {
+            width: "100%",
+            height: "10rem",
           },
 
-          ".date": {
-            color: "var(--basic-dark)",
-          },
+          ".textGroup": {
+            width: "100%",
+            justifyContent: "space-between",
+            height: "100%",
+            padding: "0 1rem",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            boxSizing: "border-box",
 
-          p: {
-            display: "none",
+            h6: {
+              fontSize: "1.4rem",
+              fontWeight: 500,
+              lineHeight: 1.5,
+              color: "var(--title-color)",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "-webkit-box",
+              WebkitLineClamp: 2,
+              lineClamp: 2,
+              WebkitBoxOrient: "vertical",
+            },
+
+            ".date": {
+              color: "var(--basic-dark)",
+            },
+
+            p: {
+              display: "none",
+            },
           },
         },
-      },
 
-      "&:last-child": {
-        marginBottom: "10rem",
-      },
+        "&:last-child": {
+          marginBottom: "10rem",
+        },
 
-      "&:hover": {
-        background: "var(--list-back)",
+        "&:hover": {
+          background: "var(--list-back)",
+        },
       },
     },
   },
