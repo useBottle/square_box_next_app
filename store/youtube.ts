@@ -53,6 +53,7 @@ export const youtube = createSlice({
         state.youtubeStatus = "succeeded";
         if (action.payload) {
           state.youtubeList = action.payload;
+          state.noYoutubeData = false;
         }
         if (action.payload.items.length === 0) {
           state.noYoutubeData = true;
