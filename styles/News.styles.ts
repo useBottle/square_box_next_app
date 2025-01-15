@@ -448,4 +448,28 @@ export const articleSkeleton: CSSObject = {
       width: "90%",
     },
   },
+
+  "@media (min-width: 1200px)": {
+    width: "40vw",
+
+    ".img": {
+      height: "60rem",
+    },
+
+    ".title": {
+      width: "100%",
+      height: "5rem",
+      margin: "10rem 0",
+    },
+
+    ".textGroup": {
+      width: "100%",
+
+      ".text": {
+        width: "100%",
+        height: "3rem",
+        marginBottom: "2rem",
+      },
+    },
+  },
 };
