@@ -137,14 +137,38 @@ export const youtube: CSSObject = {
     ul: {
       a: {
         width: "100%",
+        margin: "3rem 0",
 
         li: {
           display: "grid",
           gridTemplateColumns: "30% 70%",
           alignItems: "center",
+          padding: "1rem",
 
           img: {
             width: "100%",
+            height: "100%",
+          },
+
+          ".textGroup": {
+            padding: "0 2rem",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+
+            ".title": {
+              fontSize: "2rem",
+              margin: 0,
+            },
+
+            ".channel": {
+              marginBottom: 0,
+            },
+
+            ".description": {
+              margin: 0,
+            },
           },
         },
       },

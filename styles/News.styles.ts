@@ -160,6 +160,7 @@ export const newsListStyles: CSSObject = {
     ul: {
       a: {
         height: "18rem",
+        margin: "3rem 0",
 
         li: {
           width: "100%",
