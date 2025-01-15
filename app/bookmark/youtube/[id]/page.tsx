@@ -99,7 +99,7 @@ export default function MarkedYoutubeDynamic(): JSX.Element {
   return (
     <div css={css(youtubeDynamic)}>
       {!navMenu && (
-        <div className="bookmarkYoutubeDetailWrapper">
+        <div className="youtubeDetailWrapper">
           <YouTube
             className="player"
             videoId={clickedYoutube.videoId}

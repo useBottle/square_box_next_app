@@ -160,7 +160,7 @@ export default function LatestNewsDetail(): JSX.Element {
   return (
     <article css={css(dynamicNewsStyles)} className={SUITfont.className}>
       {!navMenu && (
-        <div className="latestNewsDetailWrapper">
+        <div className="newsDetailWrapper">
           <figure className="imgGroup">
             {latestNewsArticle.image === "" ? (
               <div className="noImg">No Image</div>

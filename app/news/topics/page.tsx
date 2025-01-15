@@ -70,7 +70,7 @@ export default function NewsOfTopics(): JSX.Element {
   return (
     <div css={css(newsListStyles)}>
       {!navMenu && (
-        <div className="topicsNewsWrapper">
+        <div className="newsWrapper">
           <SearchBar />
           {newsListOfSingleTopic.newsList.length === 0 && !noNewsList && (
             <div className="initNews">
