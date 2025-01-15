@@ -2,7 +2,6 @@
 
 "use client";
 
-import { Prompt } from "next/font/google";
 import { BsBox } from "react-icons/bs";
 import { IoMenuOutline, IoCloseOutline } from "react-icons/io5";
 import Link from "next/link";
@@ -11,12 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { setNavMenu, setSignoutModal } from "@/store/switches";
 import { header } from "@/styles/Header.styles";
-
-const prompt = Prompt({
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
+import { prompt } from "@/util/fontsLoader";
 
 export default function Header(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();

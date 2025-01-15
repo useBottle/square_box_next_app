@@ -2,6 +2,10 @@ import { CSSObject } from "@emotion/react";
 import { globalBtn, infoText, infoTitle, input } from "./default.styles";
 
 export const signin: CSSObject = {
+  ".signinInfoContainer": {
+    display: "none",
+  },
+
   ".signinContainer": {
     display: "flex",
     flexDirection: "column",
@@ -131,8 +135,45 @@ export const signin: CSSObject = {
     justifyContent: "center",
     alignItems: "center",
 
+    ".signinInfoContainer": {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      flexDirection: "column",
+      width: "60%",
+      height: "100%",
+
+      ".contentBox": {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+        width: "100%",
+        height: "60%",
+        border: "2px solid var(--basic-dark)",
+        borderRight: "none",
+        borderRadius: "5px",
+        borderTopRightRadius: "0",
+        borderBottomRightRadius: "0",
+        boxSizing: "border-box",
+        paddingLeft: "5rem",
+
+        ".logo": {
+          fontSize: "15rem",
+        },
+
+        h1: {
+          fontSize: "6rem",
+          margin: "4rem 0",
+        },
+      },
+    },
+
     ".signinContainer": {
-      width: "100%",
+      width: "40%",
+      boxShadow: "8px 8px 30px var(--box-shadow)",
+      borderRadius: "5px",
+      padding: "5rem 2rem",
 
       ".logo": {
         width: "5rem",
@@ -151,7 +192,7 @@ export const signin: CSSObject = {
       },
 
       form: {
-        width: "30%",
+        width: "80%",
       },
 
       ".guideSignup": {
@@ -163,7 +204,7 @@ export const signin: CSSObject = {
       },
 
       ".middleLine": {
-        width: "30%",
+        width: "80%",
 
         span: {
           fontSize: "1.4rem",
@@ -171,7 +212,7 @@ export const signin: CSSObject = {
       },
 
       button: {
-        width: "30%",
+        width: "80%",
       },
     },
   },

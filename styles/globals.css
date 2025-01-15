@@ -14,6 +14,7 @@
   --square: #355e876f;
   --input-check: #60d375;
   --list-back: #f0f0f0;
+  --box-shadow: #9292928f;
 }
 
 [data-theme="dark"] {

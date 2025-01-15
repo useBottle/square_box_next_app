@@ -3,11 +3,13 @@
 "use client";
 
 import { signin } from "@/styles/Signin.styles";
+import { prompt } from "@/util/fontsLoader";
 import { css } from "@emotion/react";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
+import { BsBox } from "react-icons/bs";
 import { IoLockOpenOutline } from "react-icons/io5";
 
 export default function Signin(): JSX.Element {
@@ -33,6 +35,12 @@ export default function Signin(): JSX.Element {
 
   return (
     <div css={css(signin)}>
+      <div className="signinInfoContainer">
+        <div className="contentBox">
+          <BsBox className="logo" />
+          <h1 className={prompt.className}>Square Box</h1>
+        </div>
+      </div>
       <div className="signinContainer">
         <div className="logo">
           <IoLockOpenOutline />
