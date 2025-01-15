@@ -19,6 +19,14 @@ const infoText: CSSObject = {
     borderRadius: "3px",
     marginTop: "8rem",
   },
+
+  "@media (min-width: 1200px)": {
+    fontSize: "2.4rem",
+
+    a: {
+      fontSize: "1.6rem",
+    },
+  },
 };
 
 export default function FetchFailedData(): JSX.Element {
