@@ -24,6 +24,7 @@ export default function News(): JSX.Element {
   const keyword = useSelector((state: RootState) => state.news.newsList.keyword);
   const newsStatus = useSelector((state: RootState) => state.news.newsStatus);
   const singleArticle = useSelector((state: RootState) => state.news.article);
+  const navMenu = useSelector((state: RootState) => state.switches.navMenu);
   const [noNewsList, setNoNewsList] = useState<boolean>(false);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
@@ -74,49 +75,53 @@ export default function News(): JSX.Element {
 
   return (
     <div css={css(newsListStyles)}>
-      <SearchBar />
-      {newsList.length === 0 && !noNewsList && (
-        <div className="initNews">
-          <PiInfoFill className="icon" />
-          <div className="textNback">
-            <h1>뉴스를 검색해주세요</h1>
-            <AiOutlineFileSearch className="backIcon" />
-          </div>
+      {!navMenu && (
+        <div className="newsWrapper">
+          <SearchBar />
+          {newsList.length === 0 && !noNewsList && (
+            <div className="initNews">
+              <PiInfoFill className="icon" />
+              <div className="textNback">
+                <h1>뉴스를 검색해주세요</h1>
+                <AiOutlineFileSearch className="backIcon" />
+              </div>
+            </div>
+          )}
+          {noNewsList && (
+            <div className="initNews">
+              <PiWarningCircleFill className="icon" />
+              <div className="textNback">
+                <h1>검색된 뉴스가 없습니다</h1>
+                <TbBoxOff className="backIcon" />
+              </div>
+            </div>
+          )}
+          <ul>
+            {newsList.map((item, index) => {
+              return (
+                <Link
+                  href={`/news/detail?title=${encodeURIComponent(item.title)}`}
+                  key={index}
+                  onClick={onClick(item.title, item.href)}
+                >
+                  <li>
+                    {!(item.prevImg.startsWith("https") || item.prevImg.startsWith("http")) ? (
+                      <div className="noImg">No Image</div>
+                    ) : (
+                      <Image src={item.prevImg} alt="newsImg" width={100} height={100} />
+                    )}
+                    <div className="textGroup">
+                      <h6>{item.title}</h6>
+                      <div className="date">{item.date}</div>
+                      <p>{item.summary}</p>
+                    </div>
+                  </li>
+                </Link>
+              );
+            })}
+          </ul>
         </div>
       )}
-      {noNewsList && (
-        <div className="initNews">
-          <PiWarningCircleFill className="icon" />
-          <div className="textNback">
-            <h1>검색된 뉴스가 없습니다</h1>
-            <TbBoxOff className="backIcon" />
-          </div>
-        </div>
-      )}
-      <ul>
-        {newsList.map((item, index) => {
-          return (
-            <Link
-              href={`/news/detail?title=${encodeURIComponent(item.title)}`}
-              key={index}
-              onClick={onClick(item.title, item.href)}
-            >
-              <li>
-                {!(item.prevImg.startsWith("https") || item.prevImg.startsWith("http")) ? (
-                  <div className="noImg">No Image</div>
-                ) : (
-                  <Image src={item.prevImg} alt="newsImg" width={100} height={100} />
-                )}
-                <div className="textGroup">
-                  <h6>{item.title}</h6>
-                  <div className="date">{item.date}</div>
-                  <p>{item.summary}</p>
-                </div>
-              </li>
-            </Link>
-          );
-        })}
-      </ul>
     </div>
   );
 }
