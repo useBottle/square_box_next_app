@@ -23,6 +23,7 @@ export default function Youtube() {
   const youtubeList = useSelector((state: RootState) => state.youtube.youtubeList);
   const youtubeStatus = useSelector((state: RootState) => state.youtube.youtubeStatus);
   const inputValue = useSelector((state: RootState) => state.switches.inputValue);
+  const noYoutubeData = useSelector((state: RootState) => state.youtube.noYoutubeData);
 
   useEffect(() => {
     // console.log(youtubeList);
@@ -61,7 +62,7 @@ export default function Youtube() {
           </div>
         </div>
       )}
-      {youtubeList.items.length === 0 && inputValue !== "" && (
+      {noYoutubeData && inputValue !== "" && (
         <div className="initYoutube">
           <PiWarningCircleFill className="icon" />
           <div className="textNback">
