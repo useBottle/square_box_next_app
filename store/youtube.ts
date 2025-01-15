@@ -21,6 +21,7 @@ export const fetchYoutube = createAsyncThunk<youtubeApiResult, string>(
 interface youtubeType {
   youtubeList: youtubeApiResult;
   youtubeStatus: "idle" | "loading" | "succeeded" | "failed";
+  noYoutubeData: boolean;
 }
 
 const initialState: youtubeType = {
@@ -35,6 +36,7 @@ const initialState: youtubeType = {
     },
   },
   youtubeStatus: "idle",
+  noYoutubeData: false,
 };
 
 export const youtube = createSlice({
@@ -51,6 +53,9 @@ export const youtube = createSlice({
         state.youtubeStatus = "succeeded";
         if (action.payload) {
           state.youtubeList = action.payload;
+        }
+        if (action.payload.items.length === 0) {
+          state.noYoutubeData = true;
         }
       })
       .addCase(fetchYoutube.rejected, (state) => {
