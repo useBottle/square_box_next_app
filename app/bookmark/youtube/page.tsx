@@ -23,6 +23,7 @@ export default function Bookmark() {
   const router = useRouter();
   const markedYoutubeData = useSelector((state: RootState) => state.bookmark.markedYoutube.data);
   const pageState = useSelector((state: RootState) => state.switches.pageState);
+  const navMenu = useSelector((state: RootState) => state.switches.navMenu);
 
   useEffect(() => {
     (!session || !session.user || !session.user.name) && router.push("/auth/signin");
@@ -45,45 +46,47 @@ export default function Bookmark() {
 
   return (
     <div css={css(bookmarkYoutube)}>
-      <section className="youtubeContainer">
-        <h4>
-          북마크 유튜브 컨텐츠<span>{`${markedYoutubeData && markedYoutubeData.length} / 10`}</span>
-        </h4>
-        <div className="contents">
-          {markedYoutubeData && markedYoutubeData.length !== 0 ? (
-            <div>
-              <ul>
-                {markedYoutubeData.map((item, index) => {
-                  return (
-                    <div key={index}>
-                      <Link
-                        href={`/youtube/detail?id=${item.videoId}&index=${index}`}
-                        onClick={onClick(item._id, item.videoId)}
-                      >
-                        <li>
-                          <Image src={item.thumbnail} alt={item.title} width={300} height={200} />
-                          <div className="textGroup">
-                            <h1 className="title">{item.title}</h1>
-                            <h4 className="channel">{item.channelTitle}</h4>
-                            <div className="publishedAt">{item.publishedAt}</div>
-                            <p className="description">{item.description}</p>
-                          </div>
-                        </li>
-                      </Link>
-                      <BookmarkDeleteBtn data={{ category: "youtube", id: item._id }} />
-                    </div>
-                  );
-                })}
-              </ul>
-              <ScrollBtn />
-            </div>
-          ) : (
-            <div className="emptyContents">
-              <p>북마크한 영상이 없습니다</p>
-            </div>
-          )}
-        </div>
-      </section>
+      {!navMenu && (
+        <section className="youtubeContainer">
+          <h4>
+            북마크 유튜브 컨텐츠<span>{`${markedYoutubeData && markedYoutubeData.length} / 10`}</span>
+          </h4>
+          <div className="contents">
+            {markedYoutubeData && markedYoutubeData.length !== 0 ? (
+              <div>
+                <ul>
+                  {markedYoutubeData.map((item, index) => {
+                    return (
+                      <div key={index}>
+                        <Link
+                          href={`/youtube/detail?id=${item.videoId}&index=${index}`}
+                          onClick={onClick(item._id, item.videoId)}
+                        >
+                          <li>
+                            <Image src={item.thumbnail} alt={item.title} width={300} height={200} />
+                            <div className="textGroup">
+                              <h1 className="title">{item.title}</h1>
+                              <h4 className="channel">{item.channelTitle}</h4>
+                              <div className="publishedAt">{item.publishedAt}</div>
+                              <p className="description">{item.description}</p>
+                            </div>
+                          </li>
+                        </Link>
+                        <BookmarkDeleteBtn data={{ category: "youtube", id: item._id }} />
+                      </div>
+                    );
+                  })}
+                </ul>
+                <ScrollBtn />
+              </div>
+            ) : (
+              <div className="emptyContents">
+                <p>북마크한 영상이 없습니다</p>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
     </div>
   );
 }
