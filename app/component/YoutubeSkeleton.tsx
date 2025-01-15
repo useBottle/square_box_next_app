@@ -2,13 +2,10 @@
 
 "use client";
 
-import { youtubeSkeleton } from "@/styles/Youtube.styles";
-import { css } from "@emotion/react";
-
 export default function YoutubeSkeleton(): JSX.Element {
   const arry = new Array(5).fill(null);
   return (
-    <div css={css(youtubeSkeleton)}>
+    <div className="skeleton">
       {arry.map((_, index) => {
         return (
           <div className="list" key={index}>

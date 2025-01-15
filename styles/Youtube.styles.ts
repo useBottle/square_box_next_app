@@ -224,6 +224,7 @@ export const youtubeDynamic: CSSObject = {
     width: "40vw",
 
     iframe: {
+      width: "calc(40vw - 1px)",
       height: "50vh",
     },
 
@@ -267,76 +268,131 @@ const shine = keyframes({
 });
 
 export const youtubeSkeleton: CSSObject = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  width: "100vw",
-  margin: "1rem 0",
+  ".skeleton": {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    width: "100vw",
+    margin: "1rem 0",
 
-  ".list": {
-    width: "90%",
-    margin: "1.5rem",
+    ".list": {
+      width: "90%",
+      margin: "1.5rem",
 
-    ".default": {
-      position: "relative",
-      overflow: "hidden",
-      borderRadius: "5px",
-      background: "lightgray",
+      ".default": {
+        position: "relative",
+        overflow: "hidden",
+        borderRadius: "5px",
+        background: "lightgray",
 
-      "&::before": {
-        content: '""',
-        position: "absolute",
-        top: 0,
-        left: 0,
+        "&::before": {
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          background: "#ffffff33",
+          animation: `${shine} infinite 1.5s ease-in-out`,
+        },
+      },
+
+      ".imgFrame": {
         width: "100%",
-        height: "100%",
-        background: "#ffffff33",
-        animation: `${shine} infinite 1.5s ease-in-out`,
-      },
-    },
-
-    ".imgFrame": {
-      width: "100%",
-      height: "25rem",
-    },
-
-    ".textGroup": {
-      margin: "1rem 0",
-      width: "100%",
-
-      ".titleFrame": {
-        height: "3rem",
-        background: "lightgray",
-        margin: "2rem 0",
+        height: "25rem",
       },
 
-      ".channelFrame": {
-        height: "3rem",
-        background: "lightgray",
-        margin: "2rem 0",
-        width: "20%",
-      },
+      ".textGroup": {
+        margin: "1rem 0",
+        width: "100%",
 
-      ".dateFrame": {
-        height: "2rem",
-        background: "lightgray",
-        margin: "4rem 0",
-        width: "30%",
-      },
+        ".titleFrame": {
+          height: "3rem",
+          background: "lightgray",
+          margin: "2rem 0",
+        },
 
-      ".descGroup": {
-        ".descFrame": {
+        ".channelFrame": {
+          height: "3rem",
+          background: "lightgray",
+          margin: "2rem 0",
+          width: "20%",
+        },
+
+        ".dateFrame": {
           height: "2rem",
           background: "lightgray",
-          margin: "1rem 0",
-          width: "90%",
+          margin: "4rem 0",
+          width: "30%",
+        },
 
-          "&:first-of-type": {
-            width: "60%",
+        ".descGroup": {
+          ".descFrame": {
+            height: "2rem",
+            background: "lightgray",
+            margin: "1rem 0",
+            width: "90%",
+
+            "&:first-of-type": {
+              width: "60%",
+            },
+
+            "&:last-of-type": {
+              width: "80%",
+            },
+          },
+        },
+      },
+    },
+  },
+
+  "@media (min-width: 1200px)": {
+    width: "40vw",
+
+    form: {
+      marginTop: "10rem",
+    },
+
+    ".skeleton": {
+      width: "100%",
+
+      ".list": {
+        width: "100%",
+        display: "grid",
+        gridTemplateColumns: "30% 70%",
+        alignItems: "center",
+        margin: "3rem 0",
+        overflow: "hidden",
+
+        ".textGroup": {
+          width: "calc(100% - 2rem)",
+          paddingLeft: "2rem",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+
+          ".titleFrame": {
+            width: "100%",
+            marginTop: 0,
           },
 
-          "&:last-of-type": {
-            width: "80%",
+          ".channelFrame": {
+            margin: 0,
+          },
+
+          ".dateFrame": {
+            margin: 0,
+          },
+
+          ".descGroup": {
+            ".descFrame": {
+              marginBottom: 0,
+
+              "&:last-of-type": {
+                display: "none",
+              },
+            },
           },
         },
       },

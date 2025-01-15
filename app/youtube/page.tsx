@@ -10,7 +10,7 @@ import { setInputValue, setPageState } from "@/store/switches";
 import Link from "next/link";
 import { css } from "@emotion/react";
 import Image from "next/image";
-import { youtube } from "@/styles/Youtube.styles";
+import { youtube, youtubeSkeleton } from "@/styles/Youtube.styles";
 import YoutubeSkeleton from "../component/YoutubeSkeleton";
 import FetchFailedData from "../component/FetchFailedData";
 import ScrollBtn from "../component/ScrollBtn";
@@ -44,6 +44,15 @@ export default function Youtube() {
       </div>
     );
   }
+
+  // if (true) {
+  //   return (
+  //     <div css={css(youtubeSkeleton)}>
+  //       <SearchBar />
+  //       <YoutubeSkeleton />
+  //     </div>
+  //   );
+  // }
 
   // youtubeStatus 가 failed 일 경우 FetchFailedData 렌더링
   if (youtubeStatus === "failed") {

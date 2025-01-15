@@ -21,6 +21,7 @@ const form: CSSObject = {
   margin: "4rem 0",
 
   "@media (min-width: 1200px)": {
+    width: "40vw",
     marginBottom: "10rem",
   },
 };
