@@ -64,19 +64,14 @@ export const youtube: CSSObject = {
 
       li: {
         width: "100%",
-        border: "1px solid #eee",
-        borderRadius: "5px",
-        boxSizing: "border-box",
 
         img: {
           width: "100%",
           height: "auto",
-          borderTopLeftRadius: "5px",
-          borderTopRightRadius: "5px",
         },
 
         ".textGroup": {
-          padding: "1rem",
+          padding: "1rem 0",
 
           ".title": {
             fontSize: "2rem",
@@ -108,6 +103,10 @@ export const youtube: CSSObject = {
           },
         },
       },
+
+      "&:hover": {
+        background: "var(--list-back)",
+      },
     },
   },
 
@@ -131,6 +130,22 @@ export const youtube: CSSObject = {
 
         ".backIcon": {
           fontSize: "40rem",
+        },
+      },
+    },
+
+    ul: {
+      a: {
+        width: "100%",
+
+        li: {
+          display: "grid",
+          gridTemplateColumns: "30% 70%",
+          alignItems: "center",
+
+          img: {
+            width: "100%",
+          },
         },
       },
     },
