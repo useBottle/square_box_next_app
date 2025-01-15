@@ -159,10 +159,6 @@ export default function NewsDynamic(): JSX.Element {
     return <ArticleSkeleton />;
   }
 
-  if (true) {
-    return <ExpiredData />;
-  }
-
   return (
     <article css={css(dynamicNewsStyles)}>
       <figure className="imgGroup">

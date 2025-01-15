@@ -32,6 +32,14 @@ export default function Error(): JSX.Element {
       borderRadius: "3px",
       marginTop: "8rem",
     },
+
+    "@media (min-width: 1200px)": {
+      fontSize: "2.4rem",
+
+      a: {
+        fontSize: "1.6rem",
+      },
+    },
   };
 
   return (
