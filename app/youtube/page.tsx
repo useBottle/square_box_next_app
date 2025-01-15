@@ -38,21 +38,12 @@ export default function Youtube() {
 
   if (youtubeStatus === "loading") {
     return (
-      <div>
+      <div css={css(youtubeSkeleton)}>
         <SearchBar />
         <YoutubeSkeleton />
       </div>
     );
   }
-
-  // if (true) {
-  //   return (
-  //     <div css={css(youtubeSkeleton)}>
-  //       <SearchBar />
-  //       <YoutubeSkeleton />
-  //     </div>
-  //   );
-  // }
 
   // youtubeStatus 가 failed 일 경우 FetchFailedData 렌더링
   if (youtubeStatus === "failed") {

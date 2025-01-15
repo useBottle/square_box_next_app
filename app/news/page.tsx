@@ -7,7 +7,7 @@ import SearchBar from "../component/SearchBar";
 import { AppDispatch, RootState } from "@/store/store";
 import Link from "next/link";
 import Image from "next/image";
-import { newsListStyles } from "@/styles/News.styles";
+import { newsListStyles, newsSkeleton } from "@/styles/News.styles";
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 import NewsSkeleton from "../component/NewsSkeleton";
@@ -49,7 +49,7 @@ export default function News(): JSX.Element {
 
   if (newsStatus === "loading") {
     return (
-      <div>
+      <div css={css(newsSkeleton)}>
         <SearchBar />
         <NewsSkeleton />
       </div>

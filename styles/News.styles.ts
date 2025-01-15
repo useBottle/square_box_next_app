@@ -314,53 +314,55 @@ const shine = keyframes({
 });
 
 export const newsSkeleton: CSSObject = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  height: "100vh",
-  width: "100vw",
-  margin: "1rem 0",
+  ".skeleton": {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    height: "100vh",
+    width: "100vw",
+    margin: "1rem 0",
 
-  ".list": {
-    width: "90%",
-    height: "10rem",
-    display: "grid",
-    gridTemplateColumns: "35% 65%",
-    margin: "1.5rem",
+    ".list": {
+      width: "90%",
+      height: "10rem",
+      display: "grid",
+      gridTemplateColumns: "35% 65%",
+      margin: "1.5rem",
 
-    ".default": {
-      position: "relative",
-      overflow: "hidden",
-      background: "lightgray",
-      borderRadius: "3px",
-
-      "&::before": {
-        content: '""',
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        background: "#ffffff33",
-        animation: `${shine} infinite 1.5s ease-in-out`,
-      },
-    },
-
-    ".textGroup": {
-      margin: "1rem 0",
-      marginLeft: "1rem",
-
-      ".textFrame": {
-        width: "90%",
-        height: "2rem",
+      ".default": {
+        position: "relative",
+        overflow: "hidden",
         background: "lightgray",
-        marginBottom: "0.5rem",
+        borderRadius: "3px",
 
-        "&:first-of-type": {
+        "&::before": {
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
           width: "100%",
-          height: "2.5rem",
+          height: "100%",
+          background: "#ffffff33",
+          animation: `${shine} infinite 1.5s ease-in-out`,
+        },
+      },
+
+      ".textGroup": {
+        margin: "1rem 0",
+        marginLeft: "1rem",
+
+        ".textFrame": {
+          width: "90%",
+          height: "2rem",
           background: "lightgray",
-          marginBottom: "1rem",
+          marginBottom: "0.5rem",
+
+          "&:first-of-type": {
+            width: "100%",
+            height: "2.5rem",
+            background: "lightgray",
+            marginBottom: "1rem",
+          },
         },
       },
     },
@@ -368,26 +370,30 @@ export const newsSkeleton: CSSObject = {
 
   "@media (min-width: 1200px)": {
     width: "40vw",
-    position: "absolute",
-    left: "50%",
-    top: "70%",
-    transform: "translate(-50%, -50%)",
 
-    ".list": {
+    form: {
+      marginTop: "10rem",
+    },
+
+    ".skeleton": {
       width: "100%",
-      height: "18rem",
-      gridTemplateColumns: "20% 80%",
 
-      ".textGroup": {
-        margin: "0 2rem",
+      ".list": {
+        width: "100%",
+        height: "18rem",
+        gridTemplateColumns: "20% 80%",
 
-        ".textFrame": {
-          height: "3rem",
-          marginBottom: "1rem",
+        ".textGroup": {
+          margin: "0 2rem",
 
-          "&:first-of-type": {
-            height: "3.5rem",
-            marginBottom: "2rem",
+          ".textFrame": {
+            height: "3rem",
+            marginBottom: "1rem",
+
+            "&:first-of-type": {
+              height: "3.5rem",
+              marginBottom: "2rem",
+            },
           },
         },
       },

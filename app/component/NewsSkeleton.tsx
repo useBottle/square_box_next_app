@@ -2,14 +2,11 @@
 
 "use client";
 
-import { newsSkeleton } from "@/styles/News.styles";
-import { css } from "@emotion/react";
-
 export default function NewsSkeleton(): JSX.Element {
   const arry = new Array(5).fill(null);
 
   return (
-    <div css={css(newsSkeleton)}>
+    <div className="skeleton">
       {arry.map((_, index) => {
         return (
           <div className="list" key={index}>
