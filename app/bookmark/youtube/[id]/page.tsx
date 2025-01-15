@@ -26,6 +26,7 @@ export default function MarkedYoutubeDynamic(): JSX.Element {
   const clickedYoutube = useSelector((state: RootState) => state.bookmark.clickedYoutube);
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(true);
   const pageState = useSelector((state: RootState) => state.switches.pageState);
+  const navMenu = useSelector((state: RootState) => state.switches.navMenu);
 
   useEffect(() => {
     (!session || !session.user || !session.user.name) && router.push("/auth/signin");
@@ -97,30 +98,34 @@ export default function MarkedYoutubeDynamic(): JSX.Element {
 
   return (
     <div css={css(youtubeDynamic)}>
-      <YouTube
-        className="player"
-        videoId={clickedYoutube.videoId}
-        key={clickedYoutube.videoId}
-        opts={{
-          width: "100%",
-          height: "250",
-          playerVars: {
-            autoplay: 0, // 자동재생 off
-            rel: 0, // 관련 동영상 표시 x
-            modestbranding: 0, // 컨트롤 바에 youtube 로고 표시 x
-          },
-        }}
-        onEnd={(e: YouTubeEvent) => {
-          e.target.stopVideo(0);
-        }}
-      />
-      <div className="textGroup">
-        <h1 className="title">{clickedYoutube.title}</h1>
-        <h4 className="channel">{clickedYoutube.channelTitle}</h4>
-        <div className="publishedAt">{clickedYoutube.publishedAt}</div>
-        <form onSubmit={onSubmit}>{<BookmarkBtn success={bookmarkSuccess} isLoading={false} />}</form>
-        <p className="description">{clickedYoutube.description}</p>
-      </div>
+      {!navMenu && (
+        <div className="bookmarkYoutubeDetailWrapper">
+          <YouTube
+            className="player"
+            videoId={clickedYoutube.videoId}
+            key={clickedYoutube.videoId}
+            opts={{
+              width: "100%",
+              height: "250",
+              playerVars: {
+                autoplay: 0, // 자동재생 off
+                rel: 0, // 관련 동영상 표시 x
+                modestbranding: 0, // 컨트롤 바에 youtube 로고 표시 x
+              },
+            }}
+            onEnd={(e: YouTubeEvent) => {
+              e.target.stopVideo(0);
+            }}
+          />
+          <div className="textGroup">
+            <h1 className="title">{clickedYoutube.title}</h1>
+            <h4 className="channel">{clickedYoutube.channelTitle}</h4>
+            <div className="publishedAt">{clickedYoutube.publishedAt}</div>
+            <form onSubmit={onSubmit}>{<BookmarkBtn success={bookmarkSuccess} isLoading={false} />}</form>
+            <p className="description">{clickedYoutube.description}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
