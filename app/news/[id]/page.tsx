@@ -32,6 +32,7 @@ export default function NewsDynamic(): JSX.Element {
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const pageState = useSelector((state: RootState) => state.switches.pageState);
+  const navMenu = useSelector((state: RootState) => state.switches.navMenu);
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
@@ -161,25 +162,29 @@ export default function NewsDynamic(): JSX.Element {
 
   return (
     <article css={css(dynamicNewsStyles)}>
-      <figure className="imgGroup">
-        {singleArticle.image === "" ? (
-          <div className="noImg">No Image</div>
-        ) : (
-          <Image src={singleArticle.image} alt="newsImg" width={200} height={200} />
-        )}
-        <figcaption className="alt">{singleArticle.alt}</figcaption>
-      </figure>
-      <div className="textGroup">
-        <h1>{singleArticle.title}</h1>
-        <div className="date">{singleArticle.date[1] ? singleArticle.date[1] : singleArticle.date[0]}</div>
-        <form onSubmit={onSubmit}>
-          <BookmarkBtn success={bookmarkSuccess} isLoading={isLoading} />
-        </form>
-        {singleArticle.text.map((item, index) => {
-          return <p key={index}>{item}</p>;
-        })}
-      </div>
-      <ScrollBtn />
+      {!navMenu && (
+        <div className="newsDetailWrapper">
+          <figure className="imgGroup">
+            {singleArticle.image === "" ? (
+              <div className="noImg">No Image</div>
+            ) : (
+              <Image src={singleArticle.image} alt="newsImg" width={200} height={200} />
+            )}
+            <figcaption className="alt">{singleArticle.alt}</figcaption>
+          </figure>
+          <div className="textGroup">
+            <h1>{singleArticle.title}</h1>
+            <div className="date">{singleArticle.date[1] ? singleArticle.date[1] : singleArticle.date[0]}</div>
+            <form onSubmit={onSubmit}>
+              <BookmarkBtn success={bookmarkSuccess} isLoading={isLoading} />
+            </form>
+            {singleArticle.text.map((item, index) => {
+              return <p key={index}>{item}</p>;
+            })}
+          </div>
+          <ScrollBtn />
+        </div>
+      )}
     </article>
   );
 }
