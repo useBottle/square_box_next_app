@@ -47,7 +47,8 @@ const bookmarkBtn: CSSObject = {
     },
   },
 
-  "@media (min-width: 1200px)": {
+  // 태블릿 뷰
+  "@media (min-width: 960px)": {
     display: "flex",
     justifyContent: "flex-end",
     width: "100%",
@@ -58,7 +59,6 @@ const bookmarkBtn: CSSObject = {
 
     a: {
       width: "30%",
-      background: "yellow",
 
       button: {
         width: "100%",
