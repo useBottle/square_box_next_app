@@ -166,14 +166,14 @@ export const bookmarkNews: CSSObject = {
     },
   },
 
-  // 데스크탑 뷰
+  // 데스크탑 뷰 1200px 이상 (2000px 이상 포함)
   "@media (min-width: 1200px)": {
     ".newsContainer": {
       ".contents": {
         ul: {
           ".newsLink": {
             li: {
-              gridTemplateColumns: "20% 80%",
+              gridTemplateColumns: "25% 75%",
             },
           },
         },
