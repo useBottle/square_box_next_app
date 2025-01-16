@@ -125,8 +125,8 @@ export const signin: CSSObject = {
     },
   },
 
-  // 데스크탑 뷰
-  "@media (min-width: 1200px)": {
+  // 태블릿 뷰
+  "@media (min-width: 960px)": {
     width: "100%",
     height: "calc(100vh - 8rem)",
     display: "flex",
