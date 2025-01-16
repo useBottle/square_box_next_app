@@ -103,8 +103,8 @@ export const bookmarkYoutube: CSSObject = {
     },
   },
 
-  // 데스크탑 뷰
-  "@media (min-width: 1200px)": {
+  // 태블릿 뷰
+  "@media (min-width: 960px)": {
     ".youtubeContainer": {
       width: "100%",
       marginTop: "5rem",
@@ -123,7 +123,7 @@ export const bookmarkYoutube: CSSObject = {
 
             li: {
               display: "grid",
-              gridTemplateColumns: "30% 70%",
+              gridTemplateColumns: "35% 65%",
               alignItems: "center",
               padding: "1rem",
 
@@ -160,6 +160,21 @@ export const bookmarkYoutube: CSSObject = {
               "&:hover": {
                 background: "var(--list-back)",
               },
+            },
+          },
+        },
+      },
+    },
+  },
+
+  // 데스크탑 뷰
+  "@media (min-width: 1200px)": {
+    ".youtubeContainer": {
+      ".contents": {
+        ul: {
+          ".youtubeLink": {
+            li: {
+              gridTemplateColumns: "30% 70%",
             },
           },
         },
