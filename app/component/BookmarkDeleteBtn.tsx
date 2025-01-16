@@ -32,6 +32,7 @@ const btn: CSSObject = {
     width: "100%",
     display: "flex",
     justifyContent: "flex-end",
+    marginBottom: "5rem",
 
     button: {
       width: "4rem",

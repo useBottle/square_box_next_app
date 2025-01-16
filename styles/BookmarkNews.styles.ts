@@ -74,14 +74,6 @@ export const bookmarkNews: CSSObject = {
 
             p: {
               display: "none",
-              // fontSize: "1.1rem",
-              // lineHeight: 1.2,
-              // overflow: "hidden",
-              // textOverflow: "ellipsis",
-              // display: "-webkit-box",
-              // WebkitLineClamp: 1,
-              // lineClamp: 2,
-              // WebkitBoxOrient: "vertical",
             },
           },
 
@@ -106,6 +98,66 @@ export const bookmarkNews: CSSObject = {
 
       p: {
         fontSize: "1.4rem",
+      },
+    },
+  },
+
+  "@media (min-width: 1200px)": {
+    width: "100%",
+
+    ".newsContainer": {
+      width: "100%",
+      marginTop: "5rem",
+
+      h4: {
+        fontSize: "1.4rem",
+      },
+
+      ".contents": {
+        marginTop: "5rem",
+        width: "100%",
+
+        ul: {
+          width: "100%",
+
+          li: {
+            width: "100%",
+            height: "18rem",
+            margin: "3rem 0",
+            gridTemplateColumns: "20% 80%",
+            padding: "1rem",
+
+            img: {
+              height: "16rem",
+            },
+
+            ".textGroup": {
+              justifyContent: "space-between",
+              height: "100%",
+              marginLeft: "1rem",
+
+              h6: {
+                fontSize: "2rem",
+                lineHeight: 1.5,
+              },
+
+              ".date": {
+                fontSize: "1.2rem",
+              },
+
+              p: {
+                fontSize: "1.4rem",
+                lineHeight: "1.5",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                lineClamp: 2,
+                WebkitBoxOrient: "vertical",
+              },
+            },
+          },
+        },
       },
     },
   },

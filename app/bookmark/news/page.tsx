@@ -66,9 +66,7 @@ export default function BookmarkNews() {
                           <div className="textGroup">
                             <h6>{item.title}</h6>
                             <div className="date">{item.date}</div>
-                            {item.text.map((item: string, index: number) => {
-                              return <p key={index}>{item}</p>;
-                            })}
+                            <p>{item.text[0]}</p>
                           </div>
                         </li>
                       </Link>
