@@ -36,6 +36,7 @@ export const topicsForm: CSSObject = {
           width: "100%",
           display: "grid",
           gridTemplateColumns: "15% 75% 10%",
+          alignItems: "center",
           padding: "1.2rem 0",
           fontSize: "1.4rem",
           cursor: "pointer",
@@ -61,6 +62,10 @@ export const topicsForm: CSSObject = {
               color: "var(--state-down)",
             },
           },
+        },
+
+        "&:hover": {
+          background: "var(--list-back)",
         },
       },
     },
