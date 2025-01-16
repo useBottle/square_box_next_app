@@ -157,7 +157,8 @@ export const nav: CSSObject = {
       },
 
       ".userName": {
-        fontSize: "1.8rem",
+        marginTop: "3rem",
+        fontSize: "2.5rem",
       },
     },
 
