@@ -182,9 +182,17 @@ export const signin: CSSObject = {
     },
   },
 
+  // 데스크탑 뷰 1200px 이상
   "@media (min-width: 1200px)": {
     height: "calc(100vh - 8rem)",
 
+    ".signinWrapper": {
+      width: "55%",
+    },
+  },
+
+  // 데스크탑 뷰 1920px 이상 (2000px 이상으로 적용x)
+  "@media (min-width: 1920px)": {
     ".signinWrapper": {
       width: "40%",
     },
