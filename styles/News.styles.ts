@@ -137,63 +137,67 @@ export const newsListStyles: CSSObject = {
     width: "100%",
     marginTop: "10rem",
 
-    ".initNews": {
-      height: "90rem",
+    ".newsWrapper": {
+      width: "100%",
 
-      ".icon": {
-        fontSize: "5rem",
-        marginBottom: "15rem",
-      },
+      ".initNews": {
+        height: "90rem",
 
-      ".textNback": {
-        h1: {
-          fontSize: "2rem",
-          padding: "1.5rem 0",
+        ".icon": {
+          fontSize: "5rem",
+          marginBottom: "15rem",
         },
 
-        ".backIcon": {
-          fontSize: "40rem",
-        },
-      },
-    },
-
-    ul: {
-      a: {
-        height: "18rem",
-        margin: "3rem 0",
-
-        li: {
-          width: "100%",
-          height: "100%",
-          gridTemplateColumns: "20% 80%",
-
-          img: {
-            height: "16rem",
+        ".textNback": {
+          h1: {
+            fontSize: "2rem",
+            padding: "1.5rem 0",
           },
 
-          ".textGroup": {
-            justifyContent: "space-between",
+          ".backIcon": {
+            fontSize: "40rem",
+          },
+        },
+      },
+
+      ul: {
+        a: {
+          height: "18rem",
+          margin: "3rem 0",
+
+          li: {
+            width: "100%",
             height: "100%",
-            marginLeft: "1rem",
+            gridTemplateColumns: "20% 80%",
 
-            h6: {
-              fontSize: "2rem",
-              lineHeight: 1.5,
+            img: {
+              height: "16rem",
             },
 
-            ".date": {
-              fontSize: "1.2rem",
-            },
+            ".textGroup": {
+              justifyContent: "space-between",
+              height: "100%",
+              marginLeft: "1rem",
 
-            p: {
-              fontSize: "1.4rem",
-              lineHeight: "1.5",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              display: "-webkit-box",
-              WebkitLineClamp: 2,
-              lineClamp: 2,
-              WebkitBoxOrient: "vertical",
+              h6: {
+                fontSize: "2rem",
+                lineHeight: 1.5,
+              },
+
+              ".date": {
+                fontSize: "1.2rem",
+              },
+
+              p: {
+                fontSize: "1.4rem",
+                lineHeight: "1.5",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                lineClamp: 2,
+                WebkitBoxOrient: "vertical",
+              },
             },
           },
         },
