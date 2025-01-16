@@ -112,28 +112,30 @@ export const youtube: CSSObject = {
     },
   },
 
-  // 데스크탑 뷰
-  "@media (min-width: 1200px)": {
+  // 태블릿 뷰
+  "@media (min-width: 960px)": {
     ".youtubeWrapper": {
       width: "100%",
-      marginTop: "10rem",
+      marginTop: "2rem",
 
       ".initYoutube": {
-        height: "90rem",
+        height: "50rem",
 
         ".icon": {
-          fontSize: "6rem",
-          marginBottom: "15rem",
+          fontSize: "5rem",
+          marginBottom: "10rem",
         },
 
         ".textNback": {
+          width: "50%",
+
           h1: {
-            fontSize: "2rem",
+            fontSize: "1.8rem",
             padding: "1.5rem 0",
           },
 
           ".backIcon": {
-            fontSize: "40rem",
+            fontSize: "20rem",
           },
         },
       },
@@ -145,7 +147,7 @@ export const youtube: CSSObject = {
 
           li: {
             display: "grid",
-            gridTemplateColumns: "30% 70%",
+            gridTemplateColumns: "35% 65%",
             alignItems: "center",
             padding: "1rem",
 
@@ -174,6 +176,40 @@ export const youtube: CSSObject = {
                 margin: 0,
               },
             },
+          },
+        },
+      },
+    },
+  },
+
+  // 데스크탑 뷰
+  "@media (min-width: 1200px)": {
+    ".youtubeWrapper": {
+      marginTop: "10rem",
+
+      ".initYoutube": {
+        height: "90rem",
+
+        ".icon": {
+          fontSize: "6rem",
+          marginBottom: "15rem",
+        },
+
+        ".textNback": {
+          h1: {
+            fontSize: "2rem",
+          },
+
+          ".backIcon": {
+            fontSize: "40rem",
+          },
+        },
+      },
+
+      ul: {
+        a: {
+          li: {
+            gridTemplateColumns: "30% 70%",
           },
         },
       },
