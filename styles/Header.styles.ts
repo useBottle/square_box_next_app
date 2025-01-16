@@ -6,7 +6,6 @@ export const header: CSSObject = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  background: "lightblue",
 
   ".headerWrapper": {
     width: "100%",
@@ -30,21 +29,21 @@ export const header: CSSObject = {
       color: "var(--basic-font)",
       cursor: "pointer",
     },
+  },
 
-    // 태블릿 뷰
-    "@media (min-width: 960px)": {
-      ".headerWrapper": {
-        width: "60vw",
-        padding: 0,
-        height: "6rem",
+  // 태블릿 뷰
+  "@media (min-width: 960px)": {
+    ".headerWrapper": {
+      width: "60vw",
+      padding: 0,
+      height: "6rem",
 
-        ".logo": {
-          fontSize: "2.5rem",
-        },
+      ".logo": {
+        fontSize: "2.5rem",
+      },
 
-        ".menuBtn": {
-          fontSize: "2.5rem",
-        },
+      ".menuBtn": {
+        fontSize: "2.5rem",
       },
     },
   },
