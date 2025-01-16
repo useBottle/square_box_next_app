@@ -6,6 +6,7 @@ export const header: CSSObject = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  background: "var(--background)",
   zIndex: 999,
 
   ".headerWrapper": {
