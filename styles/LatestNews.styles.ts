@@ -92,9 +92,8 @@ export const latestNews: CSSObject = {
   },
 
   // 데스크탑 뷰
-  "@media (min-width: 1200px)": {
+  "@media (min-width: 2000px)": {
     marginTop: "13rem",
-    // width: "40vw",
     width: "100%",
 
     ".latestNewsWrapper": {

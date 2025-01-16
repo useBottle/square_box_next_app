@@ -133,7 +133,7 @@ export const newsListStyles: CSSObject = {
     },
   },
 
-  "@media (min-width: 1200px)": {
+  "@media (min-width: 2000px)": {
     width: "100%",
     marginTop: "10rem",
 

@@ -37,18 +37,36 @@ body {
   line-height: 1.5;
 }
 
+/* 태블릿 뷰 */
+
 /* 데스크탑 뷰 */
+
 @media (min-width: 1200px) {
   html {
-    max-width: 40vw;
+    width: 50vw; /* Header 의 width 는 별도로 설정 */
     display: flex;
     justify-content: center;
     margin: 0 auto;
+  }
 
-    body {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
+  body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 2000px) {
+  html {
+    width: 40vw; /* Header 의 width 는 별도로 설정 */
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 }

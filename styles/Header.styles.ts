@@ -2,7 +2,7 @@ import { CSSObject } from "@emotion/react";
 
 export const header: CSSObject = {
   position: "fixed",
-  width: "100vw",
+  width: "100%",
   boxSizing: "border-box",
   display: "flex",
   alignItems: "center",
@@ -27,7 +27,21 @@ export const header: CSSObject = {
 
   // 데스크탑 뷰
   "@media (min-width: 1200px)": {
-    width: "100%",
+    width: "50vw",
+    padding: 0,
+    height: "8rem",
+
+    ".logo": {
+      fontSize: "2.5rem",
+    },
+
+    ".menuBtn": {
+      fontSize: "2.5rem",
+    },
+  },
+
+  "@media (min-width: 2000px)": {
+    width: "40vw",
     padding: 0,
     height: "8rem",
 
