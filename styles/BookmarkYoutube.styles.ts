@@ -38,22 +38,18 @@ export const bookmarkYoutube: CSSObject = {
         flexDirection: "column",
         width: "100%",
 
-        a: {
+        ".youtubeLink": {
           width: "90%",
           margin: "2rem 0",
 
           li: {
             width: "100%",
-            border: "1px solid #eee",
-            borderRadius: "5px",
             boxSizing: "border-box",
             marginBottom: "1.5rem",
 
             img: {
               width: "100%",
               height: "auto",
-              borderTopLeftRadius: "5px",
-              borderTopRightRadius: "5px",
             },
 
             ".textGroup": {
@@ -102,6 +98,69 @@ export const bookmarkYoutube: CSSObject = {
 
         p: {
           fontSize: "1.4rem",
+        },
+      },
+    },
+  },
+
+  "@media (min-width: 1200px)": {
+    ".youtubeContainer": {
+      width: "100%",
+      marginTop: "5rem",
+
+      h4: {
+        fontSize: "1.4rem",
+      },
+
+      ".contents": {
+        marginTop: "5rem",
+        width: "100%",
+
+        ul: {
+          ".youtubeLink": {
+            width: "100%",
+
+            li: {
+              display: "grid",
+              gridTemplateColumns: "30% 70%",
+              alignItems: "center",
+              padding: "1rem",
+
+              img: {
+                width: "100%",
+                height: "100%",
+              },
+
+              ".textGroup": {
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                height: "100%",
+                marginLeft: "1rem",
+
+                ".title": {
+                  fontSize: "2rem",
+                  margin: 0,
+                },
+
+                ".channel": {
+                  marginBottom: 0,
+                },
+
+                ".publishedAt": {
+                  margin: 0,
+                },
+
+                ".description": {
+                  margin: 0,
+                },
+              },
+
+              "&:hover": {
+                background: "var(--list-back)",
+              },
+            },
+          },
         },
       },
     },

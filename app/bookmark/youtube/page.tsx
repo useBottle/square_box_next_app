@@ -61,6 +61,7 @@ export default function Bookmark() {
                         <Link
                           href={`/youtube/detail?id=${item.videoId}&index=${index}`}
                           onClick={onClick(item._id, item.videoId)}
+                          className="youtubeLink"
                         >
                           <li>
                             <Image src={item.thumbnail} alt={item.title} width={300} height={200} />

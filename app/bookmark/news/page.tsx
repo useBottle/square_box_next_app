@@ -60,6 +60,7 @@ export default function BookmarkNews() {
                       <Link
                         href={`/bookmark/detail?title=${encodeURIComponent(item.title)}`}
                         onClick={onClick(item._id, item.title)}
+                        className="newsLink"
                       >
                         <li>
                           <Image src={item.image} alt="newsImg" width={100} height={100} />

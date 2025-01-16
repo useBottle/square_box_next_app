@@ -112,6 +112,7 @@ export const youtube: CSSObject = {
     },
   },
 
+  // 데스크탑 뷰
   "@media (min-width: 1200px)": {
     ".youtubeWrapper": {
       width: "100%",
