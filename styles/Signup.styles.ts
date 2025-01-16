@@ -143,7 +143,7 @@ export const signup: CSSObject = {
   // 태블릿 뷰
   "@media (min-width: 960px)": {
     width: "100%",
-    height: "calc(100vh - 8rem)",
+    height: "calc(100vh - 5rem)",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -187,5 +187,9 @@ export const signup: CSSObject = {
         },
       },
     },
+  },
+
+  "@media (min-width: 1200px)": {
+    height: "calc(100vh - 8rem)",
   },
 };
