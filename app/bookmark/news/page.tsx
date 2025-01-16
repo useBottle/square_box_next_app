@@ -35,7 +35,6 @@ export default function BookmarkNews() {
     if (clickedNews) {
       dispatch(setClickedNews(clickedNews));
     }
-    // dispatch(setInBookmarkDetail(true));
     router.push(`/bookmark/news/detail?title=${encodeURIComponent(title)}`);
   };
 
