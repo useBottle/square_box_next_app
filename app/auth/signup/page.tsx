@@ -18,6 +18,7 @@ export default function Signup(): JSX.Element {
   const [email, setEmail] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [passwordCheck, setPasswordCheck] = useState<string>("");
   const [inputFocused, setInputFocused] = useState<"" | "email" | "name" | "password" | string>("");
   const [userExists, setUserExists] = useState<"exists" | "not exists" | "default">("default");
   const [isDuplicateLoading, setIsDuplicateLoading] = useState<boolean>(false);
@@ -114,7 +115,7 @@ export default function Signup(): JSX.Element {
         setEmail(e.target.value);
         setUserExists("default");
       },
-      condition: emailCondition,
+      conditionCheck: emailCondition.test(email),
       infoElement: <p>이메일 형식으로 입력해야 합니다</p>,
     },
     {
@@ -123,7 +124,7 @@ export default function Signup(): JSX.Element {
       placeholder: "이름",
       value: name,
       onChange: (e: ChangeEvent<HTMLInputElement>) => setName(e.target.value),
-      condition: nameCondition,
+      conditionCheck: nameCondition.test(name),
       infoElement: <p>영문 또는 한글로 3~20자여야 합니다</p>,
     },
     {
@@ -132,13 +133,21 @@ export default function Signup(): JSX.Element {
       placeholder: "패스워드",
       value: password,
       onChange: (e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value),
-
-      condition: passwordCondition,
+      conditionCheck: passwordCondition.test(password),
       infoElement: (
         <p>
           비밀번호는 영문 대문자, 숫자, 특수문자 각각 1자 이상 포함한 <br /> 8자 이상이어야 합니다
         </p>
       ),
+    },
+    {
+      field: "passwordCheck",
+      type: "password",
+      placeholder: "패스워드 확인",
+      value: passwordCheck,
+      onChange: (e: ChangeEvent<HTMLInputElement>) => setPasswordCheck(e.target.value),
+      conditionCheck: password === passwordCheck,
+      infoElement: passwordCheck !== "" ? <p>패스워드가 일치하지 않습니다</p> : <p>패스워드를 한번 더 입력해주세요</p>,
     },
   ];
 
@@ -173,8 +182,7 @@ export default function Signup(): JSX.Element {
                       onBlur={() => setInputFocused("")}
                       onClick={(e: MouseEvent) => e.stopPropagation()}
                     />
-                    {input.value !== "" && input.condition.test(input.value) && (
-                      // 스타일 조건에 이메일 중복 확인 후 상태 변경된 값으로 추가 적용해야함
+                    {input.value !== "" && input.conditionCheck && (
                       <FaCircleCheck
                         className="checkIcon"
                         style={
@@ -201,7 +209,7 @@ export default function Signup(): JSX.Element {
                         {isDuplicateLoading ? <div className="spinner" /> : "중복 확인"}
                       </button>
                     )}
-                  {!input.condition.test(input.value) ? input.infoElement : <p></p>}
+                  {!input.conditionCheck ? input.infoElement : <p></p>}
                 </div>
               );
             })}
