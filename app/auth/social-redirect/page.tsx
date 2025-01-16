@@ -28,6 +28,7 @@ const container: CSSObject = {
     justifyContent: "center",
     alignItems: "center",
     lineHeight: 1,
+    cursor: "pointer",
   },
 
   "@media (min-width: 1200px)": {
