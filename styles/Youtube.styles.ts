@@ -182,8 +182,43 @@ export const youtube: CSSObject = {
     },
   },
 
-  // 데스크탑 뷰
+  // 데스크탑 뷰 1200px 이상
   "@media (min-width: 1200px)": {
+    ".youtubeWrapper": {
+      marginTop: "10rem",
+
+      ".initYoutube": {
+        height: "50rem",
+
+        ".icon": {
+          fontSize: "6rem",
+          marginBottom: "10rem",
+        },
+
+        ".textNback": {
+          h1: {
+            width: "90%",
+            fontSize: "2rem",
+          },
+
+          ".backIcon": {
+            fontSize: "30rem",
+          },
+        },
+      },
+
+      ul: {
+        a: {
+          li: {
+            gridTemplateColumns: "30% 70%",
+          },
+        },
+      },
+    },
+  },
+
+  // 데스크탑 뷰 2000px 이상
+  "@media (min-width: 2000px)": {
     ".youtubeWrapper": {
       marginTop: "10rem",
 
@@ -469,7 +504,7 @@ export const youtubeSkeleton: CSSObject = {
     },
   },
 
-  // 데스크탑 뷰
+  // 데스크탑 뷰 1200px 이상 (2000px 이상 포함)
   "@media (min-width: 1200px)": {
     form: {
       marginTop: "10rem",
