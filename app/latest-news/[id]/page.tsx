@@ -165,7 +165,7 @@ export default function LatestNewsDetail(): JSX.Element {
             {latestNewsArticle.image === "" ? (
               <div className="noImg">No Image</div>
             ) : (
-              <Image src={latestNewsArticle.image} alt="newsImg" width={200} height={200} />
+              <Image src={latestNewsArticle.image} alt="newsImg" width={200} height={200} className="latestNewsImg" />
             )}
             <figcaption className="alt">{latestNewsArticle.alt}</figcaption>
           </figure>

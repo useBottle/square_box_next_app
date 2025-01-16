@@ -207,65 +207,67 @@ export const newsListStyles: CSSObject = {
 };
 
 export const dynamicNewsStyles: CSSObject = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-
-  ".imgGroup": {
-    width: "100vw",
+  ".newsDetailWrapper": {
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
     flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
 
-    img: {
-      width: "100%",
-      height: "auto",
-    },
-
-    ".noImg": {
-      width: "90%",
-      height: "30vh",
+    ".imgGroup": {
+      width: "100vw",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      background: "var(--reverse-font)",
-      border: "1px dashed var(--basic-font)",
-      color: "var(--basic-font)",
-      fontSize: "2rem",
+      flexDirection: "column",
+
+      img: {
+        width: "100%",
+        height: "auto",
+      },
+
+      ".noImg": {
+        width: "90%",
+        height: "30vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "var(--reverse-font)",
+        border: "1px dashed var(--basic-font)",
+        color: "var(--basic-font)",
+        fontSize: "2rem",
+      },
+
+      ".alt": {
+        fontSize: "1.2rem",
+        color: "var(--basic-dark)",
+        marginTop: "1rem",
+        marginBottom: "1rem",
+        padding: "0 1rem",
+      },
     },
 
-    ".alt": {
-      fontSize: "1.2rem",
-      color: "var(--basic-dark)",
-      marginTop: "1rem",
-      marginBottom: "1rem",
+    ".textGroup": {
       padding: "0 1rem",
-    },
-  },
+      marginBottom: "10rem",
 
-  ".textGroup": {
-    padding: "0 1rem",
-    marginBottom: "10rem",
+      h1: {
+        marginTop: "4rem",
+        fontSize: "2rem",
+        color: "var(--title-color)",
+      },
 
-    h1: {
-      marginTop: "4rem",
-      fontSize: "2rem",
-      color: "var(--title-color)",
-    },
+      ".date": {
+        fontSize: "1.2rem",
+        marginTop: "2rem",
+        marginBottom: "4rem",
+        color: "var(--basic-dark)",
+      },
 
-    ".date": {
-      fontSize: "1.2rem",
-      marginTop: "2rem",
-      marginBottom: "4rem",
-      color: "var(--basic-dark)",
-    },
-
-    p: {
-      margin: "2rem 0",
-      fontSize: "1.4rem",
-      whiteSpace: "pre-line",
+      p: {
+        margin: "2rem 0",
+        fontSize: "1.4rem",
+        whiteSpace: "pre-line",
+      },
     },
   },
 
@@ -273,43 +275,51 @@ export const dynamicNewsStyles: CSSObject = {
   "@media (min-width: 1200px)": {
     width: "100%",
 
-    ".imgGroup": {
+    ".newsDetailWrapper": {
       width: "100%",
-      // background: "blue",
 
-      img: {
-        marginTop: "10rem",
-        width: "auto",
-      },
-
-      ".alt": {
-        marginTop: "5rem",
-        fontSize: "1.4rem",
-      },
-    },
-
-    ".textGroup": {
-      marginTop: "10rem",
-      marginBottom: "20rem",
-      padding: 0,
-
-      h1: {
-        fontSize: "2.6rem",
-      },
-
-      ".date": {
-        fontSize: "1.4rem",
-        marginTop: "4rem",
-      },
-
-      form: {
+      ".imgGroup": {
         width: "100%",
-        margin: "5rem 0",
+
+        ".newsImg": {
+          marginTop: "10rem",
+          width: "auto",
+        },
+
+        ".latestNewsImg": {
+          marginTop: "10rem",
+          width: "80%",
+        },
+
+        ".alt": {
+          marginTop: "5rem",
+          fontSize: "1.4rem",
+        },
       },
 
-      p: {
-        fontSize: "1.8rem",
-        margin: "5rem 0",
+      ".textGroup": {
+        marginTop: "10rem",
+        marginBottom: "20rem",
+        padding: 0,
+
+        h1: {
+          fontSize: "2.6rem",
+        },
+
+        ".date": {
+          fontSize: "1.4rem",
+          marginTop: "4rem",
+        },
+
+        form: {
+          width: "100%",
+          margin: "5rem 0",
+        },
+
+        p: {
+          fontSize: "1.8rem",
+          margin: "5rem 0",
+        },
       },
     },
   },

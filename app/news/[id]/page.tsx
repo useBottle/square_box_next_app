@@ -168,7 +168,7 @@ export default function NewsDynamic(): JSX.Element {
             {singleArticle.image === "" ? (
               <div className="noImg">No Image</div>
             ) : (
-              <Image src={singleArticle.image} alt="newsImg" width={200} height={200} />
+              <Image src={singleArticle.image} alt="newsImg" width={200} height={200} className="newsImg" />
             )}
             <figcaption className="alt">{singleArticle.alt}</figcaption>
           </figure>
