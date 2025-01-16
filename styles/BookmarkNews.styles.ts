@@ -84,14 +84,14 @@ export const bookmarkNews: CSSObject = {
               // WebkitBoxOrient: "vertical",
             },
           },
+
+          "&:hover": {
+            background: "var(--list-back)",
+          },
         },
 
         "&:last-child": {
           marginBottom: "4rem",
-        },
-
-        "&:hover": {
-          background: "var(--list-back)",
         },
       },
     },

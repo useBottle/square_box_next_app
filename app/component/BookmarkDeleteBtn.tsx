@@ -13,18 +13,32 @@ import { MarkedNewsArticle, MarkedYoutubeVideo } from "@/types/types";
 import { setMarkedNews, setMarkedYoutube } from "@/store/bookmark";
 
 const btn: CSSObject = {
-  border: "var(--basic-font) 1px solid",
-  background: "var(--reverse-font)",
-  color: "var(--basic-font)",
-  fontSize: "2rem",
-  cursor: "pointer",
-  width: "100%",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  padding: "0.5rem 0",
-  borderRadius: "5px",
-  marginBottom: "5rem",
+  button: {
+    border: "var(--basic-font) 1px solid",
+    background: "var(--reverse-font)",
+    color: "var(--basic-font)",
+    fontSize: "2rem",
+    cursor: "pointer",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "0.5rem 0",
+    borderRadius: "5px",
+    marginBottom: "5rem",
+  },
+
+  "@media (min-width: 1200px)": {
+    width: "100%",
+    display: "flex",
+    justifyContent: "flex-end",
+
+    button: {
+      width: "4rem",
+      height: "4rem",
+      margin: 0,
+    },
+  },
 };
 
 export default function BookmarkDeleteBtn({ data }: { data: { category: string; id: string } }) {
@@ -79,10 +93,12 @@ export default function BookmarkDeleteBtn({ data }: { data: { category: string; 
   };
 
   return (
-    <Link href={data.category === "news" ? "/bookmark/news" : "/bookmark/youtube"} onClick={onClick(targetData)}>
-      <button css={css(btn)}>
-        <IoTrashBinOutline />
-      </button>
-    </Link>
+    <div css={css(btn)}>
+      <Link href={data.category === "news" ? "/bookmark/news" : "/bookmark/youtube"} onClick={onClick(targetData)}>
+        <button>
+          <IoTrashBinOutline />
+        </button>
+      </Link>
+    </div>
   );
 }
