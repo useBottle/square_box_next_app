@@ -125,8 +125,8 @@ export const nav: CSSObject = {
   },
 
   // 데스크탑 뷰
-  "@media (min-width: 2000px)": {
-    width: "40vw",
+  "@media (min-width: 1200px)": {
+    width: "50vw",
     justifyContent: "space-between",
 
     ".logoPlate": {
@@ -179,5 +179,9 @@ export const nav: CSSObject = {
         fontSize: "1.8rem",
       },
     },
+  },
+
+  "@media (min-width: 2000px)": {
+    width: "40vw",
   },
 };

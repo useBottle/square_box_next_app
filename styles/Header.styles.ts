@@ -42,15 +42,5 @@ export const header: CSSObject = {
 
   "@media (min-width: 2000px)": {
     width: "40vw",
-    padding: 0,
-    height: "8rem",
-
-    ".logo": {
-      fontSize: "2.5rem",
-    },
-
-    ".menuBtn": {
-      fontSize: "2.5rem",
-    },
   },
 };
