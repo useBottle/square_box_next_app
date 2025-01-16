@@ -214,6 +214,39 @@ export const newsListStyles: CSSObject = {
 
     ".newsWrapper": {
       ".initNews": {
+        height: "50rem",
+
+        ".icon": {
+          fontSize: "6rem",
+          marginBottom: "10rem",
+        },
+
+        ".textNback": {
+          h1: {
+            width: "90%",
+            fontSize: "2rem",
+          },
+
+          ".backIcon": {
+            fontSize: "30rem",
+          },
+        },
+      },
+
+      ul: {
+        a: {
+          li: {
+            gridTemplateColumns: "30% 70%",
+          },
+        },
+      },
+    },
+  },
+
+  // 데스크탑 뷰 2000px 이상
+  "@media (min-width: 2000px)": {
+    ".newsWrapper": {
+      ".initNews": {
         height: "90rem",
 
         ".icon": {
@@ -232,19 +265,6 @@ export const newsListStyles: CSSObject = {
         },
       },
 
-      ul: {
-        a: {
-          li: {
-            gridTemplateColumns: "30% 70%",
-          },
-        },
-      },
-    },
-  },
-
-  // 데스크탑 뷰 2000px 이상
-  "@media (min-width: 2000px)": {
-    ".newsWrapper": {
       ul: {
         a: {
           li: {
