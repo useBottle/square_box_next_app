@@ -66,6 +66,34 @@ export const topicsForm: CSSObject = {
     },
   },
 
+  // 태블릿 뷰
+  "@media (min-width: 960px)": {
+    width: "100%",
+    marginTop: "5rem",
+
+    ".topicsWrapper": {
+      width: "100%",
+
+      h4: {
+        width: "100%",
+        fontSize: "1.4rem",
+        marginBottom: "2rem",
+      },
+
+      ul: {
+        width: "100%",
+
+        a: {
+          margin: "0.5rem 0",
+
+          li: {
+            fontSize: "1.6rem",
+          },
+        },
+      },
+    },
+  },
+
   // 데스크탑 뷰
   "@media (min-width: 1200px)": {
     width: "100%",

@@ -40,7 +40,7 @@ body {
 /* 태블릿 뷰 */
 @media (min-width: 960px) {
   html {
-    width: 80vw; /* Header, MobileNav 의 width 는 별도로 설정 */
+    width: 60vw; /* Header, MobileNav 의 width 는 별도로 설정 */
     display: flex;
     justify-content: center;
     margin: 0 auto;

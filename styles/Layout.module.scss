@@ -2,6 +2,14 @@
   padding-top: 5rem;
 }
 
+// 태블릿 뷰
+@media (min-width: 960px) {
+  .layout {
+    width: 100%;
+    padding-top: 6rem;
+  }
+}
+
 // 데스크탑 뷰
 @media (min-width: 1200px) {
   .layout {
