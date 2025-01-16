@@ -139,4 +139,53 @@ export const signup: CSSObject = {
       },
     },
   },
+
+  // 데스크탑 뷰
+  "@media (min-width: 1200px)": {
+    width: "100%",
+    height: "calc(100vh - 8rem)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+
+    ".signupWrapper": {
+      width: "40%",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      padding: "5rem 2rem",
+
+      ".logo": {
+        width: "5rem",
+        height: "5rem",
+        fontSize: "2.5rem",
+      },
+
+      h1: {
+        fontSize: "2.5rem",
+        margin: "2rem 0",
+      },
+
+      p: {
+        fontSize: "1.6rem",
+        marginBottom: "4rem",
+      },
+
+      form: {
+        width: "80%",
+
+        button: {
+          lineHeight: 1,
+        },
+      },
+
+      ".guideSignin": {
+        fontSize: "1.4rem",
+
+        ".signinBtn": {
+          fontSize: "1.4rem",
+        },
+      },
+    },
+  },
 };

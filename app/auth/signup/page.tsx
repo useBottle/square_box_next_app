@@ -13,6 +13,8 @@ import { FaCircleCheck } from "react-icons/fa6";
 import { findUser } from "@/app/actions/findUserActions";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import { BsBox } from "react-icons/bs";
+import { prompt } from "@/util/fontsLoader";
 
 export default function Signup(): JSX.Element {
   const [email, setEmail] = useState<string>("");
