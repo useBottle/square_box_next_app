@@ -134,7 +134,7 @@ export const newsListStyles: CSSObject = {
   },
 
   "@media (min-width: 1200px)": {
-    width: "40vw",
+    width: "100%",
     marginTop: "10rem",
 
     ".initNews": {
@@ -266,7 +266,7 @@ export const dynamicNewsStyles: CSSObject = {
   },
 
   "@media (min-width: 1200px)": {
-    width: "40vw",
+    width: "100%",
 
     ".imgGroup": {
       width: "40vw",
@@ -369,7 +369,7 @@ export const newsSkeleton: CSSObject = {
   },
 
   "@media (min-width: 1200px)": {
-    width: "40vw",
+    width: "100%",
 
     form: {
       marginTop: "10rem",
@@ -456,7 +456,7 @@ export const articleSkeleton: CSSObject = {
   },
 
   "@media (min-width: 1200px)": {
-    width: "40vw",
+    width: "100%",
 
     ".img": {
       height: "60rem",

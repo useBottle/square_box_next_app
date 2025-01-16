@@ -114,7 +114,7 @@ export const youtube: CSSObject = {
 
   "@media (min-width: 1200px)": {
     ".youtubeWrapper": {
-      width: "40vw",
+      width: "100%",
       marginTop: "10rem",
 
       ".initYoutube": {
@@ -186,7 +186,7 @@ export const youtubeDynamic: CSSObject = {
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    width: "100vw",
+    width: "100%",
 
     ".player": {
       width: "100%",
@@ -228,7 +228,7 @@ export const youtubeDynamic: CSSObject = {
 
   "@media (min-width: 1200px)": {
     ".youtubeDetailWrapper": {
-      width: "40vw",
+      width: "100%",
 
       iframe: {
         width: "calc(40vw - 1px)",

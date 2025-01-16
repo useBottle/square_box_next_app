@@ -131,7 +131,7 @@ export const signin: CSSObject = {
   },
 
   "@media (min-width: 1200px)": {
-    width: "40vw",
+    width: "100%",
     height: "calc(100vh - 8rem)",
     display: "flex",
     justifyContent: "center",

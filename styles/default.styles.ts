@@ -111,7 +111,7 @@ export const searchBarForm: CSSObject = {
   },
 
   "@media (min-width: 1200px)": {
-    width: "40vw",
+    width: "100%",
 
     ".inputSet": {
       width: "100%",
