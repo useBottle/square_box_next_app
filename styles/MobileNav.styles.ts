@@ -124,6 +124,63 @@ export const nav: CSSObject = {
     },
   },
 
+  // 태블릿 뷰
+  "@media (min-width: 960px)": {
+    width: "60vw",
+    justifyContent: "space-between",
+
+    ".logoPlate": {
+      height: "4rem",
+      width: "98%",
+      marginTop: "6rem",
+
+      ".logo": {
+        fontSize: "2rem",
+      },
+
+      ".overlay": {
+        height: "4rem",
+        width: "100%",
+      },
+    },
+
+    ".userPlate": {
+      width: "100%",
+
+      img: {
+        width: "4rem",
+        height: "4rem",
+      },
+
+      ".replacedImg": {
+        fontSize: "4rem",
+      },
+
+      ".userName": {
+        marginTop: "2rem",
+        fontSize: "2rem",
+      },
+    },
+
+    ul: {
+      width: "100%",
+      margin: "5rem 0",
+
+      li: {
+        margin: "1rem 0",
+
+        ".list": {
+          fontSize: "1.6rem",
+          height: "4rem",
+        },
+      },
+
+      ".auth": {
+        fontSize: "1.6rem",
+      },
+    },
+  },
+
   // 데스크탑 뷰
   "@media (min-width: 1200px)": {
     width: "50vw",

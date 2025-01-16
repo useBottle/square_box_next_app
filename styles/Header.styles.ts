@@ -25,11 +25,11 @@ export const header: CSSObject = {
     cursor: "pointer",
   },
 
-  // 데스크탑 뷰
-  "@media (min-width: 1200px)": {
-    width: "50vw",
+  // 태블릿 뷰
+  "@media (min-width: 960px)": {
+    width: "60vw",
     padding: 0,
-    height: "8rem",
+    height: "6rem",
 
     ".logo": {
       fontSize: "2.5rem",
@@ -38,6 +38,12 @@ export const header: CSSObject = {
     ".menuBtn": {
       fontSize: "2.5rem",
     },
+  },
+
+  // 데스크탑 뷰
+  "@media (min-width: 1200px)": {
+    width: "50vw",
+    height: "8rem",
   },
 
   "@media (min-width: 2000px)": {
