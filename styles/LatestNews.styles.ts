@@ -112,7 +112,7 @@ export const latestNews: CSSObject = {
           li: {
             width: "100%",
             height: "100%",
-            gridTemplateColumns: "30% 70%",
+            gridTemplateColumns: "38% 62%",
 
             img: {
               height: "16rem",
@@ -149,9 +149,31 @@ export const latestNews: CSSObject = {
     },
   },
 
-  // 데스크탑 뷰
+  // 데스크탑 뷰 1200px 이상
   "@media (min-width: 1200px)": {
     marginTop: "13rem",
-    width: "100%",
+
+    ".latestNewsWrapper": {
+      ul: {
+        a: {
+          li: {
+            gridTemplateColumns: "35% 65%",
+          },
+        },
+      },
+    },
+  },
+
+  // 데스크탑 뷰 2000px 이상
+  "@media (min-width: 2000px)": {
+    ".latestNewsWrapper": {
+      ul: {
+        a: {
+          li: {
+            gridTemplateColumns: "25% 75%",
+          },
+        },
+      },
+    },
   },
 };

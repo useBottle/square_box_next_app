@@ -99,7 +99,7 @@ export const topicsForm: CSSObject = {
     },
   },
 
-  // 데스크탑 뷰
+  // 데스크탑 뷰 1200px 이상 (2000px 이상 포함)
   "@media (min-width: 1200px)": {
     width: "100%",
     marginTop: "5rem",
