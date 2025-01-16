@@ -178,14 +178,7 @@ export default function Signup(): JSX.Element {
             {inputArray.map((input) => {
               return (
                 <div key={input.field}>
-                  <div
-                    className="inputContainer"
-                    style={
-                      inputFocused === input.field
-                        ? { border: "1.5px solid var(--main-color)", transition: "ease 0.3s" }
-                        : { border: "1.5px solid transparent" }
-                    }
-                  >
+                  <div className={`inputContainer ${inputFocused === input.field ? "borderOn" : ""}`}>
                     <input
                       name={input.field}
                       type={input.type}

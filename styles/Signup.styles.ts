@@ -55,7 +55,7 @@ export const signup: CSSObject = {
           width: "100%",
           background: "#eee",
           borderRadius: "3px",
-          border: "1.5px solid transparent",
+          border: "1px solid transparent",
           margin: "0.6rem 0",
           display: "flex",
           justifyContent: "space-between",
@@ -77,11 +77,11 @@ export const signup: CSSObject = {
             color: "var(--input-check)",
             marginRight: "1rem",
           },
+        },
 
-          "&:focus": {
-            border: "1.5px solid var(--main-color)",
-            transition: "ease 0.3s",
-          },
+        ".borderOn": {
+          border: "1px solid var(--main-color)",
+          transition: "ease 0.3s",
         },
 
         ".duplicateBtn": {
@@ -192,6 +192,20 @@ export const signup: CSSObject = {
   // 데스크탑 뷰 1200px 이상
   "@media (min-width: 1200px)": {
     height: "calc(100vh - 8rem)",
+
+    ".signupWrapper": {
+      form: {
+        div: {
+          ".inputContainer": {
+            border: "2px solid transparent",
+          },
+
+          ".borderOn": {
+            border: "2px solid var(--main-color)",
+          },
+        },
+      },
+    },
   },
 
   // 데스크탑 뷰 1920px 이상
