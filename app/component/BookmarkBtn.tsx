@@ -58,11 +58,25 @@ const bookmarkBtn: CSSObject = {
     },
 
     a: {
-      width: "30%",
+      width: "35%",
 
       button: {
         width: "100%",
       },
+    },
+  },
+
+  // 데스크탑 뷰 1200px 이상
+  "@media (min-width: 1200px)": {
+    a: {
+      width: "30%",
+    },
+  },
+
+  // 데스크탑 뷰 2000px 이상
+  "@media (min-width: 2000px)": {
+    a: {
+      width: "25%",
     },
   },
 };
