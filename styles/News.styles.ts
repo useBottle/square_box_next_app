@@ -269,23 +269,31 @@ export const dynamicNewsStyles: CSSObject = {
     },
   },
 
+  // 데스크탑 뷰
   "@media (min-width: 1200px)": {
     width: "100%",
 
     ".imgGroup": {
-      width: "40vw",
+      width: "100%",
+      // background: "blue",
+
+      img: {
+        marginTop: "10rem",
+        width: "auto",
+      },
 
       ".alt": {
-        marginTop: "2rem",
+        marginTop: "5rem",
         fontSize: "1.4rem",
       },
     },
 
     ".textGroup": {
+      marginTop: "10rem",
+      marginBottom: "20rem",
       padding: 0,
 
       h1: {
-        marginTop: "6rem",
         fontSize: "2.6rem",
       },
 
@@ -296,7 +304,7 @@ export const dynamicNewsStyles: CSSObject = {
 
       form: {
         width: "100%",
-        margin: "8rem 0",
+        margin: "5rem 0",
       },
 
       p: {
