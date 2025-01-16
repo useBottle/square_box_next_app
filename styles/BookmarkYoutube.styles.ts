@@ -103,6 +103,7 @@ export const bookmarkYoutube: CSSObject = {
     },
   },
 
+  // 데스크탑 뷰
   "@media (min-width: 1200px)": {
     ".youtubeContainer": {
       width: "100%",

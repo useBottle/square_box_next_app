@@ -1,4 +1,4 @@
-import { CSSObject, keyframes } from "@emotion/react";
+import { CSSObject } from "@emotion/react";
 
 // 실시간 검색어 Top 10 UI
 export const topicsForm: CSSObject = {
@@ -91,60 +91,6 @@ export const topicsForm: CSSObject = {
           },
         },
       },
-    },
-  },
-};
-
-// Skeleton UI 애니메이션
-const shine = keyframes({
-  from: {
-    transform: "skew(45deg) translateX(0%)",
-  },
-  to: {
-    transform: "skew(45deg) translateX(200%)",
-  },
-});
-
-// 실시간 검색어 Top 10 의 Skeleton UI
-export const topicsSkeleton: CSSObject = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  width: "90%",
-  margin: "1rem 0",
-
-  ".list": {
-    width: "100%",
-    display: "grid",
-    gridTemplateColumns: "8% 84% 6%",
-    margin: "1rem 0",
-
-    span: {
-      position: "relative",
-      background: "lightgray",
-      height: "1.8rem",
-      borderRadius: "3px",
-      overflow: "hidden",
-
-      "&::before": {
-        content: '""',
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        background: "#ffffff33",
-        animation: `${shine} infinite 1.5s ease-in-out`,
-      },
-    },
-
-    ".rank": {
-      marginLeft: "0.5rem",
-    },
-
-    ".keyword": {
-      marginLeft: "2rem",
-      marginRight: "2rem",
     },
   },
 };

@@ -104,6 +104,7 @@ export const bookmarkNews: CSSObject = {
     },
   },
 
+  // 데스크탑 뷰
   "@media (min-width: 1200px)": {
     width: "100%",
 

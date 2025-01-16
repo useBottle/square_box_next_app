@@ -133,7 +133,8 @@ export const newsListStyles: CSSObject = {
     },
   },
 
-  "@media (min-width: 2000px)": {
+  // 데스크탑 뷰
+  "@media (min-width: 1200px)": {
     width: "100%",
     marginTop: "10rem",
 
@@ -395,6 +396,7 @@ export const newsSkeleton: CSSObject = {
     },
   },
 
+  // 데스크탑 뷰
   "@media (min-width: 1200px)": {
     width: "100%",
 
@@ -482,6 +484,7 @@ export const articleSkeleton: CSSObject = {
     },
   },
 
+  // 데스크탑 뷰
   "@media (min-width: 1200px)": {
     width: "100%",
 
