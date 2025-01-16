@@ -43,11 +43,22 @@ export default function Signup(): JSX.Element {
       return;
     }
 
+    if (passwordCheck === "") {
+      alert("패스워드 확인을 입력해야 합니다");
+      return;
+    }
+
+    if (password !== passwordCheck) {
+      alert("패스워드 확인이 일치하지 않습니다");
+      return;
+    }
+
     // 각 input 필드가 조건에 모두 맞지만 이메일이 이미 존재하는 경우
     if (
       emailCondition.test(email) &&
       nameCondition.test(name) &&
       passwordCondition.test(password) &&
+      password === passwordCheck &&
       (userExists === "exists" || userExists == "default")
     ) {
       userExists === "exists" && alert("입력하신 이메일은 이미 사용중입니다.\n다른 이메일로 가입해주세요.");
@@ -147,7 +158,8 @@ export default function Signup(): JSX.Element {
       value: passwordCheck,
       onChange: (e: ChangeEvent<HTMLInputElement>) => setPasswordCheck(e.target.value),
       conditionCheck: password === passwordCheck,
-      infoElement: passwordCheck !== "" ? <p>패스워드가 일치하지 않습니다</p> : <p>패스워드를 한번 더 입력해주세요</p>,
+      infoElement:
+        passwordCheck !== "" ? <p>패스워드 확인이 일치하지 않습니다</p> : <p>패스워드를 한번 더 입력해주세요</p>,
     },
   ];
 
@@ -186,7 +198,7 @@ export default function Signup(): JSX.Element {
                       <FaCircleCheck
                         className="checkIcon"
                         style={
-                          (input.field === "email" && userExists === "exists") || userExists === "default"
+                          input.field === "email" && (userExists === "exists" || userExists === "default")
                             ? { display: "none" }
                             : {}
                         }
