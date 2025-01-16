@@ -4,7 +4,7 @@ export const input: CSSObject = {
   width: "100%",
   padding: "0.8rem 1.2rem",
   fontSize: "1.4rem",
-  border: "1.5px solid transparent",
+  border: "1px solid transparent",
   borderRadius: "3px",
   boxSizing: "border-box",
   lineHeight: 1.5,
@@ -14,13 +14,19 @@ export const input: CSSObject = {
   color: "var(--basic-font)",
 
   "&:focus": {
-    border: "1.5px solid var(--main-color)",
+    border: "1px solid var(--main-color)",
     transition: "ease 0.3s",
   },
 
+  // 데스크탑 뷰 1200px 이상
   "@media (min-width: 1200px)": {
     height: "5rem",
     fontSize: "1.6rem",
+    border: "2px solid transparent",
+
+    "&:focus": {
+      border: "2px solid var(--main-color)",
+    },
   },
 };
 
