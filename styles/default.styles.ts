@@ -50,6 +50,7 @@ export const globalBtn: CSSObject = {
   fontSize: "1.4rem",
   boxSizing: "border-box",
   color: "#000",
+  cursor: "pointer",
 
   "@media (min-width: 1200px)": {
     height: "5rem",
