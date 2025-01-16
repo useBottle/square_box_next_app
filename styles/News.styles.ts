@@ -210,12 +210,9 @@ export const newsListStyles: CSSObject = {
 
   // 데스크탑 뷰
   "@media (min-width: 1200px)": {
-    width: "100%",
     marginTop: "10rem",
 
     ".newsWrapper": {
-      width: "100%",
-
       ".initNews": {
         height: "90rem",
 
@@ -227,7 +224,6 @@ export const newsListStyles: CSSObject = {
         ".textNback": {
           h1: {
             fontSize: "2rem",
-            padding: "1.5rem 0",
           },
 
           ".backIcon": {
@@ -238,43 +234,8 @@ export const newsListStyles: CSSObject = {
 
       ul: {
         a: {
-          height: "18rem",
-          margin: "3rem 0",
-
           li: {
-            width: "100%",
-            height: "100%",
             gridTemplateColumns: "20% 80%",
-
-            img: {
-              height: "16rem",
-            },
-
-            ".textGroup": {
-              justifyContent: "space-between",
-              height: "100%",
-              marginLeft: "1rem",
-
-              h6: {
-                fontSize: "2rem",
-                lineHeight: 1.5,
-              },
-
-              ".date": {
-                fontSize: "1.2rem",
-              },
-
-              p: {
-                fontSize: "1.4rem",
-                lineHeight: "1.5",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                display: "-webkit-box",
-                WebkitLineClamp: 2,
-                lineClamp: 2,
-                WebkitBoxOrient: "vertical",
-              },
-            },
           },
         },
       },
@@ -347,8 +308,8 @@ export const dynamicNewsStyles: CSSObject = {
     },
   },
 
-  // 데스크탑 뷰
-  "@media (min-width: 1200px)": {
+  // 태블릿 뷰
+  "@media (min-width: 960px)": {
     width: "100%",
 
     ".newsDetailWrapper": {
@@ -358,7 +319,7 @@ export const dynamicNewsStyles: CSSObject = {
         width: "100%",
 
         ".newsImg": {
-          marginTop: "10rem",
+          marginTop: "5rem",
           width: "auto",
         },
 
@@ -373,13 +334,14 @@ export const dynamicNewsStyles: CSSObject = {
         },
 
         ".alt": {
-          marginTop: "5rem",
+          marginTop: "2rem",
           fontSize: "1.4rem",
+          width: "90%",
         },
       },
 
       ".textGroup": {
-        marginTop: "10rem",
+        marginTop: "5rem",
         marginBottom: "20rem",
         padding: 0,
 
@@ -401,6 +363,25 @@ export const dynamicNewsStyles: CSSObject = {
           fontSize: "1.8rem",
           margin: "5rem 0",
         },
+      },
+    },
+  },
+
+  // 데스크탑 뷰
+  "@media (min-width: 1200px)": {
+    ".newsDetailWrapper": {
+      ".imgGroup": {
+        ".newsImg": {
+          marginTop: "10rem",
+        },
+
+        ".alt": {
+          width: "60%",
+        },
+      },
+
+      ".textGroup": {
+        marginTop: "10rem",
       },
     },
   },
@@ -476,7 +457,7 @@ export const newsSkeleton: CSSObject = {
     width: "100%",
 
     form: {
-      marginTop: "10rem",
+      marginTop: "2rem",
     },
 
     ".skeleton": {
@@ -592,9 +573,10 @@ export const articleSkeleton: CSSObject = {
     },
   },
 
-  // 데스크탑 뷰
-  "@media (min-width: 1200px)": {
+  // 태블릿 뷰
+  "@media (min-width: 960px)": {
     width: "100%",
+    marginBottom: "10rem",
 
     ".img": {
       marginTop: "10rem",
@@ -617,5 +599,10 @@ export const articleSkeleton: CSSObject = {
         marginBottom: "2rem",
       },
     },
+  },
+
+  // 데스크탑 뷰
+  "@media (min-width: 1200px)": {
+    marginBottom: 0,
   },
 };
