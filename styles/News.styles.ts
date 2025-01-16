@@ -288,12 +288,12 @@ export const dynamicNewsStyles: CSSObject = {
 
         ".latestNewsImg": {
           marginTop: "10rem",
-          width: "80%",
+          width: "70%",
         },
 
         ".bookmarkNewsImg": {
           marginTop: "10rem",
-          width: "80%",
+          width: "70%",
         },
 
         ".alt": {
