@@ -31,7 +31,6 @@ const bookmarkBtn: CSSObject = {
     borderRadius: "5px",
     boxSizing: "border-box",
     cursor: "pointer",
-    marginBottom: "4rem",
 
     span: {
       fontSize: "1.4rem",
@@ -45,6 +44,25 @@ const bookmarkBtn: CSSObject = {
       borderRadius: "50%",
       borderRightColor: "transparent",
       animation: `${rotate} 1s linear infinite`,
+    },
+  },
+
+  "@media (min-width: 1200px)": {
+    display: "flex",
+    justifyContent: "flex-end",
+    width: "100%",
+
+    button: {
+      width: "4rem",
+    },
+
+    a: {
+      width: "30%",
+      background: "yellow",
+
+      button: {
+        width: "100%",
+      },
     },
   },
 };

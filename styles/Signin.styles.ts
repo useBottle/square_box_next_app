@@ -103,6 +103,7 @@ export const signin: CSSObject = {
     button: {
       ...globalBtn,
       width: "90%",
+      cursor: "pointer",
 
       span: {
         display: "flex",
