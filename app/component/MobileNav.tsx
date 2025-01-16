@@ -5,11 +5,10 @@
 import { AppDispatch, RootState } from "@/store/store";
 import { css } from "@emotion/react";
 import { useDispatch, useSelector } from "react-redux";
-import { setNavMenu, setSignoutModal } from "@/store/switches";
+import { setNavMenu } from "@/store/switches";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { nav } from "@/styles/MobileNav.styles";
-import SignoutModal from "./SignoutModal";
 import { IoHomeOutline, IoNewspaperOutline, IoBookmarkOutline, IoPersonCircleOutline } from "react-icons/io5";
 import { SlSocialYoutube } from "react-icons/sl";
 import { PiSignIn, PiSignOut } from "react-icons/pi";
@@ -18,6 +17,7 @@ import Image from "next/image";
 import { BsBox } from "react-icons/bs";
 import { Prompt } from "next/font/google";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const prompt = Prompt({
   subsets: ["latin"],
@@ -27,9 +27,9 @@ const prompt = Prompt({
 
 export default function MobileNav(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
-  const { navMenu } = useSelector((state: RootState) => state.switches);
-  const { signoutModal } = useSelector((state: RootState) => state.switches);
+  const navMenu = useSelector((state: RootState) => state.switches.navMenu);
   const session = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     if (navMenu) {
@@ -54,7 +54,6 @@ export default function MobileNav(): JSX.Element {
     <div>
       {navMenu && (
         <nav css={css(nav)}>
-          {signoutModal && <SignoutModal />}
           <div className="logoPlate">
             <div className="logo">
               <BsBox />
@@ -108,7 +107,10 @@ export default function MobileNav(): JSX.Element {
               <button
                 className="auth"
                 onClick={() => {
-                  dispatch(setSignoutModal(signoutModal ? false : true));
+                  if (confirm("로그아웃 하시겠습니까?")) {
+                    signOut();
+                    router.push("/");
+                  }
                 }}
               >
                 LOG OUT

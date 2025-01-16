@@ -8,13 +8,13 @@ import Link from "next/link";
 import { css } from "@emotion/react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
-import { setNavMenu, setSignoutModal } from "@/store/switches";
+import { setNavMenu } from "@/store/switches";
 import { header } from "@/styles/Header.styles";
 import { prompt } from "@/util/fontsLoader";
 
 export default function Header(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
-  const { navMenu, signoutModal } = useSelector((state: RootState) => state.switches);
+  const navMenu = useSelector((state: RootState) => state.switches.navMenu);
 
   return (
     <header css={css(header)}>
@@ -36,7 +36,6 @@ export default function Header(): JSX.Element {
           className="menuBtn"
           onClick={() => {
             dispatch(setNavMenu(!navMenu));
-            dispatch(setSignoutModal(signoutModal ? false : false));
           }}
         />
       )}
