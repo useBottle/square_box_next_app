@@ -72,14 +72,7 @@ export default function SearchBar(): JSX.Element {
   return (
     <div css={css(form)}>
       <form css={css(searchBarForm)} onSubmit={onSubmit}>
-        <div
-          className="inputSet"
-          style={
-            inputFocused
-              ? { border: "1.5px solid var(--main-color)", transition: "ease 0.3s" }
-              : { border: "1.5px solid transparent" }
-          }
-        >
+        <div className={`inputSet ${inputFocused ? "borderOn" : ""}`}>
           <IoIosSearch className="searchIcon" />
           <input
             type="search"

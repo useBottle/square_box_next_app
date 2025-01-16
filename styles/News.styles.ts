@@ -220,7 +220,7 @@ export const newsListStyles: CSSObject = {
         height: "90rem",
 
         ".icon": {
-          fontSize: "5rem",
+          fontSize: "6rem",
           marginBottom: "15rem",
         },
 

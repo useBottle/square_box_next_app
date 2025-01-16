@@ -122,7 +122,7 @@ export const youtube: CSSObject = {
         height: "90rem",
 
         ".icon": {
-          fontSize: "5rem",
+          fontSize: "6rem",
           marginBottom: "15rem",
         },
 
@@ -227,6 +227,7 @@ export const youtubeDynamic: CSSObject = {
     },
   },
 
+  // 데스크탑 뷰
   "@media (min-width: 1200px)": {
     ".youtubeDetailWrapper": {
       width: "100%",
@@ -355,6 +356,7 @@ export const youtubeSkeleton: CSSObject = {
     },
   },
 
+  // 데스크탑 뷰
   "@media (min-width: 1200px)": {
     width: "40vw",
 

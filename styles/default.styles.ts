@@ -71,7 +71,7 @@ export const searchBarForm: CSSObject = {
     width: "90%",
     height: "4rem",
     background: "#eee",
-    border: "1.5px solid transparent",
+    border: "1px solid transparent",
     borderRadius: "3px",
     boxSizing: "border-box",
 
@@ -83,7 +83,7 @@ export const searchBarForm: CSSObject = {
       width: "85%",
       height: "95%",
       background: "#eee",
-      border: "1.5px solid transparent",
+      border: "1px solid transparent",
       boxSizing: "border-box",
       outline: "none",
       color: "var(--basic-font)",
@@ -111,6 +111,11 @@ export const searchBarForm: CSSObject = {
     },
   },
 
+  ".borderOn": {
+    border: "1px solid var(--main-color)",
+    transition: "ease 0.3s",
+  },
+
   // 태블릿 뷰
   "@media (min-width: 960px)": {
     width: "100%",
@@ -118,6 +123,7 @@ export const searchBarForm: CSSObject = {
     ".inputSet": {
       width: "100%",
       height: "5rem",
+      border: "2px solid transparent",
 
       ".searchIcon": {
         fontSize: "2.5rem",
@@ -129,6 +135,11 @@ export const searchBarForm: CSSObject = {
         fontSize: "1.6rem",
       },
     },
+
+    ".borderOn": {
+      border: "2px solid var(--main-color)",
+      transition: "ease 0.3s",
+    },
   },
 
   // 데스크탑 뷰
@@ -138,6 +149,7 @@ export const searchBarForm: CSSObject = {
     ".inputSet": {
       width: "100%",
       height: "5rem",
+      border: "2px solid transparent",
 
       ".searchIcon": {
         fontSize: "2.5rem",
@@ -148,6 +160,11 @@ export const searchBarForm: CSSObject = {
         padding: "1.5rem 1rem",
         fontSize: "1.6rem",
       },
+    },
+
+    ".borderOn": {
+      border: "2px solid var(--main-color)",
+      transition: "ease 0.3s",
     },
   },
 };
