@@ -34,6 +34,24 @@ const btnGroup: CSSObject = {
       background: "var(--basic-font)",
     },
   },
+
+  "@media (min-width: 1200px)": {
+    width: "50%",
+
+    a: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+
+      button: {
+        fontSize: "1.6rem",
+      },
+
+      ".underline": {
+        width: "50%",
+      },
+    },
+  },
 };
 
 export default function BookmarkSelector(): JSX.Element {
