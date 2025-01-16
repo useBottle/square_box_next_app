@@ -411,12 +411,12 @@ export const youtubeSkeleton: CSSObject = {
     },
   },
 
-  // 데스크탑 뷰
-  "@media (min-width: 1200px)": {
-    width: "40vw",
+  // 태블릿 뷰
+  "@media (min-width: 960px)": {
+    width: "100%",
 
     form: {
-      marginTop: "10rem",
+      marginTop: "5rem",
     },
 
     ".skeleton": {
@@ -425,10 +425,14 @@ export const youtubeSkeleton: CSSObject = {
       ".list": {
         width: "100%",
         display: "grid",
-        gridTemplateColumns: "30% 70%",
+        gridTemplateColumns: "35% 65%",
         alignItems: "center",
         margin: "3rem 0",
         overflow: "hidden",
+
+        ".imgFrame": {
+          height: "20rem",
+        },
 
         ".textGroup": {
           width: "calc(100% - 2rem)",
@@ -461,6 +465,19 @@ export const youtubeSkeleton: CSSObject = {
             },
           },
         },
+      },
+    },
+  },
+
+  // 데스크탑 뷰
+  "@media (min-width: 1200px)": {
+    form: {
+      marginTop: "10rem",
+    },
+
+    ".skeleton": {
+      ".list": {
+        gridTemplateColumns: "30% 70%",
       },
     },
   },
