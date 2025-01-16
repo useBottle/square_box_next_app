@@ -91,9 +91,9 @@ export const latestNews: CSSObject = {
     },
   },
 
-  // 데스크탑 뷰
-  "@media (min-width: 1200px)": {
-    marginTop: "13rem",
+  // 태블릿 뷰
+  "@media (min-width: 960px)": {
+    marginTop: "10rem",
     width: "100%",
 
     ".latestNewsWrapper": {
@@ -147,5 +147,11 @@ export const latestNews: CSSObject = {
         },
       },
     },
+  },
+
+  // 데스크탑 뷰
+  "@media (min-width: 1200px)": {
+    marginTop: "13rem",
+    width: "100%",
   },
 };
