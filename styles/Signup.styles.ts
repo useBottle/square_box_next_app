@@ -149,7 +149,7 @@ export const signup: CSSObject = {
     alignItems: "center",
 
     ".signupWrapper": {
-      width: "40%",
+      width: "50%",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -189,7 +189,17 @@ export const signup: CSSObject = {
     },
   },
 
+  // 데스크탑 뷰 1200px 이상
   "@media (min-width: 1200px)": {
     height: "calc(100vh - 8rem)",
+  },
+
+  // 데스크탑 뷰 1920px 이상
+  "@media (min-width: 1920px)": {
+    height: "calc(100vh - 8rem)",
+
+    ".signupWrapper": {
+      width: "40%",
+    },
   },
 };
