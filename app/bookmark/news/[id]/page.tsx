@@ -111,7 +111,7 @@ export default function MarkedNewsDynamic(): JSX.Element {
             {clickedNews.image === "" ? (
               <div className="noImg">No Image</div>
             ) : (
-              <Image src={clickedNews.image} alt="newsImg" width={200} height={200} className="bookmarkNewsImg" />
+              <Image src={clickedNews.image} alt="newsImg" width={200} height={200} className="newsImg" />
             )}
             <figcaption className="alt">{clickedNews.alt}</figcaption>
           </figure>

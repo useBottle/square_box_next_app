@@ -318,6 +318,10 @@ export const dynamicNewsStyles: CSSObject = {
       ".imgGroup": {
         width: "100%",
 
+        ".noImg": {
+          marginTop: "5rem",
+        },
+
         ".newsImg": {
           marginTop: "5rem",
           width: "auto",
@@ -325,12 +329,7 @@ export const dynamicNewsStyles: CSSObject = {
 
         ".latestNewsImg": {
           marginTop: "10rem",
-          width: "70%",
-        },
-
-        ".bookmarkNewsImg": {
-          marginTop: "10rem",
-          width: "70%",
+          width: "90%",
         },
 
         ".alt": {
