@@ -208,7 +208,7 @@ export const newsListStyles: CSSObject = {
     },
   },
 
-  // 데스크탑 뷰
+  // 데스크탑 뷰 1200px 이상
   "@media (min-width: 1200px)": {
     marginTop: "10rem",
 
@@ -232,6 +232,19 @@ export const newsListStyles: CSSObject = {
         },
       },
 
+      ul: {
+        a: {
+          li: {
+            gridTemplateColumns: "30% 70%",
+          },
+        },
+      },
+    },
+  },
+
+  // 데스크탑 뷰 2000px 이상
+  "@media (min-width: 2000px)": {
+    ".newsWrapper": {
       ul: {
         a: {
           li: {
@@ -304,6 +317,7 @@ export const dynamicNewsStyles: CSSObject = {
         margin: "2rem 0",
         fontSize: "1.4rem",
         whiteSpace: "pre-line",
+        lineHeight: 1.8,
       },
     },
   },
