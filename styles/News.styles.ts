@@ -489,7 +489,9 @@ export const articleSkeleton: CSSObject = {
     width: "100%",
 
     ".img": {
-      height: "60rem",
+      marginTop: "10rem",
+      height: "40rem",
+      width: "70%",
     },
 
     ".title": {
