@@ -39,19 +39,15 @@ export const bookmarkNews: CSSObject = {
           display: "grid",
           gridTemplateColumns: "35% 65%",
           marginBottom: "1.5rem",
-          border: "1px solid #eee",
-          borderRadius: "5px",
           boxSizing: "border-box",
 
           img: {
             width: "100%",
             height: "100%",
-            borderTopLeftRadius: "5px",
-            borderBottomLeftRadius: "5px",
           },
 
           ".textGroup": {
-            padding: "1rem",
+            padding: "0 1rem",
             height: "10rem",
             display: "flex",
             flexDirection: "column",
@@ -61,7 +57,7 @@ export const bookmarkNews: CSSObject = {
 
             h6: {
               fontSize: "1.4rem",
-              lineHeight: 1.2,
+              lineHeight: 1.5,
               color: "var(--title-color)",
               overflow: "hidden",
               textOverflow: "ellipsis",
@@ -92,6 +88,10 @@ export const bookmarkNews: CSSObject = {
 
         "&:last-child": {
           marginBottom: "4rem",
+        },
+
+        "&:hover": {
+          background: "var(--list-back)",
         },
       },
     },
