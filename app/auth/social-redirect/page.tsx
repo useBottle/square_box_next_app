@@ -29,6 +29,16 @@ const container: CSSObject = {
     alignItems: "center",
     lineHeight: 1,
   },
+
+  "@media (min-width: 1200px)": {
+    h1: {
+      fontSize: "2.4rem",
+    },
+
+    button: {
+      fontSize: "1.6rem",
+    },
+  },
 };
 
 export default function SocialRedirect(): JSX.Element {
