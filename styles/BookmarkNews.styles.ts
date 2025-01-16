@@ -104,8 +104,8 @@ export const bookmarkNews: CSSObject = {
     },
   },
 
-  // 데스크탑 뷰
-  "@media (min-width: 1200px)": {
+  // 태블릿 뷰
+  "@media (min-width: 960px)": {
     width: "100%",
 
     ".newsContainer": {
@@ -127,7 +127,7 @@ export const bookmarkNews: CSSObject = {
             li: {
               width: "100%",
               height: "18rem",
-              gridTemplateColumns: "20% 80%",
+              gridTemplateColumns: "30% 70%",
               padding: "1rem",
 
               img: {
@@ -159,6 +159,21 @@ export const bookmarkNews: CSSObject = {
                   WebkitBoxOrient: "vertical",
                 },
               },
+            },
+          },
+        },
+      },
+    },
+  },
+
+  // 데스크탑 뷰
+  "@media (min-width: 1200px)": {
+    ".newsContainer": {
+      ".contents": {
+        ul: {
+          ".newsLink": {
+            li: {
+              gridTemplateColumns: "20% 80%",
             },
           },
         },
