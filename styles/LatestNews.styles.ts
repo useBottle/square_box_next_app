@@ -112,7 +112,7 @@ export const latestNews: CSSObject = {
           li: {
             width: "100%",
             height: "100%",
-            gridTemplateColumns: "25% 75%",
+            gridTemplateColumns: "30% 70%",
 
             img: {
               height: "16rem",

@@ -172,10 +172,9 @@ export const newsListStyles: CSSObject = {
             width: "100%",
             height: "100%",
             gridTemplateColumns: "30% 70%",
-            padding: 0,
 
             img: {
-              height: "100%",
+              height: "16rem",
             },
 
             ".textGroup": {
@@ -489,7 +488,7 @@ export const newsSkeleton: CSSObject = {
         gridTemplateColumns: "20% 80%",
 
         ".textGroup": {
-          margin: "0 2rem",
+          marginLeft: "2rem",
 
           ".textFrame": {
             height: "3rem",
