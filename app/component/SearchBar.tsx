@@ -20,8 +20,14 @@ const form: CSSObject = {
   width: "100vw",
   margin: "4rem 0",
 
-  "@media (min-width: 1200px)": {
+  // 태블릿 뷰
+  "@media (min-width: 960px)": {
     width: "100%",
+    marginBottom: "5rem",
+  },
+
+  // 데스크탑 뷰
+  "@media (min-width: 1200px)": {
     marginBottom: "10rem",
   },
 };

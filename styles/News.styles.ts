@@ -133,6 +133,82 @@ export const newsListStyles: CSSObject = {
     },
   },
 
+  // 태블릿 뷰
+  "@media (min-width: 960px)": {
+    width: "100%",
+    marginTop: "2rem",
+
+    ".newsWrapper": {
+      width: "100%",
+
+      ".initNews": {
+        height: "50rem",
+
+        ".icon": {
+          fontSize: "5rem",
+          marginBottom: "10rem",
+        },
+
+        ".textNback": {
+          width: "50%",
+
+          h1: {
+            fontSize: "1.8rem",
+            padding: "1.5rem 0",
+          },
+
+          ".backIcon": {
+            fontSize: "20rem",
+          },
+        },
+      },
+
+      ul: {
+        a: {
+          height: "18rem",
+          margin: "3rem 0",
+
+          li: {
+            width: "100%",
+            height: "100%",
+            gridTemplateColumns: "30% 70%",
+            padding: 0,
+
+            img: {
+              height: "100%",
+            },
+
+            ".textGroup": {
+              justifyContent: "space-between",
+              height: "100%",
+              marginLeft: "1rem",
+
+              h6: {
+                fontSize: "2rem",
+                lineHeight: 1.5,
+              },
+
+              ".date": {
+                fontSize: "1.2rem",
+              },
+
+              p: {
+                fontSize: "1.4rem",
+                lineHeight: "1.5",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                lineClamp: 2,
+                WebkitBoxOrient: "vertical",
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+
   // 데스크탑 뷰
   "@media (min-width: 1200px)": {
     width: "100%",
@@ -390,6 +466,39 @@ export const newsSkeleton: CSSObject = {
             height: "2.5rem",
             background: "lightgray",
             marginBottom: "1rem",
+          },
+        },
+      },
+    },
+  },
+
+  // 태블릿 뷰
+  "@media (min-width: 960px)": {
+    width: "100%",
+
+    form: {
+      marginTop: "10rem",
+    },
+
+    ".skeleton": {
+      width: "100%",
+
+      ".list": {
+        width: "100%",
+        height: "18rem",
+        gridTemplateColumns: "20% 80%",
+
+        ".textGroup": {
+          margin: "0 2rem",
+
+          ".textFrame": {
+            height: "3rem",
+            marginBottom: "1rem",
+
+            "&:first-of-type": {
+              height: "3.5rem",
+              marginBottom: "2rem",
+            },
           },
         },
       },

@@ -111,6 +111,26 @@ export const searchBarForm: CSSObject = {
     },
   },
 
+  // 태블릿 뷰
+  "@media (min-width: 960px)": {
+    width: "100%",
+
+    ".inputSet": {
+      width: "100%",
+      height: "5rem",
+
+      ".searchIcon": {
+        fontSize: "2.5rem",
+      },
+
+      input: {
+        width: "90%",
+        padding: "1.5rem 1rem",
+        fontSize: "1.6rem",
+      },
+    },
+  },
+
   // 데스크탑 뷰
   "@media (min-width: 1200px)": {
     width: "100%",
