@@ -3,8 +3,33 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { css } from "@emotion/react";
-import { container } from "@/styles/SocialRedirection.styles";
+import { css, CSSObject } from "@emotion/react";
+
+const container: CSSObject = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  height: "80vh",
+
+  h1: {
+    fontSize: "1.6rem",
+  },
+
+  button: {
+    marginTop: "10rem",
+    border: "none",
+    borderRadius: "5px",
+    background: "var(--main-color)",
+    color: "var(--reverse-font)",
+    width: "20rem",
+    height: "5rem",
+    fontSize: "1.4rem",
+    justifyContent: "center",
+    alignItems: "center",
+    lineHeight: 1,
+  },
+};
 
 export default function SocialRedirect(): JSX.Element {
   const router = useRouter();
