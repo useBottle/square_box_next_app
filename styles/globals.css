@@ -43,7 +43,7 @@ body {
 
 @media (min-width: 1200px) {
   html {
-    width: 50vw; /* Header 의 width 는 별도로 설정 */
+    width: 50vw; /* Header, MobileNav 의 width 는 별도로 설정 */
     display: flex;
     justify-content: center;
     margin: 0 auto;
@@ -58,7 +58,7 @@ body {
 
 @media (min-width: 2000px) {
   html {
-    width: 40vw; /* Header 의 width 는 별도로 설정 */
+    width: 40vw; /* Header, MobileNav 의 width 는 별도로 설정 */
     display: flex;
     justify-content: center;
     margin: 0 auto;
