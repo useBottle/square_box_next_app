@@ -268,7 +268,7 @@ export const newsListStyles: CSSObject = {
       ul: {
         a: {
           li: {
-            gridTemplateColumns: "20% 80%",
+            gridTemplateColumns: "25% 75%",
           },
         },
       },
