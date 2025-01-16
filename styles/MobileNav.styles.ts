@@ -181,7 +181,7 @@ export const nav: CSSObject = {
     },
   },
 
-  // 데스크탑 뷰
+  // 데스크탑 뷰 1200px 이상
   "@media (min-width: 1200px)": {
     width: "50vw",
     justifyContent: "space-between",
@@ -238,6 +238,7 @@ export const nav: CSSObject = {
     },
   },
 
+  // 데스크탑 뷰 2000px 이상
   "@media (min-width: 2000px)": {
     width: "40vw",
   },

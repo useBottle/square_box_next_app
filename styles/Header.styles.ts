@@ -6,6 +6,7 @@ export const header: CSSObject = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  zIndex: 999,
 
   ".headerWrapper": {
     width: "100%",
@@ -14,7 +15,6 @@ export const header: CSSObject = {
     alignItems: "center",
     justifyContent: "space-between",
     height: "5rem",
-    zIndex: 999,
     padding: "0 2.5rem",
 
     ".logo": {
