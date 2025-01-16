@@ -106,12 +106,12 @@ export default function MarkedNewsDynamic(): JSX.Element {
   return (
     <article css={css(dynamicNewsStyles)}>
       {!navMenu && (
-        <div className="bookmarkNewsDetailWrapper">
+        <div className="newsDetailWrapper">
           <figure className="imgGroup">
             {clickedNews.image === "" ? (
               <div className="noImg">No Image</div>
             ) : (
-              <Image src={clickedNews.image} alt="newsImg" width={200} height={200} />
+              <Image src={clickedNews.image} alt="newsImg" width={200} height={200} className="bookmarkNewsImg" />
             )}
             <figcaption className="alt">{clickedNews.alt}</figcaption>
           </figure>

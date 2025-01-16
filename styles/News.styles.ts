@@ -291,6 +291,11 @@ export const dynamicNewsStyles: CSSObject = {
           width: "80%",
         },
 
+        ".bookmarkNewsImg": {
+          marginTop: "10rem",
+          width: "80%",
+        },
+
         ".alt": {
           marginTop: "5rem",
           fontSize: "1.4rem",
