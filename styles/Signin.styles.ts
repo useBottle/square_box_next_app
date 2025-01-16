@@ -128,13 +128,13 @@ export const signin: CSSObject = {
   // 태블릿 뷰
   "@media (min-width: 960px)": {
     width: "100%",
-    height: "calc(100vh - 8rem)",
+    height: "calc(100vh - 3rem)",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
 
     ".signinWrapper": {
-      width: "40%",
+      width: "50%",
       height: "100%",
       display: "flex",
       justifyContent: "center",
@@ -179,6 +179,14 @@ export const signin: CSSObject = {
       button: {
         width: "80%",
       },
+    },
+  },
+
+  "@media (min-width: 1200px)": {
+    height: "calc(100vh - 8rem)",
+
+    ".signinWrapper": {
+      width: "40%",
     },
   },
 };

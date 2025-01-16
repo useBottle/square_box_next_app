@@ -465,7 +465,7 @@ export const newsSkeleton: CSSObject = {
       ".list": {
         width: "100%",
         height: "18rem",
-        gridTemplateColumns: "20% 80%",
+        gridTemplateColumns: "30% 70%",
 
         ".textGroup": {
           marginLeft: "2rem",
@@ -484,35 +484,28 @@ export const newsSkeleton: CSSObject = {
     },
   },
 
-  // 데스크탑 뷰
+  // 데스크탑 뷰 1200px 이상
   "@media (min-width: 1200px)": {
-    width: "100%",
-
     form: {
       marginTop: "10rem",
     },
 
     ".skeleton": {
-      width: "100%",
-
       ".list": {
-        width: "100%",
-        height: "18rem",
-        gridTemplateColumns: "20% 80%",
+        gridTemplateColumns: "30% 70%",
 
         ".textGroup": {
           margin: "0 2rem",
-
-          ".textFrame": {
-            height: "3rem",
-            marginBottom: "1rem",
-
-            "&:first-of-type": {
-              height: "3.5rem",
-              marginBottom: "2rem",
-            },
-          },
         },
+      },
+    },
+  },
+
+  // 데스크탑 뷰 2000px 이상
+  "@media (min-width: 2000px)": {
+    ".skeleton": {
+      ".list": {
+        gridTemplateColumns: "25% 75%",
       },
     },
   },
