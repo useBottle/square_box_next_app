@@ -28,7 +28,8 @@ const btn: CSSObject = {
     marginBottom: "5rem",
   },
 
-  "@media (min-width: 1200px)": {
+  // 태블릿 뷰
+  "@media (min-width: 960px)": {
     width: "100%",
     display: "flex",
     justifyContent: "flex-end",

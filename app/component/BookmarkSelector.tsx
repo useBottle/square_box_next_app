@@ -35,7 +35,8 @@ const btnGroup: CSSObject = {
     },
   },
 
-  "@media (min-width: 1200px)": {
+  // 태블릿 뷰
+  "@media (min-width: 960px)": {
     width: "50%",
 
     a: {
@@ -47,6 +48,15 @@ const btnGroup: CSSObject = {
         fontSize: "1.6rem",
       },
 
+      ".underline": {
+        width: "70%",
+      },
+    },
+  },
+
+  // 데스크탑 뷰
+  "@media (min-width: 1200px)": {
+    a: {
       ".underline": {
         width: "50%",
       },
