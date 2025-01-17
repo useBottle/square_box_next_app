@@ -4,21 +4,24 @@ import { CSSObject } from "@emotion/react";
 
 export const nav: CSSObject = {
   position: "fixed",
-  height: "100%",
+  height: "calc(100% - 5rem)",
   width: "100%",
+  top: "5rem",
+  left: 0,
   background: "var(--background)",
   zIndex: 999,
   display: "flex",
-  justifyContent: "center",
+  justifyContent: "space-between",
   alignItems: "center",
   flexDirection: "column",
+  overflowY: "scroll",
 
   ".logoPlate": {
     width: "90%",
     height: "4rem",
     margin: "2rem 0",
     borderRadius: "3px",
-    overflow: "hidden",
+    // overflow: "hidden",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -116,7 +119,10 @@ export const nav: CSSObject = {
   // 태블릿 뷰
   "@media (min-width: 960px)": {
     width: "60vw",
-    justifyContent: "space-between",
+    height: "100%",
+    top: 0,
+    left: "50%",
+    transform: "translateX(-50%)",
 
     ".logoPlate": {
       height: "4rem",
@@ -172,7 +178,8 @@ export const nav: CSSObject = {
   // 데스크탑 뷰 1200px 이상
   "@media (min-width: 1200px)": {
     width: "50vw",
-    justifyContent: "space-between",
+    left: "50%",
+    transform: "translateX(-50%)",
 
     ".logoPlate": {
       height: "6rem",
@@ -231,5 +238,7 @@ export const nav: CSSObject = {
   // 데스크탑 뷰 2000px 이상
   "@media (min-width: 2000px)": {
     width: "40vw",
+    left: "50%",
+    transform: "translateX(-50%)",
   },
 };
