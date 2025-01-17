@@ -29,18 +29,23 @@ export const latestNews: CSSObject = {
         width: "100%",
         display: "flex",
         justifyContent: "center",
-        margin: "1.5rem 0",
+        margin: "1rem 0",
 
         li: {
-          width: "95%",
+          width: "100%",
           height: "100%",
           color: "var(--basic-font)",
-          display: "flex",
+          display: "grid",
+          gridTemplateColumns: "35% 65%",
           padding: "1rem",
+          margin: "1rem",
           boxSizing: "border-box",
 
           ".imgContainer": {
+            width: "100%",
+            height: "9rem",
             aspectRatio: "16 / 11",
+            background: "red",
 
             img: {
               width: "100%",
@@ -50,7 +55,8 @@ export const latestNews: CSSObject = {
           },
 
           ".textGroup": {
-            padding: "0 1rem",
+            width: "100%",
+            paddingLeft: "1rem",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
