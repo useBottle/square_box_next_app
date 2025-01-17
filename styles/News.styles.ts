@@ -306,8 +306,9 @@ export const dynamicNewsStyles: CSSObject = {
       flexDirection: "column",
 
       img: {
+        aspectRatio: "16 / 10",
         width: "100%",
-        height: "auto",
+        height: "100%",
       },
 
       ".noImg": {
@@ -357,7 +358,7 @@ export const dynamicNewsStyles: CSSObject = {
     },
   },
 
-  // 태블릿 뷰
+  // 태블릿 뷰 960px 이상
   "@media (min-width: 960px)": {
     width: "100%",
 
@@ -371,20 +372,15 @@ export const dynamicNewsStyles: CSSObject = {
           marginTop: "5rem",
         },
 
-        ".newsImg": {
+        img: {
           marginTop: "5rem",
-          width: "auto",
-        },
-
-        ".latestNewsImg": {
-          marginTop: "10rem",
-          width: "90%",
+          width: "70%",
         },
 
         ".alt": {
           marginTop: "2rem",
           fontSize: "1.4rem",
-          width: "90%",
+          width: "70%",
         },
       },
 
@@ -415,16 +411,12 @@ export const dynamicNewsStyles: CSSObject = {
     },
   },
 
-  // 데스크탑 뷰
+  // 데스크탑 뷰 1200px 이상
   "@media (min-width: 1200px)": {
     ".newsDetailWrapper": {
       ".imgGroup": {
         ".newsImg": {
           marginTop: "10rem",
-        },
-
-        ".alt": {
-          width: "60%",
         },
       },
 
