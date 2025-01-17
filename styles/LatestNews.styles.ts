@@ -97,7 +97,7 @@ export const latestNews: CSSObject = {
     },
   },
 
-  // 태블릿 뷰
+  // 태블릿 뷰 960px 이상 (데스크탑 뷰 모두 포함)
   "@media (min-width: 960px)": {
     marginTop: "10rem",
     width: "100%",
@@ -114,20 +114,19 @@ export const latestNews: CSSObject = {
       ul: {
         a: {
           height: "18rem",
+          margin: "2rem 0",
 
           li: {
             width: "100%",
             height: "100%",
-            gridTemplateColumns: "30% 70%",
+            margin: 0,
 
-            img: {
+            ".imgContainer": {
               height: "16rem",
             },
 
             ".textGroup": {
-              justifyContent: "space-between",
-              height: "100%",
-              marginLeft: "1rem",
+              paddingLeft: "2rem",
 
               h6: {
                 fontSize: "2rem",
@@ -149,34 +148,6 @@ export const latestNews: CSSObject = {
                 WebkitBoxOrient: "vertical",
               },
             },
-          },
-        },
-      },
-    },
-  },
-
-  // 데스크탑 뷰 1200px 이상
-  "@media (min-width: 1200px)": {
-    marginTop: "13rem",
-
-    ".latestNewsWrapper": {
-      ul: {
-        a: {
-          li: {
-            gridTemplateColumns: "25% 75%",
-          },
-        },
-      },
-    },
-  },
-
-  // 데스크탑 뷰 2000px 이상
-  "@media (min-width: 2000px)": {
-    ".latestNewsWrapper": {
-      ul: {
-        a: {
-          li: {
-            gridTemplateColumns: "25% 75%",
           },
         },
       },

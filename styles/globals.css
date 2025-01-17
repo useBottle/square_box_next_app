@@ -29,27 +29,27 @@
 
 html {
   font-size: 10px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 body {
   background: var(--background);
   color: var(--basic-font);
   line-height: 1.5;
+  display: flex;
+  justify-content: center;
 }
 
 /* 태블릿 뷰 */
 @media (min-width: 960px) {
   html {
     width: 60vw; /* Header, MobileNav 의 width 는 별도로 설정 */
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
   }
 
   body {
     width: 100%;
-    display: flex;
-    justify-content: center;
   }
 }
 
