@@ -66,7 +66,9 @@ export default function LatestNews({
                   onClick={onClick(item.title, item.href)}
                 >
                   <li>
-                    <Image src={item.prevImg} width={100} height={100} alt="newsImg" />
+                    <div className="imgContainer">
+                      <Image src={item.prevImg} width={100} height={100} alt="newsImg" />
+                    </div>
                     <div className="textGroup">
                       <h6>{item.title}</h6>
                       <div className="date">{item.date}</div>

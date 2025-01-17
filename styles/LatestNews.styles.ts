@@ -29,31 +29,31 @@ export const latestNews: CSSObject = {
         width: "100%",
         display: "flex",
         justifyContent: "center",
-        height: "12rem",
         margin: "1.5rem 0",
 
         li: {
           width: "95%",
           height: "100%",
           color: "var(--basic-font)",
-          display: "grid",
-          gridTemplateColumns: "35% 65%",
+          display: "flex",
           padding: "1rem",
           boxSizing: "border-box",
-          overflow: "hidden",
 
-          img: {
-            width: "100%",
-            height: "10rem",
+          ".imgContainer": {
+            aspectRatio: "16 / 11",
+
+            img: {
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            },
           },
 
           ".textGroup": {
-            width: "100%",
-            justifyContent: "space-between",
-            height: "100%",
             padding: "0 1rem",
             display: "flex",
             flexDirection: "column",
+            justifyContent: "space-between",
             alignItems: "flex-start",
             boxSizing: "border-box",
 
