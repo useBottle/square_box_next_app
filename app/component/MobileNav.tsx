@@ -18,12 +18,7 @@ import { BsBox } from "react-icons/bs";
 import { Prompt } from "next/font/google";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-
-const prompt = Prompt({
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
+import { prompt } from "@/util/fontsLoader";
 
 export default function MobileNav(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
