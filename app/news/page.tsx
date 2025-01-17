@@ -105,11 +105,13 @@ export default function News(): JSX.Element {
                   onClick={onClick(item.title, item.href)}
                 >
                   <li>
-                    {!(item.prevImg.startsWith("https") || item.prevImg.startsWith("http")) ? (
-                      <div className="noImg">No Image</div>
-                    ) : (
-                      <Image src={item.prevImg} alt="newsImg" width={100} height={100} />
-                    )}
+                    <div className="imgContainer">
+                      {!(item.prevImg.startsWith("https") || item.prevImg.startsWith("http")) ? (
+                        <div className="noImg">No Image</div>
+                      ) : (
+                        <Image src={item.prevImg} alt="newsImg" width={100} height={100} />
+                      )}
+                    </div>
                     <div className="textGroup">
                       <h6>{item.title}</h6>
                       <div className="date">{item.date}</div>

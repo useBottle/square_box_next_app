@@ -2,6 +2,9 @@ import { CSSObject, keyframes } from "@emotion/react";
 
 export const latestNews: CSSObject = {
   width: "100%",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
 
   ".latestNewsWrapper": {
     width: "100%",
@@ -43,7 +46,7 @@ export const latestNews: CSSObject = {
 
           ".imgContainer": {
             width: "100%",
-            height: "9rem",
+            height: "100%",
             aspectRatio: "16 / 11",
             background: "red",
 
@@ -97,14 +100,60 @@ export const latestNews: CSSObject = {
     },
   },
 
+  // 모바일 뷰 430px 이상
+  "@media (min-width: 430px)": {
+    ".latestNewsWrapper": {
+      ul: {
+        width: "90%",
+
+        a: {
+          li: {
+            padding: 0,
+
+            ".textGroup": {
+              h6: {
+                fontSize: "1.6rem",
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+
+  // 모바일 뷰 550px 이상
+  "@media (min-width: 550px)": {
+    ".latestNewsWrapper": {
+      ul: {
+        a: {
+          li: {
+            ".textGroup": {
+              h6: {
+                fontSize: "1.8rem",
+              },
+
+              p: {
+                fontSize: "1.4rem",
+                lineHeight: "1.5",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                lineClamp: 2,
+                WebkitBoxOrient: "vertical",
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+
   // 태블릿 뷰 960px 이상 (데스크탑 뷰 모두 포함)
   "@media (min-width: 960px)": {
     marginTop: "10rem",
-    width: "100%",
 
     ".latestNewsWrapper": {
-      width: "100%",
-
       h4: {
         width: "100%",
         fontSize: "1.4rem",
@@ -112,18 +161,14 @@ export const latestNews: CSSObject = {
       },
 
       ul: {
+        width: "100%",
+
         a: {
-          height: "18rem",
           margin: "2rem 0",
 
           li: {
             width: "100%",
             height: "100%",
-            margin: 0,
-
-            ".imgContainer": {
-              height: "16rem",
-            },
 
             ".textGroup": {
               paddingLeft: "2rem",
@@ -139,13 +184,6 @@ export const latestNews: CSSObject = {
 
               p: {
                 fontSize: "1.4rem",
-                lineHeight: "1.5",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                display: "-webkit-box",
-                WebkitLineClamp: 2,
-                lineClamp: 2,
-                WebkitBoxOrient: "vertical",
               },
             },
           },

@@ -1,134 +1,146 @@
 import { CSSObject, keyframes } from "@emotion/react";
 
 export const newsListStyles: CSSObject = {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  flexDirection: "column",
-  overflowX: "hidden",
-  width: "100%",
+  background: "lightblue",
 
-  ".initNews": {
+  ".newsWrapper": {
+    width: "100%",
     display: "flex",
-    flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    height: "45rem",
-    width: "100%",
+    flexDirection: "column",
+    // overflowX: "hidden",
 
-    ".icon": {
-      fontSize: "6rem",
-      marginBottom: "7rem",
-    },
-
-    ".textNback": {
-      position: "relative",
+    ".initNews": {
       display: "flex",
       flexDirection: "column",
-      alignItems: "center",
-      width: "60%",
-
-      h1: {
-        position: "absolute",
-        top: "50%",
-        transform: "translateY(-50%)",
-        display: "flex",
-        justifyContent: "center",
-        width: "100%",
-        fontSize: "1.6rem",
-        background: "var(--reverse-font)",
-        zIndex: 10,
-        border: "1px solid var(--basic-font)",
-        borderLeft: "none",
-        borderRight: "none",
-        padding: "1rem 0",
-      },
-
-      ".backIcon": {
-        fontSize: "20rem",
-        opacity: 0.1,
-      },
-    },
-  },
-
-  ul: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-    width: "100%",
-
-    a: {
-      width: "100%",
-      display: "flex",
       justifyContent: "center",
-      height: "12rem",
-      margin: "1.5rem 0",
+      alignItems: "center",
+      height: "45rem",
+      width: "100%",
 
-      li: {
-        width: "95%",
-        height: "100%",
-        color: "var(--basic-font)",
-        display: "grid",
-        gridTemplateColumns: "35% 65%",
-        padding: "1rem",
-        boxSizing: "border-box",
-        overflow: "hidden",
+      ".icon": {
+        fontSize: "6rem",
+        marginBottom: "7rem",
+      },
 
-        ".noImg": {
-          height: "100%",
+      ".textNback": {
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        width: "60%",
+
+        h1: {
+          position: "absolute",
+          top: "50%",
+          transform: "translateY(-50%)",
           display: "flex",
           justifyContent: "center",
-          alignItems: "center",
-          background: "var(--background)",
-          color: "var(--basic-font)",
-          fontSize: "1.4rem",
+          width: "100%",
+          fontSize: "1.6rem",
+          background: "var(--reverse-font)",
+          zIndex: 10,
+          border: "1px solid var(--basic-font)",
+          borderLeft: "none",
+          borderRight: "none",
+          padding: "1rem 0",
         },
 
-        img: {
-          width: "100%",
-          height: "10rem",
+        ".backIcon": {
+          fontSize: "20rem",
+          opacity: 0.1,
         },
+      },
+    },
 
-        ".textGroup": {
+    ul: {
+      width: "100%",
+      display: "flex",
+      alignItems: "center",
+      flexDirection: "column",
+      background: "lightpink",
+
+      a: {
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        margin: "1rem 0",
+
+        li: {
           width: "100%",
-          justifyContent: "space-between",
           height: "100%",
-          padding: "0 1rem",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
+          color: "var(--basic-font)",
+          display: "grid",
+          gridTemplateColumns: "35% 65%",
+          padding: "1rem",
+          margin: "1rem",
           boxSizing: "border-box",
 
-          h6: {
-            fontSize: "1.4rem",
-            fontWeight: 500,
-            lineHeight: 1.5,
-            color: "var(--title-color)",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            display: "-webkit-box",
-            WebkitLineClamp: 2,
-            lineClamp: 2,
-            WebkitBoxOrient: "vertical",
+          ".imgContainer": {
+            width: "100%",
+            height: "9rem",
+            aspectRatio: "16 / 11",
+            background: "red",
+
+            ".noImg": {
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              background: "var(--background)",
+              color: "var(--basic-font)",
+              fontSize: "1.4rem",
+            },
+
+            img: {
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            },
           },
 
-          ".date": {
-            color: "var(--basic-dark)",
-          },
+          ".textGroup": {
+            width: "100%",
+            paddingLeft: "1rem",
+            display: "flex",
+            justifyContent: "space-between",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            boxSizing: "border-box",
+            background: "lightgreen",
 
-          p: {
-            display: "none",
+            h6: {
+              fontSize: "1.4rem",
+              fontWeight: 500,
+              lineHeight: 1.5,
+              color: "var(--title-color)",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "-webkit-box",
+              WebkitLineClamp: 2,
+              lineClamp: 2,
+              WebkitBoxOrient: "vertical",
+            },
+
+            ".date": {
+              color: "var(--basic-dark)",
+            },
+
+            p: {
+              display: "none",
+            },
           },
         },
-      },
 
-      "&:last-child": {
-        marginBottom: "4rem",
-      },
+        "&:last-child": {
+          marginBottom: "4rem",
+        },
 
-      "&:hover": {
-        background: "var(--list-back)",
+        "&:hover": {
+          background: "var(--list-back)",
+        },
       },
     },
   },
