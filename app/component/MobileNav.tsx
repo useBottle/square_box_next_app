@@ -15,7 +15,6 @@ import { PiSignIn, PiSignOut } from "react-icons/pi";
 import plateBack from "../../public/images/snow_forest.jpg";
 import Image from "next/image";
 import { BsBox } from "react-icons/bs";
-import { Prompt } from "next/font/google";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { prompt } from "@/util/fontsLoader";
