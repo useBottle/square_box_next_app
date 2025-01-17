@@ -4,13 +4,11 @@
 
 import { RootState } from "@/store/store";
 import { signin } from "@/styles/Signin.styles";
-import { prompt } from "@/util/fontsLoader";
 import { css } from "@emotion/react";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
-import { BsBox } from "react-icons/bs";
 import { IoLockOpenOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";
 
