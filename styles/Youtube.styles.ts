@@ -95,13 +95,7 @@ export const youtube: CSSObject = {
             ".publishedAt": {
               fontSize: "1.2rem",
               color: "var(--basic-dark)",
-              margin: "2rem 0",
-            },
-
-            ".description": {
-              fontSize: "1.4rem",
-              color: "var(--basic-font)",
-              margin: "1rem 0",
+              marginTop: "2rem",
             },
           },
         },
@@ -113,7 +107,7 @@ export const youtube: CSSObject = {
     },
   },
 
-  // 태블릿 뷰
+  // 태블릿 뷰 960px 이상
   "@media (min-width: 960px)": {
     ".youtubeWrapper": {
       width: "100%",
@@ -148,11 +142,12 @@ export const youtube: CSSObject = {
 
           li: {
             display: "grid",
-            gridTemplateColumns: "35% 65%",
+            gridTemplateColumns: "40% 60%",
             alignItems: "center",
             padding: "1rem",
 
             img: {
+              aspectRatio: "16 / 11",
               width: "100%",
               height: "100%",
             },
@@ -170,10 +165,6 @@ export const youtube: CSSObject = {
               },
 
               ".channel": {
-                marginBottom: 0,
-              },
-
-              ".description": {
                 margin: 0,
               },
             },
@@ -211,7 +202,7 @@ export const youtube: CSSObject = {
       ul: {
         a: {
           li: {
-            gridTemplateColumns: "30% 70%",
+            gridTemplateColumns: "40% 60%",
           },
         },
       },

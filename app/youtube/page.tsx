@@ -84,7 +84,6 @@ export default function Youtube() {
                       <h1 className="title">{item.snippet.title}</h1>
                       <h4 className="channel">{item.snippet.channelTitle}</h4>
                       <div className="publishedAt">{item.snippet.publishedAt}</div>
-                      <p className="description">{item.snippet.description}</p>
                     </div>
                   </li>
                 </Link>

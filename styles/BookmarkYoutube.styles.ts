@@ -77,12 +77,6 @@ export const bookmarkYoutube: CSSObject = {
                 color: "var(--basic-dark)",
                 margin: "2rem 0",
               },
-
-              ".description": {
-                fontSize: "1.4rem",
-                color: "var(--basic-font)",
-                margin: "1rem 0",
-              },
             },
           },
         },
@@ -149,10 +143,6 @@ export const bookmarkYoutube: CSSObject = {
                 },
 
                 ".publishedAt": {
-                  margin: 0,
-                },
-
-                ".description": {
                   margin: 0,
                 },
               },

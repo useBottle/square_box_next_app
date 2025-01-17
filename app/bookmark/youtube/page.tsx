@@ -69,7 +69,6 @@ export default function Bookmark() {
                               <h1 className="title">{item.title}</h1>
                               <h4 className="channel">{item.channelTitle}</h4>
                               <div className="publishedAt">{item.publishedAt}</div>
-                              <p className="description">{item.description}</p>
                             </div>
                           </li>
                         </Link>
