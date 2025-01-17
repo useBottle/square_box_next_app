@@ -4,25 +4,14 @@ import { CSSObject } from "@emotion/react";
 
 export const nav: CSSObject = {
   position: "fixed",
-  width: "100%",
   height: "100%",
+  width: "100%",
   background: "var(--background)",
   zIndex: 999,
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   flexDirection: "column",
-
-  ".back": {
-    position: "absolute",
-    top: "1.5rem",
-    right: "5%",
-    fontSize: "2rem",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    cursor: "pointer",
-  },
 
   ".logoPlate": {
     width: "90%",
@@ -164,14 +153,13 @@ export const nav: CSSObject = {
 
     ul: {
       width: "100%",
-      margin: "5rem 0",
+      margin: "4rem 0",
 
       li: {
         margin: "1rem 0",
 
         ".list": {
           fontSize: "1.6rem",
-          height: "4rem",
         },
       },
 
@@ -214,26 +202,28 @@ export const nav: CSSObject = {
       },
 
       ".userName": {
-        marginTop: "3rem",
-        fontSize: "2.5rem",
+        marginTop: "1rem",
+        fontSize: "2.3rem",
       },
     },
 
     ul: {
       width: "100%",
-      margin: "10rem 0",
+      margin: "5rem 0",
 
       li: {
         margin: "2rem 0",
 
         ".list": {
           fontSize: "1.8rem",
-          height: "6rem",
+          height: "3rem",
         },
       },
 
       ".auth": {
         fontSize: "1.8rem",
+        height: "3rem",
+        margin: "2rem 0",
       },
     },
   },
