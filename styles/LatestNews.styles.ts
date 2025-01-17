@@ -8,7 +8,7 @@ export const latestNews: CSSObject = {
 
   ".latestNewsWrapper": {
     width: "100%",
-    marginTop: "6rem",
+    marginTop: "3rem",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -48,7 +48,6 @@ export const latestNews: CSSObject = {
             width: "100%",
             height: "100%",
             aspectRatio: "16 / 11",
-            background: "red",
 
             img: {
               width: "100%",
@@ -167,9 +166,6 @@ export const latestNews: CSSObject = {
           margin: "2rem 0",
 
           li: {
-            width: "100%",
-            height: "100%",
-
             ".textGroup": {
               paddingLeft: "2rem",
 

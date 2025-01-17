@@ -1,15 +1,17 @@
 import { CSSObject, keyframes } from "@emotion/react";
 
 export const newsListStyles: CSSObject = {
-  background: "lightblue",
+  width: "100%",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
 
   ".newsWrapper": {
     width: "100%",
+    marginTop: "3rem",
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
     flexDirection: "column",
-    // overflowX: "hidden",
+    alignItems: "center",
 
     ".initNews": {
       display: "flex",
@@ -59,7 +61,6 @@ export const newsListStyles: CSSObject = {
       display: "flex",
       alignItems: "center",
       flexDirection: "column",
-      background: "lightpink",
 
       a: {
         width: "100%",
@@ -79,9 +80,8 @@ export const newsListStyles: CSSObject = {
 
           ".imgContainer": {
             width: "100%",
-            height: "9rem",
+            height: "100%",
             aspectRatio: "16 / 11",
-            background: "red",
 
             ".noImg": {
               width: "100%",
@@ -109,7 +109,6 @@ export const newsListStyles: CSSObject = {
             flexDirection: "column",
             alignItems: "flex-start",
             boxSizing: "border-box",
-            background: "lightgreen",
 
             h6: {
               fontSize: "1.4rem",
@@ -135,7 +134,7 @@ export const newsListStyles: CSSObject = {
         },
 
         "&:last-child": {
-          marginBottom: "4rem",
+          marginBottom: "10rem",
         },
 
         "&:hover": {
@@ -145,14 +144,60 @@ export const newsListStyles: CSSObject = {
     },
   },
 
-  // 태블릿 뷰
+  // 모바일 뷰 430px 이상
+  "@media (min-width: 430px)": {
+    ".newsWrapper": {
+      ul: {
+        width: "90%",
+
+        a: {
+          li: {
+            padding: 0,
+
+            ".textGroup": {
+              h6: {
+                fontSize: "1.6rem",
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+
+  // 모바일 뷰 550px 이상
+  "@media (min-width: 550px)": {
+    ".newsWrapper": {
+      ul: {
+        a: {
+          li: {
+            ".textGroup": {
+              h6: {
+                fontSize: "1.8rem",
+              },
+
+              p: {
+                fontSize: "1.4rem",
+                lineHeight: "1.5",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                lineClamp: 2,
+                WebkitBoxOrient: "vertical",
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+
+  // 태블릿 뷰 960px 이상 (데스크탑 뷰 모두 포함)
   "@media (min-width: 960px)": {
-    width: "100%",
-    marginTop: "2rem",
+    marginTop: "10rem",
 
     ".newsWrapper": {
-      width: "100%",
-
       ".initNews": {
         height: "50rem",
 
@@ -176,23 +221,14 @@ export const newsListStyles: CSSObject = {
       },
 
       ul: {
+        width: "100%",
+
         a: {
-          height: "18rem",
-          margin: "3rem 0",
+          margin: "2rem 0",
 
           li: {
-            width: "100%",
-            height: "100%",
-            gridTemplateColumns: "30% 70%",
-
-            img: {
-              height: "16rem",
-            },
-
             ".textGroup": {
-              justifyContent: "space-between",
-              height: "100%",
-              marginLeft: "1rem",
+              paddingLeft: "2rem",
 
               h6: {
                 fontSize: "2rem",
@@ -205,13 +241,6 @@ export const newsListStyles: CSSObject = {
 
               p: {
                 fontSize: "1.4rem",
-                lineHeight: "1.5",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                display: "-webkit-box",
-                WebkitLineClamp: 2,
-                lineClamp: 2,
-                WebkitBoxOrient: "vertical",
               },
             },
           },
@@ -222,15 +251,10 @@ export const newsListStyles: CSSObject = {
 
   // 데스크탑 뷰 1200px 이상
   "@media (min-width: 1200px)": {
-    marginTop: "10rem",
-
     ".newsWrapper": {
       ".initNews": {
-        height: "50rem",
-
         ".icon": {
           fontSize: "6rem",
-          marginBottom: "10rem",
         },
 
         ".textNback": {
@@ -244,14 +268,6 @@ export const newsListStyles: CSSObject = {
           },
         },
       },
-
-      ul: {
-        a: {
-          li: {
-            gridTemplateColumns: "25% 75%",
-          },
-        },
-      },
     },
   },
 
@@ -262,25 +278,12 @@ export const newsListStyles: CSSObject = {
         height: "90rem",
 
         ".icon": {
-          fontSize: "6rem",
           marginBottom: "15rem",
         },
 
         ".textNback": {
-          h1: {
-            fontSize: "2rem",
-          },
-
           ".backIcon": {
             fontSize: "40rem",
-          },
-        },
-      },
-
-      ul: {
-        a: {
-          li: {
-            gridTemplateColumns: "25% 75%",
           },
         },
       },

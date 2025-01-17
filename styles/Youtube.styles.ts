@@ -2,6 +2,7 @@ import { CSSObject, keyframes } from "@emotion/react";
 
 export const youtube: CSSObject = {
   ".youtubeWrapper": {
+    marginTop: "3rem",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
