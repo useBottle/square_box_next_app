@@ -364,12 +364,15 @@ export const youtubeSkeleton: CSSObject = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: "100vw",
+    width: "100%",
     margin: "1rem 0",
 
     ".list": {
       width: "90%",
-      margin: "1.5rem",
+      marginBottom: "10rem",
+      display: "grid",
+      gridTemplateRows: "70% 35%",
+      alignItems: "center",
 
       ".default": {
         position: "relative",
@@ -391,57 +394,45 @@ export const youtubeSkeleton: CSSObject = {
 
       ".imgFrame": {
         width: "100%",
-        height: "25rem",
+        height: "100%",
+        aspectRatio: "16 / 11",
       },
 
       ".textGroup": {
-        margin: "1rem 0",
+        marginTop: "5rem",
         width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
 
         ".titleFrame": {
-          height: "3rem",
+          width: "100%",
+          height: "25%",
           background: "lightgray",
-          margin: "2rem 0",
+          marginBottom: "2rem",
         },
 
         ".channelFrame": {
-          height: "3rem",
+          height: "20%",
           background: "lightgray",
-          margin: "2rem 0",
           width: "20%",
         },
 
         ".dateFrame": {
-          height: "2rem",
+          height: "20%",
           background: "lightgray",
-          margin: "4rem 0",
+          marginTop: "2rem",
           width: "30%",
-        },
-
-        ".descGroup": {
-          ".descFrame": {
-            height: "2rem",
-            background: "lightgray",
-            margin: "1rem 0",
-            width: "90%",
-
-            "&:first-of-type": {
-              width: "60%",
-            },
-
-            "&:last-of-type": {
-              width: "80%",
-            },
-          },
         },
       },
     },
   },
 
-  // 태블릿 뷰
+  // 태블릿 뷰 960px 이상
   "@media (min-width: 960px)": {
-    width: "100%",
-
+    // SearchBar 간격
     form: {
       marginTop: "5rem",
     },
@@ -452,26 +443,20 @@ export const youtubeSkeleton: CSSObject = {
       ".list": {
         width: "100%",
         display: "grid",
+        gridTemplateRows: "none",
         gridTemplateColumns: "35% 65%",
         alignItems: "center",
         margin: "3rem 0",
-        overflow: "hidden",
-
-        ".imgFrame": {
-          height: "20rem",
-        },
 
         ".textGroup": {
-          width: "calc(100% - 2rem)",
-          paddingLeft: "2rem",
+          width: "auto",
           height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
+          margin: 0,
+          paddingLeft: "2rem",
 
           ".titleFrame": {
             width: "100%",
-            marginTop: 0,
+            marginBottom: "1rem",
           },
 
           ".channelFrame": {
@@ -479,17 +464,8 @@ export const youtubeSkeleton: CSSObject = {
           },
 
           ".dateFrame": {
-            margin: 0,
-          },
-
-          ".descGroup": {
-            ".descFrame": {
-              marginBottom: 0,
-
-              "&:last-of-type": {
-                display: "none",
-              },
-            },
+            marginTop: "1rem",
+            height: "15%",
           },
         },
       },
@@ -498,14 +474,9 @@ export const youtubeSkeleton: CSSObject = {
 
   // 데스크탑 뷰 1200px 이상 (2000px 이상 포함)
   "@media (min-width: 1200px)": {
+    // SearchBar 간격
     form: {
       marginTop: "10rem",
-    },
-
-    ".skeleton": {
-      ".list": {
-        gridTemplateColumns: "30% 70%",
-      },
     },
   },
 };

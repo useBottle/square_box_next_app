@@ -160,10 +160,6 @@ export default function NewsDynamic(): JSX.Element {
     return <ArticleSkeleton />;
   }
 
-  if (true) {
-    return <ArticleSkeleton />;
-  }
-
   return (
     <article css={css(dynamicNewsStyles)}>
       {!navMenu && (
