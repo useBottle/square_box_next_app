@@ -198,6 +198,8 @@ export const newsListStyles: CSSObject = {
   // 태블릿 뷰 960px 이상 (데스크탑 뷰 모두 포함)
   "@media (min-width: 960px)": {
     ".newsWrapper": {
+      marginTop: "2rem",
+
       ".initNews": {
         height: "50rem",
 
@@ -450,6 +452,10 @@ const shine = keyframes({
 export const newsSkeleton: CSSObject = {
   width: "100%",
 
+  form: {
+    marginTop: "3rem",
+  },
+
   ".skeleton": {
     display: "flex",
     flexDirection: "column",
@@ -543,7 +549,7 @@ export const newsSkeleton: CSSObject = {
   "@media (min-width: 1200px)": {
     // SearchBar 간격
     form: {
-      marginTop: "10rem",
+      marginTop: "2rem",
     },
   },
 };

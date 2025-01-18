@@ -177,7 +177,7 @@ export const youtube: CSSObject = {
   // 데스크탑 뷰 1200px 이상
   "@media (min-width: 1200px)": {
     ".youtubeWrapper": {
-      marginTop: "10rem",
+      marginTop: "2rem",
 
       ".initYoutube": {
         height: "50rem",
