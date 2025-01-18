@@ -377,6 +377,10 @@ const shine = keyframes({
 });
 
 export const youtubeSkeleton: CSSObject = {
+  form: {
+    marginTop: "3rem",
+  },
+
   ".skeleton": {
     display: "flex",
     flexDirection: "column",
@@ -386,6 +390,7 @@ export const youtubeSkeleton: CSSObject = {
 
     ".list": {
       width: "90%",
+      marginTop: "2rem",
       marginBottom: "10rem",
       display: "grid",
       gridTemplateRows: "70% 35%",
@@ -451,7 +456,7 @@ export const youtubeSkeleton: CSSObject = {
   "@media (min-width: 960px)": {
     // SearchBar 간격
     form: {
-      marginTop: "5rem",
+      marginTop: "2rem",
     },
 
     ".skeleton": {
