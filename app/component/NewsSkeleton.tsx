@@ -12,9 +12,11 @@ export default function NewsSkeleton(): JSX.Element {
           <div className="list" key={index}>
             <div className="imgFrame default"></div>
             <div className="textGroup">
-              <div className="textFrame default"></div>
-              <div className="textFrame default"></div>
-              <div className="textFrame default"></div>
+              <div className="titleFrame default"></div>
+              <div className="pharagraphFrame">
+                <div className="textFrame default"></div>
+                <div className="textFrame default"></div>
+              </div>
             </div>
           </div>
         );

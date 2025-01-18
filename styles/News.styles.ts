@@ -438,17 +438,17 @@ const shine = keyframes({
 });
 
 export const newsSkeleton: CSSObject = {
+  width: "100%",
+
   ".skeleton": {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    height: "100vh",
-    width: "100vw",
+    width: "100%",
     margin: "1rem 0",
 
     ".list": {
       width: "90%",
-      height: "10rem",
       display: "grid",
       gridTemplateColumns: "35% 65%",
       margin: "1.5rem",
@@ -471,53 +471,38 @@ export const newsSkeleton: CSSObject = {
         },
       },
 
-      ".textGroup": {
-        margin: "1rem 0",
-        marginLeft: "1rem",
-
-        ".textFrame": {
-          width: "90%",
-          height: "2rem",
-          background: "lightgray",
-          marginBottom: "0.5rem",
-
-          "&:first-of-type": {
-            width: "100%",
-            height: "2.5rem",
-            background: "lightgray",
-            marginBottom: "1rem",
-          },
-        },
+      ".imgFrame": {
+        aspectRatio: "16 / 11",
       },
-    },
-  },
 
-  // 태블릿 뷰
-  "@media (min-width: 960px)": {
-    width: "100%",
+      ".textGroup": {
+        marginLeft: "1rem",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "space-between",
 
-    form: {
-      marginTop: "2rem",
-    },
+        ".titleFrame": {
+          width: "100%",
+          height: "25%",
+          background: "lightgray",
+        },
 
-    ".skeleton": {
-      width: "100%",
-
-      ".list": {
-        width: "100%",
-        height: "18rem",
-        gridTemplateColumns: "30% 70%",
-
-        ".textGroup": {
-          marginLeft: "2rem",
+        ".pharagraphFrame": {
+          width: "100%",
+          display: "flex",
+          height: "50%",
+          flexDirection: "column",
+          justifyContent: "space-between",
 
           ".textFrame": {
-            height: "3rem",
-            marginBottom: "1rem",
+            width: "80%",
+            height: "80%",
+            background: "lightgray",
 
-            "&:first-of-type": {
-              height: "3.5rem",
-              marginBottom: "2rem",
+            "&:last-of-type": {
+              marginTop: "1rem",
+              width: "90%",
             },
           },
         },
@@ -525,29 +510,30 @@ export const newsSkeleton: CSSObject = {
     },
   },
 
-  // 데스크탑 뷰 1200px 이상
-  "@media (min-width: 1200px)": {
+  // 태블릿 뷰 960px 이상
+  "@media (min-width: 960px)": {
+    // SearchBar 간격
     form: {
-      marginTop: "10rem",
+      marginTop: "2rem",
     },
 
     ".skeleton": {
       ".list": {
-        gridTemplateColumns: "30% 70%",
+        width: "100%",
+        gridTemplateColumns: "35% 65%",
 
         ".textGroup": {
-          margin: "0 2rem",
+          marginLeft: "2rem",
         },
       },
     },
   },
 
-  // 데스크탑 뷰 2000px 이상
-  "@media (min-width: 2000px)": {
-    ".skeleton": {
-      ".list": {
-        gridTemplateColumns: "25% 75%",
-      },
+  // 데스크탑 뷰 1200px 이상 (2000px 이상 포함)
+  "@media (min-width: 1200px)": {
+    // SearchBar 간격
+    form: {
+      marginTop: "10rem",
     },
   },
 };
