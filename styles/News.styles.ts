@@ -542,7 +542,6 @@ export const articleSkeleton: CSSObject = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  height: "100vh",
   width: "100vw",
 
   ".default": {
@@ -565,7 +564,7 @@ export const articleSkeleton: CSSObject = {
 
   ".img": {
     width: "100%",
-    height: "30rem",
+    aspectRatio: "16 / 11",
   },
 
   ".title": {
@@ -599,7 +598,6 @@ export const articleSkeleton: CSSObject = {
 
     ".img": {
       marginTop: "10rem",
-      height: "40rem",
       width: "70%",
     },
 
