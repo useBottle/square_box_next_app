@@ -177,8 +177,6 @@ export const youtube: CSSObject = {
   // 데스크탑 뷰 1200px 이상
   "@media (min-width: 1200px)": {
     ".youtubeWrapper": {
-      marginTop: "2rem",
-
       ".initYoutube": {
         height: "50rem",
 
@@ -212,8 +210,6 @@ export const youtube: CSSObject = {
   // 데스크탑 뷰 2000px 이상
   "@media (min-width: 2000px)": {
     ".youtubeWrapper": {
-      marginTop: "10rem",
-
       ".initYoutube": {
         height: "90rem",
 
@@ -452,7 +448,7 @@ export const youtubeSkeleton: CSSObject = {
     },
   },
 
-  // 태블릿 뷰 960px 이상
+  // 태블릿 뷰 960px 이상 (데스크탑 뷰 1200px 이상 모두 포함)
   "@media (min-width: 960px)": {
     // SearchBar 간격
     form: {
@@ -491,14 +487,6 @@ export const youtubeSkeleton: CSSObject = {
           },
         },
       },
-    },
-  },
-
-  // 데스크탑 뷰 1200px 이상 (2000px 이상 포함)
-  "@media (min-width: 1200px)": {
-    // SearchBar 간격
-    form: {
-      marginTop: "10rem",
     },
   },
 };
