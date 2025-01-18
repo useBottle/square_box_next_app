@@ -197,8 +197,6 @@ export const newsListStyles: CSSObject = {
 
   // 태블릿 뷰 960px 이상 (데스크탑 뷰 모두 포함)
   "@media (min-width: 960px)": {
-    marginTop: "10rem",
-
     ".newsWrapper": {
       ".initNews": {
         height: "50rem",
