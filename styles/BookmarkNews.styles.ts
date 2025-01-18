@@ -74,7 +74,7 @@ export const bookmarkNews: CSSObject = {
                   margin: "0.5rem 0",
                 },
 
-                p: {
+                ".container": {
                   display: "none",
                 },
               },
@@ -144,15 +144,27 @@ export const bookmarkNews: CSSObject = {
                     fontSize: "1.8rem",
                   },
 
-                  p: {
-                    fontSize: "1.4rem",
-                    lineHeight: "1.5",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    display: "-webkit-box",
-                    WebkitLineClamp: 2,
-                    lineClamp: 2,
-                    WebkitBoxOrient: "vertical",
+                  ".date": {
+                    display: "block",
+                  },
+
+                  ".container": {
+                    display: "flex",
+
+                    p: {
+                      fontSize: "1.4rem",
+                      lineHeight: "1.5",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      display: "-webkit-box",
+                      WebkitLineClamp: 2,
+                      lineClamp: 2,
+                      WebkitBoxOrient: "vertical",
+                    },
+
+                    div: {
+                      display: "none",
+                    },
                   },
                 },
               },
@@ -188,10 +200,10 @@ export const bookmarkNews: CSSObject = {
                 width: "100%",
                 gridTemplateColumns: "35% 65%",
                 padding: "1rem",
+                marginBottom: "3rem",
 
                 ".textGroup": {
                   justifyContent: "space-between",
-                  height: "100%",
                   marginLeft: "1rem",
 
                   h6: {
@@ -203,18 +215,34 @@ export const bookmarkNews: CSSObject = {
                     fontSize: "1.2rem",
                   },
 
-                  p: {
-                    fontSize: "1.4rem",
-                    lineHeight: "1.5",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    display: "-webkit-box",
-                    WebkitLineClamp: 2,
-                    lineClamp: 2,
-                    WebkitBoxOrient: "vertical",
+                  ".container": {
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "flex-end",
+
+                    p: {
+                      fontSize: "1.4rem",
+                      lineHeight: "1.5",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      display: "-webkit-box",
+                      WebkitLineClamp: 2,
+                      lineClamp: 2,
+                      WebkitBoxOrient: "vertical",
+                    },
+
+                    div: {
+                      display: "flex",
+                      margin: 0,
+                    },
                   },
                 },
               },
+            },
+
+            div: {
+              display: "none",
             },
           },
         },

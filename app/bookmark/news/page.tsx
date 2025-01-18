@@ -66,7 +66,10 @@ export default function BookmarkNews() {
                           <div className="textGroup">
                             <h6>{item.title}</h6>
                             <div className="date">{item.date}</div>
-                            <p>{item.text[0]}</p>
+                            <div className="container">
+                              <p>{item.text[0]}</p>
+                              <BookmarkDeleteBtn data={{ category: "news", id: item._id }} />
+                            </div>
                           </div>
                         </li>
                       </Link>
