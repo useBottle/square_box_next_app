@@ -270,15 +270,25 @@ export const youtubeDynamic: CSSObject = {
         marginBottom: "4rem",
       },
 
-      ".channel": {
-        fontSize: "1.4rem",
-        padding: "0.5rem 1rem",
-        color: "var(--reverse-font)",
-        background: "var(--basic-font)",
-        border: "1px solid var(--basic-font)",
-        borderRadius: "3px",
-        width: "fit-content",
-        margin: "2rem 0",
+      ".channelGroup": {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+
+        ".channel": {
+          fontSize: "1.4rem",
+          padding: "0.5rem 1rem",
+          color: "var(--reverse-font)",
+          background: "var(--basic-font)",
+          border: "1px solid var(--basic-font)",
+          borderRadius: "3px",
+          width: "fit-content",
+          margin: "2rem 0",
+        },
+
+        form: {
+          display: "none",
+        },
       },
 
       ".publishedAt": {
@@ -312,13 +322,21 @@ export const youtubeDynamic: CSSObject = {
           marginTop: "6rem",
         },
 
-        ".channel": {
+        ".channelGroup": {
           marginTop: "4rem",
+
+          form: {
+            display: "block",
+          },
         },
 
         ".publishedAt": {
           marginTop: "4rem",
           fontSize: "1.4rem",
+        },
+
+        form: {
+          display: "none",
         },
 
         ".description": {
