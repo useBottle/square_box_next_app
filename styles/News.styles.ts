@@ -172,6 +172,8 @@ export const newsListStyles: CSSObject = {
         a: {
           li: {
             ".textGroup": {
+              paddingLeft: "2rem",
+
               h6: {
                 fontSize: "1.8rem",
               },
@@ -228,8 +230,6 @@ export const newsListStyles: CSSObject = {
 
           li: {
             ".textGroup": {
-              paddingLeft: "2rem",
-
               h6: {
                 fontSize: "2rem",
                 lineHeight: 1.5,
