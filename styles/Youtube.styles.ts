@@ -245,6 +245,8 @@ export const youtube: CSSObject = {
 };
 
 export const youtubeDynamic: CSSObject = {
+  padding: "0 1rem",
+
   ".youtubeDetailWrapper": {
     display: "flex",
     justifyContent: "center",
@@ -259,12 +261,13 @@ export const youtubeDynamic: CSSObject = {
     },
 
     ".textGroup": {
-      padding: "1rem",
+      width: "100%",
+      margin: "4rem",
 
       ".title": {
         fontSize: "2rem",
         color: "var(--title-color)",
-        margin: "1rem 0",
+        marginBottom: "4rem",
       },
 
       ".channel": {
@@ -287,13 +290,15 @@ export const youtubeDynamic: CSSObject = {
       ".description": {
         fontSize: "1.4rem",
         color: "var(--basic-font)",
-        margin: "1rem 0",
+        margin: "5rem 0",
       },
     },
   },
 
-  // 태블릿 뷰
+  // 태블릿 뷰 960px 이상
   "@media (min-width: 960px)": {
+    padding: 0,
+
     ".youtubeDetailWrapper": {
       iframe: {
         width: "60vw",
@@ -324,7 +329,7 @@ export const youtubeDynamic: CSSObject = {
     },
   },
 
-  // 데스크탑 뷰
+  // 데스크탑 뷰 1200px 이상
   "@media (min-width: 1200px)": {
     ".youtubeDetailWrapper": {
       iframe: {
@@ -333,6 +338,7 @@ export const youtubeDynamic: CSSObject = {
     },
   },
 
+  // 데스크탑 뷰 2000px 이상
   "@media (min-width: 2000px)": {
     ".youtubeDetailWrapper": {
       iframe: {
