@@ -252,8 +252,10 @@ export const youtubeDynamic: CSSObject = {
     flexDirection: "column",
     width: "100%",
 
-    ".player": {
-      width: "100%",
+    iframe: {
+      width: "100vw",
+      height: "100%",
+      aspectRatio: "16 / 11",
     },
 
     ".textGroup": {
@@ -293,11 +295,8 @@ export const youtubeDynamic: CSSObject = {
   // 태블릿 뷰
   "@media (min-width: 960px)": {
     ".youtubeDetailWrapper": {
-      width: "100%",
-
       iframe: {
-        width: "calc(60vw - 1px)",
-        height: "60vh",
+        width: "60vw",
       },
 
       ".textGroup": {
@@ -317,10 +316,6 @@ export const youtubeDynamic: CSSObject = {
           fontSize: "1.4rem",
         },
 
-        form: {
-          margin: "4rem 0",
-        },
-
         ".description": {
           fontSize: "1.8rem",
           margin: "5rem 0",
@@ -333,8 +328,7 @@ export const youtubeDynamic: CSSObject = {
   "@media (min-width: 1200px)": {
     ".youtubeDetailWrapper": {
       iframe: {
-        width: "calc(50vw - 1px)",
-        height: "50vh",
+        width: "50vw",
       },
     },
   },
@@ -342,8 +336,7 @@ export const youtubeDynamic: CSSObject = {
   "@media (min-width: 2000px)": {
     ".youtubeDetailWrapper": {
       iframe: {
-        width: "calc(40vw - 1px)",
-        height: "45vh",
+        width: "40vw",
       },
     },
   },

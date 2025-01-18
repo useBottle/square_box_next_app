@@ -138,7 +138,6 @@ export default function YoutubeDynamic(): JSX.Element {
       {!navMenu && (
         <div className="youtubeDetailWrapper">
           <YouTube
-            className="player"
             videoId={videoId}
             key={videoId}
             opts={{

@@ -47,7 +47,7 @@ body {
 /* 태블릿 뷰 */
 @media (min-width: 960px) {
   html {
-    width: 60vw; /* Header, MobileNav 의 width 는 별도로 설정 */
+    width: 60vw; /* Header, MobileNav, youtube (iframe 요소) 의 width 는 별도로 설정 */
   }
 
   body {
@@ -58,13 +58,13 @@ body {
 /* 데스크탑 뷰  1200px 이상 */
 @media (min-width: 1200px) {
   html {
-    width: 50vw; /* Header, MobileNav 의 width 는 별도로 설정 */
+    width: 50vw; /* Header, MobileNav, youtube (iframe 요소) 의 width 는 별도로 설정 */
   }
 }
 
 /* 데스크탑 뷰  2000px 이상 */
 @media (min-width: 2000px) {
   html {
-    width: 40vw; /* Header, MobileNav 의 width 는 별도로 설정 */
+    width: 40vw; /* Header, MobileNav, youtube (iframe 요소) 의 width 는 별도로 설정 */
   }
 }
