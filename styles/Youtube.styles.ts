@@ -270,7 +270,7 @@ export const youtubeDynamic: CSSObject = {
         marginBottom: "4rem",
       },
 
-      ".channelGroup": {
+      ".channelContainer": {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -322,7 +322,7 @@ export const youtubeDynamic: CSSObject = {
           marginTop: "6rem",
         },
 
-        ".channelGroup": {
+        ".channelContainer": {
           marginTop: "4rem",
 
           form: {

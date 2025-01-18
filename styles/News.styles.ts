@@ -342,11 +342,15 @@ export const dynamicNewsStyles: CSSObject = {
         color: "var(--title-color)",
       },
 
-      ".date": {
-        fontSize: "1.2rem",
+      ".container": {
         marginTop: "2rem",
-        marginBottom: "4rem",
-        color: "var(--basic-dark)",
+        marginBottom: "5rem",
+
+        ".date": {
+          fontSize: "1.2rem",
+          marginBottom: "4rem",
+          color: "var(--basic-dark)",
+        },
       },
 
       p: {
@@ -393,9 +397,17 @@ export const dynamicNewsStyles: CSSObject = {
           fontSize: "2.6rem",
         },
 
-        ".date": {
-          fontSize: "1.4rem",
+        ".container": {
           marginTop: "4rem",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+
+          ".date": {
+            margin: 0,
+            fontSize: "1.4rem",
+            width: "30%",
+          },
         },
 
         form: {

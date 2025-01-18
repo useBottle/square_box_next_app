@@ -174,10 +174,12 @@ export default function NewsDynamic(): JSX.Element {
           </figure>
           <div className="textGroup">
             <h1>{singleArticle.title}</h1>
-            <div className="date">{singleArticle.date[1] ? singleArticle.date[1] : singleArticle.date[0]}</div>
-            <form onSubmit={onSubmit}>
-              <BookmarkBtn success={bookmarkSuccess} isLoading={isLoading} />
-            </form>
+            <div className="container">
+              <div className="date">{singleArticle.date[1] ? singleArticle.date[1] : singleArticle.date[0]}</div>
+              <form onSubmit={onSubmit}>
+                <BookmarkBtn success={bookmarkSuccess} isLoading={isLoading} />
+              </form>
+            </div>
             {singleArticle.text.map((item, index) => {
               return <p key={index}>{item}</p>;
             })}

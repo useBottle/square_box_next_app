@@ -155,7 +155,7 @@ export default function YoutubeDynamic(): JSX.Element {
           />
           <div className="textGroup">
             <h1 className="title">{youtubeList.items[index].snippet.title}</h1>
-            <div className="channelGroup">
+            <div className="channelContainer">
               <h4 className="channel">{youtubeList.items[index].snippet.channelTitle}</h4>
               {/* 뷰포트 너비 960px 이상일 때 렌더링 */}
               <form onSubmit={onSubmit}>{<BookmarkBtn success={bookmarkSuccess} isLoading={isLoading} />}</form>
