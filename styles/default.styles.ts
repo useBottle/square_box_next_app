@@ -72,7 +72,7 @@ export const searchBarForm: CSSObject = {
 
   ".inputSet": {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center",
     width: "90%",
     height: "4rem",
@@ -83,10 +83,11 @@ export const searchBarForm: CSSObject = {
 
     ".searchIcon": {
       fontSize: "1.8rem",
+      marginLeft: "1rem",
     },
 
     input: {
-      width: "85%",
+      width: "90%",
       height: "95%",
       background: "#eee",
       border: "1px solid transparent",
@@ -113,6 +114,7 @@ export const searchBarForm: CSSObject = {
       height: "2rem",
       fontSize: "1.6rem",
       marginLeft: "0.5rem",
+      marginRight: "1rem",
       cursor: "pointer",
     },
   },
@@ -122,7 +124,7 @@ export const searchBarForm: CSSObject = {
     transition: "ease 0.3s",
   },
 
-  // 태블릿 뷰
+  // 태블릿 뷰 960px 이상
   "@media (min-width: 960px)": {
     width: "100%",
 
@@ -148,7 +150,7 @@ export const searchBarForm: CSSObject = {
     },
   },
 
-  // 데스크탑 뷰
+  // 데스크탑 뷰 1200px 이상 (2000px 포함)
   "@media (min-width: 1200px)": {
     width: "100%",
 
