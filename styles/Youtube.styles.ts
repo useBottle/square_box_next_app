@@ -86,7 +86,6 @@ export const youtube: CSSObject = {
               padding: "0.5rem 1rem",
               color: "var(--reverse-font)",
               background: "var(--basic-font)",
-              border: "1px solid var(--basic-font)",
               borderRadius: "3px",
               width: "fit-content",
               margin: "2rem 0",
@@ -107,10 +106,86 @@ export const youtube: CSSObject = {
     },
   },
 
+  // 모바일 뷰 430px 이상
+  "@media (min-width: 430px)": {
+    ".youtubeWrapper": {
+      ul: {
+        width: "90%",
+
+        a: {
+          width: "100%",
+          margin: "2rem 0",
+
+          li: {
+            display: "grid",
+            gridTemplateColumns: "35% 65%",
+            alignItems: "center",
+            padding: "1rem",
+
+            img: {
+              aspectRatio: "16 / 11",
+              width: "100%",
+              height: "100%",
+            },
+
+            ".textGroup": {
+              padding: "0 2rem",
+              height: "100%",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+
+              ".title": {
+                fontSize: "1.6rem",
+                margin: 0,
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                lineClamp: 2,
+                WebkitBoxOrient: "vertical",
+              },
+
+              ".channel": {
+                margin: 0,
+                padding: "0.2rem 0.5rem",
+                fontSize: "1rem",
+              },
+
+              ".publishedAt": {
+                margin: 0,
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+
+  // 모바일 뷰 550px 이상
+  "@media (min-width: 550px)": {
+    ".youtubeWrapper": {
+      ul: {
+        a: {
+          li: {
+            ".textGroup": {
+              ".title": {
+                fontSize: "1.8rem",
+              },
+
+              ".channel": {
+                padding: "0.5rem 1rem",
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+
   // 태블릿 뷰 960px 이상
   "@media (min-width: 960px)": {
     ".youtubeWrapper": {
-      width: "100%",
       marginTop: "2rem",
 
       ".initYoutube": {
@@ -136,36 +211,16 @@ export const youtube: CSSObject = {
       },
 
       ul: {
+        width: "100%",
+
         a: {
           width: "100%",
           margin: "3rem 0",
 
           li: {
-            display: "grid",
-            gridTemplateColumns: "40% 60%",
-            alignItems: "center",
-            padding: "1rem",
-
-            img: {
-              aspectRatio: "16 / 11",
-              width: "100%",
-              height: "100%",
-            },
-
             ".textGroup": {
-              padding: "0 2rem",
-              height: "100%",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-
               ".title": {
                 fontSize: "2rem",
-                margin: 0,
-              },
-
-              ".channel": {
-                margin: 0,
               },
             },
           },
@@ -178,8 +233,6 @@ export const youtube: CSSObject = {
   "@media (min-width: 1200px)": {
     ".youtubeWrapper": {
       ".initYoutube": {
-        height: "50rem",
-
         ".icon": {
           fontSize: "6rem",
           marginBottom: "10rem",
@@ -193,14 +246,6 @@ export const youtube: CSSObject = {
 
           ".backIcon": {
             fontSize: "30rem",
-          },
-        },
-      },
-
-      ul: {
-        a: {
-          li: {
-            gridTemplateColumns: "40% 60%",
           },
         },
       },
@@ -225,14 +270,6 @@ export const youtube: CSSObject = {
 
           ".backIcon": {
             fontSize: "40rem",
-          },
-        },
-      },
-
-      ul: {
-        a: {
-          li: {
-            gridTemplateColumns: "30% 70%",
           },
         },
       },

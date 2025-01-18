@@ -44,8 +44,6 @@ export const bookmarkYoutube: CSSObject = {
 
           li: {
             width: "100%",
-            boxSizing: "border-box",
-            marginBottom: "1.5rem",
 
             img: {
               width: "100%",
@@ -53,7 +51,7 @@ export const bookmarkYoutube: CSSObject = {
             },
 
             ".textGroup": {
-              padding: "1rem",
+              padding: "1rem 0",
 
               ".title": {
                 fontSize: "2rem",
@@ -79,6 +77,10 @@ export const bookmarkYoutube: CSSObject = {
               },
             },
           },
+
+          "&:hover": {
+            background: "var(--list-back)",
+          },
         },
       },
 
@@ -97,7 +99,7 @@ export const bookmarkYoutube: CSSObject = {
     },
   },
 
-  // 태블릿 뷰
+  // 태블릿 뷰 960px 이상
   "@media (min-width: 960px)": {
     ".youtubeContainer": {
       width: "100%",
