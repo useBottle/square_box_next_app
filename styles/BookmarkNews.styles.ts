@@ -31,60 +31,62 @@ export const bookmarkNews: CSSObject = {
       alignItems: "center",
 
       ul: {
-        ".newsLink": {
-          li: {
-            width: "100%",
-            height: "10rem",
-            overflow: "hidden",
-            color: "var(--basic-font)",
-            display: "grid",
-            gridTemplateColumns: "35% 65%",
-            marginBottom: "1.5rem",
-            boxSizing: "border-box",
-
-            img: {
+        div: {
+          ".newsLink": {
+            li: {
               width: "100%",
-              height: "100%",
-            },
-
-            ".textGroup": {
-              padding: "0 1rem",
-              height: "10rem",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
+              overflow: "hidden",
+              color: "var(--basic-font)",
+              display: "grid",
+              gridTemplateColumns: "35% 65%",
+              marginBottom: "1.5rem",
               boxSizing: "border-box",
 
-              h6: {
-                fontSize: "1.4rem",
-                lineHeight: 1.5,
-                color: "var(--title-color)",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                display: "-webkit-box",
-                WebkitLineClamp: 2,
-                lineClamp: 2,
-                WebkitBoxOrient: "vertical",
+              img: {
+                width: "100%",
+                height: "100%",
+                aspectRatio: "16 / 11",
+                objectFit: "cover",
               },
 
-              ".date": {
-                color: "var(--basic-dark)",
-                margin: "0.5rem 0",
+              ".textGroup": {
+                padding: "0 1rem",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                boxSizing: "border-box",
+
+                h6: {
+                  fontSize: "1.4rem",
+                  lineHeight: 1.5,
+                  color: "var(--title-color)",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  display: "-webkit-box",
+                  WebkitLineClamp: 2,
+                  lineClamp: 2,
+                  WebkitBoxOrient: "vertical",
+                },
+
+                ".date": {
+                  color: "var(--basic-dark)",
+                  margin: "0.5rem 0",
+                },
+
+                p: {
+                  display: "none",
+                },
               },
 
-              p: {
-                display: "none",
+              "&:hover": {
+                background: "var(--list-back)",
               },
             },
 
-            "&:hover": {
-              background: "var(--list-back)",
+            "&:last-child": {
+              marginBottom: "4rem",
             },
-          },
-
-          "&:last-child": {
-            marginBottom: "4rem",
           },
         },
       },
@@ -104,7 +106,64 @@ export const bookmarkNews: CSSObject = {
     },
   },
 
-  // 태블릿 뷰
+  // 모바일 뷰 430px 이상
+  "@media (min-width: 430px)": {
+    ".newsContainer": {
+      ".contents": {
+        ul: {
+          div: {
+            ".newsLink": {
+              li: {
+                padding: 0,
+
+                ".textGroup": {
+                  h6: {
+                    fontSize: "1.6rem",
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+
+  // 모바일 뷰 550px 이상
+  "@media (min-width: 550px)": {
+    ".newsContainer": {
+      ".contents": {
+        ul: {
+          div: {
+            ".newsLink": {
+              li: {
+                ".textGroup": {
+                  paddingLeft: "2rem",
+
+                  h6: {
+                    fontSize: "1.8rem",
+                  },
+
+                  p: {
+                    fontSize: "1.4rem",
+                    lineHeight: "1.5",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2,
+                    lineClamp: 2,
+                    WebkitBoxOrient: "vertical",
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+
+  // 태블릿 뷰 960px 이상 (데스크탑 뷰 1200px 이상 모두 포함)
   "@media (min-width: 960px)": {
     width: "100%",
 
@@ -123,57 +182,39 @@ export const bookmarkNews: CSSObject = {
         ul: {
           width: "100%",
 
-          ".newsLink": {
-            li: {
-              width: "100%",
-              height: "18rem",
-              gridTemplateColumns: "30% 70%",
-              padding: "1rem",
+          div: {
+            ".newsLink": {
+              li: {
+                width: "100%",
+                gridTemplateColumns: "35% 65%",
+                padding: "1rem",
 
-              img: {
-                height: "16rem",
-              },
+                ".textGroup": {
+                  justifyContent: "space-between",
+                  height: "100%",
+                  marginLeft: "1rem",
 
-              ".textGroup": {
-                justifyContent: "space-between",
-                height: "100%",
-                marginLeft: "1rem",
+                  h6: {
+                    fontSize: "2rem",
+                    lineHeight: 1.5,
+                  },
 
-                h6: {
-                  fontSize: "2rem",
-                  lineHeight: 1.5,
-                },
+                  ".date": {
+                    fontSize: "1.2rem",
+                  },
 
-                ".date": {
-                  fontSize: "1.2rem",
-                },
-
-                p: {
-                  fontSize: "1.4rem",
-                  lineHeight: "1.5",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  display: "-webkit-box",
-                  WebkitLineClamp: 2,
-                  lineClamp: 2,
-                  WebkitBoxOrient: "vertical",
+                  p: {
+                    fontSize: "1.4rem",
+                    lineHeight: "1.5",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2,
+                    lineClamp: 2,
+                    WebkitBoxOrient: "vertical",
+                  },
                 },
               },
-            },
-          },
-        },
-      },
-    },
-  },
-
-  // 데스크탑 뷰 1200px 이상 (2000px 이상 포함)
-  "@media (min-width: 1200px)": {
-    ".newsContainer": {
-      ".contents": {
-        ul: {
-          ".newsLink": {
-            li: {
-              gridTemplateColumns: "25% 75%",
             },
           },
         },
