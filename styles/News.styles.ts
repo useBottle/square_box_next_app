@@ -141,6 +141,12 @@ export const newsListStyles: CSSObject = {
           background: "var(--list-back)",
         },
       },
+
+      ".noHover": {
+        "&:hover": {
+          background: "none",
+        },
+      },
     },
   },
 

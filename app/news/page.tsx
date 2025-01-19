@@ -104,6 +104,7 @@ export default function News(): JSX.Element {
                   href={`/news/detail?title=${encodeURIComponent(item.title)}`}
                   key={index}
                   onClick={onClick(item.title, item.href)}
+                  className={/Mobi/i.test(navigator.userAgent) ? "noHover" : ""}
                 >
                   <li>
                     <div className="imgContainer">
