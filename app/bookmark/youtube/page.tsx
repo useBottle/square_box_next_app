@@ -61,7 +61,7 @@ export default function Bookmark() {
                         <Link
                           href={`/youtube/detail?id=${item.videoId}&index=${index}`}
                           onClick={onClick(item._id, item.videoId)}
-                          className={/Mobi/i.test(navigator.userAgent) ? "noHover" : ""}
+                          className={`${/Mobi/i.test(navigator.userAgent) ? `${"youtubeLink"} ${"noHover"}` : ""}`}
                         >
                           <li>
                             <Image src={item.thumbnail} alt={item.title} width={300} height={200} />
