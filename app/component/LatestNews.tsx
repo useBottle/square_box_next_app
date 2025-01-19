@@ -64,6 +64,7 @@ export default function LatestNews({
                   href={`/latest-news/detail?title=${encodeURIComponent(item.title)}`}
                   key={index}
                   onClick={onClick(item.title, item.href)}
+                  className={/Mobi/i.test(navigator.userAgent) ? "noHover" : ""}
                 >
                   <li>
                     <div className="imgContainer">

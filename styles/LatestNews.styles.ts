@@ -184,6 +184,12 @@ export const latestNews: CSSObject = {
             },
           },
         },
+
+        ".noHover": {
+          "&:hover": {
+            background: "none",
+          },
+        },
       },
     },
   },
