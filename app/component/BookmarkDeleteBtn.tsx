@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { MarkedNewsArticle, MarkedYoutubeVideo } from "@/types/types";
 import { setMarkedNews, setMarkedYoutube } from "@/store/bookmark";
+import { MouseEvent } from "react";
 
 const btn: CSSObject = {
   button: {
@@ -57,7 +58,8 @@ export default function BookmarkDeleteBtn({ data }: { data: { category: string; 
       markedNewsData: MarkedNewsArticle[];
       markedYoutubeData: MarkedYoutubeVideo[];
     }) =>
-    () => {
+    (e: MouseEvent<HTMLAnchorElement>) => {
+      e.stopPropagation();
       async function deleteBookmark() {
         if (targetData.category === "news" && targetData.markedNewsData.length !== 0) {
           if (confirm("북마크를 제거하시겠습니까?")) {
