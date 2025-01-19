@@ -103,6 +103,12 @@ export const youtube: CSSObject = {
           background: "var(--list-back)",
         },
       },
+
+      ".noHover": {
+        "&:hover": {
+          background: "none",
+        },
+      },
     },
   },
 
