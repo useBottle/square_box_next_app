@@ -77,7 +77,6 @@ export default function News(): JSX.Element {
     <div css={css(newsListStyles)}>
       {!navMenu && (
         <div className="newsWrapper">
-          {/Mobi/i.test(navigator.userAgent) && <p>Mobile</p>}
           <SearchBar />
           {newsList.length === 0 && !noNewsList && (
             <div className="initNews">
