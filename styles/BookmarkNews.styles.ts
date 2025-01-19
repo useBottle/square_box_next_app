@@ -88,6 +88,10 @@ export const bookmarkNews: CSSObject = {
               marginBottom: "4rem",
             },
           },
+
+          "&:hover": {
+            background: "var(--list-back)",
+          },
         },
       },
     },
