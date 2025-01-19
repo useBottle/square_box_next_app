@@ -29,6 +29,8 @@ export default function News(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
 
+  console.log(navigator.userAgent);
+
   // 뉴스 페이지 접속 여부 체크 -> 검색 컴포넌트에서 검색 요청 토글 역할
   useEffect(() => {
     window.scrollTo({ top: 0 });
