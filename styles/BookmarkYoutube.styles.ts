@@ -82,6 +82,12 @@ export const bookmarkYoutube: CSSObject = {
             background: "var(--list-back)",
           },
         },
+
+        ".noHover": {
+          "&:hover": {
+            background: "none",
+          },
+        },
       },
 
       ".emptyContents": {

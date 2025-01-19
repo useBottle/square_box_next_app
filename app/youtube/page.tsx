@@ -77,7 +77,11 @@ export default function Youtube() {
           <ul>
             {youtubeList.items.map((item, index) => {
               return (
-                <Link href={`/youtube/detail?id=${item.id.videoId}&index=${index}`} key={index}>
+                <Link
+                  href={`/youtube/detail?id=${item.id.videoId}&index=${index}`}
+                  key={index}
+                  className={/Mobi/i.test(navigator.userAgent) ? "noHover" : ""}
+                >
                   <li>
                     <Image src={item.snippet.thumbnails.high.url} alt={item.snippet.title} width={300} height={200} />
                     <div className="textGroup">
