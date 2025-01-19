@@ -68,6 +68,12 @@ export const topicsForm: CSSObject = {
           background: "var(--list-back)",
         },
       },
+
+      ".noHover": {
+        "&:hover": {
+          background: "none",
+        },
+      },
     },
   },
 

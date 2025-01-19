@@ -78,7 +78,12 @@ export default function Topics({ data }: TopicsProps): JSX.Element {
           <ul>
             {(topicsList || keywordsData)?.map((item, index) => {
               return (
-                <Link href="/news" key={index} onClick={onClick(item.keyword)}>
+                <Link
+                  href="/news"
+                  key={index}
+                  onClick={onClick(item.keyword)}
+                  className={/Mobi/i.test(navigator.userAgent) ? "noHover" : ""}
+                >
                   <li>
                     <span className="rank">{item.rank}</span>
                     <span className="keyword">{item.keyword}</span>
