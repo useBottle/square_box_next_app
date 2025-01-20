@@ -5,7 +5,7 @@
 import { AppDispatch, RootState } from "@/store/store";
 import { css } from "@emotion/react";
 import { useDispatch, useSelector } from "react-redux";
-import { setNavMenu } from "@/store/switches";
+import { setInputValue, setNavMenu } from "@/store/switches";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { nav } from "@/styles/MobileNav.styles";
@@ -36,6 +36,12 @@ export default function MobileNav(): JSX.Element {
       document.body.style.overflow = "auto";
     };
   }, [navMenu]);
+
+  const onClick = (path: string) => {
+    dispatch(setInputValue(""));
+    dispatch(setNavMenu(navMenu ? false : true));
+    router.push(path);
+  };
 
   const menuItems = [
     { text: "HOME", icon: <IoHomeOutline />, path: "/" },
@@ -85,7 +91,7 @@ export default function MobileNav(): JSX.Element {
             {menuItems.map((item, index) => {
               return (
                 <li key={index}>
-                  <Link href={item.path} className="list" onClick={() => dispatch(setNavMenu(navMenu ? false : true))}>
+                  <Link href={item.path} className="list" onClick={() => onClick(item.path)}>
                     {item.text}
                     {item.icon}
                   </Link>
