@@ -68,7 +68,7 @@ export const signup: CSSObject = {
             margin: 0,
 
             "&:focus": {
-              border: "1.5px solid transparent",
+              border: "1px solid transparent",
             },
           },
 
@@ -198,6 +198,12 @@ export const signup: CSSObject = {
         div: {
           ".inputContainer": {
             border: "2px solid transparent",
+
+            input: {
+              "&:focus": {
+                border: "2px solid transparent",
+              },
+            },
           },
 
           ".borderOn": {
