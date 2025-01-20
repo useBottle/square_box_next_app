@@ -50,7 +50,7 @@ export const bookmarkNews: CSSObject = {
               },
 
               ".textGroup": {
-                padding: "0 1rem",
+                paddingLeft: "1rem",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
@@ -119,13 +119,39 @@ export const bookmarkNews: CSSObject = {
             ".newsLink": {
               li: {
                 padding: 0,
+                marginBottom: "5rem",
 
                 ".textGroup": {
+                  position: "relative",
+
                   h6: {
                     fontSize: "1.6rem",
                   },
+
+                  ".date": {
+                    position: "absolute",
+                    bottom: 0,
+                    left: "1rem",
+                  },
+
+                  ".container": {
+                    display: "block",
+                    width: "100%",
+
+                    p: {
+                      display: "none",
+                    },
+
+                    div: {
+                      margin: 0,
+                    },
+                  },
                 },
               },
+            },
+
+            ".mobileDeleteBtn": {
+              display: "none",
             },
           },
         },
@@ -137,6 +163,8 @@ export const bookmarkNews: CSSObject = {
   "@media (min-width: 550px)": {
     ".newsContainer": {
       ".contents": {
+        marginTop: "5rem",
+
         ul: {
           div: {
             ".newsLink": {
@@ -150,73 +178,8 @@ export const bookmarkNews: CSSObject = {
 
                   ".date": {
                     display: "block",
-                  },
-
-                  ".container": {
-                    display: "flex",
-
-                    p: {
-                      fontSize: "1.4rem",
-                      lineHeight: "1.5",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      display: "-webkit-box",
-                      WebkitLineClamp: 2,
-                      lineClamp: 2,
-                      WebkitBoxOrient: "vertical",
-                    },
-
-                    div: {
-                      display: "none",
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-  },
-
-  // 태블릿 뷰 960px 이상 (데스크탑 뷰 1200px 이상 모두 포함)
-  "@media (min-width: 960px)": {
-    width: "100%",
-
-    ".newsContainer": {
-      width: "100%",
-      marginTop: "5rem",
-
-      h4: {
-        fontSize: "1.4rem",
-      },
-
-      ".contents": {
-        marginTop: "5rem",
-        width: "100%",
-
-        ul: {
-          width: "100%",
-
-          div: {
-            ".newsLink": {
-              li: {
-                width: "100%",
-                gridTemplateColumns: "35% 65%",
-                padding: "1rem",
-                marginBottom: "3rem",
-
-                ".textGroup": {
-                  justifyContent: "space-between",
-                  marginLeft: "1rem",
-
-                  h6: {
-                    fontSize: "2rem",
-                    lineHeight: 1.5,
-                  },
-
-                  ".date": {
-                    fontSize: "1.2rem",
+                    position: "relative",
+                    left: 0,
                   },
 
                   ".container": {
@@ -234,19 +197,57 @@ export const bookmarkNews: CSSObject = {
                       WebkitLineClamp: 2,
                       lineClamp: 2,
                       WebkitBoxOrient: "vertical",
+                      marginRight: "3rem",
                     },
 
                     div: {
                       display: "flex",
                       margin: 0,
+                      alignItems: "flex-end",
                     },
                   },
                 },
               },
             },
+          },
+        },
+      },
+    },
+  },
 
-            div: {
-              display: "none",
+  // 태블릿 뷰 960px 이상 (데스크탑 뷰 1200px 이상 모두 포함)
+  "@media (min-width: 960px)": {
+    ".newsContainer": {
+      width: "100%",
+      marginTop: "5rem",
+
+      h4: {
+        fontSize: "1.4rem",
+      },
+
+      ".contents": {
+        width: "100%",
+
+        ul: {
+          div: {
+            ".newsLink": {
+              li: {
+                padding: "1rem",
+                marginBottom: "5rem",
+
+                ".textGroup": {
+                  justifyContent: "space-between",
+                  marginLeft: "1rem",
+
+                  h6: {
+                    fontSize: "2rem",
+                  },
+
+                  ".date": {
+                    fontSize: "1.2rem",
+                  },
+                },
+              },
             },
           },
         },

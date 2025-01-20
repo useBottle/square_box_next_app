@@ -68,12 +68,16 @@ export default function BookmarkNews(): JSX.Element {
                             <div className="date">{item.date}</div>
                             <div className="container">
                               <p>{item.text[0]}</p>
-                              <BookmarkDeleteBtn data={{ category: "news", id: item._id }} />
+                              <div className="deleteBtn">
+                                <BookmarkDeleteBtn data={{ category: "news", id: item._id }} />
+                              </div>
                             </div>
                           </div>
                         </li>
                       </Link>
-                      <BookmarkDeleteBtn data={{ category: "news", id: item._id }} />
+                      <div className="mobileDeleteBtn">
+                        <BookmarkDeleteBtn data={{ category: "news", id: item._id }} />
+                      </div>
                     </div>
                   );
                 })}

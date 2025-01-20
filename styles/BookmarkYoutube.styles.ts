@@ -117,14 +117,8 @@ export const bookmarkYoutube: CSSObject = {
   "@media (min-width: 430px)": {
     ".youtubeContainer": {
       width: "90%",
-      marginTop: "5rem",
-
-      ".bookmarkSub": {
-        fontSize: "1.4rem",
-      },
 
       ".contents": {
-        marginTop: "5rem",
         width: "100%",
 
         ul: {
@@ -201,6 +195,8 @@ export const bookmarkYoutube: CSSObject = {
   "@media (min-width: 550px)": {
     ".youtubeContainer": {
       ".contents": {
+        marginTop: "5rem",
+
         ul: {
           ".listWrapper": {
             ".youtubeLink": {
