@@ -286,6 +286,7 @@ export const youtube: CSSObject = {
 
 export const youtubeDynamic: CSSObject = {
   padding: "0 1rem",
+  width: "95%",
 
   ".youtubeDetailWrapper": {
     display: "flex",

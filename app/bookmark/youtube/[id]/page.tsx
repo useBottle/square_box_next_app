@@ -101,7 +101,6 @@ export default function MarkedYoutubeDynamic(): JSX.Element {
       {!navMenu && (
         <div className="youtubeDetailWrapper">
           <YouTube
-            className="player"
             videoId={clickedYoutube.videoId}
             key={clickedYoutube.videoId}
             opts={{
@@ -119,7 +118,11 @@ export default function MarkedYoutubeDynamic(): JSX.Element {
           />
           <div className="textGroup">
             <h1 className="title">{clickedYoutube.title}</h1>
-            <h4 className="channel">{clickedYoutube.channelTitle}</h4>
+            <div className="channelContainer">
+              <h4 className="channel">{clickedYoutube.channelTitle}</h4>
+              {/* 뷰포트 너비 960px 이상일 때 렌더링 */}
+              <form onSubmit={onSubmit}>{<BookmarkBtn success={bookmarkSuccess} isLoading={false} />}</form>
+            </div>
             <div className="publishedAt">{clickedYoutube.publishedAt}</div>
             <form onSubmit={onSubmit}>{<BookmarkBtn success={bookmarkSuccess} isLoading={false} />}</form>
             <p className="description">{clickedYoutube.description}</p>

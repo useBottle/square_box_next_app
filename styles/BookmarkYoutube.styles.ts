@@ -5,6 +5,7 @@ export const bookmarkYoutube: CSSObject = {
   flexDirection: "column",
   alignItems: "center",
   width: "100%",
+  padding: 0,
 
   ".youtubeContainer": {
     width: "90%",
