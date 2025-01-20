@@ -16,7 +16,7 @@ import { setClickedNews } from "@/store/bookmark";
 import { setPageState } from "@/store/switches";
 import ExpiredData from "@/app/component/ExpiredData";
 
-export default function BookmarkNews() {
+export default function BookmarkNews(): JSX.Element {
   const { data: session } = useSession();
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();

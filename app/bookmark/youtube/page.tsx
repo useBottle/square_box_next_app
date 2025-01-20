@@ -17,7 +17,7 @@ import { setClickedYoutube } from "@/store/bookmark";
 import { setPageState } from "@/store/switches";
 import ExpiredData from "@/app/component/ExpiredData";
 
-export default function Bookmark() {
+export default function BookmarkYoutube(): JSX.Element {
   const { data: session } = useSession();
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
@@ -48,37 +48,42 @@ export default function Bookmark() {
     <div css={css(bookmarkYoutube)}>
       {!navMenu && (
         <section className="youtubeContainer">
-          <h4>
+          <h4 className="bookmarkSub">
             북마크 유튜브 컨텐츠<span>{`${markedYoutubeData && markedYoutubeData.length} / 10`}</span>
           </h4>
           <div className="contents">
             {markedYoutubeData && markedYoutubeData.length !== 0 ? (
-              <div>
-                <ul>
-                  {markedYoutubeData.map((item, index) => {
-                    return (
-                      <div key={index}>
-                        <Link
-                          href={`/youtube/detail?id=${item.videoId}&index=${index}`}
-                          onClick={onClick(item._id, item.videoId)}
-                          className={`${/Mobi/i.test(navigator.userAgent) ? `${"youtubeLink"} ${"noHover"}` : ""}`}
-                        >
-                          <li>
-                            <Image src={item.thumbnail} alt={item.title} width={300} height={200} />
-                            <div className="textGroup">
-                              <h1 className="title">{item.title}</h1>
-                              <h4 className="channel">{item.channelTitle}</h4>
+              <ul>
+                {markedYoutubeData.map((item, index) => {
+                  return (
+                    <div key={index} className="listWrapper">
+                      <Link
+                        href={`/youtube/detail?id=${item.videoId}&index=${index}`}
+                        onClick={onClick(item._id, item.videoId)}
+                        className={`youtubeLink ${/Mobi/i.test(navigator.userAgent) ? "noHover" : ""}`}
+                      >
+                        <li>
+                          <Image src={item.thumbnail} alt={item.title} width={300} height={200} />
+                          <div className="textGroup">
+                            <h1 className="title">{item.title}</h1>
+                            <h4 className="channel">{item.channelTitle}</h4>
+                            <div className="container">
                               <div className="publishedAt">{item.publishedAt}</div>
+                              <div className="deleteBtn">
+                                <BookmarkDeleteBtn data={{ category: "youtube", id: item._id }} />
+                              </div>
                             </div>
-                          </li>
-                        </Link>
+                          </div>
+                        </li>
+                      </Link>
+                      <div className="mobileDeleteBtn">
                         <BookmarkDeleteBtn data={{ category: "youtube", id: item._id }} />
                       </div>
-                    );
-                  })}
-                </ul>
+                    </div>
+                  );
+                })}
                 <ScrollBtn />
-              </div>
+              </ul>
             ) : (
               <div className="emptyContents">
                 <p>북마크한 영상이 없습니다</p>

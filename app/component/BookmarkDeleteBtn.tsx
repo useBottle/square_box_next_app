@@ -30,7 +30,7 @@ const btn: CSSObject = {
   },
 
   // 태블릿 뷰
-  "@media (min-width: 960px)": {
+  "@media (min-width: 430px)": {
     width: "100%",
     display: "flex",
     justifyContent: "flex-end",

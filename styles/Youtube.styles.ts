@@ -82,7 +82,7 @@ export const youtube: CSSObject = {
             },
 
             ".channel": {
-              fontSize: "1.4rem",
+              fontSize: "1.2rem",
               padding: "0.5rem 1rem",
               color: "var(--reverse-font)",
               background: "var(--basic-font)",
@@ -181,6 +181,7 @@ export const youtube: CSSObject = {
 
               ".channel": {
                 padding: "0.5rem 1rem",
+                fontSize: "1.2rem",
               },
             },
           },
