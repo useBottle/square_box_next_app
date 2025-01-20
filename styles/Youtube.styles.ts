@@ -491,15 +491,14 @@ export const youtubeSkeleton: CSSObject = {
     },
   },
 
-  // 태블릿 뷰 960px 이상 (데스크탑 뷰 1200px 이상 모두 포함)
-  "@media (min-width: 960px)": {
-    // SearchBar 간격
-    form: {
-      marginTop: "2rem",
-    },
+  // 모바일 뷰 430px 이상
+  "@media (min-width: 430px)": {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
 
     ".skeleton": {
-      width: "100%",
+      width: "90%",
 
       ".list": {
         width: "100%",
@@ -507,7 +506,7 @@ export const youtubeSkeleton: CSSObject = {
         gridTemplateRows: "none",
         gridTemplateColumns: "35% 65%",
         alignItems: "center",
-        margin: "3rem 0",
+        margin: "2rem 0",
 
         ".textGroup": {
           width: "auto",
@@ -529,6 +528,22 @@ export const youtubeSkeleton: CSSObject = {
             height: "15%",
           },
         },
+      },
+    },
+  },
+
+  // 태블릿 뷰 960px 이상 (데스크탑 뷰 1200px 이상 모두 포함)
+  "@media (min-width: 960px)": {
+    // SearchBar 간격
+    form: {
+      marginTop: "2rem",
+    },
+
+    ".skeleton": {
+      width: "100%",
+
+      ".list": {
+        margin: "3rem 0",
       },
     },
   },
