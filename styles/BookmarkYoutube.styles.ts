@@ -135,7 +135,7 @@ export const bookmarkYoutube: CSSObject = {
                   flexDirection: "column",
                   justifyContent: "space-between",
                   height: "100%",
-                  marginLeft: "1rem",
+                  marginLeft: "2rem",
                   padding: 0,
 
                   ".title": {
@@ -241,6 +241,10 @@ export const bookmarkYoutube: CSSObject = {
     ".youtubeContainer": {
       width: "100%",
 
+      ".bookmarkSub": {
+        fontSize: "1.4rem",
+      },
+
       ".contents": {
         marginTop: "5rem",
         width: "100%",
@@ -266,7 +270,6 @@ export const bookmarkYoutube: CSSObject = {
                   flexDirection: "column",
                   justifyContent: "space-between",
                   height: "100%",
-                  marginLeft: "1rem",
 
                   ".title": {
                     fontSize: "2rem",

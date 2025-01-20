@@ -219,7 +219,6 @@ export const bookmarkNews: CSSObject = {
   "@media (min-width: 960px)": {
     ".newsContainer": {
       width: "100%",
-      marginTop: "5rem",
 
       h4: {
         fontSize: "1.4rem",
