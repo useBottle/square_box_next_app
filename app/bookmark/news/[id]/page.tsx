@@ -117,10 +117,12 @@ export default function MarkedNewsDynamic(): JSX.Element {
           </figure>
           <div className="textGroup">
             <h1>{clickedNews.title}</h1>
-            <div className="date">{clickedNews.date}</div>
-            <form onSubmit={onSubmit}>
-              <BookmarkBtn success={bookmarkSuccess} isLoading={false} />
-            </form>
+            <div className="container">
+              <div className="date">{clickedNews.date}</div>
+              <form onSubmit={onSubmit}>
+                <BookmarkBtn success={bookmarkSuccess} isLoading={false} />
+              </form>
+            </div>
             {clickedNews.text.map((item, index) => {
               return <p key={index}>{item}</p>;
             })}

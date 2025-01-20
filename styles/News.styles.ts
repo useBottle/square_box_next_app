@@ -411,7 +411,7 @@ export const dynamicNewsStyles: CSSObject = {
     },
 
     ".textGroup": {
-      padding: "0 1rem",
+      width: "95%",
       marginBottom: "10rem",
 
       h1: {
@@ -469,7 +469,7 @@ export const dynamicNewsStyles: CSSObject = {
       ".textGroup": {
         marginTop: "5rem",
         marginBottom: "20rem",
-        padding: 0,
+        width: "100%",
 
         h1: {
           fontSize: "2.6rem",
