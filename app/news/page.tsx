@@ -56,6 +56,15 @@ export default function News(): JSX.Element {
     );
   }
 
+  if (true) {
+    return (
+      <div css={css(newsSkeleton)}>
+        <SearchBar />
+        <NewsSkeleton />
+      </div>
+    );
+  }
+
   // newsStatus 가 failed 일 경우 FetchFailedData 렌더링
   if (newsStatus === "failed") {
     return <FetchFailedData />;

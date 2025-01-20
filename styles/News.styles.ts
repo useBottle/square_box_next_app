@@ -604,6 +604,24 @@ export const newsSkeleton: CSSObject = {
     },
   },
 
+  // 태블릿 뷰 700px 이상
+  "@media (min-width: 700px)": {
+    ".skeleton": {
+      ".list": {
+        gridTemplateColumns: "30% 70%",
+      },
+    },
+  },
+
+  // 태블릿 뷰 800px 이상
+  "@media (min-width: 800px)": {
+    ".skeleton": {
+      ".list": {
+        gridTemplateColumns: "25% 75%",
+      },
+    },
+  },
+
   // 태블릿 뷰 960px 이상
   "@media (min-width: 960px)": {
     // SearchBar 간격
@@ -614,7 +632,7 @@ export const newsSkeleton: CSSObject = {
     ".skeleton": {
       ".list": {
         width: "100%",
-        gridTemplateColumns: "35% 65%",
+        gridTemplateColumns: "30% 70%",
 
         ".textGroup": {
           marginLeft: "2rem",
@@ -623,11 +641,29 @@ export const newsSkeleton: CSSObject = {
     },
   },
 
-  // 데스크탑 뷰 1200px 이상 (2000px 이상 포함)
+  // 데스크탑 뷰 1200px 이상
   "@media (min-width: 1200px)": {
     // SearchBar 간격
     form: {
       marginTop: "2rem",
+    },
+  },
+
+  // 데스크탑 뷰 1500px 이상
+  "@media (min-width: 1500px)": {
+    ".skeleton": {
+      ".list": {
+        gridTemplateColumns: "25% 75%",
+      },
+    },
+  },
+
+  // 데스크탑 뷰 1750px 이상
+  "@media (min-width: 1750px)": {
+    ".skeleton": {
+      ".list": {
+        gridTemplateColumns: "20% 80%",
+      },
     },
   },
 };
