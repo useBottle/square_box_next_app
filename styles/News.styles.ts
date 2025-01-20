@@ -171,7 +171,7 @@ export const newsListStyles: CSSObject = {
     },
   },
 
-  // 모바일 뷰 550px 이상
+  // 태블릿 뷰 550px 이상
   "@media (min-width: 550px)": {
     ".newsWrapper": {
       ul: {
@@ -201,7 +201,33 @@ export const newsListStyles: CSSObject = {
     },
   },
 
-  // 태블릿 뷰 960px 이상 (데스크탑 뷰 모두 포함)
+  // 태블릿 뷰 700px 이상
+  "@media (min-width: 700px)": {
+    ".newsWrapper": {
+      ul: {
+        a: {
+          li: {
+            gridTemplateColumns: "30% 70%",
+          },
+        },
+      },
+    },
+  },
+
+  // 태블릿 뷰 800px 이상
+  "@media (min-width: 800px)": {
+    ".newsWrapper": {
+      ul: {
+        a: {
+          li: {
+            gridTemplateColumns: "25% 75%",
+          },
+        },
+      },
+    },
+  },
+
+  // 태블릿 뷰 960px 이상
   "@media (min-width: 960px)": {
     ".newsWrapper": {
       marginTop: "2rem",
@@ -235,9 +261,11 @@ export const newsListStyles: CSSObject = {
           margin: "2rem 0",
 
           li: {
+            gridTemplateColumns: "30% 70%",
+
             ".textGroup": {
               h6: {
-                fontSize: "2rem",
+                fontSize: "1.8rem",
                 lineHeight: 1.5,
               },
 
@@ -246,7 +274,7 @@ export const newsListStyles: CSSObject = {
               },
 
               p: {
-                fontSize: "1.4rem",
+                fontSize: "1.2rem",
               },
             },
           },
@@ -271,6 +299,50 @@ export const newsListStyles: CSSObject = {
 
           ".backIcon": {
             fontSize: "30rem",
+          },
+        },
+      },
+
+      ul: {
+        a: {
+          li: {
+            ".textGroup": {
+              p: {
+                fontSize: "1.4rem",
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+
+  // 데스크탑 뷰 1500px 이상
+  "@media (min-width: 1500px)": {
+    ".newsWrapper": {
+      ul: {
+        a: {
+          li: {
+            gridTemplateColumns: "25% 75%",
+
+            ".textGroup": {
+              h6: {
+                fontSize: "2rem",
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+
+  // 데스크탑 뷰 1750px 이상
+  "@media (min-width: 1750px)": {
+    ".newsWrapper": {
+      ul: {
+        a: {
+          li: {
+            gridTemplateColumns: "20% 80%",
           },
         },
       },

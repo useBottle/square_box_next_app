@@ -120,7 +120,7 @@ export const latestNews: CSSObject = {
     },
   },
 
-  // 모바일 뷰 550px 이상
+  // 태블릿 뷰 550px 이상
   "@media (min-width: 550px)": {
     ".latestNewsWrapper": {
       ul: {
@@ -148,7 +148,7 @@ export const latestNews: CSSObject = {
     },
   },
 
-  // 모바일 뷰 700px 이상
+  // 태블릿 뷰 700px 이상
   "@media (min-width: 700px)": {
     ".latestNewsWrapper": {
       ul: {
@@ -161,7 +161,7 @@ export const latestNews: CSSObject = {
     },
   },
 
-  // 모바일 뷰 800px 이상
+  // 태블릿 뷰 800px 이상
   "@media (min-width: 800px)": {
     ".latestNewsWrapper": {
       ul: {
@@ -174,7 +174,7 @@ export const latestNews: CSSObject = {
     },
   },
 
-  // 태블릿 뷰 960px 이상 (데스크탑 뷰 모두 포함)
+  // 태블릿 뷰 960px 이상
   "@media (min-width: 960px)": {
     marginTop: "10rem",
 
@@ -222,7 +222,7 @@ export const latestNews: CSSObject = {
     },
   },
 
-  // 모바일 뷰 1500px 이상
+  // 데스크탑 뷰 1500px 이상
   "@media (min-width: 1500px)": {
     ".latestNewsWrapper": {
       ul: {
@@ -235,7 +235,7 @@ export const latestNews: CSSObject = {
     },
   },
 
-  // 모바일 뷰 1750px 이상
+  // 데스크탑 뷰 1750px 이상
   "@media (min-width: 1750px)": {
     ".latestNewsWrapper": {
       ul: {
