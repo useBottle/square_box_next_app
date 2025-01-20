@@ -148,6 +148,32 @@ export const latestNews: CSSObject = {
     },
   },
 
+  // 모바일 뷰 700px 이상
+  "@media (min-width: 700px)": {
+    ".latestNewsWrapper": {
+      ul: {
+        a: {
+          li: {
+            gridTemplateColumns: "30% 70%",
+          },
+        },
+      },
+    },
+  },
+
+  // 모바일 뷰 800px 이상
+  "@media (min-width: 800px)": {
+    ".latestNewsWrapper": {
+      ul: {
+        a: {
+          li: {
+            gridTemplateColumns: "25% 75%",
+          },
+        },
+      },
+    },
+  },
+
   // 태블릿 뷰 960px 이상 (데스크탑 뷰 모두 포함)
   "@media (min-width: 960px)": {
     marginTop: "10rem",
@@ -166,6 +192,8 @@ export const latestNews: CSSObject = {
           margin: "2rem 0",
 
           li: {
+            gridTemplateColumns: "30% 70%",
+
             ".textGroup": {
               paddingLeft: "2rem",
 
@@ -188,6 +216,32 @@ export const latestNews: CSSObject = {
         ".noHover": {
           "&:hover": {
             background: "none",
+          },
+        },
+      },
+    },
+  },
+
+  // 모바일 뷰 1500px 이상
+  "@media (min-width: 1500px)": {
+    ".latestNewsWrapper": {
+      ul: {
+        a: {
+          li: {
+            gridTemplateColumns: "25% 75%",
+          },
+        },
+      },
+    },
+  },
+
+  // 모바일 뷰 1750px 이상
+  "@media (min-width: 1750px)": {
+    ".latestNewsWrapper": {
+      ul: {
+        a: {
+          li: {
+            gridTemplateColumns: "20% 80%",
           },
         },
       },
