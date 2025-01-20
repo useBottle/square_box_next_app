@@ -47,8 +47,8 @@ const bookmarkBtn: CSSObject = {
     },
   },
 
-  // 태블릿 뷰
-  "@media (min-width: 960px)": {
+  // 태블릿 뷰 430px 이상
+  "@media (min-width: 430px)": {
     display: "flex",
     justifyContent: "flex-end",
     width: "100%",
