@@ -113,6 +113,7 @@ export const nav: CSSObject = {
       fontSize: "1.6rem",
       margin: "1rem 0",
       padding: "0 0",
+      cursor: "pointer",
     },
   },
 
