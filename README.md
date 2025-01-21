@@ -40,12 +40,14 @@
 - 전통적인 ID, PW 로 회원 가입 및 로그인하는 방식에서 SNS 로그인 방식 추가.
 - 새로 검색하여 접속한 컨텐츠가 기존에 북마크 했던 컨텐츠라면 북마크 버튼이 북마크된 상태로 표시되도록 UX 개선.
 - 모바일 접속 유저를 포커스로 하여 모바일 퍼스트 디자인으로 UI 디자인. (모바일 친화 UI)
+- 컨텐츠 검색 속도 향상.
 
 <br />
 
 #### 기술적 측면
 - NextAuth.js 를 사용하여 좀 더 직관적이고 효율적으로 회원 가입 및 로그인 로직 개발.
 - Redux Thunk 미들웨어를 적용해 프로미스 결과에 따른 상태 업데이트하는 패턴 추가 적용.
+- Server Actions 를 사용해 일부 서버 로직 간소화.
 - 좀 더 유연한 스타일 코드 적용 및 향후 신규 기능 추가 시 동적인 스타일링을 대비해 Emotion 채용.
 - Next.js 의 다이나믹 라우트를 통한 효율적인 상세 페이지 컴포넌트 생성.
 - 뉴스 및 유튜브 컨텐츠 요청 로직을 각각 분리, 컨텐츠 리스트 요청과 개별 컨텐츠 요청 로직을 분리하여 서버에서 데이터 처리 후 응답하는 시간을 단계적으로 나누어 사용자 체감 로딩 시간을 최대한 단축
@@ -210,7 +212,7 @@ https://square-box-next-app.vercel.app/
 
 <br />
 
-<p align="center"><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FCU3Tc%2FbtsLWuzSJCo%2FkbSnkVvaaCdxMAt9lsAi11%2Fimg.png" width="300px" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbc3SF6%2FbtsLV9vVC6Q%2FJSKkxKKPqXrekk6vPjhBg0%2Fimg.png" width="335px" /></p>
+<p align="center"><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FCU3Tc%2FbtsLWuzSJCo%2FkbSnkVvaaCdxMAt9lsAi11%2Fimg.png" width="330px" /><br /><em>React 프로젝트</em></p>&nbsp;&nbsp;&nbsp;&nbsp;<p align="center"><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbc3SF6%2FbtsLV9vVC6Q%2FJSKkxKKPqXrekk6vPjhBg0%2Fimg.png" width="335px" /><br /><em>Next.js 프로젝트</em></p>
 
 <br />
 <br />
