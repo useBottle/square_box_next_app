@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { FaArrowUp } from "react-icons/fa6";
 import { css, CSSObject, keyframes } from "@emotion/react";
 
@@ -51,7 +51,7 @@ const scrollBtn: CSSObject = {
   },
 };
 
-export default function ScrollBtn(): JSX.Element {
+export default memo(function ScrollBtn(): JSX.Element {
   const [btnSwitch, setBtnSwitch] = useState<boolean>(false);
 
   useEffect(() => {
@@ -88,4 +88,4 @@ export default function ScrollBtn(): JSX.Element {
       <div className="circle" />
     </button>
   );
-}
+});
