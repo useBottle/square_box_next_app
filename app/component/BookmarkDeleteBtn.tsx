@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { MarkedNewsArticle, MarkedYoutubeVideo } from "@/types/types";
 import { setMarkedNews, setMarkedYoutube } from "@/store/bookmark";
-import { MouseEvent } from "react";
+import { memo, MouseEvent } from "react";
 
 const btn: CSSObject = {
   button: {
@@ -44,7 +44,7 @@ const btn: CSSObject = {
   },
 };
 
-export default function BookmarkDeleteBtn({ data }: { data: { category: string; id: string } }) {
+export default memo(function BookmarkDeleteBtn({ data }: { data: { category: string; id: string } }) {
   const session = useSession();
   const dispatch = useDispatch<AppDispatch>();
   const markedNewsData = useSelector((state: RootState) => state.bookmark.markedNews.data);
@@ -105,4 +105,4 @@ export default function BookmarkDeleteBtn({ data }: { data: { category: string; 
       </Link>
     </div>
   );
-}
+});
