@@ -9,7 +9,7 @@ import { fetchYoutube } from "@/store/youtube";
 import { searchBarForm } from "@/styles/default.styles";
 import { css, CSSObject } from "@emotion/react";
 import { usePathname, useRouter } from "next/navigation";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, memo, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,7 +32,7 @@ const form: CSSObject = {
   },
 };
 
-export default function SearchBar(): JSX.Element {
+export default memo(function SearchBar(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const pageAccess = useSelector((state: RootState) => state.switches.pageState);
   const inputValue = useSelector((state: RootState) => state.switches.inputValue);
@@ -91,4 +91,4 @@ export default function SearchBar(): JSX.Element {
       </form>
     </div>
   );
-}
+});
