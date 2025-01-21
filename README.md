@@ -9,7 +9,7 @@
 <br />
 <br />
 
-<h2 style="color: #5d91e5; border-bottom: 1px solid #5d91e5">프로젝트 소개</h2>
+## 프로젝트 소개
 
 - Square Box 는 사용자가 뉴스, 유튜브 컨텐츠를 검색하고 저장하고 싶은 컨텐츠는 북마크할 수 있는 애플리케이션입니다. 
 - 기존의 React 로 개발했던 프로젝트를 Next.js 를 사용해 다시 개발하면서 사용 성능 개선 및 리디자인하였습니다.
@@ -18,7 +18,7 @@
 <br />
 <br />
 
-<h2 style="color: #5d91e5; border-bottom: 1px solid #5d91e5">개발 목적</h2>
+## 개발 목적
 
 - 기존 React 프로젝트보다 더 빠른 컨텐츠 검색 속도
 - 더 나은 UI 디자인
@@ -28,7 +28,7 @@
 <br />
 <br />
 
-<h2 style="color: #5d91e5; border-bottom: 1px solid #5d91e5">개발 기간 / 인원</h2>
+## 개발 기간 / 인원
 
 - 개발 기간 - 24.09.18 ~ 25.01.24 (실 개발 기간 약 3개월)
 - 개발 인원 - 1명 (정병호)
@@ -37,9 +37,9 @@
 <br />
 <br />
 
-<h2 style="color: #5d91e5; border-bottom: 1px solid #5d91e5">기존 프로젝트 대비 개선 사항</h2>
+## 기존 프로젝트 대비 개선 사항
 
-<h4 style="color: lightblue">기능적 측면</h4>
+#### 기능적 측면
 
 - 전통적인 ID, PW 로 회원 가입 및 로그인하는 방식에서 SNS 로그인 방식 추가.
 - 새로 검색하여 접속한 컨텐츠가 기존에 북마크 했던 컨텐츠라면 북마크 버튼이 북마크된 상태로 표시되도록 UX 개선.
@@ -48,7 +48,7 @@
 
 <br />
 
-<h4 style="color: lightblue">기술적 측면</h4>
+#### 기술적 측면
 
 - NextAuth.js 를 사용하여 좀 더 직관적이고 효율적으로 회원 가입 및 로그인 로직 개발.
 - Redux Thunk 미들웨어를 적용해 프로미스 결과에 따른 상태 업데이트하는 패턴 추가 적용.
@@ -62,7 +62,7 @@
 <br />
 <br />
 
-<h2 style="color: #5d91e5; border-bottom: 1px solid #5d91e5">배포 주소</h2>
+## 배포 주소
 
 https://square-box-next-app.vercel.app/
 
@@ -70,9 +70,9 @@ https://square-box-next-app.vercel.app/
 <br />
 <br />
 
-<h2 style="color: #5d91e5; border-bottom: 1px solid #5d91e5">사용 기술</h2>
+## 사용 기술
 
-<h4 style="color: lightblue">Front-end</h4>
+#### Front-end
 
 - Next.js
 - TypeScript
@@ -80,14 +80,14 @@ https://square-box-next-app.vercel.app/
 - Emotion
 - NextAuth
 
-<h4 style="color: lightblue">Back-end</h4>
+#### Back-end
 
 - Node.js
 - TypeScript
 - Mongoose
 - MongoDB
 
-<h4 style="color: lightblue">Config</h4>
+#### Config
 
 - Yarn
 - Vercel
@@ -96,7 +96,7 @@ https://square-box-next-app.vercel.app/
 <br />
 <br />
 
-<h2 style="color: #5d91e5; border-bottom: 1px solid #5d91e5">주요 페이지 구성 및 기능</h2>
+## 주요 페이지 구성 및 기능
 
 <br />
 
@@ -106,7 +106,7 @@ https://square-box-next-app.vercel.app/
 <br />
 <br />
 
-<h3 style="color: lightblue; border-bottom: 1px solid lightblue">Home</h3>
+### Home
 
 <br />
 
@@ -129,7 +129,7 @@ https://square-box-next-app.vercel.app/
 <br />
 <br />
 
-<h3 style="color: lightblue; border-bottom: 1px solid lightblue">Sign in / up</h3>
+### Sign in / up
 
 <br />
 
@@ -146,7 +146,7 @@ https://square-box-next-app.vercel.app/
 <br />
 <br />
 
-<h3 style="color: lightblue; border-bottom: 1px solid lightblue">News</h3>
+### News
 
 <br />
 
@@ -165,7 +165,7 @@ https://square-box-next-app.vercel.app/
 <br />
 <br />
 
-<h3 style="color: lightblue; border-bottom: 1px solid lightblue">Youtube</h3>
+### Youtube
 
 
 <br />
@@ -183,7 +183,7 @@ https://square-box-next-app.vercel.app/
 <br />
 <br />
 
-<h3 style="color: lightblue; border-bottom: 1px solid lightblue">Bookmark</h3>
+### Bookmark
 
 <br />
 
@@ -200,7 +200,7 @@ https://square-box-next-app.vercel.app/
 <br />
 <br />
 
-<h3 style="color: lightblue; border-bottom: 1px solid lightblue">Skeleton UI</h3>
+### Skeleton UI
 
 <br />
 
@@ -217,7 +217,7 @@ https://square-box-next-app.vercel.app/
 <br />
 <br />
 
-<h3 style="color: lightblue; border-bottom: 1px solid lightblue">성능 지표 비교</h3>
+### 성능 지표 비교
 
 <br />
 
@@ -235,7 +235,7 @@ https://square-box-next-app.vercel.app/
 <br />
 <br />
 
-<h3 style="color: lightblue; border-bottom: 1px solid lightblue">반응형 웹</h3>
+### 반응형 웹
 
 <br />
 
@@ -257,7 +257,7 @@ https://square-box-next-app.vercel.app/
 <br />
 <br />
 
-<h3 style="color: lightblue; border-bottom: 1px solid lightblue">추후 개선할 것</h3>
+### 추후 개선할 것
 
 <br />
 
