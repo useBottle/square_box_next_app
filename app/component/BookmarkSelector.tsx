@@ -5,7 +5,7 @@
 import { css, CSSObject } from "@emotion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
 const btnGroup: CSSObject = {
   display: "flex",
@@ -64,7 +64,7 @@ const btnGroup: CSSObject = {
   },
 };
 
-export default function BookmarkSelector(): JSX.Element {
+export default memo(function BookmarkSelector(): JSX.Element {
   const pathname = usePathname();
   const [selected, setSelected] = useState<string>("news");
 
@@ -85,4 +85,4 @@ export default function BookmarkSelector(): JSX.Element {
       </Link>
     </div>
   );
-}
+});
