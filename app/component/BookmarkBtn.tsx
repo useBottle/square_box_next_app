@@ -7,6 +7,7 @@ import { GoBookmarkFill } from "react-icons/go";
 import { FaCheck } from "react-icons/fa6";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { memo } from "react";
 
 const rotate = keyframes({
   "0%": {
@@ -81,7 +82,13 @@ const bookmarkBtn: CSSObject = {
   },
 };
 
-export default function BookmarkBtn({ success, isLoading }: { success: boolean; isLoading: boolean }): JSX.Element {
+export default memo(function BookmarkBtn({
+  success,
+  isLoading,
+}: {
+  success: boolean;
+  isLoading: boolean;
+}): JSX.Element {
   const { data: session } = useSession();
 
   return (
@@ -118,4 +125,4 @@ export default function BookmarkBtn({ success, isLoading }: { success: boolean; 
       )}
     </div>
   );
-}
+});
