@@ -291,7 +291,7 @@ https://square-box-next-app.vercel.app/
 <br />
 
 
-### 추후 개선할 것
+### 추후 개선 및 적용해볼 것
 
 <br />
 
