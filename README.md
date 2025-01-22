@@ -96,6 +96,38 @@ https://square-box-next-app.vercel.app/
 <br />
 <br />
 
+## 데이터 처리 흐름
+
+<br />
+
+<p align="center"><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F63lfN%2FbtsLWunn9VN%2FNkQASbYjIMTUlrKvgwY2GK%2Fimg.png" width="1000px" /></p>
+
+<br />
+<br />
+<br />
+
+- 사용자의 요청에 따라 데이터를 제공하는 형태가 주를 이루므로 리액트에서 주로 사용하는 단방향 데이터 흐름 패턴인 Flux 패턴을 사용하였습니다.
+- 클라이언트의 요청이 발생하면 서버 API 또는 서버 액션을 사용해 외부 API 나 DB에 데이터를 요청합니다.
+- 응답받아 가져온 데이터는 모두 중앙 스토어에 디스패치합니다.
+
+<br />
+<br />
+<br />
+
+<p align="center"><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcQnNU0%2FbtsLXwLwFWs%2FTLHn5aCIqYagIJjrQlbnKK%2Fimg.png" width="1000px" /></p>
+
+<br />
+<br />
+<br />
+
+- 이후 스토어를 구독 중인 각 컴포넌트에 필요한 데이터를 제공하며 컴포넌트는 제공받은 데이터를 사용해 렌더링합니다.
+- 뉴스의 경우, 제공된 리스트 중 하나를 클릭하면 다이나믹 라우트 페이지로 리디렉션되며 그곳에서 해당 뉴스 데이터에 대한 세부 정보를 서버 액션을 통해 외부에서 스크래핑하여 가져와 마찬가지로 스토어에 디스패치합니다.
+- 디스패치된 데이터는 구독중인 동일한 컴포넌트에 그대로 제공하여 렌더링합니다.
+
+<br />
+<br />
+<br />
+
 ## 주요 페이지 구성 및 기능
 
 <br />
@@ -217,24 +249,6 @@ https://square-box-next-app.vercel.app/
 <br />
 <br />
 
-### 성능 지표 비교
-
-<br />
-
-<p align="center"><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FCU3Tc%2FbtsLWuzSJCo%2FkbSnkVvaaCdxMAt9lsAi11%2Fimg.png" width="330px" /><br /><em>React 프로젝트</em></p>&nbsp;&nbsp;&nbsp;&nbsp;<p align="center"><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbc3SF6%2FbtsLV9vVC6Q%2FJSKkxKKPqXrekk6vPjhBg0%2Fimg.png" width="335px" /><br /><em>Next.js 프로젝트</em></p>
-
-<br />
-<br />
-<br />
-
-- SEO 향상을 위해 뉴스 및 유튜브 상세 페이지의 URL 은 쿼리 스트링으로 title 값을 포함하도록 하였고 이에 따라 해당 페이지에서는 시멘틱 태그 사용에 좀 더 신경을 썼고 애플리케이션 전체적으로 반응형 웹 적용에도 좀 더 개선하고자 노력하였습니다.
-- 그에 따른 결과로 기존 프로젝트보다 접근성 및 표준 권장사항 수치가 향상되었습니다.
-- Lighthouse 지표 외에 실질적으로 사용자가 특정 컨텐츠를 검색 시 데이터 로딩 시간을 단축하기 위해 로직을 분할 하는 등의 노력을 한 결과, 기존 리액트 프로젝트에서는 평균 16초에서 20초 가까이 소요되던 컨텐츠 로딩 시간이 평균 3초에서 6초 정도로 단축되었습니다.
-
-<br />
-<br />
-<br />
-
 ### 반응형 웹
 
 <br />
@@ -256,6 +270,25 @@ https://square-box-next-app.vercel.app/
 <br />
 <br />
 <br />
+
+### 성능 지표 비교
+
+<br />
+
+<p align="center"><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FCU3Tc%2FbtsLWuzSJCo%2FkbSnkVvaaCdxMAt9lsAi11%2Fimg.png" width="330px" /><br /><em>React 프로젝트</em></p>&nbsp;&nbsp;&nbsp;&nbsp;<p align="center"><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbc3SF6%2FbtsLV9vVC6Q%2FJSKkxKKPqXrekk6vPjhBg0%2Fimg.png" width="335px" /><br /><em>Next.js 프로젝트</em></p>
+
+<br />
+<br />
+<br />
+
+- SEO 향상을 위해 뉴스 및 유튜브 상세 페이지의 URL 은 쿼리 스트링으로 title 값을 포함하도록 하였고 이에 따라 해당 페이지에서는 시멘틱 태그 사용에 좀 더 신경을 썼고 애플리케이션 전체적으로 반응형 웹 적용에도 좀 더 개선하고자 노력하였습니다.
+- 그에 따른 결과로 기존 프로젝트보다 접근성 및 표준 권장사항 수치가 향상되었습니다.
+- Lighthouse 지표 외에 실질적으로 사용자가 특정 컨텐츠를 검색 시 데이터 로딩 시간을 단축하기 위해 로직을 분할 하는 등의 노력을 한 결과, 기존 리액트 프로젝트에서는 평균 16초에서 20초 가까이 소요되던 컨텐츠 로딩 시간이 평균 3초에서 6초 정도로 단축되었습니다.
+
+<br />
+<br />
+<br />
+
 
 ### 추후 개선할 것
 
