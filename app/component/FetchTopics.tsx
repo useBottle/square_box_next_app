@@ -42,7 +42,7 @@ export default function FetchTopics() {
       }
     };
 
-    // topicsList, newsListOfTopics, articlesOfTopics 를 인터벌로 디스패치.
+    // topicsList, newsListOfTopics 를 인터벌로 1분마다 디스패치.
     const intervalFetch = setInterval(() => {
       fetchKeyword();
     }, 1000 * 60);

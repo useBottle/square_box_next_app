@@ -34,7 +34,7 @@ export default function LatestNews({
       dispatch(setLatestNewsList(result?.newsTop10List));
     };
 
-    // 10분마다 최신 뉴스 리스트 갱신 요청.
+    // 1분마다 최신 뉴스 리스트 갱신 요청.
     const intervalFetch = setInterval(() => fetchData(), 1000 * 60);
 
     return () => clearInterval(intervalFetch);
