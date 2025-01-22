@@ -275,7 +275,7 @@ https://square-box-next-app.vercel.app/
 
 <br />
 
-<p align="center"><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FCU3Tc%2FbtsLWuzSJCo%2FkbSnkVvaaCdxMAt9lsAi11%2Fimg.png" width="330px" /><br /><em>이전 React 프로젝트</em></p>&nbsp;&nbsp;&nbsp;&nbsp;<p align="center"><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbc3SF6%2FbtsLV9vVC6Q%2FJSKkxKKPqXrekk6vPjhBg0%2Fimg.png" width="335px" /><br /><em>현 Next.js 프로젝트</em></p>
+<p align="center"><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FCU3Tc%2FbtsLWuzSJCo%2FkbSnkVvaaCdxMAt9lsAi11%2Fimg.png" width="530px" /><br /><em>이전 React 프로젝트</em></p>&nbsp;&nbsp;&nbsp;&nbsp;<p align="center"><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbc3SF6%2FbtsLV9vVC6Q%2FJSKkxKKPqXrekk6vPjhBg0%2Fimg.png" width="535px" /><br /><em>현 Next.js 프로젝트</em></p>
 
 <br />
 <br />
