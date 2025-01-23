@@ -9,7 +9,7 @@ import { fetchYoutube } from "@/store/youtube";
 import { searchBarForm } from "@/styles/default.styles";
 import { css, CSSObject } from "@emotion/react";
 import { usePathname, useRouter } from "next/navigation";
-import { ChangeEvent, FormEvent, memo, useRef, useState } from "react";
+import { ChangeEvent, FormEvent, memo, useEffect, useRef, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,10 +36,16 @@ export default memo(function SearchBar(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const pageAccess = useSelector((state: RootState) => state.switches.pageState);
   const inputValue = useSelector((state: RootState) => state.switches.inputValue);
+  const [isSubmit, setIsSubmit] = useState<boolean>(false);
   const refInputValue = useRef("");
   const pathName = usePathname();
   const router = useRouter();
   const [inputFocused, setInputFocused] = useState<boolean>(false);
+
+  // 이전 검색어 저장
+  useEffect(() => {
+    refInputValue.current = inputValue;
+  }, [isSubmit]);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setInputValue(e.target.value));
@@ -48,14 +54,15 @@ export default memo(function SearchBar(): JSX.Element {
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (inputValue === "") return;
+
     // 이전 검색어와 동일한 검색어로 검색 시도할 경우 함수 종료.
     if (inputValue === refInputValue.current) return;
 
-    refInputValue.current = inputValue;
+    setIsSubmit(true); // onSubmit 함수 실행 추적
 
-    if (inputValue === "") return;
-    dispatch(setOnSearching(true));
     // onSearching 해제는 페이지 이동 후 해당 페이지에서 적용.
+    dispatch(setOnSearching(true));
 
     if (pageAccess === "news") {
       try {
@@ -74,11 +81,20 @@ export default memo(function SearchBar(): JSX.Element {
         console.error("Error occurred. Youtube fetch failed.", error);
       }
     }
+
+    setIsSubmit(false); // onSubmit 함수 실행 추적
   };
 
   return (
     <div css={css(form)}>
-      <form css={css(searchBarForm)} onSubmit={onSubmit}>
+      <form
+        css={css(searchBarForm)}
+        onSubmit={
+          inputValue !== "" && refInputValue.current !== inputValue
+            ? onSubmit
+            : (e: FormEvent<HTMLFormElement>) => e.preventDefault()
+        }
+      >
         <div className={`inputSet ${inputFocused ? "borderOn" : ""}`}>
           <IoIosSearch className="searchIcon" />
           <input
