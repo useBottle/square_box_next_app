@@ -9,7 +9,7 @@ import { fetchYoutube } from "@/store/youtube";
 import { searchBarForm } from "@/styles/default.styles";
 import { css, CSSObject } from "@emotion/react";
 import { usePathname, useRouter } from "next/navigation";
-import { ChangeEvent, FormEvent, memo, useState } from "react";
+import { ChangeEvent, FormEvent, memo, useRef, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,6 +36,7 @@ export default memo(function SearchBar(): JSX.Element {
   const dispatch = useDispatch<AppDispatch>();
   const pageAccess = useSelector((state: RootState) => state.switches.pageState);
   const inputValue = useSelector((state: RootState) => state.switches.inputValue);
+  const refInputValue = useRef("");
   const pathName = usePathname();
   const router = useRouter();
   const [inputFocused, setInputFocused] = useState<boolean>(false);
@@ -46,6 +47,12 @@ export default memo(function SearchBar(): JSX.Element {
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // 이전 검색어와 동일한 검색어로 검색 시도할 경우 함수 종료.
+    if (inputValue === refInputValue.current) return;
+
+    refInputValue.current = inputValue;
+
     if (inputValue === "") return;
     dispatch(setOnSearching(true));
     // onSearching 해제는 페이지 이동 후 해당 페이지에서 적용.
