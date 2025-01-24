@@ -384,7 +384,7 @@ export const dynamicNewsStyles: CSSObject = {
       flexDirection: "column",
 
       img: {
-        aspectRatio: "16 / 10",
+        aspectRatio: "16 / 11",
         width: "100%",
         height: "100%",
       },

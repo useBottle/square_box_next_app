@@ -171,8 +171,10 @@ export default function LatestNewsDetail(): JSX.Element {
           </figure>
           <div className="textGroup">
             <h1>{latestNewsArticle.title}</h1>
-            <div className="date">{latestNewsArticle.date}</div>
-            <form onSubmit={onSubmit}>{<BookmarkBtn success={bookmarkSuccess} isLoading={isLoadingMarked} />}</form>
+            <div className="container">
+              <div className="date">{latestNewsArticle.date}</div>
+              <form onSubmit={onSubmit}>{<BookmarkBtn success={bookmarkSuccess} isLoading={isLoadingMarked} />}</form>
+            </div>
             {latestNewsArticle.text.map((item, index) => (
               <p key={index}>{item}</p>
             ))}
