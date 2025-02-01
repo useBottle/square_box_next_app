@@ -63,8 +63,9 @@ export default function MarkedYoutubeDynamic(): JSX.Element {
 
         // 북마크 수 10개 미만일 경우만 북마크 요청
         if (markedYoutubeData && (markedYoutubeData?.number as number) < 10) {
+          setBookmarkSuccess(true);
           const response = await setYoutubeBookmark(clickedYoutube, session.user.name);
-          response && response.success === true && setBookmarkSuccess(true);
+          response && response.success === false && setBookmarkSuccess(false);
           // console.log(response);
         }
 
