@@ -72,22 +72,11 @@ export default function NewsDynamic(): JSX.Element {
     // 유저 정보가 없으면 onSubmit 이벤트 종료.
     if (!session || !session.user || session.user.name === undefined) return;
 
-    const currentNews: SingleNewsArticle = {
-      title: "",
-      date: "",
-      image: "",
-      alt: "",
-      text: [],
-    };
-
     // * 현재 뉴스 기사 객체 생성
-    if (singleArticle.title !== "") {
-      currentNews.title = singleArticle.title;
-      currentNews.date = singleArticle.date[1] ? singleArticle.date[1] : singleArticle.date[0];
-      currentNews.image = singleArticle.image;
-      currentNews.alt = singleArticle.alt;
-      currentNews.text = singleArticle.text;
-    }
+    const currentNews: SingleNewsArticle = {
+      ...singleArticle,
+      date: singleArticle.date[1] || singleArticle.date[0],
+    };
 
     try {
       // 북마크된 데이터 있을 경우 confirm 창 띄우기. 북마크 삭제할지 확인.
