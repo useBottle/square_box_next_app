@@ -78,23 +78,6 @@ export default function LatestNewsDetail(): JSX.Element {
     // 유저 정보가 없으면 onSubmit 이벤트 종료.
     if (!session || !session.user || !session.user.name) return;
 
-    // 현재 뉴스 기사 객체 생성
-    const currentNews = {
-      title: latestNewsArticle.title,
-      date: latestNewsArticle.date,
-      image:
-        latestNewsArticle.image.endsWith(".jpg") ||
-        latestNewsArticle.image.endsWith(".jpeg") ||
-        latestNewsArticle.image.endsWith(".png") ||
-        latestNewsArticle.image.endsWith(".gif") ||
-        latestNewsArticle.image.endsWith(".svg") ||
-        latestNewsArticle.image.endsWith(".webp")
-          ? latestNewsArticle.image
-          : "",
-      alt: latestNewsArticle.alt,
-      text: latestNewsArticle.text,
-    };
-
     try {
       if (latestNewsArticle.title === "") return;
       const findBookmark = await findNewsBookmark(latestNewsArticle.title, session.user.name);
@@ -103,7 +86,7 @@ export default function LatestNewsDetail(): JSX.Element {
       if (findBookmark && findBookmark.exists === true) {
         if (confirm("북마크를 제거하시겠습니까?")) {
           setBookmarkSuccess(false);
-          const response = await deleteNewsBookmark(currentNews, session.user.name);
+          const response = await deleteNewsBookmark(latestNewsArticle, session.user.name);
           response && response.delete === false && setBookmarkSuccess(true);
         } else {
           return;
@@ -118,7 +101,7 @@ export default function LatestNewsDetail(): JSX.Element {
         // 북마크 수 10개 미만일 경우만 북마크 요청
         if (markedNewsData && (markedNewsData?.number as number) < 10) {
           setBookmarkSuccess(true);
-          const response = await setNewsBookmark(currentNews, session.user.name);
+          const response = await setNewsBookmark(latestNewsArticle, session.user.name);
           response && response.success === false && setBookmarkSuccess(false);
           // console.log(response);
         }
