@@ -105,9 +105,10 @@ export default function NewsDynamic(): JSX.Element {
       // 북마크된 데이터 있을 경우 confirm 창 띄우기. 북마크 삭제할지 확인.
       if (findBookmark && findBookmark.exists === true) {
         if (confirm("북마크를 제거하시겠습니까?")) {
+          setBookmarkSuccess(false);
           const response = await deleteNewsBookmark(currentNews, session.user.name as string);
-          if (response && response.delete === true) {
-            setBookmarkSuccess(false);
+          if (response && response.delete === false) {
+            setBookmarkSuccess(true);
           }
         } else {
           return;
@@ -121,8 +122,9 @@ export default function NewsDynamic(): JSX.Element {
 
         // 북마크 수 10개 미만일 경우만 북마크 요청
         if (markedNewsData && (markedNewsData?.number as number) < 10) {
+          setBookmarkSuccess(true);
           const response = await setNewsBookmark(currentNews, session.user.name);
-          response && response.success === true && setBookmarkSuccess(true);
+          response && response.success === false && setBookmarkSuccess(false);
           // console.log(response);
         }
 
