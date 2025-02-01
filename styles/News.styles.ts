@@ -384,7 +384,6 @@ export const dynamicNewsStyles: CSSObject = {
       flexDirection: "column",
 
       img: {
-        aspectRatio: "16 / 11",
         width: "100%",
         height: "100%",
       },
@@ -440,6 +439,24 @@ export const dynamicNewsStyles: CSSObject = {
     },
   },
 
+  // 태블릿 뷰 600px 이상
+  "@media (min-width: 600px)": {
+    ".newsDetailWrapper": {
+      ".imgGroup": {
+        width: "70%",
+      },
+    },
+  },
+
+  // 태블릿 뷰 800px 이상
+  "@media (min-width: 800px)": {
+    ".newsDetailWrapper": {
+      ".imgGroup": {
+        width: "60%",
+      },
+    },
+  },
+
   // 태블릿 뷰 960px 이상
   "@media (min-width: 960px)": {
     width: "100%",
@@ -463,6 +480,10 @@ export const dynamicNewsStyles: CSSObject = {
           marginTop: "2rem",
           fontSize: "1.4rem",
           width: "70%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
         },
       },
 
