@@ -10,7 +10,18 @@ export async function fetchSingleArticle(url: string): Promise<articleData> {
     const $ = cheerio.load(response.data);
     const title = $(".col-main .title").text().trim();
     const imgUrl = $(".img-box img").attr("src");
-    const image = imgUrl && !(imgUrl.startsWith("https:") || imgUrl.startsWith("http:")) ? `https:${imgUrl}` : imgUrl;
+    const imageStartsWith =
+      imgUrl && !(imgUrl.startsWith("https:") || imgUrl.startsWith("http:")) ? `https:${imgUrl}` : imgUrl;
+    const image =
+      imageStartsWith &&
+      (imageStartsWith.endsWith("jpg") ||
+        imageStartsWith.endsWith("jpeg") ||
+        imageStartsWith.endsWith("png") ||
+        imageStartsWith.endsWith("gif") ||
+        imageStartsWith.endsWith("svg") ||
+        imageStartsWith.endsWith("webp"))
+        ? imageStartsWith
+        : "";
     const alt = $(".img-box img").attr("alt");
     let date: string[] = [];
     $(".info .wrt-text dd").map((_, item) => {

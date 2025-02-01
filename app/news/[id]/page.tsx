@@ -97,13 +97,9 @@ export default function NewsDynamic(): JSX.Element {
       currentNews.text = singleArticle.text;
     }
 
-    const titleToUse = singleArticle.title !== "" ? singleArticle.title : currentNews?.title || "defaultTitle";
-
     try {
-      const findBookmark = await findNewsBookmark(titleToUse, session.user.name);
-
       // 북마크된 데이터 있을 경우 confirm 창 띄우기. 북마크 삭제할지 확인.
-      if (findBookmark && findBookmark.exists === true) {
+      if (bookmarkSuccess) {
         if (confirm("북마크를 제거하시겠습니까?")) {
           setBookmarkSuccess(false);
           const response = await deleteNewsBookmark(currentNews, session.user.name as string);
@@ -114,7 +110,7 @@ export default function NewsDynamic(): JSX.Element {
       }
 
       // 북마크된 데이터 없을 경우 북마크 시도
-      if (findBookmark && findBookmark.exists === false) {
+      if (!bookmarkSuccess) {
         // 유저와 일치하는 북마크 뉴스 데이터 모두 검색
         const markedNewsData = await getMarkedNews(session.user.name as string);
 
