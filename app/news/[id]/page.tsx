@@ -107,9 +107,7 @@ export default function NewsDynamic(): JSX.Element {
         if (confirm("북마크를 제거하시겠습니까?")) {
           setBookmarkSuccess(false);
           const response = await deleteNewsBookmark(currentNews, session.user.name as string);
-          if (response && response.delete === false) {
-            setBookmarkSuccess(true);
-          }
+          response && response.delete === false && setBookmarkSuccess(true);
         } else {
           return;
         }
