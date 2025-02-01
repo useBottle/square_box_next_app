@@ -35,6 +35,29 @@ export default function NewsDynamic(): JSX.Element {
   const pageState = useSelector((state: RootState) => state.switches.pageState);
   const navMenu = useSelector((state: RootState) => state.switches.navMenu);
 
+  // 유저 정보 및 뉴스 데이터 DB 에서 확인 후 북마크 버튼 스타일 변경 트리거 상태 변경.
+  async function findMarkedNews() {
+    try {
+      const findBookmark = await findNewsBookmark(newsTitle, session?.user.name as string);
+      if (findBookmark && findBookmark.exists === true) {
+        setBookmarkSuccess(true);
+      }
+    } catch (error) {
+      console.error("news bookmark failed", error);
+    }
+    setIsLoading(false);
+  }
+
+  // 북마크 제한 수량 체크.
+  async function checkDataAmount() {
+    try {
+      const markedNewsData = await getMarkedNews(session?.user.name as string);
+      markedNewsData?.number !== undefined && markedNewsData?.number < 10 && setBookmarkPossibility(true);
+    } catch (error) {
+      console.error("failed to get number of bookmarked data.", error);
+    }
+  }
+
   useEffect(() => {
     window.scrollTo({ top: 0 });
     dispatch(setPageState("news"));
@@ -51,28 +74,6 @@ export default function NewsDynamic(): JSX.Element {
     // 유저 정보가 없으면 북마크 데이터 검색 요청하지 않음.
     if (!session || !session.user || !session.user.name) return;
 
-    // 유저 정보 및 뉴스 데이터 DB 에서 확인 후 북마크 버튼 스타일 변경 트리거 상태 변경.
-    async function findMarkedNews() {
-      try {
-        const findBookmark = await findNewsBookmark(newsTitle, session?.user.name as string);
-        if (findBookmark && findBookmark.exists === true) {
-          setBookmarkSuccess(true);
-        }
-      } catch (error) {
-        console.error("news bookmark failed", error);
-      }
-      setIsLoading(false);
-    }
-
-    // 북마크 제한 수량 체크.
-    async function checkDataAmount() {
-      try {
-        const markedNewsData = await getMarkedNews(session?.user.name as string);
-        markedNewsData?.number !== undefined && markedNewsData?.number < 10 && setBookmarkPossibility(true);
-      } catch (error) {
-        console.error("failed to get number of bookmarked data.", error);
-      }
-    }
     findMarkedNews();
     checkDataAmount();
   }, []);

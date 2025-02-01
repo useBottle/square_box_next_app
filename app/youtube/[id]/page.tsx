@@ -32,34 +32,35 @@ export default function YoutubeDynamic(): JSX.Element {
   const videoId = searchParams.get("id");
   const index = Number(searchParams.get("index"));
 
+  // 유저 정보 및 유튜브 데이터 DB 에서 확인 후 북마크 버튼 스타일 변경 트리거 상태 변경.
+  async function findMarkedYoutube() {
+    try {
+      const findBookmark = await findYoutubeBookmark(videoId as string, session?.user.name as string);
+      if (findBookmark && findBookmark.exists === true) {
+        setBookmarkSuccess(true);
+      }
+    } catch (error) {
+      console.error("youtube bookmark failed", error);
+    }
+    setIsLoading(false);
+  }
+
+  // 북마크 제한 수량 체크.
+  async function checkDataAmount() {
+    try {
+      const markedYoutubeData = await getMarkedYoutube(session?.user.name as string);
+      markedYoutubeData?.number !== undefined && markedYoutubeData?.number < 10 && setBookmarkPossibility(true);
+    } catch (error) {
+      console.error("failed to get number of bookmarked data.", error);
+    }
+  }
+
   useEffect(() => {
     dispatch(setPageState("youtube"));
 
     // 유저 정보가 없으면 북마크 데이터 확인하지 않음
     if (!session || !session.user || !session.user.name) return;
 
-    // 유저 정보 및 유튜브 데이터 DB 에서 확인 후 북마크 버튼 스타일 변경 트리거 상태 변경.
-    async function findMarkedYoutube() {
-      try {
-        const findBookmark = await findYoutubeBookmark(videoId as string, session?.user.name as string);
-        if (findBookmark && findBookmark.exists === true) {
-          setBookmarkSuccess(true);
-        }
-      } catch (error) {
-        console.error("youtube bookmark failed", error);
-      }
-      setIsLoading(false);
-    }
-
-    // 북마크 제한 수량 체크.
-    async function checkDataAmount() {
-      try {
-        const markedYoutubeData = await getMarkedYoutube(session?.user.name as string);
-        markedYoutubeData?.number !== undefined && markedYoutubeData?.number < 10 && setBookmarkPossibility(true);
-      } catch (error) {
-        console.error("failed to get number of bookmarked data.", error);
-      }
-    }
     findMarkedYoutube();
     checkDataAmount();
   }, []);

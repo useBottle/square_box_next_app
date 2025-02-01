@@ -35,6 +35,37 @@ export default function LatestNewsDetail(): JSX.Element {
   const pageState = useSelector((state: RootState) => state.switches.pageState);
   const navMenu = useSelector((state: RootState) => state.switches.navMenu);
 
+  // 유저 정보 및 뉴스 데이터 DB에서 확인 후 북마크 버튼 스타일 변경 트리거 상태 변경.
+  const findMarkedNews = async () => {
+    try {
+      // 상태 업데이트가 완료되지 않아 데이터가 비었을 경우 함수 종료.
+      if (latestNewsArticle.title === "") return;
+
+      if (session && session.user && session.user.name) {
+        const findBookmark = await findNewsBookmark(latestNewsArticle.title, session.user.name as string);
+        // console.log(findBookmark);
+        if (findBookmark && findBookmark.exists === true) {
+          setBookmarkSuccess(true);
+        }
+        setIsLoadingMarked(false);
+
+        // 유저 세션이 없으면 함수 종료.
+      } else if (!session || !session.user || !session.user.name) return;
+    } catch (error) {
+      console.error("news bookmark failed", error);
+    }
+  };
+
+  // 북마크 제한 수량 체크.
+  async function checkDataAmount() {
+    try {
+      const markedNewsData = await getMarkedNews(session?.user.name as string);
+      markedNewsData?.number !== undefined && markedNewsData?.number < 10 && setBookmarkPossibility(true);
+    } catch (error) {
+      console.error("failed to get number of bookmarked data.", error);
+    }
+  }
+
   // latestNewsArticle 이 업데이트 되면 해당 값이 북마크 되어있는지 확인
   useEffect(() => {
     window.scrollTo({ top: 0 });
@@ -47,37 +78,6 @@ export default function LatestNewsDetail(): JSX.Element {
         dispatch(setLatestNewsArticle(result));
       };
       fetchArticle();
-    }
-
-    // 유저 정보 및 뉴스 데이터 DB에서 확인 후 북마크 버튼 스타일 변경 트리거 상태 변경.
-    const findMarkedNews = async () => {
-      try {
-        // 상태 업데이트가 완료되지 않아 데이터가 비었을 경우 함수 종료.
-        if (latestNewsArticle.title === "") return;
-
-        if (session && session.user && session.user.name) {
-          const findBookmark = await findNewsBookmark(latestNewsArticle.title, session.user.name as string);
-          // console.log(findBookmark);
-          if (findBookmark && findBookmark.exists === true) {
-            setBookmarkSuccess(true);
-          }
-          setIsLoadingMarked(false);
-
-          // 유저 세션이 없으면 함수 종료.
-        } else if (!session || !session.user || !session.user.name) return;
-      } catch (error) {
-        console.error("news bookmark failed", error);
-      }
-    };
-
-    // 북마크 제한 수량 체크.
-    async function checkDataAmount() {
-      try {
-        const markedNewsData = await getMarkedNews(session?.user.name as string);
-        markedNewsData?.number !== undefined && markedNewsData?.number < 10 && setBookmarkPossibility(true);
-      } catch (error) {
-        console.error("failed to get number of bookmarked data.", error);
-      }
     }
 
     findMarkedNews();
