@@ -31,6 +31,7 @@ export default function NewsDynamic(): JSX.Element {
   const newsTitle = params.get("title") as string;
   const [bookmarkSuccess, setBookmarkSuccess] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [bookmarkPossibility, setBookmarkPossibility] = useState<boolean>(false);
   const pageState = useSelector((state: RootState) => state.switches.pageState);
   const navMenu = useSelector((state: RootState) => state.switches.navMenu);
 
@@ -62,7 +63,18 @@ export default function NewsDynamic(): JSX.Element {
       }
       setIsLoading(false);
     }
+
+    // 북마크 제한 수량 체크.
+    async function checkDataAmount() {
+      try {
+        const markedNewsData = await getMarkedNews(session?.user.name as string);
+        markedNewsData?.number !== undefined && markedNewsData?.number < 10 && setBookmarkPossibility(true);
+      } catch (error) {
+        console.error("failed to get number of bookmarked data.", error);
+      }
+    }
     findMarkedNews();
+    checkDataAmount();
   }, []);
 
   // 북마크 onSubmit 요청
@@ -92,18 +104,15 @@ export default function NewsDynamic(): JSX.Element {
 
       // 북마크된 데이터 없을 경우 북마크 시도
       if (!bookmarkSuccess) {
-        // 유저와 일치하는 북마크 뉴스 데이터 모두 검색
-        const markedNewsData = await getMarkedNews(session.user.name as string);
-
         // 북마크 수 10개 미만일 경우만 북마크 요청
-        if (markedNewsData && (markedNewsData?.number as number) < 10) {
+        if (bookmarkPossibility) {
           setBookmarkSuccess(true);
           const response = await setNewsBookmark(currentNews, session.user.name);
           response && response.success === false && setBookmarkSuccess(false);
           // console.log(response);
         }
 
-        if (markedNewsData && (markedNewsData?.number as number) === 10) {
+        if (!bookmarkPossibility) {
           alert("북마크는 10개 까지만 가능합니다.");
           return;
         }

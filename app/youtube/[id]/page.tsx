@@ -70,10 +70,8 @@ export default function YoutubeDynamic(): JSX.Element {
     };
 
     try {
-      const findBookmark = await findYoutubeBookmark(videoId as string, session.user.name);
-
       // 북마크된 데이터 있을 경우 confirm 창 띄우기. 북마크 삭제할지 확인.
-      if (findBookmark && findBookmark.exists === true) {
+      if (bookmarkSuccess) {
         if (confirm("북마크를 제거하시겠습니까?")) {
           const response = await deleteYoutubeBookmark(videoId as string, session.user.name);
 
@@ -86,7 +84,7 @@ export default function YoutubeDynamic(): JSX.Element {
       }
 
       // 북마크된 데이터 없을 경우 북마크 시도
-      if (findBookmark && findBookmark.exists === false) {
+      if (!bookmarkSuccess) {
         // 유저와 일치하는 북마크 유튜브 데이터 모두 검색
         const markedYoutubeData = await getMarkedYoutube(session.user.name as string);
 
