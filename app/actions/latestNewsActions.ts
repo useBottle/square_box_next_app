@@ -61,7 +61,18 @@ export async function getLatestNewsArticle(url: string): Promise<LatestNewsArtic
     const title = $(".title-article01 h1.tit").text().trim();
     const date = $(".title-article01 .update-time").attr("data-published-time");
     const imgUrl = $(".image-zone .img-con .img img").attr("src");
-    const image = imgUrl && !(imgUrl.startsWith("https:") || imgUrl.startsWith("http:")) ? `https:${imgUrl}` : imgUrl;
+    const imageStartsWith =
+      imgUrl && !(imgUrl.startsWith("https:") || imgUrl.startsWith("http:")) ? `https:${imgUrl}` : imgUrl;
+    const image =
+      imageStartsWith &&
+      (imageStartsWith.endsWith("jpg") ||
+        imageStartsWith.endsWith("jpeg") ||
+        imageStartsWith.endsWith("png") ||
+        imageStartsWith.endsWith("gif") ||
+        imageStartsWith.endsWith("svg") ||
+        imageStartsWith.endsWith("webp"))
+        ? imageStartsWith
+        : "";
     const alt = $(".image-zone .desc-con .tit-cap").text().trim();
     const text = $(".story-news.article p:not(.txt-copyright.adrs)")
       .map((_, item) => $(item).text().trim())
