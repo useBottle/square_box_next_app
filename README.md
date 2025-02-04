@@ -115,7 +115,7 @@ https://square-box-next-app.vercel.app/
 <br />
 <br />
 
-<p align="center"><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcQnNU0%2FbtsLXwLwFWs%2FTLHn5aCIqYagIJjrQlbnKK%2Fimg.png" width="1000px" /></p>
+<p align="center"><img src="https://blog.kakaocdn.net/dn/cQnNU0/btsLXwLwFWs/TLHn5aCIqYagIJjrQlbnKK/img.png" width="1000px" /></p>
 
 <br />
 <br />
