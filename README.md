@@ -258,7 +258,7 @@ https://square-box-next-app.vercel.app/
 
 <br />
 
-<p align="center"><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FlwUVw%2FbtsLV2Q9cGi%2Fucyu4QFqNRazGyKqMUeuFk%2Fimg.png" width="300px" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FBBEEZ%2FbtsLWuGDNp9%2FlimQP8K66rJwCEmuNoBbq1%2Fimg.png" width="500px" /></p>
+<p align="center"><img src="https://blog.kakaocdn.net/dn/lwUVw/btsLV2Q9cGi/ucyu4QFqNRazGyKqMUeuFk/img.png" width="300px" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FBBEEZ%2FbtsLWuGDNp9%2FlimQP8K66rJwCEmuNoBbq1%2Fimg.png" width="500px" /></p>
 
 <br />
 <br />
